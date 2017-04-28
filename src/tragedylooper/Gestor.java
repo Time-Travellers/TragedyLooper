@@ -15,13 +15,7 @@ public class Gestor {
     public List<InfoLugar> lugares = new ArrayList<InfoLugar> ();
 
     public Usuario buscarUsuario(String id) {
-//begin of modifiable zone(JavaCode)......C/5d61685d-add8-490d-85ee-9521288abf5a
-
-//end of modifiable zone(JavaCode)........E/5d61685d-add8-490d-85ee-9521288abf5a
-//begin of modifiable zone(JavaReturned)..C/5d61685d-add8-490d-85ee-9521288abf5a
-
-//end of modifiable zone(JavaReturned)....E/5d61685d-add8-490d-85ee-9521288abf5a
-    }
+}
 
     public Partida buscarPartida(String id) {
 //begin of modifiable zone(JavaCode)......C/047afb49-440c-4d7d-b810-8706d550d29c
