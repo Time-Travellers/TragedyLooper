@@ -18,13 +18,7 @@ public class Gestor {
 }
 
     public Partida buscarPartida(String id) {
-//begin of modifiable zone(JavaCode)......C/047afb49-440c-4d7d-b810-8706d550d29c
-
-//end of modifiable zone(JavaCode)........E/047afb49-440c-4d7d-b810-8706d550d29c
-//begin of modifiable zone(JavaReturned)..C/047afb49-440c-4d7d-b810-8706d550d29c
-
-//end of modifiable zone(JavaReturned)....E/047afb49-440c-4d7d-b810-8706d550d29c
-    }
+}
 
     public boolean eliminarUsuario() {
 //begin of modifiable zone(JavaCode)......C/bb6d8245-c1f7-41f5-b617-80798abd30d7
