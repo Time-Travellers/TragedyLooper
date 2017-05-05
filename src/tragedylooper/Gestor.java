@@ -12,7 +12,13 @@ public class Gestor {
 
     public List<InfoGuion> guiones = new ArrayList<InfoGuion> ();
 
-    public List<InfoLugar> lugares = new ArrayList<InfoLugar> ();
+ //  public List<InfoLugar> lugares = new ArrayList<InfoLugar> ();
+    
+    public Gestor(){
+    	usuario = IOUsuarios.leer();
+    	//partida = IOPartidas.leer();
+    	guiones = IOGuiones.leer();
+    }
 
     public Usuario buscarUsuario(String id) {
 //begin of modifiable zone(JavaCode)......C/5d61685d-add8-490d-85ee-9521288abf5a
@@ -33,12 +39,6 @@ public class Gestor {
     }
 
     public boolean eliminarUsuario() {
-//begin of modifiable zone(JavaCode)......C/bb6d8245-c1f7-41f5-b617-80798abd30d7
-
-//end of modifiable zone(JavaCode)........E/bb6d8245-c1f7-41f5-b617-80798abd30d7
-//begin of modifiable zone(JavaReturned)..C/bb6d8245-c1f7-41f5-b617-80798abd30d7
-
-//end of modifiable zone(JavaReturned)....E/bb6d8245-c1f7-41f5-b617-80798abd30d7
     }
 
     public void limpiar() {
@@ -61,5 +61,11 @@ public class Gestor {
 
 //end of modifiable zone(JavaCode)........E/890f45b5-a236-4a61-a236-108d9ea3df75
     }
+
+	public void start() {
+		
+		//new JFrame etc
+		
+	}
 
 }
