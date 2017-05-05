@@ -11,7 +11,7 @@ public class Jugador extends Usuario {
 
     public Date penalizacion;
 
-    public List<JugadorPartida> Partidas = new ArrayList<JugadorPartida> ();
+    public List<JugadorPartida> partidas = new ArrayList<JugadorPartida> ();
 
     public Estadistica estadistica;
 
