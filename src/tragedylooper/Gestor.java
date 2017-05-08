@@ -3,6 +3,8 @@ package tragedylooper;
 import java.util.ArrayList;
 import java.util.List;
 
+import tragedylooper.iostream.IO;
+
 public class Gestor {
     public List<Usuario> usuario = new ArrayList<Usuario> ();
 
@@ -15,9 +17,9 @@ public class Gestor {
  //  public List<InfoLugar> lugares = new ArrayList<InfoLugar> ();
     
     public Gestor(){
-    	usuario = IOUsuarios.leer();
-    	//partida = IOPartidas.leer();
-    	guiones = IOGuiones.leer();
+    	usuario = new IO<Usuario>("usuarios.ser").leer();
+    	//partida = new IO<Partida>("partidas.ser").leer();
+    	guiones = new IO<InfoGuion>("guiones.ser").leer();
     }
 
     public Usuario buscarUsuario(String id) {
