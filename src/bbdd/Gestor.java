@@ -1,7 +1,6 @@
 package bbdd;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 import tragedylooper.InfoGuion;
 import tragedylooper.Jugador;
@@ -9,13 +8,13 @@ import tragedylooper.Partida;
 import tragedylooper.Usuario;
 
 public class Gestor {
-    public List<Usuario> usuario = new ArrayList<Usuario> ();
+    public HashMap<String, Usuario> usuario = new HashMap<String, Usuario>();
 
-    public List<Partida> partida = new ArrayList<Partida> ();
+    public HashMap<String, Partida> partida = new HashMap<String, Partida> ();
 
-    public List<Jugador> listaEspera = new ArrayList<Jugador> ();
+    public HashMap<String, Jugador> listaEspera = new HashMap<String, Jugador> ();
 
-    public List<InfoGuion> guiones = new ArrayList<InfoGuion> ();
+    public HashMap<String, InfoGuion> guiones = new HashMap<String, InfoGuion> ();
 
  // public List<InfoLugar> lugares = new ArrayList<InfoLugar> ();
     

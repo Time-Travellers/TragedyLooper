@@ -5,7 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.List;
+import java.util.HashMap;
 import java.util.logging.Logger;
 
 public class IO< T > {
@@ -18,7 +18,7 @@ public class IO< T > {
 		this.name = name;
 	}
 	
-	public void almacenar(List< T > list){
+	public void almacenar(HashMap< String, T > list){
 		try{
 			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(dir + name));
 			oos.writeObject(list);
@@ -28,11 +28,11 @@ public class IO< T > {
 		}
 	}
 	
-	public List< T > leer(){
+	public HashMap< String, T > leer(){
 		try {
 			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(dir + name));
 			@SuppressWarnings("unchecked")
-			List< T > ret = (List< T >) ois.readObject();
+			HashMap< String, T > ret = (HashMap< String, T >) ois.readObject();
 			ois.close();
 			return ret;
 		} catch (IOException e) {

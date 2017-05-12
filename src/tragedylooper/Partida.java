@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Partida {
+	public String id;
+	
     public int loop;
 
     public int dia;

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InfoGuion {
+	public String titulo;
+	
     public int numLoops;
 
     public int numDias;
