@@ -6,7 +6,10 @@ public class Main {
 
 	public static void main(String[] args) {
 		Gestor gestor = new Gestor();
-		gestor.start();
+		// Nueva vista
+		// Nuevo modelo
+		// Nuevo controlador(vista, modelo, gestor)
+		// Linkar vista y controlador
 	}
 
 }

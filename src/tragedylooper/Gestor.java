@@ -63,11 +63,4 @@ public class Gestor {
 
 //end of modifiable zone(JavaCode)........E/890f45b5-a236-4a61-a236-108d9ea3df75
     }
-
-	public void start() {
-		
-		//new JFrame etc
-		
-	}
-
 }
