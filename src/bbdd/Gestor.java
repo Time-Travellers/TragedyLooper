@@ -1,8 +1,12 @@
-package tragedylooper;
+package bbdd;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import tragedylooper.InfoGuion;
+import tragedylooper.Jugador;
+import tragedylooper.Partida;
+import tragedylooper.Usuario;
 import tragedylooper.iostream.IO;
 
 public class Gestor {

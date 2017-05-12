@@ -1,6 +1,6 @@
 package launcher;
 
-import tragedylooper.Gestor;
+import bbdd.Gestor;
 
 public class Main {
 
