@@ -1,4 +1,4 @@
-package tragedylooper.iostream;
+package bbdd;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
