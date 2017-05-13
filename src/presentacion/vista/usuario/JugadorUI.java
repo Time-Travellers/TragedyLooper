@@ -1,4 +1,4 @@
-package presentacion.vista.usuario;
+package  presentacion.vista.usuario;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;

@@ -1,4 +1,4 @@
-package tragedylooper.view;
+package presentacion.vista.usuario;
 
 import java.awt.Color;
 
@@ -8,9 +8,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
-
-import tragedylooper.view.Admin.PanelGrande;
 
 public class Contacto extends JPanel {
 	JLabel titulo;

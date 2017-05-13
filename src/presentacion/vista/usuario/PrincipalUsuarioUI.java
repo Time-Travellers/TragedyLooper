@@ -1,4 +1,4 @@
-package tragedylooper.view;
+package presentacion.vista.usuario;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -39,6 +39,4 @@ public class PrincipalUsuarioUI extends JPanel {
 		ventana.setContentPane(new PrincipalUsuarioUI(10,27));
 		ventana.setVisible(true);
 	}
-  
-	
 }

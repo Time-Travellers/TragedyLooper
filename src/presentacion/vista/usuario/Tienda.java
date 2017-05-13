@@ -1,4 +1,4 @@
-package tragedylooper.view;
+package  presentacion.vista.usuario;
 
 import java.awt.Dimension;
 

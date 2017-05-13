@@ -1,9 +1,9 @@
-package tragedylooper.view;
+package presentacion.vista.usuario;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import tragedylooper.view.Admin.GuionesPropuestosUI;
+import presentacion.vista.usuario.GuionesPropuestosUI;
 
 public class Nivel extends JPanel{
 	private PanelBotInfoIcono panel;

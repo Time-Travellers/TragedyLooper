@@ -1,4 +1,4 @@
-package presentacion.vista.usuario;
+package  presentacion.vista.usuario;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
