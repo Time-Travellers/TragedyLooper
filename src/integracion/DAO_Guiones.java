@@ -1,7 +1,7 @@
 package integracion;
 
 import bbdd.Gestor;
-import tragedylooper.InfoGuion;
+import presentacion.modelo.juego.InfoGuion;
 
 public class DAO_Guiones extends DAO< InfoGuion >{
 

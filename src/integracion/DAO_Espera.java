@@ -1,7 +1,7 @@
 package integracion;
 
 import bbdd.Gestor;
-import tragedylooper.Jugador;
+import presentacion.modelo.usuario.Jugador;
 
 public class DAO_Espera extends DAO< Jugador >{
 

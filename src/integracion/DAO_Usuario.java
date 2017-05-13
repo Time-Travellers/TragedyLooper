@@ -1,7 +1,7 @@
 package integracion;
 
 import bbdd.Gestor;
-import tragedylooper.Usuario;
+import presentacion.modelo.usuario.Usuario;
 
 public class DAO_Usuario extends DAO< Usuario >{
 

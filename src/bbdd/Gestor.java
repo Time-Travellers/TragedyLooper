@@ -2,10 +2,10 @@ package bbdd;
 
 import java.util.HashMap;
 
-import tragedylooper.InfoGuion;
-import tragedylooper.Jugador;
-import tragedylooper.Partida;
-import tragedylooper.Usuario;
+import presentacion.modelo.juego.InfoGuion;
+import presentacion.modelo.juego.Partida;
+import presentacion.modelo.usuario.Jugador;
+import presentacion.modelo.usuario.Usuario;
 
 public class Gestor {
     public HashMap<String, Usuario> usuarios = new HashMap<String, Usuario>();

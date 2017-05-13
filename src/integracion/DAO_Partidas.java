@@ -1,7 +1,7 @@
 package integracion;
 
 import bbdd.Gestor;
-import tragedylooper.Partida;
+import presentacion.modelo.juego.Partida;
 
 public class DAO_Partidas extends DAO<Partida>{
 	
