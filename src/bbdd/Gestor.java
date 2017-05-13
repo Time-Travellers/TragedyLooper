@@ -19,8 +19,8 @@ public class Gestor {
  // public List<InfoLugar> lugares = new ArrayList<InfoLugar> ();
     
     public Gestor(){
-    	usuario = new IO<Usuario>("usuarios.ser").leer();
-    	//partida = new IO<Partida>("partidas.ser").leer();
+    	usuarios = new IO<Usuario>("usuarios.ser").leer();
+    	//partidas = new IO<Partida>("partidas.ser").leer();
     	guiones = new IO<InfoGuion>("guiones.ser").leer();
     	listaEspera = new IO<Jugador>("espera.ser").leer();
     }

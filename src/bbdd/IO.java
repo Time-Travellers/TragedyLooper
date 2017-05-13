@@ -8,6 +8,8 @@ import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.logging.Logger;
 
+import launcher.Log;
+
 public class IO< T > {
 	
 	final private String name;
