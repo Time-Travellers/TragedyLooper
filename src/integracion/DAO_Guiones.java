@@ -11,7 +11,7 @@ public class DAO_Guiones extends DAO< InfoGuion >{
 	
 	@Override
 	public void crear(InfoGuion obj) {
-		gestor.guiones.put(obj.getId(), obj);
+		gestor.guiones.put(obj.getTitulo(), obj);
 	}
 
 	@Override
@@ -21,11 +21,11 @@ public class DAO_Guiones extends DAO< InfoGuion >{
 
 	@Override
 	public void actualizar(InfoGuion obj) {
-		gestor.guiones.put(obj.getId(), obj);
+		gestor.guiones.put(obj.getTitulo(), obj);
 	}
 
 	@Override
 	public void borrar(String id) {
-		gestor.guion.remove(id);		
+		gestor.guiones.remove(id);		
 	}
 }

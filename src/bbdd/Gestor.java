@@ -24,5 +24,12 @@ public class Gestor {
     	guiones = new IO<InfoGuion>("guiones.ser").leer();
     	listaEspera = new IO<Jugador>("espera.ser").leer();
     }
+    
+    public void close() {
+    	new IO<Usuario>("usuarios.ser").almacenar(usuarios);
+    	//new IO<Partida>("partidas.ser").almacenar(partidas);
+    	new IO<InfoGuion>("guiones.ser").almacenar(guiones);
+    	new IO<Jugador>("espera.ser").almacenar(listaEspera);
+    }
 
 }

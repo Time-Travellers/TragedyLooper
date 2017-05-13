@@ -7,8 +7,18 @@ public abstract class Usuario {
     private String password;
 
     private Datos datos;
+    
+    private boolean admin;
 
-    public String getId() {
+    public boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
+
+	public String getId() {
 		return id;
 	}
 
