@@ -9,7 +9,9 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import bbdd.Gestor;
+import presentacion.controlador.GUIController;
 import presentacion.modelo.GUIModelo;
+import presentacion.vista.FrameUI;
 import presentacion.vista.usuario.IniciarSesionUI;
 
 public class Main {
@@ -18,26 +20,19 @@ public class Main {
 		Log.setupLogging(Level.SEVERE);
 		Gestor gestor = new Gestor();
 		
-		JFrame ventana = new JFrame("Tragedy Looper");
+		GUIModelo modelo = new GUIModelo();
+		FrameUI ventana = new FrameUI("Tragedy Looper");
+		GUIController ctrl = new GUIController(ventana, modelo, gestor);
+		ventana.setCtrl(ctrl);
+		
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				ventana.add(new IniciarSesionUI());
-			}
-		});
-		ventana.setSize(Toolkit.getDefaultToolkit().getScreenSize());
-		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ventana.addWindowListener(new WindowAdapter(){
-			@Override
-			public void windowClosing(WindowEvent e) {
-				gestor.close();
+				ventana.add(new IniciarSesionUI(ctrl));
 			}
 		});
 		ventana.setVisible(true);
 		
-		GUIModelo modelo = new GUIModelo();
-		// Nuevo controlador(vista, modelo, gestor)
-		// Linkar vista y controlador
 	}
 
 }

@@ -1,6 +1,7 @@
 package presentacion.controlador;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import bbdd.Gestor;
 import negocio.SA_Usuario;
@@ -24,18 +25,26 @@ public class GUIController implements IniSesionListener {
 	@Override
 	public void notificarIniSesion(IniSesionEvent e) {
 		if (e.getIniSesionType() == "IniciarSesion") {
-			Usuario usuario = SA_Usuario().iniciarSesion(gestor, e.getUsuario(), e.getContrasena());
+			Usuario usuario = new SA_Usuario().iniciarSesion(gestor, e.getUsuario(), e.getContrasena());
 			if (usuario != null) {
 				modelo.setUsuario(usuario);
 				ventana.removeAll();
 				if (usuario.isAdmin())
-					ventana.add(new InicioAdminUI(usuario.getId(), ));
+					ventana.add(new InicioAdminUI(usuario.getId(), 5, 5, 6));
 				else
 					ventana.add(new JugadorUI());
+			} else {
+				JOptionPane.showOptionDialog
+				(new JFrame(), "Usuario o contraseña incorrectos", "Error", 
+				JOptionPane.OK_OPTION, JOptionPane.WARNING_MESSAGE, null, null, null);
 			}
 		} else {
 
 		}
+	}
+	
+	public void closeGestor() {
+		gestor.close();
 	}
 
 }

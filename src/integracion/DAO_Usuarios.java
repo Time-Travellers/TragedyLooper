@@ -3,9 +3,9 @@ package integracion;
 import bbdd.Gestor;
 import presentacion.modelo.usuario.Usuario;
 
-public class DAO_Usuario extends DAO< Usuario >{
+public class DAO_Usuarios extends DAO< Usuario >{
 
-	public DAO_Usuario(Gestor g) {
+	public DAO_Usuarios(Gestor g) {
 		super(g);
 	}
 	

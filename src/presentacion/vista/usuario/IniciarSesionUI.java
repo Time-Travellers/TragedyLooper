@@ -20,11 +20,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
+import presentacion.controlador.GUIController;
 import presentacion.controlador.IniSesionEvent;
 import presentacion.controlador.IniSesionEvent.IniSesionType;
 import presentacion.controlador.IniSesionListenable;
 import presentacion.controlador.IniSesionListener;
+import presentacion.vista.FrameUI;
 
 public class IniciarSesionUI extends JPanel implements IniSesionListenable {
 	
@@ -35,8 +38,9 @@ public class IniciarSesionUI extends JPanel implements IniSesionListenable {
 	private JButton crearCuenta;
 	private ArrayList<IniSesionListener> listeners;
 
-	public IniciarSesionUI() {
+	public IniciarSesionUI(GUIController ctrl) {
 		listeners = new ArrayList<IniSesionListener>();
+		addIniSesionListener(ctrl);
 		inicializarGUI();
 	}
 
@@ -123,7 +127,7 @@ public class IniciarSesionUI extends JPanel implements IniSesionListenable {
 		listeners.add(list);
 	}
 
-	
+	/*
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
 		IniciarSesionUI ui = new IniciarSesionUI();
@@ -142,9 +146,8 @@ public class IniciarSesionUI extends JPanel implements IniSesionListenable {
 			}
 		};
 		ui.addIniSesionListener(test);
-		
 	}
-
+*/
 
 	
 
