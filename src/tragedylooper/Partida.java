@@ -4,29 +4,117 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Partida {
-	public String id;
+	private String id;
 	
-    public int loop;
+    private int loop;
 
-    public int dia;
+    private int dia;
 
-    public boolean terminada;
+    private boolean terminada;
 
-    public String ganador;
+    private String ganador;
 
-    public String turno;
+    private String turno;
 
-    public InfoGuion guiones;
+    private InfoGuion guiones;
 
-    public EstadoPersonaje personaje;
+    private EstadoPersonaje personaje;
 
-    public List<Jugador> jugadores = new ArrayList<Jugador> ();
+    private List<Jugador> jugadores = new ArrayList<Jugador> ();
 
-    public List<EstadoLugar> estadoLugar = new ArrayList<EstadoLugar> ();
+    private List<EstadoLugar> estadoLugar = new ArrayList<EstadoLugar> ();
 
-    public InfoGuion guion;
+    private InfoGuion guion;
 
-    public Accion aplicarJugada() {
+    public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public int getLoop() {
+		return loop;
+	}
+
+	public void setLoop(int loop) {
+		this.loop = loop;
+	}
+
+	public int getDia() {
+		return dia;
+	}
+
+	public void setDia(int dia) {
+		this.dia = dia;
+	}
+
+	public boolean isTerminada() {
+		return terminada;
+	}
+
+	public void setTerminada(boolean terminada) {
+		this.terminada = terminada;
+	}
+
+	public String getGanador() {
+		return ganador;
+	}
+
+	public void setGanador(String ganador) {
+		this.ganador = ganador;
+	}
+
+	public String getTurno() {
+		return turno;
+	}
+
+	public void setTurno(String turno) {
+		this.turno = turno;
+	}
+
+	public InfoGuion getGuiones() {
+		return guiones;
+	}
+
+	public void setGuiones(InfoGuion guiones) {
+		this.guiones = guiones;
+	}
+
+	public EstadoPersonaje getPersonaje() {
+		return personaje;
+	}
+
+	public void setPersonaje(EstadoPersonaje personaje) {
+		this.personaje = personaje;
+	}
+
+	public List<Jugador> getJugadores() {
+		return jugadores;
+	}
+
+	public void setJugadores(List<Jugador> jugadores) {
+		this.jugadores = jugadores;
+	}
+
+	public List<EstadoLugar> getEstadoLugar() {
+		return estadoLugar;
+	}
+
+	public void setEstadoLugar(List<EstadoLugar> estadoLugar) {
+		this.estadoLugar = estadoLugar;
+	}
+
+	public InfoGuion getGuion() {
+		return guion;
+	}
+
+	public void setGuion(InfoGuion guion) {
+		this.guion = guion;
+	}
+
+	public Accion aplicarJugada() {
     }
 
     public Accion habilidadesMaster() {

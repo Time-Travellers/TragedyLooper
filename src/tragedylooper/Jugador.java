@@ -5,24 +5,75 @@ import java.util.Date;
 import java.util.List;
 
 public class Jugador extends Usuario {
-    public int nivel;
-
-    public int reloj;
-
-    public Date penalizacion;
-
-    public List<JugadorPartida> partidas = new ArrayList<JugadorPartida> ();
-
-    public Estadistica estadistica;
-
-    public List<Jugador> amigos = new ArrayList<Jugador> ();
-
-    public Rating rating;
+	
+    private int nivel;
+    private int reloj;
+    private Date penalizacion;
+    private List<JugadorPartida> partidas = new ArrayList<JugadorPartida> ();
+    private Estadistica estadistica;
+    private List<Jugador> amigos = new ArrayList<Jugador> ();
+    private Rating rating;
 
     public void anyadirAmigo(Jugador jugador) {
     }
 
-    public void ComenzarPartida() {
+    public int getNivel() {
+		return nivel;
+	}
+
+	public void setNivel(int nivel) {
+		this.nivel = nivel;
+	}
+
+	public int getReloj() {
+		return reloj;
+	}
+
+	public void setReloj(int reloj) {
+		this.reloj = reloj;
+	}
+
+	public Date getPenalizacion() {
+		return penalizacion;
+	}
+
+	public void setPenalizacion(Date penalizacion) {
+		this.penalizacion = penalizacion;
+	}
+
+	public List<JugadorPartida> getPartidas() {
+		return partidas;
+	}
+
+	public void setPartidas(List<JugadorPartida> partidas) {
+		this.partidas = partidas;
+	}
+
+	public Estadistica getEstadistica() {
+		return estadistica;
+	}
+
+	public void setEstadistica(Estadistica estadistica) {
+		this.estadistica = estadistica;
+	}
+
+	public List<Jugador> getAmigos() {
+		return amigos;
+	}
+
+	public void setAmigos(List<Jugador> amigos) {
+		this.amigos = amigos;
+	}
+
+	public Rating getRating() {
+		return rating;
+	}
+
+	public void setRating(Rating rating) {
+		this.rating = rating;
+	}
+
+	public void ComenzarPartida() {
     }
 
     public void comprarNivel() {

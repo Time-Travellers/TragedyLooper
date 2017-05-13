@@ -2,13 +2,37 @@ package tragedylooper;
 
 
 public abstract class Usuario {
-    public String id;
+    private String id;
 
-    public String password;
+    private String password;
 
-    public Datos datos;
+    private Datos datos;
 
-    public boolean modificarDatos() {
+    public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Datos getDatos() {
+		return datos;
+	}
+
+	public void setDatos(Datos datos) {
+		this.datos = datos;
+	}
+
+	public boolean modificarDatos() {
     	
     }
 

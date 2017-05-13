@@ -8,9 +8,9 @@ import tragedylooper.Partida;
 import tragedylooper.Usuario;
 
 public class Gestor {
-    public HashMap<String, Usuario> usuario = new HashMap<String, Usuario>();
+    public HashMap<String, Usuario> usuarios = new HashMap<String, Usuario>();
 
-    public HashMap<String, Partida> partida = new HashMap<String, Partida> ();
+    public HashMap<String, Partida> partidas = new HashMap<String, Partida> ();
 
     public HashMap<String, Jugador> listaEspera = new HashMap<String, Jugador> ();
 
