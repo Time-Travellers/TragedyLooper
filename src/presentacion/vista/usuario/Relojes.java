@@ -8,7 +8,7 @@ import presentacion.vista.usuario.GuionesPropuestosUI;
 public class Relojes extends JPanel{
 	private PanelBotInfoIcono panel;
 	public Relojes(int n){
-		this.panel=new PanelBotInfoIcono(n, "", null, null);
+		this.panel=new PanelBotInfoIcono(n, "Relojes: ", null, null);
 		this.add(panel);
 	}
 	

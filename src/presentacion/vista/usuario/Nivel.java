@@ -6,9 +6,11 @@ import javax.swing.JPanel;
 import presentacion.vista.usuario.GuionesPropuestosUI;
 
 public class Nivel extends JPanel{
+	
 	private PanelBotInfoIcono panel;
+	
 	public Nivel(int n){
-		this.panel=new PanelBotInfoIcono(n, "Nivel", null, null);
+		this.panel = new PanelBotInfoIcono(n, "Nivel: ", null, null);
 		this.add(panel);
 	}
 	

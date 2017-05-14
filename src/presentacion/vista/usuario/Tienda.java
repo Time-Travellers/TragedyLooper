@@ -18,7 +18,6 @@ public class Tienda extends JPanel{
 	private Nivel nivel;
 	private TiendaObserver tObserver;  
 	
-	
  
   
   public Tienda(int r, int n, TiendaObserver to){
