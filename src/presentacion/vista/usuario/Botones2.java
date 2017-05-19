@@ -15,16 +15,10 @@ import javax.swing.SwingUtilities;
 public class Botones2 extends JPanel {
 
 	private static final long serialVersionUID = -331372996838369812L;
-
-	public interface Buttons2Listener {
-		void startGameRequested();
-		void myProfileRequested();
-		void rankingRequested();
-	}
 	
-	private Buttons2Listener bListener;
+	private Botones2Listener bListener;
 	
-	public Botones2(Buttons2Listener bl) {
+	public Botones2(Botones2Listener bl) {
 		this.bListener = bl;
 		FlowLayout layout = new FlowLayout();
 		layout.setHgap(60);
@@ -35,11 +29,11 @@ public class Botones2 extends JPanel {
 	
 	private void initialize() {
 		addButton("Iniciar nueva partida", "Comenzar un nuevo juego",
-				(e) -> this.bListener.startGameRequested());
+				(e) -> this.bListener.iniciarPartida());
 		addButton("Mi perfil", "Ir al perfil",
-				(e) -> this.bListener.myProfileRequested());
+				(e) -> this.bListener.miPerfil());
 		addButton("Ver ranking", "Ver los mejores jugadores",
-				(e) -> this.bListener.rankingRequested());
+				(e) -> this.bListener.verRanking());
 	}
 	
 	
@@ -61,22 +55,22 @@ public class Botones2 extends JPanel {
 			testFrame.setSize(new Dimension(800, 600));
 			testFrame.setVisible(true);
 			testFrame.getContentPane().setLayout(new FlowLayout());
-			Botones2 botones = new Botones2 (new Buttons2Listener() {
+			Botones2 botones = new Botones2 (new Botones2Listener() {
 
 				@Override
-				public void startGameRequested() {
+				public void iniciarPartida() {
 					System.out.println("Solicitado INICIAR NUEVA PARTIDA");
 					
 				}
 
 				@Override
-				public void myProfileRequested() {
+				public void miPerfil() {
 					System.out.println("Solicitado IR AL PERFIL");
 					
 				}
 
 				@Override
-				public void rankingRequested() {
+				public void verRanking() {
 					System.out.println("Solicitado VER RANKING");
 					
 				}

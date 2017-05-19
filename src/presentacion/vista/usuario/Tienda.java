@@ -1,30 +1,38 @@
 package  presentacion.vista.usuario;
 
-import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
 
 public class Tienda extends JPanel{
-
-	public interface TiendaObserver {
-		  //Metodos
-	 }
 	  
 	private Relojes numrelojes;
 	private Nivel nivel;
-	private TiendaObserver tObserver;  
+	private TiendaListener tListener;  
 	
  
   
-  public Tienda(int r, int n, TiendaObserver to){
+  public Tienda(int r, int n, TiendaListener to){
+	  tListener = to;
   	  JPanel panelmayor=new JPanel();
       panelmayor.setLayout(new BoxLayout(panelmayor, BoxLayout.X_AXIS));
-	  this.numrelojes=new Relojes(r);
-	  this.nivel=new Nivel(n);
+	  this.numrelojes=new Relojes(r, new ActionListener(){
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			tListener.comprarRelojes();
+		}
+	  });
+	  this.nivel=new Nivel(n, new ActionListener(){
+		  @Override
+		  public void actionPerformed(ActionEvent e) {
+				tListener.comprarNivel();
+			}
+	  });
+	  
 	  panelmayor.add(numrelojes);
 	  panelmayor.add(nivel);
 	  this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
