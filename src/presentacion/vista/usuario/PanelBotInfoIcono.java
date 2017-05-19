@@ -3,6 +3,7 @@ package presentacion.vista.usuario;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
@@ -18,8 +19,9 @@ public class PanelBotInfoIcono extends JPanel{
 	private JLabel info;
 	private JLabel icono;
 	
-	public PanelBotInfoIcono(int n, String nombre, Icon icono1, Icon icono2){
+	public PanelBotInfoIcono(int n, String nombre, Icon icono1, Icon icono2, ActionListener list){
 		boton = new JButton(icono1);
+		boton.addActionListener(list);
 		boton.setIcon(new ImageIcon("src/resources/add.png"));
 		info = new JLabel(nombre+n);
 		info.setFont(new Font("", 20,20));
@@ -35,7 +37,7 @@ public class PanelBotInfoIcono extends JPanel{
 		SwingUtilities.invokeLater(() -> {
 			JFrame ventana=new JFrame("prueba");
 			ventana.setSize(800,600);
-			ventana.setContentPane(new PanelBotInfoIcono(2,"a", null, null));
+			ventana.setContentPane(new PanelBotInfoIcono(2,"a", null, null, null));
 			ventana.setVisible(true);
 		});
 	}
