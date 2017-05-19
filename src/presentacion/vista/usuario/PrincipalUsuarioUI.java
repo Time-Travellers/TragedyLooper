@@ -11,6 +11,8 @@ import javax.swing.SwingConstants;
 
 public class PrincipalUsuarioUI extends JPanel {
 	
+	private static final long serialVersionUID = 7527554039049217535L;
+	
 	Botones botonera1;
 	Botones2 botonera2;
 	Tienda paneltienda;

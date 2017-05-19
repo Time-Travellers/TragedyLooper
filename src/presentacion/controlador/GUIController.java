@@ -21,7 +21,7 @@ public class GUIController implements IniSesionListener {
 		this.modelo = modelo;
 		this.gestor = gestor;
 	}
-
+  
 	@Override
 	public void notificarIniSesion(IniSesionEvent e) {
 		if (e.getIniSesionType() == "IniciarSesion") {

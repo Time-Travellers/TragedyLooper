@@ -47,6 +47,7 @@ public abstract class Usuario {
     }
 
     public String verDatos() {
+    	
     }
 
     public Usuario buscarUsuario() {
