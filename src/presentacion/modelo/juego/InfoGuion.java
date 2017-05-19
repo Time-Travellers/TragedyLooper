@@ -1,10 +1,12 @@
 package presentacion.modelo.juego;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InfoGuion {
+public class InfoGuion implements Serializable{
 	
+	private static final long serialVersionUID = -2153228995875423399L;
 	private String titulo;
 	private int numLoops;
 	private int numDias;

@@ -9,13 +9,29 @@ import presentacion.modelo.juego.Partida;
 
 public class Jugador extends Usuario {
 	
-    private int nivel;
+	private static final long serialVersionUID = -7213910171949040945L;
+	private int nivel;
     private int reloj;
     private Date penalizacion;
-    private List<JugadorPartida> partidas = new ArrayList<JugadorPartida> ();
+    private List<JugadorPartida> partidas;
     private Estadistica estadistica;
-    private List<Jugador> amigos = new ArrayList<Jugador> ();
+    private List<Jugador> amigos;
     private Rating rating;
+    
+    public Jugador(String id, String password, boolean admin, String nombre, int edad, Paises pais, String correo) {
+    	this.id = id;
+    	this.password = password;
+    	this.admin = admin;
+    	this.datos = new Datos(nombre, edad, pais, correo);
+    	this.nivel = 0;
+    	this.reloj = 0;
+    	this.penalizacion = null;
+    	this.partidas = new ArrayList<JugadorPartida>();
+    	this.estadistica = null;
+    	this.amigos = new ArrayList<Jugador>();
+    	this.rating = null;
+    	
+    }
 
     public void anyadirAmigo(Jugador jugador) {
     }

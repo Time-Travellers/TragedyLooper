@@ -13,7 +13,7 @@ import launcher.Log;
 public class IO< T > {
 	
 	final private String name;
-	final private String dir = "src/tragedylooper/ficheros/";
+	final private String dir = "src/resources/";
 	final private Logger log = Logger.getLogger("log");
 	
 	public IO(String name){

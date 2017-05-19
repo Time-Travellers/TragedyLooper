@@ -1,14 +1,18 @@
 package presentacion.modelo.usuario;
 
+import java.io.Serializable;
 
-public abstract class Usuario {
-    private String id;
+public abstract class Usuario implements Serializable{
+   
+	private static final long serialVersionUID = -2180578030466510037L;
 
-    private String password;
+	protected String id;
 
-    private Datos datos;
+    protected String password;
+
+    protected Datos datos;
     
-    private boolean admin;
+    protected boolean admin;
 
     public boolean isAdmin() {
 		return admin;

@@ -1,8 +1,12 @@
 package presentacion.modelo.usuario;
 
+import java.io.Serializable;
 
-public class Estadistica {
-    public int partidasGanadas;
+public class Estadistica implements Serializable{
+	
+	private static final long serialVersionUID = -2475381219020904327L;
+
+	public int partidasGanadas;
 
     public int partidasPerdidas;
 

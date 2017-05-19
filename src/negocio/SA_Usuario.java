@@ -8,7 +8,7 @@ public class SA_Usuario implements SA {
 
 	public Usuario iniciarSesion(Gestor gestor, String id, String password) {
 		Usuario usuario = new DAO_Usuarios(gestor).leer(id);
-		if(usuario != null && usuario.getPassword() != password)
+		if(usuario != null && !usuario.getPassword().equals(password))
 			usuario = null;
 		return usuario;
 	}

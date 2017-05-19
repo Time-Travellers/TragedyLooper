@@ -9,6 +9,7 @@ import presentacion.modelo.GUIModelo;
 import presentacion.modelo.usuario.Usuario;
 import presentacion.vista.usuario.InicioAdminUI;
 import presentacion.vista.usuario.JugadorUI;
+import presentacion.vista.usuario.PrincipalUsuarioUI;
 
 public class GUIController implements IniSesionListener {
 
@@ -32,14 +33,13 @@ public class GUIController implements IniSesionListener {
 				if (usuario.isAdmin())
 					ventana.add(new InicioAdminUI(usuario.getId(), 5, 5, 6));
 				else
-					ventana.add(new JugadorUI());
+					ventana.add(new PrincipalUsuarioUI(3, 4));//TODO que reciba usuario
 			} else {
-				JOptionPane.showOptionDialog
-				(new JFrame(), "Usuario o contraseña incorrectos", "Error", 
-				JOptionPane.OK_OPTION, JOptionPane.WARNING_MESSAGE, null, null, null);
+				JOptionPane.showMessageDialog
+				(new JFrame(), "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		} else {
-
+			
 		}
 	}
 	
