@@ -127,10 +127,10 @@ public class IniciarSesionUI extends JPanel implements IniSesionListenable {
 		listeners.add(list);
 	}
 
-	/*
+	
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
-		IniciarSesionUI ui = new IniciarSesionUI();
+		IniciarSesionUI ui = new IniciarSesionUI(null);
 		
 		frame.add(ui);
 		frame.setSize(new Dimension(1024, 768));
@@ -147,7 +147,7 @@ public class IniciarSesionUI extends JPanel implements IniSesionListenable {
 		};
 		ui.addIniSesionListener(test);
 	}
-*/
+
 
 	
 

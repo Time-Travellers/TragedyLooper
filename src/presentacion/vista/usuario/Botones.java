@@ -16,22 +16,15 @@ import javax.swing.SwingUtilities;
 public class Botones extends JPanel {
 
 	private static final long serialVersionUID = 1875668843425465875L;
-
-	public interface ButtonsListener {
-		void searchRequested();
-		void configRequested();
-		void helpRequested();
-		void exitRequested();
-	}
 	
-	private ButtonsListener bListener;
+	private BotonesListener bListener;
 	
 	final static String searchIcon = "search.png";
 	final static String configIcon = "config.png";
 	final static String helpIcon = "help.png";
 	final static String exitIcon = "exit.png";
 	
-	public Botones(ButtonsListener bl) {
+	public Botones(BotonesListener bl) {
 		this.bListener = bl;
 		this.setLayout(new FlowLayout());
 		this.setVisible(true);
@@ -40,13 +33,13 @@ public class Botones extends JPanel {
 	
 	private void initialize() {
 		addButton("", searchIcon, "Buscar usuario",
-				(e) -> this.bListener.searchRequested());
+				(e) -> this.bListener.buscarUsuario());
 		addButton("", configIcon, "Ajustes",
-				(e) -> this.bListener.configRequested());
+				(e) -> this.bListener.ajustes());
 		addButton("", helpIcon, "Preguntas habituales",
-				(e) -> this.bListener.helpRequested());
+				(e) -> this.bListener.ayuda());
 		addButton("", exitIcon, "Salir de la aplicacion",
-				(e) -> this.bListener.exitRequested());
+				(e) -> this.bListener.salir());
 	}
 	
 	
@@ -69,25 +62,25 @@ public class Botones extends JPanel {
 			testFrame.setSize(new Dimension(800, 600));
 			testFrame.setVisible(true);
 			testFrame.getContentPane().setLayout(new FlowLayout());
-			Botones botones = new Botones (new ButtonsListener() {
+			Botones botones = new Botones (new BotonesListener() {
 
 				@Override
-				public void searchRequested() {
+				public void buscarUsuario() {
 					System.out.println("Has pulsado en BUSCAR");
 				}
 
 				@Override
-				public void configRequested() {
+				public void ajustes() {
 					System.out.println("Has pulsado en CONFIGURACION");
 				}
 
 				@Override
-				public void helpRequested() {
+				public void ayuda() {
 					System.out.println("Has pulsado en AYUDA");
 				}
 
 				@Override
-				public void exitRequested() {
+				public void salir() {
 					System.out.println("Has pulsado en SALIR");
 				}
 				

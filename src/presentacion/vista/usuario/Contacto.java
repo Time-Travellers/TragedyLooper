@@ -24,19 +24,14 @@ public class Contacto extends JPanel {
 	JButton proponerGuion;
 	ContactoListener cl;
 	
-	public interface ContactoListener {
-		void sugerenciasPulsado();
-		void proponerGuionPulsado();
-	}
-	
 	public Contacto(ContactoListener cListener){
 		this.cl = cListener;
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		this.titulo = new JLabel("Contacto con Administradores:");
 		this.sugerencias = new JButton("Sugerencias");
-		this.sugerencias.addActionListener((e)-> this.cl.sugerenciasPulsado());
+		this.sugerencias.addActionListener((e)-> this.cl.sugerencias());
 		this.proponerGuion = new JButton("Proponer Guion");
-		this.proponerGuion.addActionListener((e)->this.cl.proponerGuionPulsado());
+		this.proponerGuion.addActionListener((e)->this.cl.proponerGuion());
 		this.add(titulo);
 		this.add(new JLabel(" "));
 		this.add(sugerencias);
@@ -54,12 +49,12 @@ public class Contacto extends JPanel {
 		ventana.add(new Contacto(new ContactoListener() {
 
 			@Override
-			public void sugerenciasPulsado() {
+			public void sugerencias() {
 				System.out.println("Pulsado el boton de sugerencias");
 			}
 
 			@Override
-			public void proponerGuionPulsado() {
+			public void proponerGuion() {
 				System.out.println("Pulsado el boton de proponer guion");
 			}
 			
