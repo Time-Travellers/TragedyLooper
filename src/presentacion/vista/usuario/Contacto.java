@@ -3,13 +3,19 @@ package presentacion.vista.usuario;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import presentacion.vista.usuario.proponerguion.SugerenciaGuion;
 
 
 /**
@@ -24,14 +30,24 @@ public class Contacto extends JPanel {
 	JButton proponerGuion;
 	ContactoListener cl;
 	
+	private JFrame getFrame(){
+		return (JFrame)this.getRootPane().getParent();
+	}
+	
 	public Contacto(ContactoListener cListener){
+		Contacto aux=this;
 		this.cl = cListener;
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		this.titulo = new JLabel("Contacto con Administradores:");
 		this.sugerencias = new JButton("Sugerencias");
 		this.sugerencias.addActionListener((e)-> this.cl.sugerencias());
 		this.proponerGuion = new JButton("Proponer Guion");
-		this.proponerGuion.addActionListener((e)->this.cl.proponerGuion());
+		this.proponerGuion.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				SugerenciaGuion dialogo=new SugerenciaGuion(aux.getFrame());
+			}
+		});
 		this.add(titulo);
 		this.add(new JLabel(" "));
 		this.add(sugerencias);
