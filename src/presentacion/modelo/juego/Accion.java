@@ -6,5 +6,4 @@ public class Accion {
     public EstadoPersonaje victima;
 
     public EstadoLugar localizacion;
-
 }
