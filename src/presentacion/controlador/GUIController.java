@@ -8,8 +8,9 @@ import negocio.SA_Usuario;
 import presentacion.modelo.GUIModelo;
 import presentacion.modelo.usuario.Usuario;
 import presentacion.vista.usuario.InicioAdminUI;
-import presentacion.vista.usuario.JugadorUI;
 import presentacion.vista.usuario.PrincipalUsuarioUI;
+import presentacion.vista.usuario.RegistroUI;
+import presentacion.vista.usuario.RegistroUI.RegistroUIListener;
 
 public class GUIController implements IniSesionListener {
 
@@ -39,7 +40,23 @@ public class GUIController implements IniSesionListener {
 				(new JFrame(), "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		} else {
-			
+			JFrame fRegistro = new JFrame();
+			RegistroUI registro = new RegistroUI(new RegistroUIListener() {
+
+				@Override
+				public void registrarsePulsado() {
+					Usuario usuario = registro.getUsuarioCompleto();
+					boolean OK = new SA_Usuario().agregarUsuario(gestor, usuario);
+					if(OK) {
+						JOptionPane.showMessageDialog(new JFrame(), "Usuario creado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+						fRegistro.dispose();
+					}
+					else
+						JOptionPane.showMessageDialog(new JFrame(), "Nombre de usuario repetido", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				
+			});
+			fRegistro.add(registro);
 		}
 	}
 	

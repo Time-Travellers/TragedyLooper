@@ -14,6 +14,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+import presentacion.modelo.usuario.Jugador;
+import presentacion.modelo.usuario.Usuario;
+
 
 
 /**
@@ -23,6 +26,8 @@ import javax.swing.SwingUtilities;
  */
 
 public class RegistroUI extends JPanel{
+
+	private static final long serialVersionUID = 8255260005722253253L;
 
 	//Interfaz a implementar si se quieren insertar listeners:
 	public interface RegistroUIListener {
@@ -42,7 +47,7 @@ public class RegistroUI extends JPanel{
 		this.rListener = regListener;
 		initGUI();
 	}
-	
+
 	private void initGUI() {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		JLabel titulo = new JLabel("Rellena los siguientes campos...");
@@ -50,6 +55,16 @@ public class RegistroUI extends JPanel{
 		this.add(titulo);
 		this.add(new JLabel("Introduce tu nombre de usuario:"));
 		this.username = new JTextField();
+		/*this.username.addMouseListener(new MouseAdapter() {
+			public void mouseExited(MouseEvent e) {
+				if() {
+					JOptionPane.showMessageDialog(new JFrame(),
+							"El nombre de usuario ya existe",
+							"Cambia tu nombre de usuario",
+							JOptionPane.WARNING_MESSAGE);
+				}
+			}
+		});*/
 		this.add(username);
 		this.add(new JLabel("Introduce tu password:"));
 		this.password = new JPasswordField();
@@ -137,6 +152,10 @@ public class RegistroUI extends JPanel{
 		return   !getUsername().equals("") && !getPassword().equals("") &&
 				!getPassword2().equals("") && !getEmail().equals("") &&
 				!getEdad().equals("") && !getPais().equals("");
+	}
+	
+	public Jugador getUsuarioCompleto() {
+		return new Jugador(getUsername(), getPassword(), false, null, Integer.parseInt(getEdad()), null, getEmail());
 	}
 	
 	// Main para probar esta pantalla:
