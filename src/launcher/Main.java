@@ -1,11 +1,7 @@
 package launcher;
 
-import java.awt.Toolkit;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.logging.Level;
 
-import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import bbdd.Gestor;
@@ -17,7 +13,7 @@ import presentacion.vista.usuario.IniciarSesionUI;
 public class Main {
 
 	public static void main(String[] args) {
-		Log.setupLogging(Level.SEVERE);
+		Log.setupLogging(Level.INFO);
 		Gestor gestor = new Gestor();
 		
 		GUIModelo modelo = new GUIModelo();

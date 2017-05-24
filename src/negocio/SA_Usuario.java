@@ -15,9 +15,9 @@ public class SA_Usuario implements SA {
 	
 	public boolean agregarUsuario(Gestor gestor, Usuario usuario) {
 		Usuario aux = new DAO_Usuarios(gestor).leer(usuario.getId());
-		if(aux != null)
+		if(aux == null)
 			new DAO_Usuarios(gestor).crear(usuario);
-		return aux != null;
+		return aux == null;
 	}
 	
 }

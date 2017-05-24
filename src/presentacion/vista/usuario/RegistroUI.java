@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -15,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 import presentacion.modelo.usuario.Jugador;
+import presentacion.modelo.usuario.Paises;
 import presentacion.modelo.usuario.Usuario;
 
 
@@ -35,17 +37,26 @@ public class RegistroUI extends JPanel{
 	}
 	
 	private JTextField username;
+	private JTextField nombre;
 	private JPasswordField password;
 	private JPasswordField password2;
 	private JTextField email;
 	private JTextField edad;
-	private JTextField pais;
+	private JComboBox<Paises> pais;
 	private JButton registrarse;
 	private RegistroUIListener rListener;
 	
 	public RegistroUI(RegistroUIListener regListener) {
 		this.rListener = regListener;
 		initGUI();
+	}
+	
+	public RegistroUI() {
+		initGUI();
+	}
+	
+	public void setRListener(RegistroUIListener rListener) {
+		this.rListener = rListener;
 	}
 
 	private void initGUI() {
@@ -55,17 +66,10 @@ public class RegistroUI extends JPanel{
 		this.add(titulo);
 		this.add(new JLabel("Introduce tu nombre de usuario:"));
 		this.username = new JTextField();
-		/*this.username.addMouseListener(new MouseAdapter() {
-			public void mouseExited(MouseEvent e) {
-				if() {
-					JOptionPane.showMessageDialog(new JFrame(),
-							"El nombre de usuario ya existe",
-							"Cambia tu nombre de usuario",
-							JOptionPane.WARNING_MESSAGE);
-				}
-			}
-		});*/
 		this.add(username);
+		this.add(new JLabel("Introduce tu nombre:"));
+		this.nombre = new JTextField();
+		this.add(nombre);
 		this.add(new JLabel("Introduce tu password:"));
 		this.password = new JPasswordField();
 		this.add(password);
@@ -89,7 +93,7 @@ public class RegistroUI extends JPanel{
 		this.edad = new JTextField();
 		this.add(edad);
 		this.add(new JLabel("Introduce tu pais:"));
-		this.pais = new JTextField();
+		this.pais = new JComboBox<Paises>(Paises.values());
 		this.add(pais);
 		this.registrarse = new JButton("Registrarse");
 		this.registrarse.setEnabled(false);
@@ -120,6 +124,10 @@ public class RegistroUI extends JPanel{
 		return username.getText();
 	}
 	
+	public String getNombre() {
+		return nombre.getText();
+	}
+	
 	@SuppressWarnings("deprecation")
 	public String getPassword() {
 		return password.getText();
@@ -138,8 +146,8 @@ public class RegistroUI extends JPanel{
 		return edad.getText();
 	}
 	
-	public String getPais() {
-		return pais.getText();
+	public Paises getPais() {
+		return (Paises)pais.getSelectedItem();
 	}
 	
 	// Metodo para saber si ha repetido el password correctamente:
@@ -149,9 +157,21 @@ public class RegistroUI extends JPanel{
 	
 	//Metodo para saber si ha rellenado todos los campos:
 	public boolean todoRelleno() {
-		return   !getUsername().equals("") && !getPassword().equals("") &&
+		return   !getUsername().equals("") && !getNombre().equals("") && !getPassword().equals("") &&
 				!getPassword2().equals("") && !getEmail().equals("") &&
-				!getEdad().equals("") && !getPais().equals("");
+				!getEdad().equals("") && getPais() != null;
+	}
+	
+	public String todoCorrecto() {
+		String OK = null;
+		if(!passwordsIguales()) OK = "Las contraseñas no coinciden";
+		try {
+			int a = Integer.parseInt(getEdad());
+			if(a < 0) OK = "La edad no es válida";
+		} catch (NumberFormatException e) {
+			OK = "La edad no es válida";
+		}
+		return OK;
 	}
 	
 	public Jugador getUsuarioCompleto() {

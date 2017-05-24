@@ -23,7 +23,7 @@ public class GUIController implements IniSesionListener {
 		this.modelo = modelo;
 		this.gestor = gestor;
 	}
-  
+
 	@Override
 	public void notificarIniSesion(IniSesionEvent e) {
 		if (e.getIniSesionType() == "IniciarSesion") {
@@ -34,32 +34,45 @@ public class GUIController implements IniSesionListener {
 				if (usuario.isAdmin())
 					ventana.add(new InicioAdminUI(usuario.getId(), 5, 5, 6));
 				else
-					ventana.add(new PrincipalUsuarioUI(3, 4));//TODO que reciba usuario
+					ventana.add(new PrincipalUsuarioUI(3, 4));// TODO que reciba
+																// usuario
 			} else {
-				JOptionPane.showMessageDialog
-				(new JFrame(), "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(new JFrame(), "Usuario o contraseña incorrectos", "Error",
+						JOptionPane.ERROR_MESSAGE);
 			}
 		} else {
 			JFrame fRegistro = new JFrame();
-			RegistroUI registro = new RegistroUI(new RegistroUIListener() {
+			RegistroUI registro = new RegistroUI();
+			registro.setRListener(new RegistroUIListener() {
 
 				@Override
 				public void registrarsePulsado() {
-					Usuario usuario = registro.getUsuarioCompleto();
-					boolean OK = new SA_Usuario().agregarUsuario(gestor, usuario);
-					if(OK) {
-						JOptionPane.showMessageDialog(new JFrame(), "Usuario creado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-						fRegistro.dispose();
+					String result = registro.todoCorrecto();
+					if (result == null) {
+						Usuario usuario = registro.getUsuarioCompleto();
+						boolean OK = new SA_Usuario().agregarUsuario(gestor, usuario);
+						if (OK) {
+							JOptionPane.showMessageDialog(new JFrame(), "Usuario creado correctamente", "Éxito",
+									JOptionPane.INFORMATION_MESSAGE);
+							fRegistro.dispose();
+						} else
+							JOptionPane.showMessageDialog(new JFrame(), "Nombre de usuario repetido", "Error",
+									JOptionPane.ERROR_MESSAGE);
 					}
-					else
-						JOptionPane.showMessageDialog(new JFrame(), "Nombre de usuario repetido", "Error", JOptionPane.ERROR_MESSAGE);
+					else {
+						JOptionPane.showMessageDialog(new JFrame(), result, "Error", JOptionPane.WARNING_MESSAGE);
+					}
 				}
-				
+
 			});
-			fRegistro.add(registro);
+			fRegistro.setVisible(true);
+			fRegistro.setSize(600, 508);
+			fRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			fRegistro.setContentPane(registro);
+			fRegistro.setVisible(true);
 		}
 	}
-	
+
 	public void closeGestor() {
 		gestor.close();
 	}
