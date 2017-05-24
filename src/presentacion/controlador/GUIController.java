@@ -7,6 +7,7 @@ import bbdd.Gestor;
 import negocio.SA_Usuario;
 import presentacion.modelo.GUIModelo;
 import presentacion.modelo.usuario.Usuario;
+import presentacion.modelo.usuario.Jugador;
 import presentacion.vista.usuario.InicioAdminUI;
 import presentacion.vista.usuario.PrincipalUsuarioUI;
 import presentacion.vista.usuario.RegistroUI;
@@ -30,12 +31,18 @@ public class GUIController implements IniSesionListener {
 			Usuario usuario = new SA_Usuario().iniciarSesion(gestor, e.getUsuario(), e.getContrasena());
 			if (usuario != null) {
 				modelo.setUsuario(usuario);
-				ventana.removeAll();
-				if (usuario.isAdmin())
-					ventana.add(new InicioAdminUI(usuario.getId(), 5, 5, 6));
-				else
-					ventana.add(new PrincipalUsuarioUI(3, 4));// TODO que reciba
-																// usuario
+				ventana.getContentPane().removeAll();
+				if (usuario.isAdmin()) {
+					InicioAdminUI content = new InicioAdminUI(usuario.getId(), 1, 2, 3); //TODO Hacer que funcione dado un admin
+					ventana.add(content);
+					content.updateUI();
+				}
+				else {
+					PrincipalUsuarioUI content = new PrincipalUsuarioUI((Jugador)usuario);
+					ventana.add(content);
+					content.updateUI();
+				}
+				
 			} else {
 				JOptionPane.showMessageDialog(new JFrame(), "Usuario o contraseña incorrectos", "Error",
 						JOptionPane.ERROR_MESSAGE);

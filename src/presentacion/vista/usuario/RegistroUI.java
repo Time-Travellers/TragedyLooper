@@ -175,7 +175,7 @@ public class RegistroUI extends JPanel{
 	}
 	
 	public Jugador getUsuarioCompleto() {
-		return new Jugador(getUsername(), getPassword(), false, null, Integer.parseInt(getEdad()), null, getEmail());
+		return new Jugador(getUsername(), getPassword(), false, getNombre(), Integer.parseInt(getEdad()), getPais(), getEmail());
 	}
 	
 	// Main para probar esta pantalla:
