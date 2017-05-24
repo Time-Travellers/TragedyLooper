@@ -12,6 +12,7 @@ import presentacion.controlador.PrinciUsuarioEvent;
 import presentacion.controlador.PrinciUsuarioEvent.PrinciUsuarioType;
 import presentacion.controlador.PrinciUsuarioListenable;
 import presentacion.controlador.PrinciUsuarioListener;
+import presentacion.modelo.usuario.Jugador;
 
 public class PrincipalUsuarioUI extends JPanel implements PrinciUsuarioListenable{
 	
@@ -29,11 +30,11 @@ public class PrincipalUsuarioUI extends JPanel implements PrinciUsuarioListenabl
 			listeners.get(i).notificarPrinciUsuario(e);
 	}
 	
-	public PrincipalUsuarioUI(int r, int n){
+	public PrincipalUsuarioUI(Jugador j){
 		listeners = new ArrayList<PrinciUsuarioListener>();
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		JPanel panelSup = new JPanel();
-		JLabel username = new JLabel("Nombre Usuario");
+		JLabel username = new JLabel(j.getDatos().getNombre());
 		username.setFont(new Font("", 30, 30));
 		panelSup.add(username);
 		this.botonera1 = new Botones(new BotonesListener(){
@@ -70,7 +71,7 @@ public class PrincipalUsuarioUI extends JPanel implements PrinciUsuarioListenabl
 				notificar(new PrinciUsuarioEvent(PrinciUsuarioType.verRanking));
 			}
 		});
-		this.paneltienda=new Tienda(r, n,new TiendaListener(){
+		this.paneltienda=new Tienda(j.getReloj(), j.getNivel(), new TiendaListener(){
 			@Override
 			public void comprarRelojes() {
 				notificar(new PrinciUsuarioEvent(PrinciUsuarioType.comprarRelojes));
@@ -116,7 +117,7 @@ public class PrincipalUsuarioUI extends JPanel implements PrinciUsuarioListenabl
 		JFrame ventana=new JFrame("Tragedy Looper");
 		ventana.setSize(1024, 768);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ventana.setContentPane(new PrincipalUsuarioUI(10,27));
+		ventana.setContentPane(new PrincipalUsuarioUI(new Jugador("Prueba", "Prueba", false, "Prueba", 0, null, "Prueba")));
 		ventana.setVisible(true);
 	}
 
