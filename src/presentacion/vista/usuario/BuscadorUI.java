@@ -1,32 +1,29 @@
 package presentacion.vista.usuario;
 
-import java.awt.Color;
+import java.awt.Font;
 
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
 
 public class BuscadorUI extends JPanel {
 
 	public interface BuscadorUIListener {
-		public void buscarPulsado();
+		public void buscarPulsado(String usuario);
+		public void agregarPulsado(String usuario);
+		public void reportarPulsado(String usuario);
 	}
-	
-	final static String[] COL_NAMES =  {"Usuario", "Agregar", "Reportar"};
 	
 	private BuscadorUIListener bl;
 	private JTextField nombre;
-	private JButton boton;
-	private JTable tabla;
-	private Object[][] datos;
+	private JButton botonBuscar;
+	private JLabel resultado;
+	private JButton botonAgregar;
+	private JButton botonReportar;
+
 	
 	public BuscadorUI(BuscadorUIListener bListener) {
 		this.bl = bListener;
@@ -40,39 +37,76 @@ public class BuscadorUI extends JPanel {
 		panelAux.add(new JLabel("Introduce el usuario a buscar: "));
 		this.nombre = new JTextField(20);
 		panelAux.add(this.nombre);
-		this.boton = new JButton("Buscar");
-		panelAux.add(this.boton);
+		this.botonBuscar = new JButton("Buscar");
+		this.botonBuscar.addActionListener((e) -> bl.buscarPulsado(this.getUsuarioABuscar()));
+		this.botonBuscar.addActionListener((e) -> {
+			String s = this.getUsuarioABuscar();
+			this.setResultado(s);
+			habilitarBotones(true);
+		}); //Quitar
+		panelAux.add(this.botonBuscar);
 		this.add(panelAux);
-		
-		
-		this.datos = new Object[4][4];
-		tabla = new JTable(datos, COL_NAMES);
-		tabla.setVisible(true);
-		Border borde = BorderFactory.createLineBorder(Color.black, 1);
-		tabla.setFillsViewportHeight(true);
-		this.add(new JScrollPane(tabla));
-		this.setBorder(BorderFactory.createTitledBorder(
-				borde, "Usuarios:",
-				TitledBorder.LEFT, TitledBorder.TOP));
+		JPanel panelAux2 = new JPanel();
+		JLabel aux = new JLabel("Resultado: ");
+		panelAux2.add(aux);
+		this.resultado = new JLabel("___");
+		this.resultado.setFont(new Font("", 15, 15));
+		panelAux2.add(resultado);
+		this.botonAgregar = new JButton("Agregar");
+		this.botonAgregar.addActionListener((e) -> bl.agregarPulsado(this.getUsuarioABuscar()));
+		panelAux2.add(botonAgregar);
+		this.botonReportar = new JButton("Reportar");
+		this.botonReportar.addActionListener((e) -> bl.reportarPulsado(this.getUsuarioABuscar()));
+		panelAux2.add(botonReportar);
+		habilitarBotones(false);
+		this.add(panelAux2);
 	}
 	
 	public String getUsuarioABuscar() {
 		return this.nombre.getText();
 	}
 	
-	public void insertarUsuarioATabla(String username) {
-		this.datos[0][0] = username;
-		this.datos[0][1] = new JButton();
-		this.datos[0][2] = new JButton();
+	public void habilitarBotones(boolean b) {
+		if(b) {
+			this.botonAgregar.setEnabled(true);
+			this.botonReportar.setEnabled(true);
+		} else {
+			this.botonAgregar.setEnabled(false);
+			this.botonReportar.setEnabled(false);
+		}
+		this.repaint();
+	}
+	
+	public void setResultado(String s) {
+		this.resultado.setText(s);
+		this.repaint();
 	}
 	
 	//Main para probar el buscador:
-	public static void main(String[] args) {
+	public static void main(String... args) {
 		JFrame frame = new JFrame("Prueba de BuscadorUI");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(800,600);
-		BuscadorUI busc = new BuscadorUI(null);
-		busc.insertarUsuarioATabla("Hola");
+		frame.setSize(400,300);
+		BuscadorUI busc = new BuscadorUI(new BuscadorUIListener() {
+
+			@Override
+			public void buscarPulsado(String usuario) {
+				System.out.println("Has buscado a " + usuario);
+				//Si se encuentra, ok.
+				//Si no, deshabilitar botones con el metodo publico proporcionado.
+			}
+
+			@Override
+			public void agregarPulsado(String usuario) {
+				System.out.println("Quieres agregar a " + usuario);
+			}
+
+			@Override
+			public void reportarPulsado(String usuario) {
+				System.out.println("Quieres reportar a " + usuario);
+			}
+			
+		});
 		frame.setContentPane(busc);
 		frame.setVisible(true);
 	}
