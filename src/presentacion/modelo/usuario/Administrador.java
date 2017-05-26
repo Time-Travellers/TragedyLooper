@@ -1,12 +1,22 @@
 package presentacion.modelo.usuario;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import presentacion.modelo.juego.InfoGuion;
+import presentacion.modelo.juego.JugadorPartida;
 
 public class Administrador extends Usuario {
  
 	private static final long serialVersionUID = -6954434759575092156L;
+	
+	public Administrador(String id, String password, boolean admin, String nombre, int edad, Paises pais, String correo) {
+    	this.id = id;
+    	this.password = password;
+    	this.admin = admin;
+    	this.datos = new Datos(nombre, edad, pais, correo);
+  	
+    }
 
 	public void banearUser(Date fecha, String user) {
 //begin of modifiable zone(JavaCode)......C/7b7b0820-26fa-4f32-8c75-8cf455d3c22c
