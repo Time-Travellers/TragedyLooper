@@ -19,5 +19,17 @@ public class Reporte {
 	public String getHash() {
 		return reportador.getId() + reportado.getId() + fecha.toString();
 	}
+
+	public String getReportador(){
+		return reportador.getId();
+	}
 	
+	public String getReportado(){
+		return reportado.getId();
+	}
+	
+	@SuppressWarnings("deprecation")
+	public String getFecha(){
+		return fecha.toString();
+	}
 }

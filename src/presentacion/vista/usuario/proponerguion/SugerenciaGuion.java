@@ -32,8 +32,8 @@ public class SugerenciaGuion extends JPanel{
 	private GuionListener gListener;
 	
 	public interface GuionListener{
-		void recibirGuion();
-		void salir();
+		public void recibirGuion();
+		public void salir();
 	}
 	
 	public void setGListener(GuionListener listener){

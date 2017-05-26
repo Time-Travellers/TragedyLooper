@@ -29,7 +29,7 @@ public class IniciarSesionUI extends JPanel implements IniSesionListenable {
 	
 	private static final long serialVersionUID = -7214920190889223616L;
 	private JTextField userIn;
-	private JTextField passwIn;
+	private JPasswordField passwIn;
 	private JButton iniciarSesion;
 	private JButton crearCuenta;
 	private ArrayList<IniSesionListener> listeners;
@@ -54,7 +54,7 @@ public class IniciarSesionUI extends JPanel implements IniSesionListenable {
 		
 		JPanel pw =  new JPanel();
 		pw.setLayout(new FlowLayout(FlowLayout.CENTER));
-		passwIn = new JTextField(15);
+		passwIn = new JPasswordField(15);
 		pw.add(new JLabel("Contraseña"));
 		pw.add(passwIn);
 		pw.setPreferredSize(new Dimension(300, 50));
