@@ -1,5 +1,8 @@
 package presentacion.controlador;
 
+import java.awt.Dialog.ModalityType;
+
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -48,7 +51,7 @@ public class GUIController implements IniSesionListener {
 						JOptionPane.ERROR_MESSAGE);
 			}
 		} else {
-			JFrame fRegistro = new JFrame();
+			JDialog fRegistro = new JDialog(ventana, ModalityType.DOCUMENT_MODAL);
 			RegistroUI registro = new RegistroUI();
 			registro.setRListener(new RegistroUIListener() {
 
@@ -72,11 +75,11 @@ public class GUIController implements IniSesionListener {
 				}
 
 			});
-			fRegistro.setVisible(true);
 			fRegistro.setSize(600, 508);
-			fRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			fRegistro.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			fRegistro.setContentPane(registro);
 			fRegistro.setVisible(true);
+			fRegistro.setAlwaysOnTop(true);
 		}
 	}
 
