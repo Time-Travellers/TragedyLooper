@@ -83,6 +83,7 @@ public class SugerenciaGuion extends JDialog{
 	}
 	
 	public static void main(String[] args) {
+		
 		SugerenciaGuion a=new SugerenciaGuion(null);
 		a.setSize(800,600);
 		}

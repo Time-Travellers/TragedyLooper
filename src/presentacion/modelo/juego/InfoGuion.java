@@ -13,7 +13,8 @@ public class InfoGuion implements Serializable{
 	private List<InfoPersonaje> cartaPersonaje = new ArrayList<InfoPersonaje>():
 	private List<InfoPersonaje> infoPersonaje = new ArrayList<InfoPersonaje>();
 	private Incidente incidente;
-
+	private int nivel;
+	
 	public String getTitulo() {
 		return titulo;
 	}
@@ -61,5 +62,8 @@ public class InfoGuion implements Serializable{
 	public void setIncidente(Incidente incidente) {
 		this.incidente = incidente;
 	}
-
+	
+	public void setNivel(int nivel){
+		this.nivel = nivel;
+	}
 }

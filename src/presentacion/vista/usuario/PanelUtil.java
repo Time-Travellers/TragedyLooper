@@ -29,7 +29,7 @@ public class PanelUtil extends JPanel{
 		this.setPreferredSize(new Dimension(400,50));
 		this.setMinimumSize(new Dimension(400,50));
 		this.setMaximumSize(new Dimension(400,50));
-		this.setBackground(new Color(100,255,150));
+		this.setBackground(new Color(100,190,250));
 	}
 	public static void main(String args[]){
 		JFrame ventana=new JFrame("prueba");
