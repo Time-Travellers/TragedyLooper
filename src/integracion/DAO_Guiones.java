@@ -1,5 +1,6 @@
 package integracion;
 
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import bbdd.Gestor;
@@ -34,5 +35,9 @@ public class DAO_Guiones extends DAO< InfoGuion >{
 	public void borrar(String id) {
 		gestor.guiones.remove(id);		
 		Logger.getLogger("log").info("Acceso a BBDD de guiones para actualizar objeto");
+	}
+	
+	public ArrayList<InfoGuion> leerGuiones(){
+		return new ArrayList<InfoGuion>(gestor.guiones.values());
 	}
 }

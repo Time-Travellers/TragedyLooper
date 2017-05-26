@@ -7,7 +7,7 @@ import presentacion.vista.marketing.comprarreloj.InfoReloj;
 
 public class Tienda {
 	
-	
+	public static final int NIVEL = 4;
 	public static final int NUMANUNCIOS = 3;
 	private ArrayList<InfoReloj> paquetesReloj;
 	private ArrayList<InfoNivel> paquetesNivel;
