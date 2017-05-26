@@ -17,14 +17,14 @@ import presentacion.modelo.usuario.Usuario;
 import presentacion.vista.gameMastering.ListaReportadosUI;
 import presentacion.vista.usuario.ComprarNivelUI;
 import presentacion.vista.usuario.ComprarNivelUI.ComprarNivelUIListener;
-import presentacion.vista.usuario.IniciarSesionUI;
-import presentacion.vista.usuario.InicioAdminUI;
-import presentacion.vista.usuario.PrincipalUsuarioUI;
-import presentacion.vista.usuario.RegistroUI;
-import presentacion.vista.usuario.RegistroUI.RegistroUIListener;
+import presentacion.vista.usuario.iniciarsesion.IniciarSesionUI;
+import presentacion.vista.usuario.inicioadmin.InicioAdminUI;
+import presentacion.vista.usuario.principalus.PrincipalUsuarioUI;
 import presentacion.vista.usuario.proponerguion.SugerenciaGuion;
 import presentacion.vista.usuario.proponerguion.SugerenciaGuion.GuionListener;
 import bbdd.Gestor;
+import presentacion.vista.usuario.registro.RegistroUI;
+import presentacion.vista.usuario.registro.RegistroUI.RegistroUIListener;
 
 public class GUIController implements IniSesionListener, PrinciUsuarioListener, PrinciAdministradorListener {
 

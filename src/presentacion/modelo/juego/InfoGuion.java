@@ -9,6 +9,7 @@ public class InfoGuion implements Serializable{
 	private static final long serialVersionUID = -2153228995875423399L;
 	private String titulo;
 	private int numLoops;
+	
 	private int numDias;
 	private List<InfoPersonaje> cartaPersonajes = new ArrayList<InfoPersonaje>();
 	private List<InfoPersonaje> infoPersonajes = new ArrayList<InfoPersonaje>();
@@ -66,5 +67,6 @@ public class InfoGuion implements Serializable{
 	public void setNivel(int nivel){
 		this.nivel=nivel;
 	}
-
+	
+	
 }
