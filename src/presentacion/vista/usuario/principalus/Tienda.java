@@ -1,4 +1,4 @@
-package  presentacion.vista.usuario;
+package  presentacion.vista.usuario.principalus;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

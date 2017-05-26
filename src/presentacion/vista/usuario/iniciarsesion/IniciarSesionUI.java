@@ -1,11 +1,10 @@
-package  presentacion.vista.usuario;
+package  presentacion.vista.usuario.iniciarsesion;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -18,16 +17,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 
 import presentacion.controlador.GUIController;
 import presentacion.controlador.IniSesionEvent;
 import presentacion.controlador.IniSesionEvent.IniSesionType;
 import presentacion.controlador.IniSesionListenable;
 import presentacion.controlador.IniSesionListener;
-import presentacion.vista.FrameUI;
 
 public class IniciarSesionUI extends JPanel implements IniSesionListenable {
 	

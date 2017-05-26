@@ -8,7 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import presentacion.vista.usuario.PanelGrande;
+import presentacion.vista.usuario.inicioadmin.PanelGrande;
 
 public class UsuariosReportadosUI extends JPanel{
 	PanelGrande panel;

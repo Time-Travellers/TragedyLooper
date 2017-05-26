@@ -1,14 +1,16 @@
-package presentacion.vista.usuario;
+package presentacion.vista.usuario.principalus;
 
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class Relojes extends JPanel{
+public class Nivel extends JPanel{
+	
 	private PanelBotInfoIcono panel;
-	public Relojes(int n, ActionListener list){
-		this.panel=new PanelBotInfoIcono(n, "Relojes: ", null, null, list);
+	
+	public Nivel(int n, ActionListener list){
+		this.panel = new PanelBotInfoIcono(n, "Nivel: ", null, null, list);
 		this.add(panel);
 	}
 	
@@ -16,7 +18,7 @@ public class Relojes extends JPanel{
 		JFrame ventana=new JFrame("prueba");
 		ventana.setSize(800,600);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ventana.setContentPane(new Relojes(10, null));
+		ventana.setContentPane(new Nivel(10,null));
 		ventana.setVisible(true);
 	}
 }

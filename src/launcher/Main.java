@@ -8,7 +8,7 @@ import bbdd.Gestor;
 import presentacion.controlador.GUIController;
 import presentacion.modelo.GUIModelo;
 import presentacion.vista.FrameUI;
-import presentacion.vista.usuario.IniciarSesionUI;
+import presentacion.vista.usuario.iniciarsesion.IniciarSesionUI;
 
 public class Main {
 

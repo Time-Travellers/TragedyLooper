@@ -1,4 +1,4 @@
-package presentacion.vista.usuario;
+package presentacion.vista.usuario.registro;
 
 import java.awt.Font;
 import java.awt.event.MouseAdapter;

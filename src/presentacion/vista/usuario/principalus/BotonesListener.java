@@ -1,4 +1,4 @@
-package presentacion.vista.usuario;
+package presentacion.vista.usuario.principalus;
 
 
 public interface BotonesListener {

@@ -1,4 +1,4 @@
-package presentacion.vista.usuario;
+package presentacion.vista.usuario.perfilus;
 
 import java.awt.Color;
 
