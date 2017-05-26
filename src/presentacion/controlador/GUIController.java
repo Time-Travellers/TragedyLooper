@@ -9,12 +9,18 @@ import javax.swing.JOptionPane;
 import bbdd.Gestor;
 import negocio.SA_Usuario;
 import presentacion.modelo.GUIModelo;
+import presentacion.modelo.juego.InfoGuion;
 import presentacion.modelo.usuario.Usuario;
 import presentacion.modelo.usuario.Jugador;
+import presentacion.vista.usuario.ComprarNivelUI;
+import presentacion.vista.usuario.ComprarNivelUI.ComprarNivelUIListener;
+import presentacion.vista.usuario.IniciarSesionUI;
 import presentacion.vista.usuario.InicioAdminUI;
 import presentacion.vista.usuario.PrincipalUsuarioUI;
 import presentacion.vista.usuario.RegistroUI;
 import presentacion.vista.usuario.RegistroUI.RegistroUIListener;
+import presentacion.vista.usuario.proponerguion.SugerenciaGuion;
+import presentacion.vista.usuario.proponerguion.SugerenciaGuion.GuionListener;
 
 public class GUIController implements IniSesionListener, PrinciUsuarioListener {
 
@@ -48,7 +54,7 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener {
 				}
 				
 			} else {
-				JOptionPane.showMessageDialog(new JFrame(), "Usuario o contraseña incorrectos", "Error",
+				JOptionPane.showMessageDialog(new JFrame(), "Usuario o password incorrectos", "Error",
 						JOptionPane.ERROR_MESSAGE);
 			}
 		} else {
@@ -63,7 +69,7 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener {
 						Usuario usuario = registro.getUsuarioCompleto();
 						boolean OK = new SA_Usuario().agregarUsuario(gestor, usuario);
 						if (OK) {
-							JOptionPane.showMessageDialog(new JFrame(), "Usuario creado correctamente", "Éxito",
+							JOptionPane.showMessageDialog(new JFrame(), "Usuario creado correctamente", "Exito",
 									JOptionPane.INFORMATION_MESSAGE);
 							fRegistro.dispose();
 						} else
@@ -88,7 +94,7 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener {
 	@Override
 	public void notificarPrinciUsuario(PrinciUsuarioEvent e) {
 		switch(e.getPrinciUsuarioType()){
-		case Salir:{
+		case "Salir":{
 			//vuelve a IniciarSesionUI
 			IniciarSesionUI content = new IniciarSesionUI(this);
 			ventana.getContentPane().removeAll();
@@ -96,7 +102,7 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener {
 			content.updateUI();
 			
 		}break;
-		case comprarNivel:{
+		case "comprarNivel":{
 			JFrame compraDeNivel = new JFrame();
 			compraDeNivel.setSize(250, 350);
 			compraDeNivel.setVisible(true);
@@ -113,8 +119,15 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener {
 			}));
 		}break;
 		
-		case proponerGuion:{
-			
+		case "proponerGuion":{
+			SugerenciaGuion proponerGuion = new SugerenciaGuion(ventana);
+			proponerGuion.setGListener(new GuionListener(){
+
+				@Override
+				public void recibirGuion() {
+					InfoGuion guion = proponerGuion.getGuionCompleto();
+				}
+			});
 		}break;
 		
 		

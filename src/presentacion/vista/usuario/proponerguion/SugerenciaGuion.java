@@ -3,6 +3,7 @@ package presentacion.vista.usuario.proponerguion;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -12,6 +13,10 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
+
+import presentacion.modelo.juego.InfoGuion;
+import presentacion.modelo.juego.InfoPersonaje;
+import presentacion.modelo.usuario.Paises;
 
 
 public class SugerenciaGuion extends JDialog{
@@ -28,10 +33,14 @@ public class SugerenciaGuion extends JDialog{
 	private PanelPersonajes personajes;
 	private JButton aceptar;
 	private JButton cancelar;
+	private GuionListener gListener;
 	
+	public interface GuionListener{
+		void recibirGuion();
+	}
 	
-	public void enviarGuion(){
-		
+	public void setGListener(GuionListener listener){
+		this.gListener = listener;
 	}
 	
 	public SugerenciaGuion(JFrame jc){
@@ -50,12 +59,7 @@ public class SugerenciaGuion extends JDialog{
 		this.dias=new PanelDias();
 		this.personajes=new PanelPersonajes();
 		this.aceptar=new JButton(new ImageIcon("src/resources/" + TICK));
-		aceptar.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				enviarGuion();
-			}
-		});
+		aceptar.addActionListener((e)->this.gListener.recibirGuion());
 		this.cancelar=new JButton(new ImageIcon("src/resources/" + SALIR));
 		cancelar.addActionListener(new ActionListener(){
 			@Override
@@ -82,10 +86,44 @@ public class SugerenciaGuion extends JDialog{
 		this.setAlwaysOnTop(true);
 	}
 	
+	
 	public static void main(String[] args) {
 		
 		SugerenciaGuion a=new SugerenciaGuion(null);
 		a.setSize(800,600);
 		}
+
+	public InfoGuion getGuionCompleto() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public PanelParaEscribir getBucles() {
+		return bucles;
+	}
+
+	public PanelParaEscribir getTitulo() {
+		return titulo;
+	}
+
+	public PanelSeleccionTrama getTrama() {
+		return trama;
+	}
+
+	public PanelSeleccionSubtrama getSubtrama() {
+		return subtrama;
+	}
+
+	public PanelDias getDias() {
+		return dias;
+	}
+
+	public ArrayList<InfoPersonaje> getPersonajes() {
+		return personajes.getInfoPersonajes();
+	}
+
+	
+
+	
 
 }

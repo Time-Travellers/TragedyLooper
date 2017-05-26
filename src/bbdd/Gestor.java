@@ -2,6 +2,7 @@ package bbdd;
 
 import java.util.HashMap;
 
+import presentacion.modelo.gameMastering.Reporte;
 import presentacion.modelo.juego.InfoGuion;
 import presentacion.modelo.juego.Partida;
 import presentacion.modelo.usuario.Jugador;
@@ -16,6 +17,10 @@ public class Gestor {
 
     public HashMap<String, InfoGuion> guiones = new HashMap<String, InfoGuion> ();
 
+    public HashMap<String, Reporte> reportados = new HashMap<String, Reporte> ();
+    
+    public HashMap<String, InfoGuion>  guiones_propuestos = new HashMap<String, InfoGuion> ();
+    
  // public List<InfoLugar> lugares = new ArrayList<InfoLugar> ();
     
     public Gestor(){
@@ -23,6 +28,8 @@ public class Gestor {
     	//partidas = new IO<Partida>("partidas.ser").leer();
     	guiones = new IO<InfoGuion>("guiones.ser").leer();
     	listaEspera = new IO<Jugador>("espera.ser").leer();
+    	reportados = new IO<Reporte>("reportados.ser").leer();
+    	guiones_propuestos = new IO<InfoGuion>("guiones_propuestos").leer();
     }
     
     public void close() {

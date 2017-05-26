@@ -8,6 +8,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import presentacion.modelo.juego.InfoPersonaje;
+import presentacion.modelo.juego.InfoPersonaje.Personaje;
+
 public class PanelPersonajes extends JPanel implements ReguladorListener{
 
 	private static final int MAX_PERSONAJES=20;
@@ -28,7 +31,7 @@ public class PanelPersonajes extends JPanel implements ReguladorListener{
 	}
 	private void inicializarlistaDescripciones(){
 		for(int ctrl=0;ctrl<MAX_PERSONAJES;ctrl++){
-			listaDescripciones.add(new DescripcionPersonaje(ctrl+1, Personajes.values(), Rol.values()));
+			listaDescripciones.add(new DescripcionPersonaje(ctrl+1, Personaje.values(), Rol.values()));
 			listaDescripciones.get(ctrl).setVisible(ctrl<numpersonajes.getValor());
 		}
 	}
@@ -61,6 +64,15 @@ public class PanelPersonajes extends JPanel implements ReguladorListener{
 		ventana.setSize(400, 300);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.setVisible(true);
+	}
+	
+	
+	public ArrayList<InfoPersonaje> getInfoPersonajes() {
+		ArrayList<InfoPersonaje> list = new ArrayList<InfoPersonaje>();
+		for(int i = 0;i < this.listaDescripciones.size();++i){
+			list.add(listaDescripciones.get(i).personaje);
+		}
+		return list;
 	}
 
 
