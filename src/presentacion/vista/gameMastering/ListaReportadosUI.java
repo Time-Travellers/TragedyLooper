@@ -3,6 +3,9 @@ package presentacion.vista.gameMastering;
 import java.awt.Color;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -15,27 +18,27 @@ public class ListaReportadosUI extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -8961549082439847327L;
+	private final static String Actualizar="actualizar.png";
+	private final static String[] COL_NAMES={"Remitente", "Reportado", "Fecha"};
 	
-	final static String[] COL_NAMES={"Remitente", "Asunto", "Fecha","Ver"};
+	private JTable table;
+	private String [][] datos = {};
+	private JButton actualizar;
 	
-	JTable table;
-	
-	public ListaReportadosUI(String id) {
+	public ListaReportadosUI(String [][] datos) {
 		this.setVisible(true);
+		this.datos=datos;
 		initialize();
 	}
 
 	private void initialize() {
-
-		String [][] datos = {};
+		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+		this.actualizar=new JButton(new ImageIcon("src/resources/"+ Actualizar));
+		this.add(actualizar);
 		table = new JTable(datos, COL_NAMES);
 		table.setVisible(true);
-		Border borde = BorderFactory.createLineBorder(Color.black, 1);
 		table.setFillsViewportHeight(true);
 		this.add(new JScrollPane(table));
-		this.setBorder(BorderFactory.createTitledBorder(
-				borde, "Mejores partidas:",
-				TitledBorder.LEFT, TitledBorder.TOP));
 	}
 
 	public void eraseData() {
@@ -46,8 +49,9 @@ public class ListaReportadosUI extends JPanel {
 	public static void main(String args[]){
 		JFrame ventana=new JFrame("prueba");
 		ventana.setSize(800,600);
+		String [][] dat = {};
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ventana.setContentPane(new ListaReportadosUI("zzz"));
+		ventana.setContentPane(new ListaReportadosUI(dat));
 		ventana.setVisible(true);
 	}
 	
