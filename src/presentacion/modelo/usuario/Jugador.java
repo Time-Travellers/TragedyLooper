@@ -30,7 +30,6 @@ public class Jugador extends Usuario {
     	this.estadistica = null;
     	this.amigos = new ArrayList<Jugador>();
     	this.rating = null;
-    	
     }
 
     public void anyadirAmigo(Jugador jugador) {

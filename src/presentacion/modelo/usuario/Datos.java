@@ -61,5 +61,13 @@ public class Datos implements Serializable{
 		// end of modifiable
 		// zone(JavaCode)........E/5fcb4eab-78bb-4973-9e36-0d002beaf914
 	}
-
+	
+	public String toString(){
+		StringBuilder datos = new StringBuilder();
+		datos.append("Nombre: " + nombre+'\n');
+		datos.append("Edad: " + edad+'\n');
+		datos.append("Pais: "+pais+'\n');
+		datos.append("Correo: "+correo+'\n');
+		return datos.toString();
+	}
 }

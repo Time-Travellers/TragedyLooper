@@ -51,7 +51,7 @@ public abstract class Usuario implements Serializable{
     }
 
     public String verDatos() {
-    	
+    	return datos.toString();
     }
 
     public Usuario buscarUsuario() {
