@@ -16,4 +16,8 @@ public class Reporte {
 		this.fecha = fecha;
 	}
 	
+	public String getHash() {
+		return reportador.getId() + reportado.getId() + fecha.toString();
+	}
+	
 }
