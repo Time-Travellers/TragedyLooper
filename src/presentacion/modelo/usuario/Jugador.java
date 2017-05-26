@@ -110,9 +110,6 @@ public class Jugador extends Usuario {
     }
 
     public void contactarAdmin() {
-//begin of modifiable zone(JavaCode)......C/7fe69736-e37c-4043-aaef-1227555096fc
-
-//end of modifiable zone(JavaCode)........E/7fe69736-e37c-4043-aaef-1227555096fc
     }
 
     public boolean eliminarAmigo(Jugador amigo) {

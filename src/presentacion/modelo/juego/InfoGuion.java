@@ -19,6 +19,7 @@ public class InfoGuion implements Serializable{
 	private Trama trama;
 	public Subtrama subtrama;
 	private int numLoops;
+	
 	private int numDias;
 	private List<InfoPersonaje> cartaPersonajes = new ArrayList<InfoPersonaje>();
 	private List<Incidente> incidentes;
@@ -88,5 +89,6 @@ public class InfoGuion implements Serializable{
 	public void setNivel(int nivel){
 		this.nivel=nivel;
 	}
-
+	
+	
 }

@@ -73,12 +73,7 @@ public class SugerenciaGuion extends JPanel{
 		contenedor.add(nivel4);
 		this.add(contenedor);
 	}
-	
-	
-	/*public static void main(String[] args) {
-		SugerenciaGuion a=new SugerenciaGuion(null);
-		a.setSize(800,600);
-		}*/
+
 
 	public InfoGuion getGuionCompleto() {
 		return new InfoGuion(getTitulo(), getTrama(), getSubtrama(), getBucles(), getDias(), getPersonajes(), getIncidentes());
