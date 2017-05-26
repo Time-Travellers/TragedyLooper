@@ -16,7 +16,7 @@ import presentacion.vista.usuario.PrincipalUsuarioUI;
 import presentacion.vista.usuario.RegistroUI;
 import presentacion.vista.usuario.RegistroUI.RegistroUIListener;
 
-public class GUIController implements IniSesionListener {
+public class GUIController implements IniSesionListener, PrinciUsuarioListener {
 
 	private JFrame ventana;
 	private GUIModelo modelo;
@@ -42,12 +42,13 @@ public class GUIController implements IniSesionListener {
 				}
 				else {
 					PrincipalUsuarioUI content = new PrincipalUsuarioUI((Jugador)usuario);
+					content.addPrinciUsuarioListener(this);
 					ventana.add(content);
 					content.updateUI();
 				}
 				
 			} else {
-				JOptionPane.showMessageDialog(new JFrame(), "Usuario o contraseña incorrectos", "Error",
+				JOptionPane.showMessageDialog(new JFrame(), "Usuario o contraseÃ±a incorrectos", "Error",
 						JOptionPane.ERROR_MESSAGE);
 			}
 		} else {
@@ -62,7 +63,7 @@ public class GUIController implements IniSesionListener {
 						Usuario usuario = registro.getUsuarioCompleto();
 						boolean OK = new SA_Usuario().agregarUsuario(gestor, usuario);
 						if (OK) {
-							JOptionPane.showMessageDialog(new JFrame(), "Usuario creado correctamente", "Éxito",
+							JOptionPane.showMessageDialog(new JFrame(), "Usuario creado correctamente", "Ã‰xito",
 									JOptionPane.INFORMATION_MESSAGE);
 							fRegistro.dispose();
 						} else
@@ -83,6 +84,43 @@ public class GUIController implements IniSesionListener {
 		}
 	}
 
+	
+	@Override
+	public void notificarPrinciUsuario(PrinciUsuarioEvent e) {
+		switch(e.getPrinciUsuarioType()){
+		case Salir:{
+			//vuelve a IniciarSesionUI
+			IniciarSesionUI content = new IniciarSesionUI(this);
+			ventana.getContentPane().removeAll();
+			ventana.add(content);
+			content.updateUI();
+			
+		}break;
+		case comprarNivel:{
+			JFrame compraDeNivel = new JFrame();
+			compraDeNivel.setSize(250, 350);
+			compraDeNivel.setVisible(true);
+			compraDeNivel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			compraDeNivel.setContentPane(new ComprarNivelUI(new ComprarNivelUIListener(){
+				@Override
+				public void comprarPulsado(int nivel) {
+					//Niveles del 1 al 4, falta almacenarlo de alguna forma
+				}
+				@Override
+				public void salir() {
+					compraDeNivel.dispose();
+				}
+			}));
+		}break;
+		
+		case proponerGuion:{
+			
+		}break;
+		
+		
+		}
+	}
+	
 	public void closeGestor() {
 		gestor.close();
 	}
