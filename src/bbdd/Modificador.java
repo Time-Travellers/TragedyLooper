@@ -12,15 +12,14 @@ import presentacion.modelo.usuario.Usuario;
 
 public class Modificador {
 	
-	static File file1 = new File("src/resources/usuarios.ser");
+	static File file1 = new File("src/resources/reportados.ser");
+	static File file2 = new File("src/resources/guiones_propuestos.ser");
 	
 	public static void main(String ... args) throws IOException {
-		HashMap<String, Usuario> usuario = new IO<Usuario>("usuarios.ser").leer();
-	    Usuario user = new Jugador("admin1", "admin1", true, "Administrador Uno", 99, Paises.Nueva_Zelanda, "administrador1@gmail.com");
-	    usuario.put(user.getId(), user);
-	    new IO<Usuario>("usuarios.ser").almacenar(usuario);
-	    new IO<InfoGuion>("guiones.ser").almacenar(new HashMap<String, InfoGuion>());
-	    new IO<Jugador>("espera.ser").almacenar(new HashMap<String, Jugador>());
+		file1.createNewFile();
+		file2.createNewFile();
+	    new IO<Jugador>("reportados.ser").almacenar(new HashMap<String, Jugador>());
+	    new IO<InfoGuion>("guiones_propuestos.ser").almacenar(new HashMap<String, InfoGuion>());
 	}
 	
 }
