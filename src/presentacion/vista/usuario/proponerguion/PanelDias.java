@@ -8,17 +8,20 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import presentacion.modelo.juego.Incidente.Incidentes;
+import presentacion.modelo.juego.InfoPersonaje.Personaje;
+
 public class PanelDias extends JPanel implements ReguladorListener{
 	//sacar fuera esta cte cuando este definida
 	private static final int MAX_DIAS=8;
 	private Regulador numdias;
 	private JScrollPane deslizador;
 	private JPanel contenedor;
-	ArrayList<EventosDia>listaDias;
+	ArrayList<EventosDia> listaDias;
 	
 	private void inicializarlistaDias(){
 		for(int ctrl=0;ctrl<MAX_DIAS;ctrl++){
-			listaDias.add(new EventosDia(ctrl+1, Incidentes.values(), Personajes.values()));
+			listaDias.add(new EventosDia(ctrl+1, Incidentes.values(), Personaje.values()));
 			listaDias.get(ctrl).setVisible(ctrl<numdias.getValor());
 		}
 	}

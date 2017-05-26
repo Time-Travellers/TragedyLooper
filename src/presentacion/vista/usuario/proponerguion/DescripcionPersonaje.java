@@ -5,21 +5,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import presentacion.modelo.juego.InfoPersonaje;
+import presentacion.modelo.juego.InfoPersonaje.Personaje;
+
 public class DescripcionPersonaje extends JPanel {
-	private class Par{
-		private Personajes p;
-		private Rol r;
-		Par(Object a, Object b){
-			p=(Personajes) a;
-			r=(Rol) b;
-		}
-	}
+	public InfoPersonaje personaje;
 	private JLabel nombre;
 	private JComboBox selectordepersonajes;
 	private JComboBox selectorderol;
 	
-	public Par getValorSeleccionado(){
-		return new Par(selectordepersonajes.getSelectedItem(), selectorderol.getSelectedItem());
+	public InfoPersonaje getValorSeleccionado(){
+		return new InfoPersonaje((String)selectordepersonajes.getSelectedItem(), (String)selectorderol.getSelectedItem());
 	}
 
 	private void inicializarSelectorDePersonajes(Object[] lista){
@@ -50,7 +46,7 @@ public class DescripcionPersonaje extends JPanel {
 		JFrame ventana=new JFrame("prueba");
 		ventana.setSize(800,600);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ventana.setContentPane(new DescripcionPersonaje(1,Personajes.values(), Rol.values()));
+		ventana.setContentPane(new DescripcionPersonaje(1,Personaje.values(), Rol.values()));
 		ventana.setVisible(true);
 	}
 }
