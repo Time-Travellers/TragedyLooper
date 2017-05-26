@@ -42,12 +42,7 @@ public class Contacto extends JPanel {
 		this.sugerencias = new JButton("Sugerencias");
 		this.sugerencias.addActionListener((e)-> this.cl.sugerencias());
 		this.proponerGuion = new JButton("Proponer Guion");
-		this.proponerGuion.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				SugerenciaGuion dialogo=new SugerenciaGuion(aux.getFrame());
-			}
-		});
+		this.proponerGuion.addActionListener((e) -> cl.proponerGuion());
 		this.add(titulo);
 		this.add(new JLabel(" "));
 		this.add(sugerencias);

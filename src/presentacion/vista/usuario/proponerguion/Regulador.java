@@ -36,6 +36,7 @@ public class Regulador extends JPanel{
 		return (int) selector.getValue();
 	}
 	
+	
 	public static void main(String args[]){
 		JFrame ventana=new JFrame("prueba");
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

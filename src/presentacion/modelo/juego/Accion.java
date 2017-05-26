@@ -1,9 +1,8 @@
 package presentacion.modelo.juego;
 
 public class Accion {
-    public String action;
+    public Incidente incidente;
 
     public EstadoPersonaje victima;
 
-    public EstadoLugar localizacion;
 }

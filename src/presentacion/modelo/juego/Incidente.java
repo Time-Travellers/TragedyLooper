@@ -3,16 +3,21 @@ package presentacion.modelo.juego;
 import java.util.ArrayList;
 import java.util.List;
 
+import presentacion.modelo.juego.InfoPersonaje.Personaje;
+
 public class Incidente {
 	
-	public enum Incidentes {
+	public enum EnumIncidentes {
 		No_Incidentes, Asesinato, Hospital, Suicidio, Desaparicion
 	}
 	
-    public String nombre;
+    public EnumIncidentes nombre;
 
-    public Accion accion;
+    public Personaje culpable;
 
-    public List<InfoPersonaje> culpable = new ArrayList<InfoPersonaje> ();
+	public Incidente(EnumIncidentes nombre, Personaje culpable) {
+		this.nombre = nombre;
+		this.culpable = culpable;
+	}
 
 }

@@ -1,31 +1,27 @@
 package presentacion.vista.usuario.proponerguion;
 
-import java.awt.Frame;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
+import presentacion.modelo.juego.Incidente;
 import presentacion.modelo.juego.InfoGuion;
+import presentacion.modelo.juego.InfoGuion.Subtrama;
+import presentacion.modelo.juego.InfoGuion.Trama;
 import presentacion.modelo.juego.InfoPersonaje;
-import presentacion.modelo.usuario.Paises;
 
 
-public class SugerenciaGuion extends JDialog{
+public class SugerenciaGuion extends JPanel{
 	
-	
-
+	private static final long serialVersionUID = -5984566220916638228L;
 	final static String SALIR = "salirIcono.png";
 	final static String TICK = "tickverde.png";
-	private PanelParaEscribir bucles;
+	private JSpinner bucles;
 	private PanelParaEscribir titulo;
 	private PanelSeleccionTrama trama;
 	private PanelSeleccionSubtrama subtrama;
@@ -37,22 +33,23 @@ public class SugerenciaGuion extends JDialog{
 	
 	public interface GuionListener{
 		void recibirGuion();
+		void salir();
 	}
 	
 	public void setGListener(GuionListener listener){
 		this.gListener = listener;
 	}
 	
-	public SugerenciaGuion(JFrame jc){
-		super(jc,ModalityType.DOCUMENT_MODAL);
-		SugerenciaGuion aux=this;
+	public SugerenciaGuion(){
+		
 		JPanel contenedor=new JPanel();
 		contenedor.setLayout(new BoxLayout(contenedor,BoxLayout.Y_AXIS));
 		JPanel nivel1=new JPanel();
 		JPanel nivel2=new JPanel();
 		JPanel nivel3=new JPanel();
 		JPanel nivel4=new JPanel();
-		this.bucles=new PanelParaEscribir(3,"Bucles");
+
+		bucles = new JSpinner(new SpinnerNumberModel(3,1,8,1));
 		this.titulo=new PanelParaEscribir(15,"Titulo");
 		this.trama=new PanelSeleccionTrama();
 		this.subtrama=new PanelSeleccionSubtrama();
@@ -61,12 +58,7 @@ public class SugerenciaGuion extends JDialog{
 		this.aceptar=new JButton(new ImageIcon("src/resources/" + TICK));
 		aceptar.addActionListener((e)->this.gListener.recibirGuion());
 		this.cancelar=new JButton(new ImageIcon("src/resources/" + SALIR));
-		cancelar.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				aux.dispose();
-			}
-		});
+		cancelar.addActionListener((e)->this.gListener.salir());
 		nivel1.add(titulo);
 		nivel1.add(bucles);
 		nivel2.add(trama);
@@ -80,46 +72,46 @@ public class SugerenciaGuion extends JDialog{
 		contenedor.add(nivel3);
 		contenedor.add(nivel4);
 		this.add(contenedor);
-		this.pack();
-		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		this.setVisible(true);
-		this.setAlwaysOnTop(true);
 	}
 	
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		SugerenciaGuion a=new SugerenciaGuion(null);
 		a.setSize(800,600);
-		}
+		}*/
 
 	public InfoGuion getGuionCompleto() {
-		// TODO Auto-generated method stub
-		return null;
+		return new InfoGuion(getTitulo(), getTrama(), getSubtrama(), getBucles(), getDias(), getPersonajes(), getIncidentes());
 	}
 
-	public PanelParaEscribir getBucles() {
-		return bucles;
+	private int getDias() {
+		return dias.getNumDias();
 	}
 
-	public PanelParaEscribir getTitulo() {
-		return titulo;
+	public int getBucles() {
+		return (Integer) bucles.getValue();
 	}
 
-	public PanelSeleccionTrama getTrama() {
-		return trama;
+	public String getTitulo() {
+		return titulo.getTexto();
 	}
 
-	public PanelSeleccionSubtrama getSubtrama() {
-		return subtrama;
+	public Trama getTrama() {
+		return trama.getTrama();
 	}
 
-	public PanelDias getDias() {
-		return dias;
+	public Subtrama getSubtrama() {
+		return subtrama.getSubtrama();
+	}
+
+	public ArrayList<Incidente> getIncidentes() {
+		return dias.getIncidentes();
 	}
 
 	public ArrayList<InfoPersonaje> getPersonajes() {
 		return personajes.getInfoPersonajes();
 	}
+
 
 	
 

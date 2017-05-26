@@ -7,36 +7,23 @@ import javax.swing.JPanel;
 
 import presentacion.modelo.juego.InfoPersonaje;
 import presentacion.modelo.juego.InfoPersonaje.Personaje;
+import presentacion.modelo.juego.InfoPersonaje.Rol;
 
 public class DescripcionPersonaje extends JPanel {
 	public InfoPersonaje personaje;
 	private JLabel nombre;
-	private JComboBox selectordepersonajes;
-	private JComboBox selectorderol;
+	private JComboBox<Personaje> selectordepersonajes;
+	private JComboBox<Rol> selectorderol;
 	
 	public InfoPersonaje getValorSeleccionado(){
-		return new InfoPersonaje((String)selectordepersonajes.getSelectedItem(), (String)selectorderol.getSelectedItem());
-	}
-
-	private void inicializarSelectorDePersonajes(Object[] lista){
-		for(int ctrl=0;ctrl<lista.length;ctrl++){
-			selectordepersonajes.addItem(lista[ctrl]);
-		}
+		return new InfoPersonaje((Personaje)selectordepersonajes.getSelectedItem(), (Rol)selectorderol.getSelectedItem());
 	}
 	
-	private void inicializarSelectorDeRol(Object[] lista){
-		for(int ctrl=0;ctrl<lista.length;ctrl++){
-			selectorderol.addItem(lista[ctrl]);
-		}
-	}
-	
-	public DescripcionPersonaje(int n,Object[] listadepersonajes, Object[] listaderoles){
+	public DescripcionPersonaje(int n){
 		
 		this.nombre=new JLabel("P"+n);
-		this.selectordepersonajes=new JComboBox();
-		this.selectorderol=new JComboBox();
-		inicializarSelectorDePersonajes(listadepersonajes);
-		inicializarSelectorDeRol(listaderoles);
+		this.selectordepersonajes=new JComboBox<Personaje>(Personaje.values());
+		this.selectorderol=new JComboBox<Rol>(Rol.values());
 		this.add(nombre);
 		this.add(selectordepersonajes);
 		this.add(selectorderol);
@@ -46,7 +33,7 @@ public class DescripcionPersonaje extends JPanel {
 		JFrame ventana=new JFrame("prueba");
 		ventana.setSize(800,600);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ventana.setContentPane(new DescripcionPersonaje(1,Personaje.values(), Rol.values()));
+		ventana.setContentPane(new DescripcionPersonaje(1));
 		ventana.setVisible(true);
 	}
 }

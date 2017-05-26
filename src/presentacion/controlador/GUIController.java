@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import bbdd.Gestor;
+import negocio.SA_Juego;
 import negocio.SA_Usuario;
 import presentacion.modelo.GUIModelo;
 import presentacion.modelo.juego.InfoGuion;
@@ -58,7 +59,7 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener {
 						JOptionPane.ERROR_MESSAGE);
 			}
 		} else {
-			JDialog fRegistro = new JDialog(ventana, ModalityType.DOCUMENT_MODAL);
+			JDialog fRegistro = new JDialog(ventana, "Registrarse", ModalityType.DOCUMENT_MODAL);
 			RegistroUI registro = new RegistroUI();
 			registro.setRListener(new RegistroUIListener() {
 
@@ -120,14 +121,34 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener {
 		}break;
 		
 		case "proponerGuion":{
-			SugerenciaGuion proponerGuion = new SugerenciaGuion(ventana);
+			JDialog dGuion = new JDialog(ventana, "Proponer Guion", ModalityType.DOCUMENT_MODAL);
+			SugerenciaGuion proponerGuion = new SugerenciaGuion();
 			proponerGuion.setGListener(new GuionListener(){
 
 				@Override
 				public void recibirGuion() {
 					InfoGuion guion = proponerGuion.getGuionCompleto();
+					boolean OK = new SA_Juego().proponerGuion(gestor, guion);
+					if (OK) {
+						JOptionPane.showMessageDialog(new JFrame(), "Guion enviado correctamente", "Exito",
+								JOptionPane.INFORMATION_MESSAGE);
+						dGuion.dispose();
+					} else
+						JOptionPane.showMessageDialog(new JFrame(), "Hay algun error", "Error",
+								JOptionPane.ERROR_MESSAGE);
+				}
+				
+				@Override
+				public void salir(){
+					dGuion.dispose();
 				}
 			});
+			dGuion.setSize(800, 600);
+			dGuion.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dGuion.setContentPane(proponerGuion);
+			dGuion.setVisible(true);
+			dGuion.setAlwaysOnTop(true);
+			
 		}break;
 		
 		

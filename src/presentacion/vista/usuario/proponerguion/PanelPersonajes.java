@@ -17,7 +17,7 @@ public class PanelPersonajes extends JPanel implements ReguladorListener{
 	private Regulador numpersonajes;
 	private JScrollPane deslizador;
 	private JPanel contenedor;
-	ArrayList<DescripcionPersonaje>listaDescripciones;
+	ArrayList<DescripcionPersonaje> listaDescripciones;
 	
 
 
@@ -31,7 +31,7 @@ public class PanelPersonajes extends JPanel implements ReguladorListener{
 	}
 	private void inicializarlistaDescripciones(){
 		for(int ctrl=0;ctrl<MAX_PERSONAJES;ctrl++){
-			listaDescripciones.add(new DescripcionPersonaje(ctrl+1, Personaje.values(), Rol.values()));
+			listaDescripciones.add(new DescripcionPersonaje(ctrl+1));
 			listaDescripciones.get(ctrl).setVisible(ctrl<numpersonajes.getValor());
 		}
 	}

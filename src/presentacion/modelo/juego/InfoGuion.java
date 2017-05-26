@@ -6,14 +6,36 @@ import java.util.List;
 
 public class InfoGuion implements Serializable{
 	
+	public enum Trama{
+		Un_lugar_que_proteger, Luz_del_vengador, Masacre_en_Rokkenjima
+	}
+	
+	public enum Subtrama{
+		La_bruja_dorada, Un_rumor_inquietante, Amor_prohibido
+	}
+	
 	private static final long serialVersionUID = -2153228995875423399L;
 	private String titulo;
+	private Trama trama;
+	public Subtrama subtrama;
 	private int numLoops;
 	private int numDias;
 	private List<InfoPersonaje> cartaPersonajes = new ArrayList<InfoPersonaje>();
-	private List<InfoPersonaje> infoPersonajes = new ArrayList<InfoPersonaje>();
 	private List<Incidente> incidentes;
 	private int nivel;
+	
+
+	public InfoGuion(String titulo, Trama trama, Subtrama subtrama,
+			int numLoops, int numDias, List<InfoPersonaje> cartaPersonajes,
+			List<Incidente> incidentes) {
+		this.titulo = titulo;
+		this.trama = trama;
+		this.subtrama = subtrama;
+		this.numLoops = numLoops;
+		this.numDias = numDias;
+		this.cartaPersonajes = cartaPersonajes;
+		this.incidentes = incidentes;
+	}
 
 	public String getTitulo() {
 		return titulo;
@@ -48,11 +70,11 @@ public class InfoGuion implements Serializable{
 	}
 
 	public List<InfoPersonaje> getInfoPersonajes() {
-		return infoPersonajes;
+		return cartaPersonajes;
 	}
 
 	public void setInfoPersonajes(List<InfoPersonaje> infoPersonaje) {
-		this.infoPersonajes = infoPersonaje;
+		this.cartaPersonajes = infoPersonaje;
 	}
 
 	public List<Incidente> getIncidentes() {

@@ -2,6 +2,7 @@ package presentacion.vista.usuario;
 
 import java.awt.Font;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -26,6 +27,7 @@ public class PrincipalUsuarioUI extends JPanel implements PrinciUsuarioListenabl
 	ArrayList<PrinciUsuarioListener> listeners;
 	
 	private void notificar(PrinciUsuarioEvent e){
+		Logger.getLogger("log").info("Notificado PrinciUsuarioEvent de tipo " + e.getPrinciUsuarioType());
 		for (int i = 0; i < listeners.size(); ++i)
 			listeners.get(i).notificarPrinciUsuario(e);
 	}

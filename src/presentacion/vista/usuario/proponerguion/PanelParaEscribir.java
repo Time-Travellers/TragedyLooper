@@ -15,7 +15,7 @@ public class PanelParaEscribir extends JPanel{
 	private JTextField texto;
 	private JLabel nombre;
 	
-	public String sacarTexto(){
+	public String getTexto(){
 		return texto.getText();
 	}
 	

@@ -14,8 +14,8 @@ public class InfoPersonaje {
 	public InfoPersonaje() {
 	}
 	
-	public InfoPersonaje(String nombre, String rol){
-		this.nombre = Personaje.valueOf(nombre);
-		this.rol = Rol.valueOf(rol);
+	public InfoPersonaje(Personaje nombre, Rol rol){
+		this.nombre = nombre;
+		this.rol = rol;
 	}
 }

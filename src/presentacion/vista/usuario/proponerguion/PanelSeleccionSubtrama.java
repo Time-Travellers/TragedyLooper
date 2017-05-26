@@ -7,8 +7,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import presentacion.modelo.juego.InfoGuion.Subtrama;
+
 public class PanelSeleccionSubtrama extends JPanel{
-	private JComboBox opciones;
+	private JComboBox<Subtrama> opciones;
 	private JLabel nombre;
 	
 	/**
@@ -20,17 +22,11 @@ public class PanelSeleccionSubtrama extends JPanel{
 		return opciones.getSelectedIndex();
 	}
 	
-	private void InicializarComboBox(SubTramas[] lista){
-		for(int i=0;i<lista.length;i++){
-			this.opciones.addItem(lista[i]);
-		}
-	}
 	
 	public PanelSeleccionSubtrama(){
 		this.nombre=new JLabel("Subtrama");
-		this.opciones=new JComboBox<Object>();
+		this.opciones=new JComboBox<Subtrama>(Subtrama.values());
 		this.opciones.setEditable(false);
-		InicializarComboBox(SubTramas.values());
 		this.add(this.nombre);
 		this.add(this.opciones);
 	}
@@ -42,5 +38,11 @@ public class PanelSeleccionSubtrama extends JPanel{
 		prueba.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		prueba.setVisible(true);
 	}
+
+
+	public Subtrama getSubtrama() {
+		return (Subtrama)opciones.getSelectedItem();
+	}
+	
 
 }

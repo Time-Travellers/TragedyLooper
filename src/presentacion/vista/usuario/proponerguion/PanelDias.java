@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import presentacion.modelo.juego.Incidente.Incidentes;
+import presentacion.modelo.juego.Incidente;
 import presentacion.modelo.juego.InfoPersonaje.Personaje;
 
 public class PanelDias extends JPanel implements ReguladorListener{
@@ -21,7 +21,7 @@ public class PanelDias extends JPanel implements ReguladorListener{
 	
 	private void inicializarlistaDias(){
 		for(int ctrl=0;ctrl<MAX_DIAS;ctrl++){
-			listaDias.add(new EventosDia(ctrl+1, Incidentes.values(), Personaje.values()));
+			listaDias.add(new EventosDia(ctrl+1));
 			listaDias.get(ctrl).setVisible(ctrl<numdias.getValor());
 		}
 	}
@@ -29,7 +29,7 @@ public class PanelDias extends JPanel implements ReguladorListener{
 	public PanelDias(){
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.numdias=new Regulador("Dias", MAX_DIAS);
-		this.listaDias=new ArrayList();
+		this.listaDias=new ArrayList<EventosDia>();
 		this.contenedor=new JPanel();
 		contenedor.setLayout(new BoxLayout(contenedor,BoxLayout.Y_AXIS));
 		this.add(numdias);
@@ -61,6 +61,18 @@ public class PanelDias extends JPanel implements ReguladorListener{
 		ventana.setSize(400, 300);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.setVisible(true);
+	}
+
+	public ArrayList<Incidente> getIncidentes() {
+		ArrayList<Incidente> incidentes = new ArrayList<Incidente>();
+		for(int i = 0; i < listaDias.size();++i){
+			incidentes.add(listaDias.get(i).getIncidente());
+		}
+		return incidentes;
+	}
+	
+	public int getNumDias(){
+		return numdias.getValor();
 	}
 	
 }
