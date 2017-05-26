@@ -128,14 +128,10 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener {
 				@Override
 				public void recibirGuion() {
 					InfoGuion guion = proponerGuion.getGuionCompleto();
-					boolean OK = new SA_Juego().proponerGuion(gestor, guion);
-					if (OK) {
+					new SA_Juego().proponerGuion(gestor, guion);
 						JOptionPane.showMessageDialog(new JFrame(), "Guion enviado correctamente", "Exito",
 								JOptionPane.INFORMATION_MESSAGE);
 						dGuion.dispose();
-					} else
-						JOptionPane.showMessageDialog(new JFrame(), "Hay algun error", "Error",
-								JOptionPane.ERROR_MESSAGE);
 				}
 				
 				@Override

@@ -29,7 +29,7 @@ public class Gestor {
     	guiones = new IO<InfoGuion>("guiones.ser").leer();
     	listaEspera = new IO<Jugador>("espera.ser").leer();
     	reportados = new IO<Reporte>("reportados.ser").leer();
-    	guiones_propuestos = new IO<InfoGuion>("guiones_propuestos").leer();
+    	guiones_propuestos = new IO<InfoGuion>("guiones_propuestos.ser").leer();
     }
     
     public void close() {
