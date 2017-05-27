@@ -7,7 +7,9 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+
 import bbdd.Gestor;
+import negocio.SA_Juego;
 import negocio.SA_GameMastering;
 import negocio.SA_Usuario;
 import presentacion.modelo.GUIModelo;
@@ -72,7 +74,7 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 						JOptionPane.ERROR_MESSAGE);
 			}
 		} else {
-			JDialog fRegistro = new JDialog(ventana, ModalityType.DOCUMENT_MODAL);
+			JDialog fRegistro = new JDialog(ventana, "Registrarse", ModalityType.DOCUMENT_MODAL);
 			RegistroUI registro = new RegistroUI();
 			registro.setRListener(new RegistroUIListener() {
 
@@ -132,14 +134,29 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 		}break;
 		
 		case "proponerGuion":{
-			SugerenciaGuion proponerGuion = new SugerenciaGuion(ventana);
+			JDialog dGuion = new JDialog(ventana, "Proponer Guion", ModalityType.DOCUMENT_MODAL);
+			SugerenciaGuion proponerGuion = new SugerenciaGuion();
 			proponerGuion.setGListener(new GuionListener(){
-
 				@Override
 				public void recibirGuion() {
 					InfoGuion guion = proponerGuion.getGuionCompleto();
+					new SA_Juego().proponerGuion(gestor, guion);
+						JOptionPane.showMessageDialog(new JFrame(), "Guion enviado correctamente", "Exito",
+								JOptionPane.INFORMATION_MESSAGE);
+						dGuion.dispose();
 				}
+				@Override
+				public void salir(){
+					dGuion.dispose();
+				}
+				
 			});
+			dGuion.setSize(800, 600);
+			dGuion.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dGuion.setContentPane(proponerGuion);
+			dGuion.setVisible(true);
+			dGuion.setAlwaysOnTop(true);
+			
 		}break;
 		
 		case "miPerfil":{
@@ -179,7 +196,7 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 			paquetesReloj.add(new InfoReloj("Paquete Avanzado",100, 34.99));
 			paquetesReloj.add(new InfoReloj("Paquete Experto",250, 79.99));	
 			paquetesReloj.add(new InfoReloj("Paquete Viajero del Tiempo",500, 149.99));	
-			paquetesReloj.add(new InfoReloj("¡Oferta por tiempo limitado!",25, 9.99));	
+			paquetesReloj.add(new InfoReloj("î“•ferta por tiempo limitado!",25, 9.99));	
 			
 			ComprarRelojUI a =new ComprarRelojUI(null,paquetesReloj);
 			a.setSize(800,600);
@@ -215,22 +232,7 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 			listaReportados.updateUI();
 		}break;
 		
-		case "mensajes":{
-			/*ArrayList<GuionesPropuestos> lista=new SA_GameMastering().
-
-				@Override
-				public void recibirGuion() {
-					InfoGuion guion = proponerGuion.getGuionCompleto();
-				}
-			});*/
-		}break;
-		case "a":{
-			
 		}
-		
-		}
-	}
-	
 	
 	
 
