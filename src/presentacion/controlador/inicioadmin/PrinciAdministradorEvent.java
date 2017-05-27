@@ -1,15 +1,13 @@
 package presentacion.controlador.inicioadmin;
 
-import presentacion.controlador.principalus.PrinciUsuarioEvent.PrinciUsuarioType;
-
 public class PrinciAdministradorEvent {
 	public enum PrinciAdministradorType{
 		Salir, Reportados, Mensajes, GuionesPropuestos
 	}
 	
-	PrinciUsuarioType tipo;
+	PrinciAdministradorType tipo;
 	
-	public PrinciAdministradorEvent(PrinciUsuarioType t){
+	public PrinciAdministradorEvent(PrinciAdministradorType t){
 		tipo = t;
 	}
 	

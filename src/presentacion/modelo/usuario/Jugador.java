@@ -100,7 +100,7 @@ public class Jugador extends Usuario {
     }
 
     public boolean comprarNivel(InfoNivel nivel) {
-    	if(reloj > nivel.getPrecio()){
+    	if(reloj >= nivel.getPrecio()){
     		++this.nivel;
     		reloj-=nivel.getPrecio();
     		return true;

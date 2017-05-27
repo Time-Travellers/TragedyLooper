@@ -2,41 +2,38 @@ package presentacion.vista.usuario.inicioadmin;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
+import java.awt.Font;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.JFrame;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
-/**
- * Simplemente para reciclar codigo
- * @author jfiwj
- *
+import javax.swing.border.EmptyBorder;
+
+/** Panel que contiene la informacion
  */
 public class PanelUtil extends JPanel{
-	public PanelUtil(String nombre, int numero){
-		String no="";
-		FlowLayout lay=new FlowLayout();
-		//lay.setHgap(150);
-		lay.setAlignment(FlowLayout.CENTER);
-		this.setLayout(lay);
+	
+	private static final long serialVersionUID = -1352536952648345486L;
+
+	public PanelUtil(String nombre, ImageIcon icon, int numero){
 		
-		this.add(new JLabel(nombre));
-		this.add(new JLabel("              "));
-		this.add(new JLabel(no+numero+" pendientes"));
-		this.setPreferredSize(new Dimension(400,50));
-		this.setMinimumSize(new Dimension(400,50));
-		this.setMaximumSize(new Dimension(400,50));
-		this.setBackground(new Color(100,190,250));
-	}
-	public static void main(String args[]){
-		JFrame ventana=new JFrame("prueba");
-		ventana.setLayout(new GridBagLayout());
-		ventana.setSize(800,600);
-		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ventana.setContentPane(new PanelUtil("HolaMundo", 100));
-		ventana.setVisible(true);
+		this.setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
+		
+		JLabel labelIz = new JLabel(nombre,icon,JLabel.CENTER);
+		labelIz.setMaximumSize(new Dimension(200,50));
+		labelIz.setFont(new Font("",0,18));
+		JLabel labelDr = new JLabel(numero + " pendientes");
+		labelDr.setMaximumSize(new Dimension(200,50));
+		labelDr.setFont(new Font("",0,20));
+		
+		this.add(labelIz);
+		this.add(Box.createHorizontalGlue());
+		this.add(labelDr);
+		this.setMaximumSize(new Dimension(600,80));
+		this.setBorder(new EmptyBorder(0,10,0,10));
+		//this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+		this.setBackground(new Color(150,200,150));
 	}
 }

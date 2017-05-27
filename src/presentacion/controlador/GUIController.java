@@ -72,13 +72,7 @@ public class GUIController
 				modelo.setUsuario(usuario);
 				ventana.getContentPane().removeAll();
 				if (usuario.isAdmin()) {
-					InicioAdminUI content = new InicioAdminUI(usuario.getId(), 1, 2, 3); // TODO
-																							// Hacer
-																							// que
-																							// funcione
-																							// dado
-																							// un
-																							// admin
+					InicioAdminUI content = new InicioAdminUI(usuario.getId(), 1, 2, 3,this); 
 					ventana.add(content);
 					content.updateUI();
 				} else {
@@ -318,6 +312,12 @@ public class GUIController
 			listaReportados.updateUI();
 		}
 			break;
+		case "Mensajes":{
+			
+		}break;
+		case "GuionesPropuestos":{
+			
+		}break;
 		}
 	}
 
