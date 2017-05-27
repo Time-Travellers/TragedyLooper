@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import presentacion.controlador.GUIController;
@@ -99,6 +100,7 @@ public class IniciarSesionUI extends JPanel implements IniSesionListenable {
 		this.add(cuadroFinal);
 		
 		iniciarSesion.addActionListener(new ActionListener(){
+			@SuppressWarnings("deprecation")
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				for (int i = 0; i < listeners.size(); ++i)

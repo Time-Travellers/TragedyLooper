@@ -1,6 +1,6 @@
 package presentacion.controlador;
 
-import presentacion.controlador.IniSesionEvent.IniSesionType;
+import presentacion.modelo.usuario.Jugador;
 
 public class PrinciUsuarioEvent {
 	
@@ -10,14 +10,23 @@ public class PrinciUsuarioEvent {
 		proponerGuion
 	}
 	
-	PrinciUsuarioType tipo;
+	private PrinciUsuarioType tipo;
+	private Jugador jugador;
 	
 	public PrinciUsuarioEvent(PrinciUsuarioType t){
 		tipo = t;
 	}
+	public PrinciUsuarioEvent(PrinciUsuarioType t, Jugador j){
+		tipo = t;
+		jugador = j;
+	}
 	
 	public String getPrinciUsuarioType(){
 		return tipo.toString();
+	}
+	
+	public Jugador getJugador(){
+		return jugador;
 	}
 	
 }

@@ -18,6 +18,8 @@ public class Main {
 		
 		GUIModelo modelo = new GUIModelo();
 		FrameUI ventana = new FrameUI("Tragedy Looper");
+		ventana.setSize(1024,768);
+		ventana.setLocation(200, 120);
 		GUIController ctrl = new GUIController(ventana, modelo, gestor);
 		ventana.setCtrl(ctrl);
 		

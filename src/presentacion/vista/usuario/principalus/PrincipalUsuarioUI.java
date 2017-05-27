@@ -19,12 +19,13 @@ public class PrincipalUsuarioUI extends JPanel implements PrinciUsuarioListenabl
 	
 	private static final long serialVersionUID = 7527554039049217535L;
 	
-	Botones botonera1;
-	Botones2 botonera2;
-	Tienda paneltienda;
-	TablaPartidas tabla;
-	Contacto panelcontacto;
-	ArrayList<PrinciUsuarioListener> listeners;
+	private Botones botonera1;
+	private Botones2 botonera2;
+	private Tienda paneltienda;
+	private TablaPartidas tabla;
+	private Contacto panelcontacto;
+	private ArrayList<PrinciUsuarioListener> listeners;
+	private Jugador jugador;
 	
 	private void notificar(PrinciUsuarioEvent e){
 		Logger.getLogger("log").info("Notificado PrinciUsuarioEvent de tipo " + e.getPrinciUsuarioType());
@@ -33,6 +34,7 @@ public class PrincipalUsuarioUI extends JPanel implements PrinciUsuarioListenabl
 	}
 	
 	public PrincipalUsuarioUI(Jugador j){
+		jugador = j;
 		listeners = new ArrayList<PrinciUsuarioListener>();
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		JPanel panelSup = new JPanel();
@@ -65,7 +67,7 @@ public class PrincipalUsuarioUI extends JPanel implements PrinciUsuarioListenabl
 			}
 			@Override
 			public void miPerfil() {
-				notificar(new PrinciUsuarioEvent(PrinciUsuarioType.Ajustes));
+				notificar(new PrinciUsuarioEvent(PrinciUsuarioType.miPerfil, jugador));
 			}
 
 			@Override

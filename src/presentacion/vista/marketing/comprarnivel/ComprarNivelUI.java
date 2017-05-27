@@ -1,4 +1,4 @@
-package presentacion.vista.usuario;
+package presentacion.vista.marketing.comprarnivel;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -10,6 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import presentacion.vista.marketing.comprarnivel.ComprarNivelUI.ComprarNivelUIListener;
 
 public class ComprarNivelUI extends JPanel {
 	
@@ -58,7 +60,7 @@ public class ComprarNivelUI extends JPanel {
 		});
 		
 		JButton salir =  new JButton("Salir");
-		nivel4.addActionListener(new ActionListener(){
+		salir.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				list.salir();
@@ -88,7 +90,17 @@ public class ComprarNivelUI extends JPanel {
 	public static void main(String[] args){
 		JFrame frame = new JFrame("test");
 		frame.setSize(250, 350);
-		frame.setContentPane(new ComprarNivelUI(null));
+		frame.setContentPane(new ComprarNivelUI(new ComprarNivelUIListener(){
+			@Override
+			public void comprarPulsado(int nivel) {
+				System.err.println(nivel);
+			}
+			@Override
+			public void salir() {
+				System.err.println("test");
+				frame.dispose();
+			}
+		}));
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	
