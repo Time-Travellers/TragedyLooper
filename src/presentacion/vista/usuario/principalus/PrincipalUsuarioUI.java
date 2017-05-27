@@ -44,7 +44,7 @@ public class PrincipalUsuarioUI extends JPanel implements PrinciUsuarioListenabl
 		JLabel username = new JLabel(j.getDatos().getNombre());
 		username.setFont(new Font("", Font.BOLD, 40));
 		panelSup.setLayout(new BoxLayout(panelSup,BoxLayout.X_AXIS));
-		panelSup.setPreferredSize(new Dimension(this.getWidth(),150));
+		panelSup.setPreferredSize(new Dimension(this.getWidth(),100));
 		panelSup.add(username);
 		//botones ajustes
 		Botones botones =new Botones(listeners);

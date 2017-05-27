@@ -24,7 +24,7 @@ public class Botones extends JPanel {
 	private static final long serialVersionUID = 1875668843425465875L;
 	
 	final static String searchIcon = "search.png";
-	final static String configIcon = "config.png";
+	final static String configIcon = "setting.png";
 	final static String helpIcon = "help.png";
 	final static String exitIcon = "exit.png";
 	
@@ -72,7 +72,7 @@ public class Botones extends JPanel {
 			ActionListener listener) {
 		JButton button = new JButton(title);
 		button.setIcon(new ImageIcon("src/resources/" + fileName));
-		button.setPreferredSize(new Dimension (80,80));
+		button.setPreferredSize(new Dimension (60,60));
 		button.addActionListener(listener);
 		button.setVisible(true);
 		this.add(button);
