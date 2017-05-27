@@ -49,7 +49,7 @@ public class ComprarRelojUI extends JDialog{
 		
 		//boton de comprar reloj viendo anuncios
 		verAnuncio = new JButton("1 reloj (Ver anuncio)");
-		verAnuncio.setPreferredSize(new Dimension (this.getWidth() - 100,30));
+		verAnuncio.setMaximumSize(new Dimension(500, 30));
 		verAnuncio.setBackground(new Color(250,250,100));
 		verAnuncio.setAlignmentX(CENTER_ALIGNMENT);
 		verAnuncio.addActionListener((e)->{
@@ -76,7 +76,10 @@ public class ComprarRelojUI extends JDialog{
 			InfoReloj info = paquetes.get(i);
 			
 			JButton button = new JButton(info.toString());
-			button.setPreferredSize(new Dimension (this.getWidth() - 100,30));
+			//button.setPreferredSize(new Dimension (this.getWidth() - 100,30));
+			 button.setMaximumSize(new Dimension(500, 30));
+		       
+		       
 			button.setVisible(true);
 			button.setAlignmentX(CENTER_ALIGNMENT);
 			button.setBackground(color);
