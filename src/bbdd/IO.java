@@ -35,7 +35,7 @@ public class IO< T > {
 			ois.close();
 			return ret;
 		} catch (IOException e) {
-			Logger.getLogger("log").severe("Error al abrir el fichero " + name + " de guiones para cargar");
+			Logger.getLogger("log").severe("Error al abrir el fichero " + name + " para cargar");
 		} catch (ClassNotFoundException e) {
 			 Logger.getLogger("log").severe("No se ha encontrado la clase de los datos");
 		}

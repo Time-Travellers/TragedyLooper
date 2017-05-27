@@ -1,7 +1,9 @@
 package presentacion.controlador;
 
 import java.awt.Dialog.ModalityType;
+import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -12,6 +14,7 @@ import bbdd.Gestor;
 import negocio.SA_Juego;
 import negocio.SA_GameMastering;
 import negocio.SA_Usuario;
+import presentacion.controlador.comprarreloj.ComprarRelojEvent;
 import presentacion.controlador.iniciarsesion.IniSesionEvent;
 import presentacion.controlador.iniciarsesion.IniSesionListener;
 import presentacion.controlador.inicioadmin.PrinciAdministradorEvent;
@@ -21,25 +24,28 @@ import presentacion.controlador.principalus.PrinciUsuarioListener;
 import presentacion.modelo.GUIModelo;
 import presentacion.modelo.gameMastering.Reporte;
 import presentacion.modelo.juego.InfoGuion;
+import presentacion.modelo.marketing.InfoReloj;
+import presentacion.modelo.marketing.Tienda;
 import presentacion.modelo.usuario.Jugador;
 import presentacion.modelo.usuario.Usuario;
 import presentacion.vista.gameMastering.ListaReportadosUI;
 import presentacion.vista.marketing.comprarnivel.ComprarNivelUI;
 import presentacion.vista.marketing.comprarnivel.ComprarNivelUI.ComprarNivelUIListener;
 import presentacion.vista.marketing.comprarreloj.ComprarRelojUI;
-import presentacion.vista.marketing.comprarreloj.InfoReloj;
+import presentacion.vista.marketing.comprarreloj.ComprarRelojUI.ComprarRelojListener;
 import presentacion.vista.usuario.buscar.BuscadorUI;
 import presentacion.vista.usuario.buscar.BuscadorUI.BuscadorUIListener;
 import presentacion.vista.usuario.iniciarsesion.IniciarSesionUI;
 import presentacion.vista.usuario.inicioadmin.InicioAdminUI;
 import presentacion.vista.usuario.perfilus.PerfilUsuario;
+import presentacion.vista.usuario.principalus.MostrarAyuda;
 import presentacion.vista.usuario.principalus.PrincipalUsuarioUI;
 import presentacion.vista.usuario.proponerguion.SugerenciaGuion;
 import presentacion.vista.usuario.proponerguion.SugerenciaGuion.GuionListener;
 import presentacion.vista.usuario.registro.RegistroUI;
 import presentacion.vista.usuario.registro.RegistroUI.RegistroUIListener;
 
-public class GUIController implements IniSesionListener, PrinciUsuarioListener, PrinciAdministradorListener {
+public class GUIController implements IniSesionListener, PrinciUsuarioListener, PrinciAdministradorListener, ComprarRelojListener {
 
 	private JFrame ventana;
 	private GUIModelo modelo;
@@ -69,7 +75,7 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 					content.updateUI();
 				}
 				else {
-					PrincipalUsuarioUI content = new PrincipalUsuarioUI((Jugador)usuario);
+					PrincipalUsuarioUI content = new PrincipalUsuarioUI((Jugador)usuario, this);
 					content.addPrinciUsuarioListener(this);
 					ventana.add(content);
 					content.updateUI();
@@ -173,43 +179,72 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 			
 		}break;
 		
-//		case "BuscarUsuario":{
-//			BuscadorUI content = new BuscadorUI(new BuscadorUIListener(){
-//				@Override
-//				public void buscarPulsado(String usuario) {
-//					// TODO Auto-generated method stub
-//				}
-//				@Override
-//				public void agregarPulsado(String usuario) {
-//					// TODO Auto-generated method stub
-//				}
-//				@Override
-//				public void reportarPulsado(String usuario) {
-//					// TODO Auto-generated method stub	
-//				}
-//			});
-//			JFrame Buscador = new JFrame();
-//			Buscador.setSize(250, 350);
-//			Buscador.setVisible(true);
-//			Buscador.setContentPane(content);
-//		}break;
+		case "BuscarUsuario":{
+			BuscadorUI content = new BuscadorUI(new BuscadorUIListener(){
+				@Override
+				public void buscarPulsado(String usuario) {
+					// TODO Auto-generated method stub
+				}
+				@Override
+				public void agregarPulsado(String usuario) {
+					// TODO Auto-generated method stub
+				}
+				@Override
+				public void reportarPulsado(String usuario) {
+					// TODO Auto-generated method stub	
+				}
+			});
+			JFrame Buscador = new JFrame();
+			Buscador.setSize(250, 350);
+			Buscador.setVisible(true);
+			Buscador.setContentPane(content);
+		}break;
 		
 		case "comprarRelojes":{
 			//prueba
-			ArrayList<InfoReloj> paquetesReloj = new ArrayList<InfoReloj>();
-			paquetesReloj.add(new InfoReloj("Paquete Basico", 20, 9.99));
-			paquetesReloj.add(new InfoReloj("Paquete Intermedio", 50, 19.99));
-			paquetesReloj.add(new InfoReloj("Paquete Avanzado",100, 34.99));
-			paquetesReloj.add(new InfoReloj("Paquete Experto",250, 79.99));	
-			paquetesReloj.add(new InfoReloj("Paquete Viajero del Tiempo",500, 149.99));	
-			paquetesReloj.add(new InfoReloj("¡Oferta por tiempo limitado!",25, 9.99));	
-			
-			ComprarRelojUI a =new ComprarRelojUI(null,paquetesReloj);
+			ComprarRelojUI a =new ComprarRelojUI(true, ventana,Tienda.PAQUETESRELOJ,e.getJugador(),this);
 			a.setSize(800,600);
 			
 		}break;
 		
+		case "Ayuda":{
+			MostrarAyuda.mostrarAyuda();
+		}break;
+		
 		}
+	}
+	@Override
+	public void notificarComprarReloj(ComprarRelojEvent e) {
+		switch(e.getComprarRelojType()){
+		case "Comprar":{
+			//JOptionPane.showConfirmDialog (null, "Quieres comprar este nivel?","Warning",JOptionPane.YES_NO_OPTION);
+			JOptionPane optionPane = new JOptionPane("Quieres comprar este nivel?",JOptionPane.WARNING_MESSAGE);
+			optionPane.setOptionType(JOptionPane.YES_NO_OPTION);
+			JDialog dialog = optionPane.createDialog("Compra relojes");
+			dialog.setAlwaysOnTop(true);
+			dialog.setVisible(true);
+			if((int)optionPane.getValue() == JOptionPane.YES_OPTION){
+				Logger.getLogger("log").info("success");
+				e.getJugador().comprarRelojes(false, e.getInfo().getNumReloj());
+			}
+			else
+				Logger.getLogger("log").info("fail");
+//			JDialog compra = new JDialog(ventana, "Confirmacion compra", ModalityType.DOCUMENT_MODAL);
+//
+//			compra.setSize(500,200);
+//			dGuion.setVisible(true);
+//			dGuion.setAlwaysOnTop(true);
+		}break;
+		case "VerAnuncio":{
+			JDialog dialog = new JDialog();
+			dialog.setTitle("Anuncio");
+			dialog.setPreferredSize(new Dimension(400,300));
+			dialog.setAlwaysOnTop(true);
+			dialog.setVisible(true);
+			e.getJugador().comprarRelojes(true,1);
+		}break;
+		}
+		
 	}
 
 	@Override
@@ -239,4 +274,6 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 		}break;
 		}
 	}
+
+
 }

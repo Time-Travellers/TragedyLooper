@@ -14,13 +14,13 @@ import presentacion.modelo.usuario.Usuario;
 
 public class Modificador {
 	
-	static File file1 = new File("src/resources/reportados.ser");
+	static File file1 = new File("src/resources/usuarios.ser");
 	static File file2 = new File("src/resources/guiones_propuestos.ser");
 	
 	public static void main(String ... args) throws IOException {
 		file1.createNewFile();
-		HashMap<String, Reporte> reportados = new HashMap<String, Reporte>();
-	    new IO<Reporte>("reportados.ser").almacenar(reportados);
+		HashMap<String, Usuario> usuarios = new HashMap<String, Usuario>();
+	    new IO<Usuario>("usuarios.ser").almacenar(usuarios);
 	}
 	
 }

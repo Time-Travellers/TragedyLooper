@@ -1,13 +1,11 @@
 package  presentacion.vista.usuario.principalus;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,7 +17,7 @@ import presentacion.controlador.principalus.PrinciUsuarioListener;
 import presentacion.controlador.principalus.PrinciUsuarioEvent.PrinciUsuarioType;
 /**
  * Panel con cuatro botones: 
- * Buscar, configuración, ayuda y salir.
+ * Buscar, configuracion, ayuda y salir.
  */
 public class Botones extends JPanel {
 

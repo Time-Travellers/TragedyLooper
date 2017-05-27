@@ -3,10 +3,7 @@ package presentacion.vista.marketing.comprarreloj;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Dialog.ModalityType;
 import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.Box;
@@ -17,8 +14,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import presentacion.controlador.ComprarRelojEvent;
-import presentacion.controlador.ComprarRelojEvent.ComprarRelojType;
+import presentacion.controlador.GUIController;
+import presentacion.controlador.comprarreloj.ComprarRelojEvent;
+import presentacion.controlador.comprarreloj.ComprarRelojEvent.ComprarRelojType;
+import presentacion.modelo.marketing.InfoReloj;
+import presentacion.modelo.usuario.Jugador;
 
 public class ComprarRelojUI extends JDialog{
 	
@@ -29,64 +29,83 @@ public class ComprarRelojUI extends JDialog{
 	}
 	
 	private JButton verAnuncio;
-	private BotonesReloj botones;
+	private ArrayList<JButton> botones;
+	//private BotonesReloj botones;
 	private JButton cancelar;
 	private ArrayList<ComprarRelojListener> listeners;
 	
-	public ComprarRelojUI(JFrame jc, ArrayList<InfoReloj> paquetes /*, GUIController controller*/){
+	public ComprarRelojUI(boolean a, JFrame jc, ArrayList<InfoReloj> paquetes , Jugador jugador, GUIController controller){
 		super(jc, "Tienda de relojes", ModalityType.DOCUMENT_MODAL);
 
 		JPanel container = new JPanel();
 		container.setLayout(new BoxLayout(container,BoxLayout.Y_AXIS));
 		
-		//listeners.add(controller);
+		listeners = new ArrayList<ComprarRelojListener>();
+		listeners.add(controller);
 		
 		//botones de comprar reloj con dinero
-		ActionListener comprar = new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				for (int i = 0; i < listeners.size(); ++i)
-					listeners.get(i).notificarComprarReloj(new ComprarRelojEvent(ComprarRelojType.Comprar));
-			}
-		};
 		
-		botones = new BotonesReloj(paquetes,comprar);
+		botones = new ArrayList<JButton>();
 		
 		//boton de comprar reloj viendo anuncios
 		verAnuncio = new JButton("1 reloj (Ver anuncio)");
-		verAnuncio.setPreferredSize(new Dimension (botones.getWidth() - 50,30));
-		verAnuncio.setVisible(true);
+		verAnuncio.setPreferredSize(new Dimension (this.getWidth() - 100,30));
 		verAnuncio.setBackground(new Color(250,250,100));
 		verAnuncio.setAlignmentX(CENTER_ALIGNMENT);
-		verAnuncio.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
+		verAnuncio.addActionListener((e)->{
 				for (int i = 0; i < listeners.size(); ++i)
-					listeners.get(i).notificarComprarReloj(new ComprarRelojEvent(ComprarRelojType.VerAnuncio));
-			}
+					listeners.get(i).notificarComprarReloj(new ComprarRelojEvent(ComprarRelojType.VerAnuncio,jugador));
 		});
+		
+		if(a){
+			verAnuncio.setVisible(true);
+			verAnuncio.setEnabled(true);
+		}
+		else{
+			verAnuncio.setVisible(false);
+			verAnuncio.setEnabled(false);
+		}
+
+		container.add(verAnuncio);
+		container.add(Box.createRigidArea(new Dimension(0,10)));
+		
+		int rojo=250,verde = 230, azul = 80;
+		botones=new ArrayList<JButton>();
+		for(int i=0;i<paquetes.size();++i){
+			Color color = new Color(rojo,verde,azul);
+			InfoReloj info = paquetes.get(i);
+			
+			JButton button = new JButton(info.toString());
+			button.setPreferredSize(new Dimension (this.getWidth() - 100,30));
+			button.setVisible(true);
+			button.setAlignmentX(CENTER_ALIGNMENT);
+			button.setBackground(color);
+			button.addActionListener((e)->{
+
+				for (int j = 0; j < listeners.size(); ++j)
+					listeners.get(j).notificarComprarReloj(new ComprarRelojEvent(ComprarRelojType.Comprar,jugador,info));
+			});
+			botones.add(button);
+			container.add(button);
+			container.add(Box.createRigidArea(new Dimension(0,10)));
+			verde -=15;
+			azul -= 10;
+		}
 		
 		//boton cancelar
 		cancelar = new JButton("Cancelar");
 		cancelar.setBackground(new Color(250,50,50));
-		cancelar.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
+		cancelar.addActionListener((e)->dispose());
 		cancelar.setAlignmentX(RIGHT_ALIGNMENT);
 		
 		JPanel south = new JPanel();
 		south.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		south.add(cancelar);
 		
-		container.add(verAnuncio);
-		container.add(Box.createRigidArea(new Dimension(0,10)));
-		container.add(botones);
 		container.add(Box.createRigidArea(new Dimension(0,20)));
 		container.add(south,BorderLayout.SOUTH);
 		container.setBorder(new EmptyBorder(20, 20, 20, 20));
+		container.setPreferredSize(new Dimension(600, 350));
 		this.add(container);
 		
 		this.setAlwaysOnTop(true);
@@ -106,7 +125,8 @@ public class ComprarRelojUI extends JDialog{
 		paquetesReloj.add(new InfoReloj("Paquete Viajero del Tiempo",500, 149.99));	
 		paquetesReloj.add(new InfoReloj("¡Oferta por tiempo limitado!",25, 9.99));	
 		
-		ComprarRelojUI a =new ComprarRelojUI(null,paquetesReloj);
-		a.setSize(800,600);
+		//ComprarRelojUI a =new ComprarRelojUI(null,paquetesReloj,null,null);
+		//a.setSize(800,600);
 	}
+	
 }

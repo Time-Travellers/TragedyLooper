@@ -1,4 +1,4 @@
-package presentacion.vista.marketing.comprarreloj;
+package presentacion.modelo.marketing;
 public class InfoReloj{
 	
 	private String nombre;
@@ -30,7 +30,7 @@ public class InfoReloj{
 		sb.append(numReloj);
 		sb.append(" relojes(");
 		sb.append(precio);
-		sb.append(" €)");
+		sb.append(" ?)");
 		return sb.toString();
 		
 	}

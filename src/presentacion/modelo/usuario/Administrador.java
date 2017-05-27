@@ -1,10 +1,8 @@
 package presentacion.modelo.usuario;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 import presentacion.modelo.juego.InfoGuion;
-import presentacion.modelo.juego.JugadorPartida;
 
 public class Administrador extends Usuario {
  

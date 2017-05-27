@@ -1,4 +1,4 @@
-package presentacion.vista.marketing.comprarreloj;
+package presentacion.modelo.marketing;
 
 import java.util.ArrayList;
 

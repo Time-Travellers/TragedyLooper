@@ -12,17 +12,13 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import presentacion.controlador.principalus.PrinciUsuarioEvent;
 import presentacion.controlador.principalus.PrinciUsuarioListener;
 import presentacion.controlador.principalus.PrinciUsuarioEvent.PrinciUsuarioType;
-import presentacion.vista.usuario.proponerguion.SugerenciaGuion;
 
 
 /**

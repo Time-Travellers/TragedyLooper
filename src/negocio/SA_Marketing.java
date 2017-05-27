@@ -5,8 +5,8 @@ import integracion.DAO_Guiones;
 import java.util.ArrayList;
 
 import presentacion.modelo.juego.InfoGuion;
+import presentacion.modelo.marketing.InfoNivel;
 import presentacion.modelo.marketing.Tienda;
-import presentacion.vista.marketing.comprarreloj.InfoNivel;
 import bbdd.Gestor;
 
 public class SA_Marketing implements SA {

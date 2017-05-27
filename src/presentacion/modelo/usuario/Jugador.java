@@ -6,12 +6,15 @@ import java.util.List;
 
 import presentacion.modelo.juego.JugadorPartida;
 import presentacion.modelo.juego.Partida;
+import presentacion.modelo.marketing.Tienda;
+import presentacion.modelo.usuario.Paises;
 
 public class Jugador extends Usuario {
 	
 	private static final long serialVersionUID = -7213910171949040945L;
 	private int nivel;
     private int reloj;
+    private int anuncios;
     private Date penalizacion;
     private List<JugadorPartida> partidas;
     private Estadistica estadistica;
@@ -25,6 +28,7 @@ public class Jugador extends Usuario {
     	this.datos = new Datos(nombre, edad, pais, correo);
     	this.nivel = 0;
     	this.reloj = 0;
+    	this.anuncios = Tienda.NUMANUNCIOS;
     	this.penalizacion = null;
     	this.partidas = new ArrayList<JugadorPartida>();
     	this.estadistica = null;
@@ -136,10 +140,18 @@ public class Jugador extends Usuario {
 //end of modifiable zone(JavaCode)........E/b2d1642e-1404-426b-87c1-af40a83e8292
     }
 
-    public void comprarRelojes() {
-//begin of modifiable zone(JavaCode)......C/5d38ad63-b366-4f81-9618-aa04b0abf5f2
-
-//end of modifiable zone(JavaCode)........E/5d38ad63-b366-4f81-9618-aa04b0abf5f2
+    public void comprarRelojes(boolean anuncio, int relojes) {
+    	if(anuncio){
+    		--anuncios;
+    		++reloj;
+    	}
+    	else{
+    		reloj+=relojes;
+    	}
+    }
+    
+    public boolean anunciosDisponibles(){
+    	return anuncios>0;
     }
 
 }

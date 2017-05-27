@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import bbdd.Gestor;
 import presentacion.controlador.GUIController;
 import presentacion.controlador.iniciarsesion.IniSesionEvent;
 import presentacion.controlador.iniciarsesion.IniSesionListenable;
@@ -127,22 +128,22 @@ public class IniciarSesionUI extends JPanel implements IniSesionListenable {
 	
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
-		IniciarSesionUI ui = new IniciarSesionUI(null);
+		IniciarSesionUI ui = new IniciarSesionUI(new GUIController(frame,null,new Gestor()));
 		
 		frame.add(ui);
 		frame.setSize(new Dimension(1024, 768));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		
-		IniSesionListener test =  new IniSesionListener(){
-			@Override
-			public void notificarIniSesion(IniSesionEvent e) {
-				System.out.println(e.getIniSesionType());
-				System.out.println(e.getUsuario());
-				System.out.println(e.getContrasena());
-			}
-		};
-		ui.addIniSesionListener(test);
+//		IniSesionListener test =  new IniSesionListener(){
+//			@Override
+//			public void notificarIniSesion(IniSesionEvent e) {
+//				System.out.println(e.getIniSesionType());
+//				System.out.println(e.getUsuario());
+//				System.out.println(e.getContrasena());
+//			}
+//		};
+//		ui.addIniSesionListener(test);
 	}
 
 

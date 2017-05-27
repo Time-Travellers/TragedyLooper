@@ -1,26 +1,22 @@
 package presentacion.vista.usuario.principalus;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
-import javax.swing.BorderFactory;
-import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import bbdd.Gestor;
 import presentacion.controlador.GUIController;
 import presentacion.controlador.principalus.PrinciUsuarioEvent;
 import presentacion.controlador.principalus.PrinciUsuarioListenable;
 import presentacion.controlador.principalus.PrinciUsuarioListener;
-import presentacion.controlador.principalus.PrinciUsuarioEvent.PrinciUsuarioType;
 import presentacion.modelo.usuario.Jugador;
 
 public class PrincipalUsuarioUI extends JPanel implements PrinciUsuarioListenable{
@@ -32,12 +28,12 @@ public class PrincipalUsuarioUI extends JPanel implements PrinciUsuarioListenabl
 	private Contacto panelcontacto;
 	private ArrayList<PrinciUsuarioListener> listeners;
 	
-	private void notificar(PrinciUsuarioEvent e){
-		Logger.getLogger("log").info("Notificado PrinciUsuarioEvent de tipo " + e.getPrinciUsuarioType());
-		for (int i = 0; i < listeners.size(); ++i)
-			listeners.get(i).notificarPrinciUsuario(e);
-	}
-	
+//	private void notificar(PrinciUsuarioEvent e){
+//		Logger.getLogger("log").info("Notificado PrinciUsuarioEvent de tipo " + e.getPrinciUsuarioType());
+//		for (int i = 0; i < listeners.size(); ++i)
+//			listeners.get(i).notificarPrinciUsuario(e);
+//	}
+//	
 	public PrincipalUsuarioUI(Jugador j, GUIController controller){
 		listeners = new ArrayList<PrinciUsuarioListener>();
 		addPrinciUsuarioListener(controller);
@@ -87,7 +83,8 @@ public class PrincipalUsuarioUI extends JPanel implements PrinciUsuarioListenabl
 		JFrame ventana=new JFrame("Tragedy Looper");
 		ventana.setSize(1024, 768);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ventana.setContentPane(new PrincipalUsuarioUI(new Jugador("Prueba", "Prueba", false, "Prueba", 0, null, "Prueba"),null));
+		GUIController controller = new GUIController(ventana,null,new Gestor());
+		ventana.setContentPane(new PrincipalUsuarioUI(new Jugador("Prueba", "Prueba", false, "Prueba", 0, null, "Prueba"),controller));
 		ventana.setVisible(true);
 	}
 
