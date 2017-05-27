@@ -6,6 +6,7 @@ import java.util.List;
 
 import presentacion.modelo.juego.JugadorPartida;
 import presentacion.modelo.juego.Partida;
+import presentacion.modelo.marketing.InfoNivel;
 import presentacion.modelo.marketing.Tienda;
 import presentacion.modelo.usuario.Paises;
 
@@ -98,7 +99,13 @@ public class Jugador extends Usuario {
 	public void ComenzarPartida() {
     }
 
-    public void comprarNivel() {
+    public boolean comprarNivel(InfoNivel nivel) {
+    	if(reloj > nivel.getPrecio()){
+    		++this.nivel;
+    		reloj-=nivel.getPrecio();
+    		return true;
+    	}
+    	else return false;
     }
 
     public void jugarPartida() {

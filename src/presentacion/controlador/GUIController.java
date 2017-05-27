@@ -25,6 +25,7 @@ import presentacion.controlador.principalus.PrinciUsuarioListener;
 import presentacion.modelo.GUIModelo;
 import presentacion.modelo.gameMastering.Reporte;
 import presentacion.modelo.juego.InfoGuion;
+import presentacion.modelo.marketing.InfoNivel;
 import presentacion.modelo.marketing.InfoReloj;
 import presentacion.modelo.marketing.Tienda;
 import presentacion.modelo.usuario.Jugador;
@@ -138,11 +139,38 @@ public class GUIController
 		case "comprarNivel": {
 			if (e.getJugador().getNivel() != Tienda.NIVEL) {
 				Tienda tienda = new SA_Marketing().iniciarTienda(gestor);
-				ComprarNivelUI compraNivel = new ComprarNivelUI(ventana, tienda.getPaquetesNivel().get(e.getJugador().getNivel()));
-				compraNivel.setSize(800, 600);
-			}
-			else {
-				JOptionPane.showConfirmDialog(null, "Lo sentimos, no hay mas niveles disponibles","Compra nivel", JOptionPane.ERROR_MESSAGE, JOptionPane.OK_OPTION);
+				InfoNivel nivel = tienda.getPaquetesNivel().get(e.getJugador().getNivel());
+				JDialog dCompra = new JDialog(ventana, "Compra nivel", ModalityType.DOCUMENT_MODAL);
+
+				ComprarNivelUI compraNivel = new ComprarNivelUI(nivel);
+				compraNivel.setNivelListener(new ComprarNivelUIListener() {
+
+					@Override
+					public void confirmar() {
+						if (e.getJugador().comprarNivel(nivel))
+							JOptionPane.showConfirmDialog(null, "Compra con exito!", "Compra nivel",
+									JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_OPTION);
+						else
+							JOptionPane.showConfirmDialog(null, "No tienes suficientes relojes", "Compra nivel",
+									JOptionPane.ERROR_MESSAGE, JOptionPane.OK_OPTION);
+
+					}
+
+					@Override
+					public void salir() {
+						dCompra.dispose();
+					}
+
+				});
+
+				dCompra.setSize(800, 600);
+				dCompra.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				dCompra.setContentPane(compraNivel);
+				dCompra.setVisible(true);
+				dCompra.setAlwaysOnTop(true);
+			} else {
+				JOptionPane.showConfirmDialog(null, "Lo sentimos, no hay mas niveles disponibles", "Compra nivel",
+						JOptionPane.ERROR_MESSAGE, JOptionPane.OK_OPTION);
 			}
 		}
 			break;

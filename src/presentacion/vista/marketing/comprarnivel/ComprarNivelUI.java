@@ -3,6 +3,7 @@ package presentacion.vista.marketing.comprarnivel;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Dialog.ModalityType;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -13,13 +14,14 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import presentacion.modelo.marketing.InfoNivel;
+import presentacion.modelo.usuario.Jugador;
 
-public class ComprarNivelUI extends JDialog {
+public class ComprarNivelUI extends JPanel {
 	
 	private static final long serialVersionUID = -6931407663483390176L;
 
@@ -27,7 +29,7 @@ public class ComprarNivelUI extends JDialog {
 	
 	//Interfaz a implementar si se quieren insertar listeners:
 	public interface ComprarNivelUIListener {
-		void comprarPulsado(); 
+		void confirmar(); 
 		void salir();
 	}
 	
@@ -35,14 +37,12 @@ public class ComprarNivelUI extends JDialog {
 		this.list = listener;
 	}
 	
-	public ComprarNivelUI (JFrame jc, InfoNivel nivelSiguiente){
-		super(jc, "Comprar siguiente nivel", ModalityType.DOCUMENT_MODAL);
+	public ComprarNivelUI ( InfoNivel nivelSiguiente){
 		
-		JPanel container = new JPanel();
-		container.setLayout(new BoxLayout(container,BoxLayout.Y_AXIS));
-		container.setAlignmentX(CENTER_ALIGNMENT);
+		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+		this.setAlignmentX(CENTER_ALIGNMENT);
 
-		container.setBorder(BorderFactory.createLineBorder(Color.black));
+		this.setBorder(BorderFactory.createLineBorder(Color.black));
 		
 		//titulo
 		JLabel title = new JLabel("Quieres comprar el siguiente nivel por " + nivelSiguiente.getPrecio() + " relojes?");
@@ -85,31 +85,25 @@ public class ComprarNivelUI extends JDialog {
 		
 		//boton aceptar
 		JButton aceptar = new JButton("Aceptar");
-		aceptar.addActionListener((e)-> list.comprarPulsado());
+		aceptar.addActionListener((e)-> list.confirmar());
 		aceptar.setBackground(new Color(150,200,150));
 		
 		//boton cancelar
 		JButton cancelar = new JButton("Cancelar");
 		cancelar.setBackground(new Color(250,70,50));
-		cancelar.addActionListener((e)-> dispose());
+		cancelar.addActionListener((e)-> list.salir());
 		
 		south.add(aceptar);
 		south.add(cancelar);
 		
-		container.add(title);
-		container.add(Box.createRigidArea(new Dimension(0,10)));
-		container.add(niveles);
-		container.add(Box.createVerticalGlue());
-		container.add(south,BorderLayout.SOUTH);
+		this.add(title);
+		this.add(Box.createRigidArea(new Dimension(0,10)));
+		this.add(niveles);
+		this.add(Box.createVerticalGlue());
+		this.add(south,BorderLayout.SOUTH);
 		
-		container.setBorder(new EmptyBorder(20, 20, 20, 20));
-		container.setPreferredSize(new Dimension(600, 350));
-		
-		this.add(container);
-		this.setAlwaysOnTop(true);
-		this.pack();
-		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-	//	this.getContentPane().setBackground(new Color(150,150,150));
+		this.setBorder(new EmptyBorder(20, 20, 20, 20));
+		this.setPreferredSize(new Dimension(600, 350));
 		this.setVisible(true);
 		
 		
@@ -118,7 +112,31 @@ public class ComprarNivelUI extends JDialog {
 	
 	
 	public static void main(String[] args){
-		ComprarNivelUI ui = new ComprarNivelUI(null, new InfoNivel(3,50,new ArrayList<String>(Arrays.asList("guion1","guion2"))));
-		ui.setSize(700,400);
+		InfoNivel nivel = new InfoNivel(3,50,new ArrayList<String>(Arrays.asList("guion1","guion2")));
+		ComprarNivelUI ui = new ComprarNivelUI(nivel);
+		Jugador jugador = new Jugador("Prueba", "Prueba", false, "Prueba", 0, null, "Prueba");
+		JDialog dialog = new JDialog(null, "Prueba", ModalityType.DOCUMENT_MODAL);
+		ui.setNivelListener(new ComprarNivelUIListener(){
+
+			@Override
+			public void confirmar() {
+				if(jugador.comprarNivel(nivel))
+					JOptionPane.showConfirmDialog(null, "Compra con exito!","Compra nivel", JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_OPTION);
+				else 
+					JOptionPane.showConfirmDialog(null, "No tienes suficientes relojes","Compra nivel", JOptionPane.ERROR_MESSAGE, JOptionPane.OK_OPTION);
+			}
+
+			@Override
+			public void salir() {
+				dialog.dispose();
+			}
+			
+		});
+		dialog.setSize(700,400);
+
+		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		dialog.setContentPane(ui);
+		dialog.setVisible(true);
+		dialog.setAlwaysOnTop(true);
 	}
 }
