@@ -1,6 +1,6 @@
-package presentacion.controlador;
+package presentacion.controlador.inicioadmin;
 
-import presentacion.controlador.PrinciUsuarioEvent.PrinciUsuarioType;
+import presentacion.controlador.principalus.PrinciUsuarioEvent.PrinciUsuarioType;
 
 public class PrinciAdministradorEvent {
 	public enum PrinciAdministradorType{

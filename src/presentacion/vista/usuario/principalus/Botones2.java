@@ -2,12 +2,20 @@ package  presentacion.vista.usuario.principalus;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+
+import presentacion.controlador.principalus.PrinciUsuarioEvent;
+import presentacion.controlador.principalus.PrinciUsuarioListener;
+import presentacion.controlador.principalus.PrinciUsuarioEvent.PrinciUsuarioType;
 /**
  * Panel con tres botones: 
  * "Iniciar nueva partida", "Mi perfil", "Ver ranking".
@@ -16,24 +24,42 @@ public class Botones2 extends JPanel {
 
 	private static final long serialVersionUID = -331372996838369812L;
 	
-	private Botones2Listener bListener;
-	
-	public Botones2(Botones2Listener bl) {
-		this.bListener = bl;
+	public Botones2(ArrayList<PrinciUsuarioListener> listeners) {
 		FlowLayout layout = new FlowLayout();
 		layout.setHgap(60);
-		this.setLayout(layout);
+		this.setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
+		this.setPreferredSize(new Dimension(800,50));
 		this.setVisible(true);
-		initialize();
+		initialize(listeners);
 	}
 	
-	private void initialize() {
-		addButton("Iniciar nueva partida", "Comenzar un nuevo juego",
-				(e) -> this.bListener.iniciarPartida());
-		addButton("Mi perfil", "Ir al perfil",
-				(e) -> this.bListener.miPerfil());
-		addButton("Ver ranking", "Ver los mejores jugadores",
-				(e) -> this.bListener.verRanking());
+	private void initialize(ArrayList<PrinciUsuarioListener> listeners) {
+		addButton("Iniciar nueva partida", "Comenzar un nuevo juego",new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for (int i = 0; i < listeners.size(); ++i)
+					listeners.get(i).notificarPrinciUsuario(new PrinciUsuarioEvent(PrinciUsuarioType.IniciarPartida));
+			}
+		});
+
+		this.add(Box.createHorizontalGlue());
+		addButton("Mi perfil", "Ir al perfil",new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for (int i = 0; i < listeners.size(); ++i)
+					listeners.get(i).notificarPrinciUsuario(new PrinciUsuarioEvent(PrinciUsuarioType.miPerfil));
+			}
+		});
+
+		this.add(Box.createHorizontalGlue());
+		addButton("Ver ranking", "Ver los mejores jugadores",new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for (int i = 0; i < listeners.size(); ++i)
+					listeners.get(i).notificarPrinciUsuario(new PrinciUsuarioEvent(PrinciUsuarioType.verRanking));
+			}
+		});
+
 	}
 	
 	
@@ -55,27 +81,7 @@ public class Botones2 extends JPanel {
 			testFrame.setSize(new Dimension(800, 600));
 			testFrame.setVisible(true);
 			testFrame.getContentPane().setLayout(new FlowLayout());
-			Botones2 botones = new Botones2 (new Botones2Listener() {
-
-				@Override
-				public void iniciarPartida() {
-					System.out.println("Solicitado INICIAR NUEVA PARTIDA");
-					
-				}
-
-				@Override
-				public void miPerfil() {
-					System.out.println("Solicitado IR AL PERFIL");
-					
-				}
-
-				@Override
-				public void verRanking() {
-					System.out.println("Solicitado VER RANKING");
-					
-				}
-				
-			});
+			Botones2 botones = new Botones2 (null);
 			testFrame.add(botones);
 		});
 	}

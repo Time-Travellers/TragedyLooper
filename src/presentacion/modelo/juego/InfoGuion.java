@@ -90,5 +90,9 @@ public class InfoGuion implements Serializable{
 		this.nivel=nivel;
 	}
 	
+	public int getNivel(){
+		return nivel;
+	}
+	
 	
 }

@@ -1,31 +1,36 @@
 package presentacion.vista.usuario.principalus;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
+import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
-import presentacion.controlador.PrinciUsuarioEvent;
-import presentacion.controlador.PrinciUsuarioEvent.PrinciUsuarioType;
-import presentacion.controlador.PrinciUsuarioListenable;
-import presentacion.controlador.PrinciUsuarioListener;
+import presentacion.controlador.GUIController;
+import presentacion.controlador.principalus.PrinciUsuarioEvent;
+import presentacion.controlador.principalus.PrinciUsuarioListenable;
+import presentacion.controlador.principalus.PrinciUsuarioListener;
+import presentacion.controlador.principalus.PrinciUsuarioEvent.PrinciUsuarioType;
 import presentacion.modelo.usuario.Jugador;
 
 public class PrincipalUsuarioUI extends JPanel implements PrinciUsuarioListenable{
 	
 	private static final long serialVersionUID = 7527554039049217535L;
 	
-	private Botones botonera1;
-	private Botones2 botonera2;
 	private Tienda paneltienda;
 	private TablaPartidas tabla;
 	private Contacto panelcontacto;
 	private ArrayList<PrinciUsuarioListener> listeners;
-	private Jugador jugador;
 	
 	private void notificar(PrinciUsuarioEvent e){
 		Logger.getLogger("log").info("Notificado PrinciUsuarioEvent de tipo " + e.getPrinciUsuarioType());
@@ -33,82 +38,43 @@ public class PrincipalUsuarioUI extends JPanel implements PrinciUsuarioListenabl
 			listeners.get(i).notificarPrinciUsuario(e);
 	}
 	
-	public PrincipalUsuarioUI(Jugador j){
-		jugador = j;
+	public PrincipalUsuarioUI(Jugador j, GUIController controller){
 		listeners = new ArrayList<PrinciUsuarioListener>();
+		addPrinciUsuarioListener(controller);
+		
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+		//panel superior
 		JPanel panelSup = new JPanel();
+		
+		//nombre del jugador
 		JLabel username = new JLabel(j.getDatos().getNombre());
-		username.setFont(new Font("", 30, 30));
+		username.setFont(new Font("", Font.BOLD, 40));
+		panelSup.setLayout(new BoxLayout(panelSup,BoxLayout.X_AXIS));
+		panelSup.setPreferredSize(new Dimension(this.getWidth(),150));
 		panelSup.add(username);
-		this.botonera1 = new Botones(new BotonesListener(){
-			@Override
-			public void buscarUsuario() {
-				notificar(new PrinciUsuarioEvent(PrinciUsuarioType.BuscarUsuario));
-			}
-			@Override
-			public void ajustes() {
-				notificar(new PrinciUsuarioEvent(PrinciUsuarioType.Ajustes));
-			}
-			@Override
-			public void ayuda() {
-				notificar(new PrinciUsuarioEvent(PrinciUsuarioType.Ayuda));
-			}
-			@Override
-			public void salir() {
-				notificar(new PrinciUsuarioEvent(PrinciUsuarioType.Salir));
-			}
-		});
-		panelSup.add(this.botonera1);
-		this.botonera2=new Botones2(new Botones2Listener(){
-			@Override
-			public void iniciarPartida() {
-				notificar(new PrinciUsuarioEvent(PrinciUsuarioType.IniciarPartida));
-			}
-			@Override
-			public void miPerfil() {
-				notificar(new PrinciUsuarioEvent(PrinciUsuarioType.miPerfil, jugador));
-			}
+		//botones ajustes
+		Botones botones =new Botones(listeners);
+		panelSup.add(botones);
 
-			@Override
-			public void verRanking() {
-				notificar(new PrinciUsuarioEvent(PrinciUsuarioType.verRanking));
-			}
-		});
-		this.paneltienda=new Tienda(j.getReloj(), j.getNivel(), new TiendaListener(){
-			@Override
-			public void comprarRelojes() {
-				notificar(new PrinciUsuarioEvent(PrinciUsuarioType.comprarRelojes));
-			}
-			@Override
-			public void comprarNivel() {
-				notificar(new PrinciUsuarioEvent(PrinciUsuarioType.comprarNivel));
-			}
-		});
+		//panelSup.setBorder(BorderFactory.createLineBorder(Color.black));
+		
+		this.paneltienda=new Tienda(j.getReloj(), j.getNivel(),listeners);
 		
 		this.tabla=new TablaPartidas();
-		this.panelcontacto=new Contacto(new ContactoListener(){
-			@Override
-			public void sugerencias() {
-				notificar(new PrinciUsuarioEvent(PrinciUsuarioType.sugerencias));
-				
-			}
-			@Override
-			public void proponerGuion() {
-				notificar(new PrinciUsuarioEvent(PrinciUsuarioType.proponerGuion));
-			}
-		});
+		this.panelcontacto=new Contacto(listeners);
+
+		JPanel paneldeabajo=new JPanel();
+		paneldeabajo.setLayout(new FlowLayout(FlowLayout.CENTER,20,0));
+		paneldeabajo.add(paneltienda);
+		//paneldeabajo.add(Box.createRigidArea(new Dimension(10,0)));
+		paneldeabajo.add(panelcontacto);
 		
 		this.add(panelSup);
-		this.add(new JLabel(" "));
 		this.add(tabla);
-		this.add(new JLabel(" "));
-		this.add(botonera2);
-		this.add(new JLabel(" "));
-		JPanel paneldeabajo=new JPanel();
-		paneldeabajo.add(paneltienda);
-		paneldeabajo.add(panelcontacto);
+		this.add(new Botones2(listeners));
 		this.add(paneldeabajo);
+
+		this.setBorder(new EmptyBorder(20, 20, 20, 20));
 	}
 	
 
@@ -121,7 +87,7 @@ public class PrincipalUsuarioUI extends JPanel implements PrinciUsuarioListenabl
 		JFrame ventana=new JFrame("Tragedy Looper");
 		ventana.setSize(1024, 768);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ventana.setContentPane(new PrincipalUsuarioUI(new Jugador("Prueba", "Prueba", false, "Prueba", 0, null, "Prueba")));
+		ventana.setContentPane(new PrincipalUsuarioUI(new Jugador("Prueba", "Prueba", false, "Prueba", 0, null, "Prueba"),null));
 		ventana.setVisible(true);
 	}
 

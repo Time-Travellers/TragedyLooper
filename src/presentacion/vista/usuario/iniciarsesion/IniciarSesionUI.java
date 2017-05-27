@@ -21,10 +21,10 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import presentacion.controlador.GUIController;
-import presentacion.controlador.IniSesionEvent;
-import presentacion.controlador.IniSesionEvent.IniSesionType;
-import presentacion.controlador.IniSesionListenable;
-import presentacion.controlador.IniSesionListener;
+import presentacion.controlador.iniciarsesion.IniSesionEvent;
+import presentacion.controlador.iniciarsesion.IniSesionListenable;
+import presentacion.controlador.iniciarsesion.IniSesionListener;
+import presentacion.controlador.iniciarsesion.IniSesionEvent.IniSesionType;
 
 public class IniciarSesionUI extends JPanel implements IniSesionListenable {
 	
@@ -61,7 +61,7 @@ public class IniciarSesionUI extends JPanel implements IniSesionListenable {
 		pw.setPreferredSize(new Dimension(300, 50));
 		pw.setMaximumSize(usuario.getPreferredSize());
 		
-		iniciarSesion = new JButton("Iniciar Sesión");
+		iniciarSesion = new JButton("Iniciar Sesion");
 		crearCuenta = new JButton("Darse de Alta");
 		
 		JPanel cuadroEntrada = new JPanel();
@@ -100,12 +100,11 @@ public class IniciarSesionUI extends JPanel implements IniSesionListenable {
 		this.add(cuadroFinal);
 		
 		iniciarSesion.addActionListener(new ActionListener(){
-			@SuppressWarnings("deprecation")
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				for (int i = 0; i < listeners.size(); ++i)
 					listeners.get(i).notificarIniSesion(new IniSesionEvent(
-							IniSesionType.IniciarSesion, userIn.getText(), passwIn.getText()));
+							IniSesionType.IniciarSesion, userIn.getText(), passwIn.getPassword().toString()));
 			}
 		});
 		

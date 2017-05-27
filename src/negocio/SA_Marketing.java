@@ -10,6 +10,7 @@ import presentacion.vista.marketing.comprarreloj.InfoNivel;
 import bbdd.Gestor;
 
 public class SA_Marketing implements SA {
+	
 	public Tienda iniciarTienda(Gestor gestor) {
 		ArrayList<InfoNivel> list = new ArrayList<InfoNivel>(Tienda.NIVEL);
 		ArrayList<InfoGuion> guiones = new DAO_Guiones(gestor).leerGuiones();

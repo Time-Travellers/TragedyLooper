@@ -24,6 +24,7 @@ public class TablaPartidas extends JPanel {
 	
 	public TablaPartidas() {
 		this.setVisible(true);
+		this.setPreferredSize(new Dimension(500,300));
 		initialize();
 	}
 	
@@ -34,7 +35,9 @@ public class TablaPartidas extends JPanel {
 		table.setVisible(true);
 		Border borde = BorderFactory.createLineBorder(Color.black, 1);
 		table.setFillsViewportHeight(true);
-		this.add(new JScrollPane(table));
+		JScrollPane pane =new JScrollPane(table);
+		pane.setPreferredSize(new Dimension(700,250));
+		this.add(pane);
 		this.setBorder(BorderFactory.createTitledBorder(
 				borde, "Partidas en curso:",
 				TitledBorder.LEFT, TitledBorder.TOP));

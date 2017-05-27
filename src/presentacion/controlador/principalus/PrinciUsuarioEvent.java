@@ -1,4 +1,4 @@
-package presentacion.controlador;
+package presentacion.controlador.principalus;
 
 import presentacion.modelo.usuario.Jugador;
 

@@ -1,14 +1,22 @@
 package  presentacion.vista.usuario.principalus;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+
+import presentacion.controlador.principalus.PrinciUsuarioEvent;
+import presentacion.controlador.principalus.PrinciUsuarioListener;
+import presentacion.controlador.principalus.PrinciUsuarioEvent.PrinciUsuarioType;
 /**
  * Panel con cuatro botones: 
  * Buscar, configuración, ayuda y salir.
@@ -17,29 +25,48 @@ public class Botones extends JPanel {
 
 	private static final long serialVersionUID = 1875668843425465875L;
 	
-	private BotonesListener bListener;
-	
 	final static String searchIcon = "search.png";
 	final static String configIcon = "config.png";
 	final static String helpIcon = "help.png";
 	final static String exitIcon = "exit.png";
 	
-	public Botones(BotonesListener bl) {
-		this.bListener = bl;
-		this.setLayout(new FlowLayout());
+	public Botones(ArrayList<PrinciUsuarioListener> listeners) {
+		this.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		this.setVisible(true);
-		initialize();
+
+		initialize(listeners);
 	}
 	
-	private void initialize() {
+	private void initialize(ArrayList<PrinciUsuarioListener> listeners) {
 		addButton("", searchIcon, "Buscar usuario",
-				(e) -> this.bListener.buscarUsuario());
-		addButton("", configIcon, "Ajustes",
-				(e) -> this.bListener.ajustes());
-		addButton("", helpIcon, "Preguntas habituales",
-				(e) -> this.bListener.ayuda());
-		addButton("", exitIcon, "Salir de la aplicacion",
-				(e) -> this.bListener.salir());
+			new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for (int i = 0; i < listeners.size(); ++i)
+					listeners.get(i).notificarPrinciUsuario(new PrinciUsuarioEvent(PrinciUsuarioType.BuscarUsuario));
+			}
+		});
+		addButton("", configIcon, "Ajustes",new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for (int i = 0; i < listeners.size(); ++i)
+					listeners.get(i).notificarPrinciUsuario(new PrinciUsuarioEvent(PrinciUsuarioType.Ajustes));
+			}
+		});
+		addButton("", helpIcon, "Preguntas habituales",new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for (int i = 0; i < listeners.size(); ++i)
+					listeners.get(i).notificarPrinciUsuario(new PrinciUsuarioEvent(PrinciUsuarioType.Ayuda));
+			}
+		});
+		addButton("", exitIcon, "Salir de la aplicacion",new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for (int i = 0; i < listeners.size(); ++i)
+					listeners.get(i).notificarPrinciUsuario(new PrinciUsuarioEvent(PrinciUsuarioType.Salir));
+			}
+		});
 	}
 	
 	
@@ -62,29 +89,7 @@ public class Botones extends JPanel {
 			testFrame.setSize(new Dimension(800, 600));
 			testFrame.setVisible(true);
 			testFrame.getContentPane().setLayout(new FlowLayout());
-			Botones botones = new Botones (new BotonesListener() {
-
-				@Override
-				public void buscarUsuario() {
-					System.out.println("Has pulsado en BUSCAR");
-				}
-
-				@Override
-				public void ajustes() {
-					System.out.println("Has pulsado en CONFIGURACION");
-				}
-
-				@Override
-				public void ayuda() {
-					System.out.println("Has pulsado en AYUDA");
-				}
-
-				@Override
-				public void salir() {
-					System.out.println("Has pulsado en SALIR");
-				}
-				
-			});
+			Botones botones = new Botones (null);
 			testFrame.add(botones);
 		});
 	}

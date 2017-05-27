@@ -12,6 +12,12 @@ import bbdd.Gestor;
 import negocio.SA_Juego;
 import negocio.SA_GameMastering;
 import negocio.SA_Usuario;
+import presentacion.controlador.iniciarsesion.IniSesionEvent;
+import presentacion.controlador.iniciarsesion.IniSesionListener;
+import presentacion.controlador.inicioadmin.PrinciAdministradorEvent;
+import presentacion.controlador.inicioadmin.PrinciAdministradorListener;
+import presentacion.controlador.principalus.PrinciUsuarioEvent;
+import presentacion.controlador.principalus.PrinciUsuarioListener;
 import presentacion.modelo.GUIModelo;
 import presentacion.modelo.gameMastering.Reporte;
 import presentacion.modelo.juego.InfoGuion;
@@ -133,31 +139,31 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 			}));
 		}break;
 		
-//		case "proponerGuion":{
-//			JDialog dGuion = new JDialog(ventana, "Proponer Guion", ModalityType.DOCUMENT_MODAL);
-//			SugerenciaGuion proponerGuion = new SugerenciaGuion();
-//			proponerGuion.setGListener(new GuionListener(){
-//				@Override
-//				public void recibirGuion() {
-//					InfoGuion guion = proponerGuion.getGuionCompleto();
-//					new SA_Juego().proponerGuion(gestor, guion);
-//						JOptionPane.showMessageDialog(new JFrame(), "Guion enviado correctamente", "Exito",
-//								JOptionPane.INFORMATION_MESSAGE);
-//						dGuion.dispose();
-//				}
-//				@Override
-//				public void salir(){
-//					dGuion.dispose();
-//				}
-//				
-//			});
-//			dGuion.setSize(800, 600);
-//			dGuion.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-//			dGuion.setContentPane(proponerGuion);
-//			dGuion.setVisible(true);
-//			dGuion.setAlwaysOnTop(true);
-//			
-//		}break;
+		case "proponerGuion":{
+			JDialog dGuion = new JDialog(ventana, "Proponer Guion", ModalityType.DOCUMENT_MODAL);
+			SugerenciaGuion proponerGuion = new SugerenciaGuion();
+			proponerGuion.setGListener(new GuionListener(){
+				@Override
+				public void recibirGuion() {
+					InfoGuion guion = proponerGuion.getGuionCompleto();
+					new SA_Juego().proponerGuion(gestor, guion);
+						JOptionPane.showMessageDialog(new JFrame(), "Guion enviado correctamente", "Exito",
+								JOptionPane.INFORMATION_MESSAGE);
+						dGuion.dispose();
+				}
+				@Override
+				public void salir(){
+					dGuion.dispose();
+				}
+				
+			});
+			dGuion.setSize(800, 600);
+			dGuion.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dGuion.setContentPane(proponerGuion);
+			dGuion.setVisible(true);
+			dGuion.setAlwaysOnTop(true);
+			
+		}break;
 		
 		case "miPerfil":{
 			PerfilUsuario content = new PerfilUsuario(e.getJugador());
