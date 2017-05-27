@@ -19,6 +19,7 @@ import presentacion.modelo.juego.InfoPersonaje;
 public class SugerenciaGuion extends JPanel{
 	
 	private static final long serialVersionUID = -5984566220916638228L;
+	
 	final static String SALIR = "salirIcono.png";
 	final static String TICK = "tickverde.png";
 	private JSpinner bucles;

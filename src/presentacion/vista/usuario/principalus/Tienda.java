@@ -3,8 +3,6 @@ package  presentacion.vista.usuario.principalus;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -16,6 +14,8 @@ import javax.swing.JPanel;
 import presentacion.controlador.principalus.PrinciUsuarioEvent;
 import presentacion.controlador.principalus.PrinciUsuarioEvent.PrinciUsuarioType;
 import presentacion.controlador.principalus.PrinciUsuarioListener;
+import presentacion.modelo.usuario.Jugador;
+import presentacion.modelo.usuario.Paises;
 
 public class Tienda extends JPanel{
 	  
@@ -29,24 +29,18 @@ public class Tienda extends JPanel{
 	
  
   
-  public Tienda(int r, int n,ArrayList<PrinciUsuarioListener> listeners){
+  public Tienda(Jugador jugador, ArrayList<PrinciUsuarioListener> listeners){
 	  //tListener = to;
   	  JPanel panelmayor=new JPanel();
       this.setLayout(new BoxLayout(panelmayor, BoxLayout.X_AXIS));
 
-      relojes = new PanelBotInfoIcono(r, "Relojes: ", null, new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
+      relojes = new PanelBotInfoIcono(jugador.getReloj(), "Relojes: ", null, (e)->{
 				for (int i = 0; i < listeners.size(); ++i)
-					listeners.get(i).notificarPrinciUsuario(new PrinciUsuarioEvent(PrinciUsuarioType.comprarRelojes));
-			}
+					listeners.get(i).notificarPrinciUsuario(new PrinciUsuarioEvent(PrinciUsuarioType.comprarRelojes,jugador));
 		});
-      nivel = new PanelBotInfoIcono(n, "Nivel: ", null, new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
+      nivel = new PanelBotInfoIcono(jugador.getNivel(), "Nivel: ", null,(e)->{
 				for (int i = 0; i < listeners.size(); ++i)
-					listeners.get(i).notificarPrinciUsuario(new PrinciUsuarioEvent(PrinciUsuarioType.comprarNivel));
-			}
+					listeners.get(i).notificarPrinciUsuario(new PrinciUsuarioEvent(PrinciUsuarioType.comprarNivel,jugador));
 		});
 //	  this.numrelojes=new Relojes(r, new ActionListener(){
 //		@Override
@@ -78,7 +72,7 @@ public class Tienda extends JPanel{
 		JFrame ventana=new JFrame("prueba");
 		ventana.setSize(800,600);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ventana.setContentPane(new Tienda(10,27,null));
+		ventana.setContentPane(new Tienda(new Jugador("blue","asdf", false, "cris", 12, Paises.Alemania, "kk"),null));
 		ventana.setVisible(true);
 	}
   

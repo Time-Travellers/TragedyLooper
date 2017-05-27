@@ -4,7 +4,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -14,7 +13,6 @@ import javax.swing.border.EmptyBorder;
 
 import bbdd.Gestor;
 import presentacion.controlador.GUIController;
-import presentacion.controlador.principalus.PrinciUsuarioEvent;
 import presentacion.controlador.principalus.PrinciUsuarioListenable;
 import presentacion.controlador.principalus.PrinciUsuarioListener;
 import presentacion.modelo.usuario.Jugador;
@@ -54,7 +52,7 @@ public class PrincipalUsuarioUI extends JPanel implements PrinciUsuarioListenabl
 
 		//panelSup.setBorder(BorderFactory.createLineBorder(Color.black));
 		
-		this.paneltienda=new Tienda(j.getReloj(), j.getNivel(),listeners);
+		this.paneltienda=new Tienda(j,listeners);
 		
 		this.tabla=new TablaPartidas();
 		this.panelcontacto=new Contacto(listeners);

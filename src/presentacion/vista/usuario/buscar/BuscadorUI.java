@@ -11,6 +11,8 @@ import javax.swing.JTextField;
 
 public class BuscadorUI extends JPanel {
 
+	private static final long serialVersionUID = -8214433700582040511L;
+
 	public interface BuscadorUIListener {
 		public void buscarPulsado(String usuario);
 		public void agregarPulsado(String usuario);

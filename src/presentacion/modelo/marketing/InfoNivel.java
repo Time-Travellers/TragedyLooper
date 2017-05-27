@@ -7,6 +7,7 @@ public class InfoNivel{
 	private int nivel;
 	private int precio;
 	private ArrayList<String> guiones;
+	
 	public InfoNivel(int nivel,int precio, ArrayList<String> guiones){
 		this.nivel = nivel;
 		this.precio = precio;
