@@ -19,7 +19,6 @@ public class InfoGuion implements Serializable{
 	private Trama trama;
 	public Subtrama subtrama;
 	private int numLoops;
-	
 	private int numDias;
 	private List<InfoPersonaje> cartaPersonajes = new ArrayList<InfoPersonaje>();
 	private List<Incidente> incidentes;
@@ -50,6 +49,13 @@ public class InfoGuion implements Serializable{
 		return numLoops;
 	}
 
+	public Trama getTrama(){
+		return trama;
+	}
+	
+	public Subtrama getSubtrama(){
+		return subtrama;
+	}
 	public void setNumLoops(int numLoops) {
 		this.numLoops = numLoops;
 	}
@@ -60,10 +66,6 @@ public class InfoGuion implements Serializable{
 
 	public void setNumDias(int numDias) {
 		this.numDias = numDias;
-	}
-
-	public List<InfoPersonaje> getCartaPersonajes() {
-		return cartaPersonajes;
 	}
 
 	public void setCartaPersonajes(List<InfoPersonaje> cartaPersonaje) {

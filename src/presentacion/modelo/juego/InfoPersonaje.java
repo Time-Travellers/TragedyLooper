@@ -11,11 +11,16 @@ public class InfoPersonaje {
 	public Personaje nombre;
 	public Rol rol;
 	
-	public InfoPersonaje() {
-	}
-	
 	public InfoPersonaje(Personaje nombre, Rol rol){
 		this.nombre = nombre;
 		this.rol = rol;
+	}
+	
+	public Personaje getNombre(){
+		return nombre;
+	}
+	
+	public Rol getRol(){
+		return rol;
 	}
 }

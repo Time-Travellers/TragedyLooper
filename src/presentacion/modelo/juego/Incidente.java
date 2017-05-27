@@ -19,5 +19,13 @@ public class Incidente {
 		this.nombre = nombre;
 		this.culpable = culpable;
 	}
+	
+	public EnumIncidentes getIncidente(){
+		return nombre;
+	}
+	
+	public Personaje getCulpable(){
+		return culpable;
+	}
 
 }
