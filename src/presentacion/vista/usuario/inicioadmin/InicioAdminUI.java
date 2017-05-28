@@ -62,11 +62,10 @@ public class InicioAdminUI extends JPanel implements PrinciAdministradorListenab
 //	        g.drawImage(img, 200, 200, null);
 //	}
 //	
-	public InicioAdminUI(String name, int numMensajes, int propuestos, int report, GUIController controller){
+	public InicioAdminUI(String name, int numMensajes, int propuestos, int report){
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		this.setPreferredSize(new Dimension(800,600));
 		listeners = new ArrayList<PrinciAdministradorListener>();
-		addPrinciAdministradorListener(controller);
 		
 		JPanel north = new JPanel();
 		north.setLayout(new BoxLayout(north,BoxLayout.X_AXIS));

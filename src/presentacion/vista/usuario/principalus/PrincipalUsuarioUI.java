@@ -25,10 +25,15 @@ public class PrincipalUsuarioUI extends JPanel implements PrinciUsuarioListenabl
 	private TablaPartidas tabla;
 	private Contacto panelcontacto;
 	private ArrayList<PrinciUsuarioListener> listeners;
+	private Jugador j;
 
 	public PrincipalUsuarioUI(Jugador j){
 		listeners = new ArrayList<PrinciUsuarioListener>();
-		
+		this.j = j;
+		initGUI();
+	}
+	
+	public void initGUI() {
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		//panel superior
 		JPanel panelSup = new JPanel();
@@ -63,7 +68,6 @@ public class PrincipalUsuarioUI extends JPanel implements PrinciUsuarioListenabl
 
 		this.setBorder(new EmptyBorder(20, 20, 20, 20));
 	}
-	
 
 	@Override
 	public void addPrinciUsuarioListener(PrinciUsuarioListener list) {

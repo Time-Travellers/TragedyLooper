@@ -8,6 +8,9 @@ import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+
 import bbdd.Gestor;
 import negocio.SA_Juego;
 import negocio.SA_Marketing;
@@ -48,13 +51,19 @@ import presentacion.vista.usuario.registro.RegistroUI.RegistroUIListener;
 public class GUIController
 		implements IniSesionListener, PrinciUsuarioListener, PrinciAdministradorListener, ComprarRelojListener {
 
+	private enum TipoVentana{
+		IniSesion, PrinUsuario, PrinAdmin
+	}
+	
 	private JFrame ventana;
 	private GUIModelo modelo;
 	private static Gestor gestor;
+	private TipoVentana tipo;
 
 	public GUIController(JFrame ventana) {
 		this.ventana = ventana;
 		this.modelo = new GUIModelo();
+		this.tipo = TipoVentana.IniSesion;
 	}
 
 	public static void setGestor(Gestor g) {
@@ -73,14 +82,17 @@ public class GUIController
 				modelo.setUsuario(usuario);
 				ventana.getContentPane().removeAll();
 				if (usuario.isAdmin()) {
-					InicioAdminUI content = new InicioAdminUI(usuario.getId(), 1, 2, 3, this);
+					InicioAdminUI content = new InicioAdminUI(usuario.getId(), 1, 2, 3);
+					content.addPrinciAdministradorListener(this);
 					ventana.add(content);
 					content.updateUI();
+					tipo = TipoVentana.PrinAdmin;
 				} else {
 					PrincipalUsuarioUI content = new PrincipalUsuarioUI((Jugador) usuario);
 					content.addPrinciUsuarioListener(this);
 					ventana.add(content);
 					content.updateUI();
+					tipo = TipoVentana.PrinUsuario;
 				}
 
 			} else {
@@ -117,6 +129,7 @@ public class GUIController
 			fRegistro.setVisible(true);
 			fRegistro.setAlwaysOnTop(true);
 		}
+		reiniciarGUI();
 	}
 
 	@Override
@@ -255,6 +268,8 @@ public class GUIController
 			break;
 
 		}
+		reiniciarGUI();
+
 	}
 
 	@Override
@@ -285,7 +300,7 @@ public class GUIController
 		}
 			break;
 		}
-
+		reiniciarGUI();
 	}
 
 	@Override
@@ -337,6 +352,33 @@ public class GUIController
 		}
 			break;
 		}
+		reiniciarGUI();
+
+	}
+	
+	public void reiniciarGUI() {
+		ventana.getContentPane().removeAll();
+		switch(tipo) {
+		case IniSesion:
+			IniciarSesionUI iniSesion = new IniciarSesionUI(this);
+			iniSesion.addIniSesionListener(this);
+			ventana.add(iniSesion);
+			iniSesion.updateUI();
+			break;
+		case PrinUsuario:
+			PrincipalUsuarioUI prinUsuario = new PrincipalUsuarioUI((Jugador)modelo.getUsuario());
+			prinUsuario.addPrinciUsuarioListener(this);
+			ventana.add(prinUsuario);
+			prinUsuario.updateUI();
+			break;
+		case PrinAdmin:
+			InicioAdminUI prinAdmin = new InicioAdminUI(modelo.getUsuario().getId(), 1, 2, 3);
+			prinAdmin.addPrinciAdministradorListener(this);
+			ventana.add(prinAdmin);
+			prinAdmin.updateUI();
+			break;
+		}
+		
 	}
 
 }

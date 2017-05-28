@@ -9,7 +9,6 @@ import javax.swing.SwingUtilities;
 
 import bbdd.Gestor;
 import presentacion.controlador.GUIController;
-import presentacion.modelo.GUIModelo;
 import presentacion.vista.FrameUI;
 import presentacion.vista.usuario.iniciarsesion.IniciarSesionUI;
 
@@ -52,7 +51,7 @@ public class Main {
 				v2.add(new IniciarSesionUI(v2.getCtrl()));
 				v3.add(new IniciarSesionUI(v3.getCtrl()));
 				v4.add(new IniciarSesionUI(v4.getCtrl()));
-				//TODO esto es solo porque no se repinta y el repaint() no funciona. Solucionarlo
+				
 				v1.setVisible(true);v2.setVisible(true);v3.setVisible(true);v4.setVisible(true);
 			}
 		});

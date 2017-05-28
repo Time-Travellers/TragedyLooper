@@ -40,10 +40,10 @@ public class IniciarSesionUI extends JPanel implements IniSesionListenable {
 	public IniciarSesionUI(GUIController ctrl) {
 		listeners = new ArrayList<IniSesionListener>();
 		addIniSesionListener(ctrl);
-		inicializarGUI();
+		initGUI();
 	}
 
-	private void inicializarGUI() {
+	public void initGUI() {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.setSize(new Dimension(800, 600));
 		
