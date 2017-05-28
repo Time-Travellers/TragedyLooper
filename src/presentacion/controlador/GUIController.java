@@ -254,8 +254,8 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener,
 			break;
 
 		case "comprarRelojes": {
-			ComprarRelojUI a = new ComprarRelojUI(true, ventana,
-					Tienda.PAQUETESRELOJ, e.getJugador());
+			ComprarRelojUI a = new ComprarRelojUI(true, Tienda.PAQUETESRELOJ);
+			
 			a.addComprarRelojListener(this);
 			a.setSize(800, 600);
 

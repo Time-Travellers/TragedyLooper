@@ -21,7 +21,7 @@ import presentacion.controlador.comprarreloj.ComprarRelojListener;
 import presentacion.modelo.marketing.InfoReloj;
 import presentacion.modelo.usuario.Jugador;
 
-public class ComprarRelojUI extends JDialog implements ComprarRelojListenable{
+public class ComprarRelojUI extends JPanel implements ComprarRelojListenable{
 	
 	private static final long serialVersionUID = 3764237795715936211L;
 	
@@ -31,8 +31,7 @@ public class ComprarRelojUI extends JDialog implements ComprarRelojListenable{
 	private JButton cancelar;
 	private ArrayList<ComprarRelojListener> listeners;
 	
-	public ComprarRelojUI(boolean a, JFrame jc, ArrayList<InfoReloj> paquetes , Jugador jugador){
-		super(jc, "Tienda de relojes", ModalityType.DOCUMENT_MODAL);
+	public ComprarRelojUI(boolean a, ArrayList<InfoReloj> paquetes){
 
 		JPanel container = new JPanel();
 		container.setLayout(new BoxLayout(container,BoxLayout.Y_AXIS));
@@ -50,7 +49,7 @@ public class ComprarRelojUI extends JDialog implements ComprarRelojListenable{
 		verAnuncio.setAlignmentX(CENTER_ALIGNMENT);
 		verAnuncio.addActionListener((e)->{
 				for (int i = 0; i < listeners.size(); ++i)
-					listeners.get(i).notificarComprarReloj(new ComprarRelojEvent(ComprarRelojType.VerAnuncio,jugador));
+					listeners.get(i).notificarComprarReloj(new ComprarRelojEvent(ComprarRelojType.VerAnuncio));
 		});
 		
 		if(a){
@@ -82,7 +81,7 @@ public class ComprarRelojUI extends JDialog implements ComprarRelojListenable{
 			button.addActionListener((e)->{
 
 				for (int j = 0; j < listeners.size(); ++j)
-					listeners.get(j).notificarComprarReloj(new ComprarRelojEvent(ComprarRelojType.Comprar,jugador,info));
+					listeners.get(j).notificarComprarReloj(new ComprarRelojEvent(ComprarRelojType.Comprar,info));
 			});
 			botones.add(button);
 			container.add(button);
@@ -131,7 +130,6 @@ public class ComprarRelojUI extends JDialog implements ComprarRelojListenable{
 	@Override
 	public void addComprarRelojListener(ComprarRelojListener list) {
 		listeners.add(list);
-		
 	}
 	
 }
