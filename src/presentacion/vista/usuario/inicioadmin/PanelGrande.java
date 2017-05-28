@@ -49,7 +49,7 @@ public class PanelGrande extends JPanel{
 		ventana.setLayout(new FlowLayout());
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.setSize(800,600);
-		ventana.add(new PanelGrande("Usuarios Reportados", new ImageIcon("src/resources/exit-iloveimg-resized.png"), 6,null));
+		ventana.add(new PanelGrande("Usuarios Reportados", new ImageIcon(PanelGrande.class.getClassLoader().getResource("resources/reportar.png")), 6,null));
 		ventana.setVisible(true);
 	}
 }

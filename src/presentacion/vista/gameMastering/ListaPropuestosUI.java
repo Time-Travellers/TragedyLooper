@@ -29,7 +29,7 @@ public class ListaPropuestosUI extends JPanel{
 
 	private void initialize() {
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
-		this.actualizar=new JButton(new ImageIcon("src/resources/"+ Actualizar));
+		this.actualizar=new JButton(new ImageIcon(getClass().getClassLoader().getResource("resources/"+ Actualizar)));
 		this.add(actualizar);
 		tabla = new JTable(datos, COL_NAMES);
 		tabla.setVisible(true);

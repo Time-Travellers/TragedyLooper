@@ -22,7 +22,7 @@ public class PanelBotInfoIcono extends JPanel{
 	private JLabel icono;
 	
 	public PanelBotInfoIcono(int n, String nombre, Icon icono2, ActionListener list){
-		boton = new JButton(new ImageIcon("src/resources/add.png"));
+		boton = new JButton( new ImageIcon(getClass().getClassLoader().getResource("resources/add.png")));
 		boton.addActionListener(list);
 		info = new JLabel(nombre+n);
 		info.setFont(new Font("", 20,20));
