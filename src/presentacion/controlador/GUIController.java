@@ -252,7 +252,7 @@ public class GUIController
 		case "Comprar": {
 			// JOptionPane.showConfirmDialog (null, "Quieres comprar este
 			// nivel?","Warning",JOptionPane.YES_NO_OPTION);
-			JOptionPane optionPane = new JOptionPane("Quieres comprar este nivel?", JOptionPane.WARNING_MESSAGE);
+			JOptionPane optionPane = new JOptionPane("Quieres comprar este paquete de relojes?", JOptionPane.WARNING_MESSAGE);
 			optionPane.setOptionType(JOptionPane.YES_NO_OPTION);
 			JDialog dialog = optionPane.createDialog("Compra relojes");
 			dialog.setAlwaysOnTop(true);

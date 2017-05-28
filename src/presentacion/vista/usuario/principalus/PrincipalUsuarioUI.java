@@ -25,16 +25,9 @@ public class PrincipalUsuarioUI extends JPanel implements PrinciUsuarioListenabl
 	private TablaPartidas tabla;
 	private Contacto panelcontacto;
 	private ArrayList<PrinciUsuarioListener> listeners;
-	
-//	private void notificar(PrinciUsuarioEvent e){
-//		Logger.getLogger("log").info("Notificado PrinciUsuarioEvent de tipo " + e.getPrinciUsuarioType());
-//		for (int i = 0; i < listeners.size(); ++i)
-//			listeners.get(i).notificarPrinciUsuario(e);
-//	}
-//	
+
 	public PrincipalUsuarioUI(Jugador j, GUIController controller){
 		listeners = new ArrayList<PrinciUsuarioListener>();
-		addPrinciUsuarioListener(controller);
 		
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		//panel superior
