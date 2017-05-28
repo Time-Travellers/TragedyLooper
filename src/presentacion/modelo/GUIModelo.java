@@ -10,4 +10,8 @@ public class GUIModelo{
 		this.usuario = usuario;
 	}
 	
+	public String getIdUsuario(){
+		return usuario.getId();
+	}
+	
 }

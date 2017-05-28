@@ -14,6 +14,7 @@ import negocio.SA_Marketing;
 import negocio.SA_GameMastering;
 import negocio.SA_Usuario;
 import presentacion.controlador.comprarreloj.ComprarRelojEvent;
+import presentacion.controlador.comprarreloj.ComprarRelojListener;
 import presentacion.controlador.iniciarsesion.IniSesionEvent;
 import presentacion.controlador.iniciarsesion.IniSesionListener;
 import presentacion.controlador.inicioadmin.PrinciAdministradorEvent;
@@ -32,7 +33,6 @@ import presentacion.vista.gameMastering.ListaReportadosUI;
 import presentacion.vista.marketing.comprarnivel.ComprarNivelUI;
 import presentacion.vista.marketing.comprarnivel.ComprarNivelUI.ComprarNivelUIListener;
 import presentacion.vista.marketing.comprarreloj.ComprarRelojUI;
-import presentacion.vista.marketing.comprarreloj.ComprarRelojUI.ComprarRelojListener;
 import presentacion.vista.usuario.buscar.BuscadorUI;
 import presentacion.vista.usuario.buscar.BuscadorUI.BuscadorUIListener;
 import presentacion.vista.usuario.iniciarsesion.IniciarSesionUI;
@@ -201,10 +201,13 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener,
 							JOptionPane.INFORMATION_MESSAGE);
 					dGuion.dispose();
 				}
-
 				@Override
 				public void salir() {
 					dGuion.dispose();
+				}
+				@Override
+				public String idRegistrado() {
+					return modelo.getIdUsuario();
 				}
 
 			});
@@ -253,7 +256,8 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener,
 		case "comprarRelojes": {
 			// prueba
 			ComprarRelojUI a = new ComprarRelojUI(true, ventana,
-					Tienda.PAQUETESRELOJ, e.getJugador(), this);
+					Tienda.PAQUETESRELOJ, e.getJugador());
+			a.addComprarRelojListener(this);
 			a.setSize(800, 600);
 
 		}
@@ -320,8 +324,7 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener,
 		}
 			break;
 		case "Reportados": {
-			ArrayList<Reporte> lista = (new SA_GameMastering()
-					.sacarReportados(gestor));
+			ArrayList<Reporte> lista = (new SA_GameMastering()).sacarReportados(gestor);
 			String[][] devolver = new String[lista.size()][3];
 			for (int i = 0; i < lista.size(); i++) {
 				devolver[i][0] = lista.get(i).getReportador().getId();
@@ -329,28 +332,31 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener,
 				devolver[i][2] = lista.get(i).getFecha().toString();
 			}
 			ListaReportadosUI listaReportados = new ListaReportadosUI(devolver);
-			ventana.getContentPane().removeAll();
-			ventana.add(listaReportados);
-			listaReportados.updateUI();
-		}
-			break;
+			JDialog reportados=new JDialog();
+			reportados.setSize(600, 508);
+			reportados.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			reportados.setContentPane(listaReportados);
+			reportados.setVisible(true);
+			reportados.setAlwaysOnTop(true);
+		}break;
 		case "Mensajes": {
 		}
 			break;
-		case "GuionesPropuestos": {
-			ArrayList<InfoGuion> lista = new SA_GameMastering()
-					.sacarGuiones(gestor);
-			String[][] devolver = new String[lista.size()][2];
-			for (int i = 0; i < lista.size(); i++) {
-				devolver[i][0] = lista.get(i).getCreador();
-				devolver[i][1] = lista.get(i).getTitulo();
-			}
-			ListaPropuestosUI listaPropuestos = new ListaPropuestosUI(devolver);
-			ventana.getContentPane().removeAll();
-			ventana.add(listaPropuestos);
-			listaPropuestos.updateUI();
-		}
-			break;
+		case "GuionesPropuestos":{
+				ArrayList<InfoGuion>lista=(new SA_GameMastering()).sacarGuiones(gestor);
+				String [][] devolver=new String[lista.size()][2];
+				for(int i=0;i<lista.size();i++){
+					devolver[i][0]=lista.get(i).getCreador();
+					devolver[i][1]=lista.get(i).getTitulo();
+				}
+				JDialog propuestos=new JDialog(ventana, "Guiones Propuestos", ModalityType.DOCUMENT_MODAL);
+				ListaPropuestosUI listaPropuestos=new ListaPropuestosUI(devolver);
+				propuestos.setSize(600, 508);
+				propuestos.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				propuestos.setContentPane(listaPropuestos);
+				propuestos.setVisible(true);
+				propuestos.setAlwaysOnTop(true);
+			}break;
 		}
 	}
 

@@ -75,7 +75,7 @@ public class PrincipalUsuarioUI extends JPanel implements PrinciUsuarioListenabl
 		ventana.setSize(1024, 768);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GUIController controller = new GUIController(ventana,null,new Gestor());
-		ventana.setContentPane(new PrincipalUsuarioUI(new Jugador("Prueba", "Prueba", false, "Prueba", 0, null, "Prueba"));
+		ventana.setContentPane(new PrincipalUsuarioUI(new Jugador("Prueba", "Prueba", false, "Prueba", 0, null, "Prueba")));
 		ventana.setVisible(true);
 	}
 

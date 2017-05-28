@@ -2,7 +2,8 @@ package presentacion.controlador.inicioadmin;
 
 public class PrinciAdministradorEvent {
 	public enum PrinciAdministradorType{
-		Salir, Reportados, Mensajes, GuionesPropuestos
+		Salir, Reportados, Mensajes, GuionesPropuestos,
+		ActualizarPropuestos, ActualizarReportados, AtrasPropuestos, AtrasReportados
 	}
 	
 	PrinciAdministradorType tipo;

@@ -14,19 +14,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import presentacion.controlador.GUIController;
 import presentacion.controlador.comprarreloj.ComprarRelojEvent;
 import presentacion.controlador.comprarreloj.ComprarRelojEvent.ComprarRelojType;
+import presentacion.controlador.comprarreloj.ComprarRelojListenable;
+import presentacion.controlador.comprarreloj.ComprarRelojListener;
 import presentacion.modelo.marketing.InfoReloj;
 import presentacion.modelo.usuario.Jugador;
 
-public class ComprarRelojUI extends JDialog{
+public class ComprarRelojUI extends JDialog implements ComprarRelojListenable{
 	
 	private static final long serialVersionUID = 3764237795715936211L;
-
-	public interface ComprarRelojListener{
-		void notificarComprarReloj(ComprarRelojEvent e);
-	}
 	
 	private JButton verAnuncio;
 	private ArrayList<JButton> botones;
@@ -34,14 +31,13 @@ public class ComprarRelojUI extends JDialog{
 	private JButton cancelar;
 	private ArrayList<ComprarRelojListener> listeners;
 	
-	public ComprarRelojUI(boolean a, JFrame jc, ArrayList<InfoReloj> paquetes , Jugador jugador, GUIController controller){
+	public ComprarRelojUI(boolean a, JFrame jc, ArrayList<InfoReloj> paquetes , Jugador jugador){
 		super(jc, "Tienda de relojes", ModalityType.DOCUMENT_MODAL);
 
 		JPanel container = new JPanel();
 		container.setLayout(new BoxLayout(container,BoxLayout.Y_AXIS));
 		
 		listeners = new ArrayList<ComprarRelojListener>();
-		listeners.add(controller);
 		
 		//botones de comprar reloj con dinero
 		
@@ -130,6 +126,12 @@ public class ComprarRelojUI extends JDialog{
 		
 		//ComprarRelojUI a =new ComprarRelojUI(null,paquetesReloj,null,null);
 		//a.setSize(800,600);
+	}
+
+	@Override
+	public void addComprarRelojListener(ComprarRelojListener list) {
+		listeners.add(list);
+		
 	}
 	
 }
