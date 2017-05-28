@@ -183,10 +183,13 @@ public class GUIController
 							JOptionPane.INFORMATION_MESSAGE);
 					dGuion.dispose();
 				}
-
 				@Override
 				public void salir() {
 					dGuion.dispose();
+				}
+				@Override
+				public String idRegistrado() {
+					return modelo.getIdUsuario();
 				}
 
 			});
@@ -299,7 +302,7 @@ public class GUIController
 		}
 			break;
 		case "Reportados": {
-			ArrayList<Reporte> lista = (new SA_GameMastering().sacarReportados(gestor));
+			ArrayList<Reporte> lista = (new SA_GameMastering()).sacarReportados(gestor);
 			String[][] devolver = new String[lista.size()][3];
 			for (int i = 0; i < lista.size(); i++) {
 				devolver[i][0] = lista.get(i).getReportador().getId();
@@ -307,23 +310,29 @@ public class GUIController
 				devolver[i][2] = lista.get(i).getFecha().toString();
 			}
 			ListaReportadosUI listaReportados = new ListaReportadosUI(devolver);
-			ventana.getContentPane().removeAll();
-			ventana.add(listaReportados);
-			listaReportados.updateUI();
+			JDialog reportados=new JDialog();
+			reportados.setSize(600, 508);
+			reportados.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			reportados.setContentPane(listaReportados);
+			reportados.setVisible(true);
+			reportados.setAlwaysOnTop(true);
 		}
 			break;
 		case "Mensajes":{}break;
 		case "GuionesPropuestos":{
-			ArrayList<InfoGuion>lista=new SA_GameMastering().sacarGuiones(gestor);
+			ArrayList<InfoGuion>lista=(new SA_GameMastering()).sacarGuiones(gestor);
 			String [][] devolver=new String[lista.size()][2];
 			for(int i=0;i<lista.size();i++){
 				devolver[i][0]=lista.get(i).getCreador();
 				devolver[i][1]=lista.get(i).getTitulo();
 			}
+			JDialog propuestos=new JDialog(ventana, "Guiones Propuestos", ModalityType.DOCUMENT_MODAL);
 			ListaPropuestosUI listaPropuestos=new ListaPropuestosUI(devolver);
-			ventana.getContentPane().removeAll();
-			ventana.add(listaPropuestos);
-			listaPropuestos.updateUI();
+			propuestos.setSize(600, 508);
+			propuestos.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			propuestos.setContentPane(listaPropuestos);
+			propuestos.setVisible(true);
+			propuestos.setAlwaysOnTop(true);
 		}break;
 		}
 	}

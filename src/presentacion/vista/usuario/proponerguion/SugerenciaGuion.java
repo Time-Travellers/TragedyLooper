@@ -22,6 +22,7 @@ public class SugerenciaGuion extends JPanel{
 	
 	final static String SALIR = "salirIcono.png";
 	final static String TICK = "tickverde.png";
+	
 	private JSpinner bucles;
 	private PanelParaEscribir titulo;
 	private PanelSeleccionTrama trama;
@@ -35,6 +36,7 @@ public class SugerenciaGuion extends JPanel{
 	public interface GuionListener{
 		public void recibirGuion();
 		public void salir();
+		public String idRegistrado();
 	}
 	
 	public void setGListener(GuionListener listener){
@@ -77,7 +79,7 @@ public class SugerenciaGuion extends JPanel{
 
 
 	public InfoGuion getGuionCompleto() {
-		return new InfoGuion(getTitulo(), getTrama(), getSubtrama(), getBucles(), getDias(), getPersonajes(), getIncidentes());
+		return new InfoGuion(gListener.idRegistrado(), getTitulo(), getTrama(), getSubtrama(), getBucles(), getDias(), getPersonajes(), getIncidentes());
 	}
 
 	private int getDias() {

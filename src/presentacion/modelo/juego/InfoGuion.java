@@ -26,9 +26,10 @@ public class InfoGuion implements Serializable{
 	private int nivel;
 	
 
-	public InfoGuion(String titulo, Trama trama, Subtrama subtrama,
+	public InfoGuion(String creador, String titulo, Trama trama, Subtrama subtrama,
 			int numLoops, int numDias, List<InfoPersonaje> cartaPersonajes,
 			List<Incidente> incidentes/*, String creador*/) {
+		this.creador=creador;
 		this.titulo = titulo;
 		this.trama = trama;
 		this.subtrama = subtrama;
