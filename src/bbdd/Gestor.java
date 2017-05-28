@@ -21,7 +21,6 @@ public class Gestor {
     
     public HashMap<String, InfoGuion>  guiones_propuestos = new HashMap<String, InfoGuion> ();
     
-    
  // public List<InfoLugar> lugares = new ArrayList<InfoLugar> ();
     
     public Gestor(){
@@ -38,6 +37,8 @@ public class Gestor {
     	//new IO<Partida>("partidas.ser").almacenar(partidas);
     	new IO<InfoGuion>("guiones.ser").almacenar(guiones);
     	new IO<Jugador>("espera.ser").almacenar(listaEspera);
+    	new IO<Reporte>("reportados.ser").almacenar(reportados);
+    	new IO<InfoGuion>("guiones_propuestos.ser").almacenar(guiones_propuestos);
     }
 
 }
