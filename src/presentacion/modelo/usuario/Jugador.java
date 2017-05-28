@@ -146,19 +146,13 @@ public class Jugador extends Usuario {
 
 //end of modifiable zone(JavaCode)........E/b2d1642e-1404-426b-87c1-af40a83e8292
     }
-
-    public void comprarRelojes(boolean anuncio, int relojes) {
-    	if(anuncio){
-    		--anuncios;
-    		++reloj;
-    	}
-    	else{
-    		reloj+=relojes;
-    	}
-    }
     
-    public boolean anunciosDisponibles(){
-    	return anuncios>0;
-    }
+    public int getAnuncios() {
+		return anuncios;
+	}
+
+	public void setAnuncios(int anuncios) {
+		this.anuncios = anuncios;
+	}
 
 }

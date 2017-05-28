@@ -254,7 +254,6 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener,
 			break;
 
 		case "comprarRelojes": {
-			// prueba
 			ComprarRelojUI a = new ComprarRelojUI(true, ventana,
 					Tienda.PAQUETESRELOJ, e.getJugador());
 			a.addComprarRelojListener(this);
@@ -275,8 +274,6 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener,
 	public void notificarComprarReloj(ComprarRelojEvent e) {
 		switch (e.getComprarRelojType()) {
 		case "Comprar": {
-			// JOptionPane.showConfirmDialog (null, "Quieres comprar este
-			// nivel?","Warning",JOptionPane.YES_NO_OPTION);
 			JOptionPane optionPane = new JOptionPane(
 					"Quieres comprar este paquete de relojes?",
 					JOptionPane.WARNING_MESSAGE);
@@ -286,15 +283,9 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener,
 			dialog.setVisible(true);
 			if ((int) optionPane.getValue() == JOptionPane.YES_OPTION) {
 				Logger.getLogger("log").info("success");
-				e.getJugador().comprarRelojes(false, e.getInfo().getNumReloj());
+				new SA_Usuario().comprarRelojes(gestor, (Jugador)modelo.getUsuario(), false, e.getInfo().getNumReloj());
 			} else
 				Logger.getLogger("log").info("fail");
-			// JDialog compra = new JDialog(ventana, "Confirmacion compra",
-			// ModalityType.DOCUMENT_MODAL);
-			//
-			// compra.setSize(500,200);
-			// dGuion.setVisible(true);
-			// dGuion.setAlwaysOnTop(true);
 		}
 			break;
 		case "VerAnuncio": {
@@ -303,7 +294,7 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener,
 			dialog.setPreferredSize(new Dimension(400, 300));
 			dialog.setAlwaysOnTop(true);
 			dialog.setVisible(true);
-			e.getJugador().comprarRelojes(true, 1);
+			new SA_Usuario().comprarRelojes(gestor, (Jugador)modelo.getUsuario(), false, 1);
 		}
 			break;
 

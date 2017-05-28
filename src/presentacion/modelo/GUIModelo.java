@@ -13,5 +13,9 @@ public class GUIModelo{
 	public String getIdUsuario(){
 		return usuario.getId();
 	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
 	
 }

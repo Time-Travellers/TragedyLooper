@@ -2,6 +2,7 @@ package negocio;
 
 import bbdd.Gestor;
 import integracion.DAO_Usuarios;
+import presentacion.modelo.usuario.Jugador;
 import presentacion.modelo.usuario.Usuario;
 
 public class SA_Usuario implements SA {
@@ -19,5 +20,16 @@ public class SA_Usuario implements SA {
 			new DAO_Usuarios(gestor).crear(usuario);
 		return aux == null;
 	}
+	
+	 public void comprarRelojes(Gestor gestor, Jugador usuario, boolean anuncio, int relojes) {
+	    	if(anuncio){
+	    		usuario.setAnuncios(usuario.getAnuncios() - 1);
+	    		usuario.setReloj(usuario.getReloj() + 1);
+	    	}
+	    	else{
+	    		usuario.setReloj(usuario.getReloj() + relojes);
+	    	}
+	    	new DAO_Usuarios(gestor).actualizar(usuario);
+	    }
 	
 }
