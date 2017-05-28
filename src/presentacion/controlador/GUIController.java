@@ -14,6 +14,7 @@ import negocio.SA_Marketing;
 import negocio.SA_GameMastering;
 import negocio.SA_Usuario;
 import presentacion.controlador.comprarreloj.ComprarRelojEvent;
+import presentacion.controlador.comprarreloj.ComprarRelojListener;
 import presentacion.controlador.iniciarsesion.IniSesionEvent;
 import presentacion.controlador.iniciarsesion.IniSesionListener;
 import presentacion.controlador.inicioadmin.PrinciAdministradorEvent;
@@ -32,7 +33,6 @@ import presentacion.vista.gameMastering.ListaReportadosUI;
 import presentacion.vista.marketing.comprarnivel.ComprarNivelUI;
 import presentacion.vista.marketing.comprarnivel.ComprarNivelUI.ComprarNivelUIListener;
 import presentacion.vista.marketing.comprarreloj.ComprarRelojUI;
-import presentacion.vista.marketing.comprarreloj.ComprarRelojUI.ComprarRelojListener;
 import presentacion.vista.usuario.buscar.BuscadorUI;
 import presentacion.vista.usuario.buscar.BuscadorUI.BuscadorUIListener;
 import presentacion.vista.usuario.iniciarsesion.IniciarSesionUI;
@@ -256,7 +256,8 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener,
 		case "comprarRelojes": {
 			// prueba
 			ComprarRelojUI a = new ComprarRelojUI(true, ventana,
-					Tienda.PAQUETESRELOJ, e.getJugador(), this);
+					Tienda.PAQUETESRELOJ, e.getJugador());
+			a.addComprarRelojListener(this);
 			a.setSize(800, 600);
 
 		}
