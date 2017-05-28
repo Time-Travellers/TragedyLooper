@@ -45,8 +45,8 @@ import presentacion.vista.usuario.proponerguion.SugerenciaGuion.GuionListener;
 import presentacion.vista.usuario.registro.RegistroUI;
 import presentacion.vista.usuario.registro.RegistroUI.RegistroUIListener;
 
-public class GUIController implements IniSesionListener, PrinciUsuarioListener,
-		PrinciAdministradorListener, ComprarRelojListener {
+public class GUIController
+		implements IniSesionListener, PrinciUsuarioListener, PrinciAdministradorListener, ComprarRelojListener {
 
 	private JFrame ventana;
 	private GUIModelo modelo;
@@ -68,32 +68,27 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener,
 	@Override
 	public void notificarIniSesion(IniSesionEvent e) {
 		if (e.getIniSesionType() == "IniciarSesion") {
-			Usuario usuario = new SA_Usuario().iniciarSesion(gestor,
-					e.getUsuario(), e.getContrasena());
+			Usuario usuario = new SA_Usuario().iniciarSesion(gestor, e.getUsuario(), e.getContrasena());
 			if (usuario != null) {
 				modelo.setUsuario(usuario);
 				ventana.getContentPane().removeAll();
 				if (usuario.isAdmin()) {
-					InicioAdminUI content = new InicioAdminUI(usuario.getId(),
-							1, 2, 3, this);
+					InicioAdminUI content = new InicioAdminUI(usuario.getId(), 1, 2, 3, this);
 					ventana.add(content);
 					content.updateUI();
 				} else {
-					PrincipalUsuarioUI content = new PrincipalUsuarioUI(
-							(Jugador) usuario);
+					PrincipalUsuarioUI content = new PrincipalUsuarioUI((Jugador) usuario);
 					content.addPrinciUsuarioListener(this);
 					ventana.add(content);
 					content.updateUI();
 				}
 
 			} else {
-				JOptionPane.showMessageDialog(new JFrame(),
-						"Usuario o password incorrectos", "Error",
+				JOptionPane.showMessageDialog(new JFrame(), "Usuario o password incorrectos", "Error",
 						JOptionPane.ERROR_MESSAGE);
 			}
 		} else {
-			JDialog fRegistro = new JDialog(ventana, "Registrarse",
-					ModalityType.DOCUMENT_MODAL);
+			JDialog fRegistro = new JDialog(ventana, "Registrarse", ModalityType.DOCUMENT_MODAL);
 			RegistroUI registro = new RegistroUI();
 			registro.setRListener(new RegistroUIListener() {
 
@@ -102,20 +97,16 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener,
 					String result = registro.todoCorrecto();
 					if (result == null) {
 						Usuario usuario = registro.getUsuarioCompleto();
-						boolean OK = new SA_Usuario().agregarUsuario(gestor,
-								usuario);
+						boolean OK = new SA_Usuario().agregarUsuario(gestor, usuario);
 						if (OK) {
-							JOptionPane.showMessageDialog(new JFrame(),
-									"Usuario creado correctamente", "Exito",
+							JOptionPane.showMessageDialog(new JFrame(), "Usuario creado correctamente", "Exito",
 									JOptionPane.INFORMATION_MESSAGE);
 							fRegistro.dispose();
 						} else
-							JOptionPane.showMessageDialog(new JFrame(),
-									"Nombre de usuario repetido", "Error",
+							JOptionPane.showMessageDialog(new JFrame(), "Nombre de usuario repetido", "Error",
 									JOptionPane.ERROR_MESSAGE);
 					} else {
-						JOptionPane.showMessageDialog(new JFrame(), result,
-								"Error", JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(new JFrame(), result, "Error", JOptionPane.WARNING_MESSAGE);
 					}
 				}
 
@@ -143,10 +134,8 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener,
 		case "comprarNivel": {
 			if (e.getJugador().getNivel() != Tienda.NIVEL) {
 				Tienda tienda = new SA_Marketing().iniciarTienda(gestor);
-				InfoNivel nivel = tienda.getPaquetesNivel().get(
-						e.getJugador().getNivel());
-				JDialog dCompra = new JDialog(ventana, "Compra nivel",
-						ModalityType.DOCUMENT_MODAL);
+				InfoNivel nivel = tienda.getPaquetesNivel().get(e.getJugador().getNivel());
+				JDialog dCompra = new JDialog(ventana, "Compra nivel", ModalityType.DOCUMENT_MODAL);
 
 				ComprarNivelUI compraNivel = new ComprarNivelUI(nivel);
 				compraNivel.setNivelListener(new ComprarNivelUIListener() {
@@ -154,15 +143,11 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener,
 					@Override
 					public void confirmar() {
 						if (e.getJugador().comprarNivel(nivel))
-							JOptionPane.showConfirmDialog(null,
-									"Compra con exito!", "Compra nivel",
-									JOptionPane.PLAIN_MESSAGE,
-									JOptionPane.OK_OPTION);
+							JOptionPane.showConfirmDialog(null, "Compra con exito!", "Compra nivel",
+									JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_OPTION);
 						else
-							JOptionPane.showConfirmDialog(null,
-									"No tienes suficientes relojes",
-									"Compra nivel", JOptionPane.ERROR_MESSAGE,
-									JOptionPane.OK_OPTION);
+							JOptionPane.showConfirmDialog(null, "No tienes suficientes relojes", "Compra nivel",
+									JOptionPane.ERROR_MESSAGE, JOptionPane.OK_OPTION);
 
 					}
 
@@ -179,32 +164,30 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener,
 				dCompra.setVisible(true);
 				dCompra.setAlwaysOnTop(true);
 			} else {
-				JOptionPane.showConfirmDialog(null,
-						"Lo sentimos, no hay mas niveles disponibles",
-						"Compra nivel", JOptionPane.ERROR_MESSAGE,
-						JOptionPane.OK_OPTION);
+				JOptionPane.showConfirmDialog(null, "Lo sentimos, no hay mas niveles disponibles", "Compra nivel",
+						JOptionPane.ERROR_MESSAGE, JOptionPane.OK_OPTION);
 			}
 		}
 			break;
 
 		case "proponerGuion": {
-			JDialog dGuion = new JDialog(ventana, "Proponer Guion",
-					ModalityType.DOCUMENT_MODAL);
+			JDialog dGuion = new JDialog(ventana, "Proponer Guion", ModalityType.DOCUMENT_MODAL);
 			SugerenciaGuion proponerGuion = new SugerenciaGuion();
 			proponerGuion.setGListener(new GuionListener() {
 				@Override
 				public void recibirGuion() {
 					InfoGuion guion = proponerGuion.getGuionCompleto();
 					new SA_Juego().proponerGuion(gestor, guion);
-					JOptionPane.showMessageDialog(new JFrame(),
-							"Guion enviado correctamente", "Exito",
+					JOptionPane.showMessageDialog(new JFrame(), "Guion enviado correctamente", "Exito",
 							JOptionPane.INFORMATION_MESSAGE);
 					dGuion.dispose();
 				}
+
 				@Override
 				public void salir() {
 					dGuion.dispose();
 				}
+
 				@Override
 				public String idRegistrado() {
 					return modelo.getIdUsuario();
@@ -254,10 +237,14 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener,
 			break;
 
 		case "comprarRelojes": {
-			ComprarRelojUI a = new ComprarRelojUI(true, Tienda.PAQUETESRELOJ);
-			
+			JDialog jc = new JDialog(ventana, "Tienda de relojes", ModalityType.DOCUMENT_MODAL);
+			ComprarRelojUI a = new ComprarRelojUI(true, Tienda.PAQUETESRELOJ, jc);
 			a.addComprarRelojListener(this);
-			a.setSize(800, 600);
+			jc.setSize(800, 600);
+			jc.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			jc.setContentPane(a);
+			jc.setVisible(true);
+			jc.setAlwaysOnTop(true);
 
 		}
 			break;
@@ -274,8 +261,7 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener,
 	public void notificarComprarReloj(ComprarRelojEvent e) {
 		switch (e.getComprarRelojType()) {
 		case "Comprar": {
-			JOptionPane optionPane = new JOptionPane(
-					"Quieres comprar este paquete de relojes?",
+			JOptionPane optionPane = new JOptionPane("Quieres comprar este paquete de relojes?",
 					JOptionPane.WARNING_MESSAGE);
 			optionPane.setOptionType(JOptionPane.YES_NO_OPTION);
 			JDialog dialog = optionPane.createDialog("Compra relojes");
@@ -283,7 +269,8 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener,
 			dialog.setVisible(true);
 			if ((int) optionPane.getValue() == JOptionPane.YES_OPTION) {
 				Logger.getLogger("log").info("success");
-				new SA_Usuario().comprarRelojes(gestor, (Jugador)modelo.getUsuario(), false, e.getInfo().getNumReloj());
+				new SA_Usuario().comprarRelojes(gestor, (Jugador) modelo.getUsuario(), false,
+						e.getInfo().getNumReloj());
 			} else
 				Logger.getLogger("log").info("fail");
 		}
@@ -294,10 +281,9 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener,
 			dialog.setPreferredSize(new Dimension(400, 300));
 			dialog.setAlwaysOnTop(true);
 			dialog.setVisible(true);
-			new SA_Usuario().comprarRelojes(gestor, (Jugador)modelo.getUsuario(), false, 1);
+			new SA_Usuario().comprarRelojes(gestor, (Jugador) modelo.getUsuario(), false, 1);
 		}
 			break;
-
 		}
 
 	}
@@ -323,31 +309,33 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener,
 				devolver[i][2] = lista.get(i).getFecha().toString();
 			}
 			ListaReportadosUI listaReportados = new ListaReportadosUI(devolver);
-			JDialog reportados=new JDialog();
+			JDialog reportados = new JDialog();
 			reportados.setSize(600, 508);
 			reportados.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			reportados.setContentPane(listaReportados);
 			reportados.setVisible(true);
 			reportados.setAlwaysOnTop(true);
-		}break;
+		}
+			break;
 		case "Mensajes": {
 		}
 			break;
-		case "GuionesPropuestos":{
-				ArrayList<InfoGuion>lista=(new SA_GameMastering()).sacarGuiones(gestor);
-				String [][] devolver=new String[lista.size()][2];
-				for(int i=0;i<lista.size();i++){
-					devolver[i][0]=lista.get(i).getCreador();
-					devolver[i][1]=lista.get(i).getTitulo();
-				}
-				JDialog propuestos=new JDialog(ventana, "Guiones Propuestos", ModalityType.DOCUMENT_MODAL);
-				ListaPropuestosUI listaPropuestos=new ListaPropuestosUI(devolver);
-				propuestos.setSize(600, 508);
-				propuestos.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-				propuestos.setContentPane(listaPropuestos);
-				propuestos.setVisible(true);
-				propuestos.setAlwaysOnTop(true);
-			}break;
+		case "GuionesPropuestos": {
+			ArrayList<InfoGuion> lista = (new SA_GameMastering()).sacarGuiones(gestor);
+			String[][] devolver = new String[lista.size()][2];
+			for (int i = 0; i < lista.size(); i++) {
+				devolver[i][0] = lista.get(i).getCreador();
+				devolver[i][1] = lista.get(i).getTitulo();
+			}
+			JDialog propuestos = new JDialog(ventana, "Guiones Propuestos", ModalityType.DOCUMENT_MODAL);
+			ListaPropuestosUI listaPropuestos = new ListaPropuestosUI(devolver);
+			propuestos.setSize(600, 508);
+			propuestos.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			propuestos.setContentPane(listaPropuestos);
+			propuestos.setVisible(true);
+			propuestos.setAlwaysOnTop(true);
+		}
+			break;
 		}
 	}
 

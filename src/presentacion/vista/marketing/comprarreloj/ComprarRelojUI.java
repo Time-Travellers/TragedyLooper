@@ -10,7 +10,6 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -19,7 +18,6 @@ import presentacion.controlador.comprarreloj.ComprarRelojEvent.ComprarRelojType;
 import presentacion.controlador.comprarreloj.ComprarRelojListenable;
 import presentacion.controlador.comprarreloj.ComprarRelojListener;
 import presentacion.modelo.marketing.InfoReloj;
-import presentacion.modelo.usuario.Jugador;
 
 public class ComprarRelojUI extends JPanel implements ComprarRelojListenable{
 	
@@ -31,7 +29,7 @@ public class ComprarRelojUI extends JPanel implements ComprarRelojListenable{
 	private JButton cancelar;
 	private ArrayList<ComprarRelojListener> listeners;
 	
-	public ComprarRelojUI(boolean a, ArrayList<InfoReloj> paquetes){
+	public ComprarRelojUI(boolean a, ArrayList<InfoReloj> paquetes, JDialog jc){
 
 		JPanel container = new JPanel();
 		container.setLayout(new BoxLayout(container,BoxLayout.Y_AXIS));
@@ -93,7 +91,9 @@ public class ComprarRelojUI extends JPanel implements ComprarRelojListenable{
 		//boton cancelar
 		cancelar = new JButton("Cancelar");
 		cancelar.setBackground(new Color(250,50,50));
-		cancelar.addActionListener((e)->dispose());
+		cancelar.addActionListener((e)->{
+			jc.dispose();
+		});
 		cancelar.setAlignmentX(RIGHT_ALIGNMENT);
 		
 		JPanel south = new JPanel();
@@ -106,9 +106,6 @@ public class ComprarRelojUI extends JPanel implements ComprarRelojListenable{
 		container.setPreferredSize(new Dimension(600, 350));
 		this.add(container);
 		
-		this.setAlwaysOnTop(true);
-		this.pack();
-		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 	//	this.getContentPane().setBackground(new Color(150,150,150));
 		this.setVisible(true);
 	}

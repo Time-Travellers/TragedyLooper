@@ -3,6 +3,7 @@ package launcher;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.SwingUtilities;
 
@@ -29,7 +30,7 @@ public class Main {
 		double altura=Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 		
 		Dimension vDim = new Dimension ((int)anchura/2-1, (int) altura/2-1);
-		System.out.println(vDim.getWidth()+" "+vDim.getHeight());
+		Logger.getLogger("log").info("Dimensiones: Ancho - " + vDim.getWidth() + ", Alto - "+vDim.getHeight());
 		
 		FrameUI v1 = new FrameUI("Tragedy Looper 1", vDim, 0, 0);
 		FrameUI v2 = new FrameUI("Tragedy Looper 2", vDim, (int) anchura/2, 0);
