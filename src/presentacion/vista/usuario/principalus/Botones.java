@@ -71,7 +71,7 @@ public class Botones extends JPanel {
 	private void addButton(String title, String fileName, String toolTipText,
 			ActionListener listener) {
 		JButton button = new JButton(title);
-		button.setIcon(new ImageIcon("src/resources/" + fileName));
+		button.setIcon( new ImageIcon(getClass().getClassLoader().getResource("resources/"+fileName)));
 		button.setPreferredSize(new Dimension (60,60));
 		button.addActionListener(listener);
 		button.setVisible(true);

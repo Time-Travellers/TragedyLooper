@@ -37,7 +37,7 @@ public class ListaPropuestosUI extends JPanel implements PrinciAdministradorList
 
 	private void initialize() {
 		setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
-		actualizar=new JButton(new ImageIcon("src/resources/" + Actualizar));
+		actualizar=new JButton(new ImageIcon(getClass().getClassLoader().getResource("resources/"+ Actualizar)));
 		add(actualizar);
 		tabla = new JTable(datos, COL_NAMES);
 		tabla.setVisible(true);

@@ -58,9 +58,9 @@ public class SugerenciaGuion extends JPanel{
 		this.subtrama=new PanelSeleccionSubtrama();
 		this.dias=new PanelDias();
 		this.personajes=new PanelPersonajes();
-		this.aceptar=new JButton(new ImageIcon("src/resources/" + TICK));
+		this.aceptar=new JButton(new ImageIcon(getClass().getClassLoader().getResource("resources/" + TICK)));
 		aceptar.addActionListener((e)->this.gListener.recibirGuion());
-		this.cancelar=new JButton(new ImageIcon("src/resources/" + SALIR));
+		this.cancelar=new JButton(new ImageIcon(getClass().getClassLoader().getResource("resources/" + SALIR)));
 		cancelar.addActionListener((e)->this.gListener.salir());
 		nivel1.add(titulo);
 		nivel1.add(bucles);

@@ -75,7 +75,7 @@ public class InicioAdminUI extends JPanel implements PrinciAdministradorListenab
 		nombre.setFont(new Font("",20,40));
 		
 		JButton volver = new JButton();
-		volver.setIcon(new ImageIcon("src/resources/exit.png"));
+		volver.setIcon(new ImageIcon(getClass().getClassLoader().getResource("resources/exit.png")));
 		volver.setPreferredSize(new Dimension (50,50));
 		volver.addActionListener((e)-> notificar(new PrinciAdministradorEvent(PrinciAdministradorType.Salir)));
 		volver.setVisible(true);
@@ -89,7 +89,7 @@ public class InicioAdminUI extends JPanel implements PrinciAdministradorListenab
 		this.add(Box.createRigidArea(new Dimension(0,20)));
 		
 		this.add(new PanelGrande("Mensajes:", 
-				new ImageIcon("src/resources/message.png"),
+				new ImageIcon(getClass().getClassLoader().getResource("resources/message.png")),
 				report, new ActionListener(){
 					public void actionPerformed(ActionEvent arg0) {
 						notificar(new PrinciAdministradorEvent(PrinciAdministradorType.Mensajes));						
@@ -97,15 +97,16 @@ public class InicioAdminUI extends JPanel implements PrinciAdministradorListenab
 		}));
 		this.add(Box.createRigidArea(new Dimension(0,10)));
 		this.add(new PanelGrande("Usuarios reportados:", 
-				new ImageIcon("src/resources/reportar.png"),
+				new ImageIcon(getClass().getClassLoader().getResource("resources/reportar.png")),
 				numMensajes, new ActionListener(){
 					public void actionPerformed(ActionEvent arg0) {
 						notificar(new PrinciAdministradorEvent(PrinciAdministradorType.Reportados));						
 					}
 		}));
 		this.add(Box.createRigidArea(new Dimension(0,10)));
+		//TODO CAMBIAR ICON
 		this.add(new PanelGrande("Guiones propuestos:", 
-				new ImageIcon("src/resources/exit-iloveimg-resized.png"),
+				new ImageIcon(getClass().getClassLoader().getResource("resources/reportar.png")),
 				propuestos, new ActionListener(){
 					public void actionPerformed(ActionEvent arg0) {
 						notificar(new PrinciAdministradorEvent(PrinciAdministradorType.GuionesPropuestos));						

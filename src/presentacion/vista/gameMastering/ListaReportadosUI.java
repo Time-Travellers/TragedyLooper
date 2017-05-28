@@ -33,7 +33,7 @@ public class ListaReportadosUI extends JPanel {
 
 	private void initialize() {
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
-		this.actualizar=new JButton(new ImageIcon("src/resources/"+ Actualizar));
+		this.actualizar=new JButton(new ImageIcon(getClass().getClassLoader().getResource("resources/"+ Actualizar)));
 		this.add(actualizar);
 		table = new JTable(datos, COL_NAMES);
 		table.setVisible(true);

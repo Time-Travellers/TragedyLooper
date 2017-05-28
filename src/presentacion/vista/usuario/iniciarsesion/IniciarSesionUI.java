@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -87,7 +88,7 @@ public class IniciarSesionUI extends JPanel implements IniSesionListenable {
 		cuadroEntradaConTitulo.add(Box.createRigidArea(new Dimension(0, 50)));
 		cuadroEntradaConTitulo.add(cuadroEntrada);
 		
-		ImageIcon icon = new ImageIcon("src\\resources\\mainart.png");
+		ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/mainart.png"));
 		JLabel imagen = new JLabel();
 		imagen.setIcon(icon);
 		
