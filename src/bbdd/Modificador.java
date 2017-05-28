@@ -3,9 +3,14 @@ package bbdd;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 import presentacion.modelo.gameMastering.Reporte;
+import presentacion.modelo.juego.Incidente;
 import presentacion.modelo.juego.InfoGuion;
+import presentacion.modelo.juego.InfoPersonaje;
+import presentacion.modelo.juego.InfoGuion.Subtrama;
+import presentacion.modelo.juego.InfoGuion.Trama;
 import presentacion.modelo.usuario.Administrador;
 import presentacion.modelo.usuario.Datos;
 import presentacion.modelo.usuario.Jugador;
@@ -22,6 +27,12 @@ public class Modificador {
 		HashMap<String, Usuario> usuarios = new HashMap<String, Usuario>();
 		usuarios.put("admin1", new Administrador("admin1", "admin1", true, "Administrador 1", 100, Paises.China, "admin1@gmail.com"));
 	    new IO<Usuario>("usuarios.ser").almacenar(usuarios);
+		
+		//HashMap<String, InfoGuion> guiones = new IO<InfoGuion>("guiones.ser").leer();
+		//InfoGuion guion = new InfoGuion(null, "Fin de la bruja dorada", null, null, 8, 2, null, null);
+		//guion.setNivel(5);
+		//guiones.put(guion.getTitulo(), guion);
+		//new IO<InfoGuion>("guiones.ser").almacenar(guiones);
 	}
 	
 }

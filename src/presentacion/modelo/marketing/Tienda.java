@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class Tienda {
 	
-	public static final int NIVEL = 4;
+	public static final int NIVEL = 8;
 	public static final int NUMANUNCIOS = 3;
 	public static final ArrayList<InfoReloj> PAQUETESRELOJ =
 			new ArrayList<InfoReloj>(Arrays.asList(

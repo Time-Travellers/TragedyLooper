@@ -37,9 +37,8 @@ public class IniciarSesionUI extends JPanel implements IniSesionListenable {
 	private JButton crearCuenta;
 	private ArrayList<IniSesionListener> listeners;
 
-	public IniciarSesionUI(GUIController ctrl) {
+	public IniciarSesionUI() {
 		listeners = new ArrayList<IniSesionListener>();
-		addIniSesionListener(ctrl);
 		initGUI();
 	}
 

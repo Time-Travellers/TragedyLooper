@@ -57,17 +57,14 @@ public class GUIController
 	
 	private JFrame ventana;
 	private GUIModelo modelo;
-	private static Gestor gestor;
+	private Gestor gestor;
 	private TipoVentana tipo;
 
-	public GUIController(JFrame ventana) {
+	public GUIController(JFrame ventana, Gestor gestor) {
 		this.ventana = ventana;
+		this.gestor = gestor;
 		this.modelo = new GUIModelo();
 		this.tipo = TipoVentana.IniSesion;
-	}
-
-	public static void setGestor(Gestor g) {
-		GUIController.gestor = g;
 	}
 
 	public void closeGestor() {
@@ -145,9 +142,10 @@ public class GUIController
 		}
 			break;
 		case "comprarNivel": {
-			if (e.getJugador().getNivel() != Tienda.NIVEL) {
+			Jugador jugador = (Jugador) modelo.getUsuario();
+			if (jugador.getNivel() != Tienda.NIVEL) {
 				Tienda tienda = new SA_Marketing().iniciarTienda(gestor);
-				InfoNivel nivel = tienda.getPaquetesNivel().get(e.getJugador().getNivel());
+				InfoNivel nivel = tienda.getPaquetesNivel().get(jugador.getNivel());
 				JDialog dCompra = new JDialog(ventana, "Compra nivel", ModalityType.DOCUMENT_MODAL);
 
 				ComprarNivelUI compraNivel = new ComprarNivelUI(nivel);
@@ -155,7 +153,7 @@ public class GUIController
 
 					@Override
 					public void confirmar() {
-						if (e.getJugador().comprarNivel(nivel))
+						if (new SA_Marketing().comprarNivel(gestor, jugador, nivel))
 							JOptionPane.showConfirmDialog(null, "Compra con exito!", "Compra nivel",
 									JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_OPTION);
 						else
@@ -217,7 +215,8 @@ public class GUIController
 			break;
 
 		case "miPerfil": {
-			PerfilUsuario content = new PerfilUsuario(e.getJugador());
+			Jugador jugador = (Jugador) modelo.getUsuario();
+			PerfilUsuario content = new PerfilUsuario(jugador);
 			ventana.getContentPane().removeAll();
 			ventana.add(content);
 			content.updateUI();
@@ -284,7 +283,7 @@ public class GUIController
 			dialog.setVisible(true);
 			if ((int) optionPane.getValue() == JOptionPane.YES_OPTION) {
 				Logger.getLogger("log").info("success");
-				new SA_Usuario().comprarRelojes(gestor, (Jugador) modelo.getUsuario(), false,
+				new SA_Marketing().comprarRelojes(gestor, (Jugador) modelo.getUsuario(), false,
 						e.getInfo().getNumReloj());
 			} else
 				Logger.getLogger("log").info("fail");
@@ -296,7 +295,7 @@ public class GUIController
 			dialog.setPreferredSize(new Dimension(400, 300));
 			dialog.setAlwaysOnTop(true);
 			dialog.setVisible(true);
-			new SA_Usuario().comprarRelojes(gestor, (Jugador) modelo.getUsuario(), false, 1);
+			new SA_Marketing().comprarRelojes(gestor, (Jugador) modelo.getUsuario(), false, 1);
 		}
 			break;
 		}

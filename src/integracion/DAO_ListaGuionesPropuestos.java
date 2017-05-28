@@ -14,7 +14,7 @@ public class DAO_ListaGuionesPropuestos extends DAO_Lista<HashMap<String,InfoGui
 	
 	@Override
 	public HashMap<String, InfoGuion> leer() {
-		Logger.getLogger("log").info("Acceso a BBDD de reportados para leer objeto");
+		Logger.getLogger("log").info("Acceso a BBDD de guiones propuestos para leer objeto");
 		return gestor.guiones_propuestos;
 	}
 }

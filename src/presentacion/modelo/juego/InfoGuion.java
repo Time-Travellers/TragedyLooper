@@ -14,7 +14,6 @@ public class InfoGuion implements Serializable{
 		La_bruja_dorada, Un_rumor_inquietante, Amor_prohibido
 	}
 	
-	private String creador;
 	private static final long serialVersionUID = -2153228995875423399L;
 	private String titulo;
 	private Trama trama;
@@ -24,11 +23,12 @@ public class InfoGuion implements Serializable{
 	private List<InfoPersonaje> cartaPersonajes = new ArrayList<InfoPersonaje>();
 	private List<Incidente> incidentes;
 	private int nivel;
+	private String creador;
 	
 
 	public InfoGuion(String creador, String titulo, Trama trama, Subtrama subtrama,
 			int numLoops, int numDias, List<InfoPersonaje> cartaPersonajes,
-			List<Incidente> incidentes/*, String creador*/) {
+			List<Incidente> incidentes) {
 		this.creador=creador;
 		this.titulo = titulo;
 		this.trama = trama;

@@ -36,8 +36,4 @@ public class DAO_Guiones extends DAO< InfoGuion >{
 		gestor.guiones.remove(id);		
 		Logger.getLogger("log").info("Acceso a BBDD de guiones para actualizar objeto");
 	}
-	
-	public ArrayList<InfoGuion> leerGuiones(){
-		return new ArrayList<InfoGuion>(gestor.guiones.values());
-	}
 }

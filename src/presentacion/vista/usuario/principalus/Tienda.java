@@ -36,11 +36,11 @@ public class Tienda extends JPanel{
 
       relojes = new PanelBotInfoIcono(jugador.getReloj(), "Relojes: ", null, (e)->{
 				for (int i = 0; i < listeners.size(); ++i)
-					listeners.get(i).notificarPrinciUsuario(new PrinciUsuarioEvent(PrinciUsuarioType.comprarRelojes,jugador));
+					listeners.get(i).notificarPrinciUsuario(new PrinciUsuarioEvent(PrinciUsuarioType.comprarRelojes));
 		});
       nivel = new PanelBotInfoIcono(jugador.getNivel(), "Nivel: ", null,(e)->{
 				for (int i = 0; i < listeners.size(); ++i)
-					listeners.get(i).notificarPrinciUsuario(new PrinciUsuarioEvent(PrinciUsuarioType.comprarNivel,jugador));
+					listeners.get(i).notificarPrinciUsuario(new PrinciUsuarioEvent(PrinciUsuarioType.comprarNivel));
 		});
 //	  this.numrelojes=new Relojes(r, new ActionListener(){
 //		@Override

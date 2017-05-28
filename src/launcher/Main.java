@@ -13,7 +13,7 @@ import presentacion.vista.FrameUI;
 import presentacion.vista.usuario.iniciarsesion.IniciarSesionUI;
 
 public class Main {
-
+	
 	public static void main(String[] args) {
 		Log.setupLogging(Level.INFO);
 		Gestor gestor = new Gestor();
@@ -31,30 +31,23 @@ public class Main {
 		Dimension vDim = new Dimension ((int)anchura/2-1, (int) altura/2-1);
 		Logger.getLogger("log").info("Dimensiones: Ancho - " + vDim.getWidth() + ", Alto - "+vDim.getHeight());
 		
-		FrameUI v1 = new FrameUI("Tragedy Looper 1", vDim, 0, 0);
-		FrameUI v2 = new FrameUI("Tragedy Looper 2", vDim, (int) anchura/2, 0);
-		FrameUI v3 = new FrameUI("Tragedy Looper 3", vDim, 0, (int) altura/2);
-		FrameUI v4 = new FrameUI("Tragedy Looper 4", vDim, (int) anchura/2, (int) altura/2);
+		final int[] posAncho = new int[]{0, (int) (anchura/2), 0, (int) (anchura/2)};
+		final int[] posAlto = new int[] {0, 0, (int) (altura/2), (int) (altura/2)};
 		
-		//Iniciar controllers
-		GUIController.setGestor(gestor);
-		v1.setCtrl(new GUIController(v1));
-		v2.setCtrl(new GUIController(v2));
-		v3.setCtrl(new GUIController(v3));
-		v4.setCtrl(new GUIController(v4));
-	
+		for(int i = 0; i < 4; ++i) {
+			FrameUI v = new FrameUI("Tragedy Looper " + (i + 1), vDim, posAncho[i], posAlto[i]);
+			GUIController ctrl = new GUIController(v, gestor);
+			v.setCtrl(ctrl);
+			SwingUtilities.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					IniciarSesionUI ini = new IniciarSesionUI();
+					ini.addIniSesionListener(ctrl);
+					v.add(ini);
+					v.setVisible(true);
+				}
+			});
+		}	
 		
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				v1.add(new IniciarSesionUI(v1.getCtrl()));
-				v2.add(new IniciarSesionUI(v2.getCtrl()));
-				v3.add(new IniciarSesionUI(v3.getCtrl()));
-				v4.add(new IniciarSesionUI(v4.getCtrl()));
-				
-				v1.setVisible(true);v2.setVisible(true);v3.setVisible(true);v4.setVisible(true);
-			}
-		});
-	}
-	
+	}	
 }

@@ -27,7 +27,7 @@ public class Jugador extends Usuario {
     	this.password = password;
     	this.admin = admin;
     	this.datos = new Datos(nombre, edad, pais, correo);
-    	this.nivel = 0;
+    	this.nivel = 1;
     	this.reloj = 0;
     	this.anuncios = Tienda.NUMANUNCIOS;
     	this.penalizacion = null;
@@ -97,15 +97,6 @@ public class Jugador extends Usuario {
 	}
 
 	public void ComenzarPartida() {
-    }
-
-    public boolean comprarNivel(InfoNivel nivel) {
-    	if(reloj >= nivel.getPrecio()){
-    		++this.nivel;
-    		reloj-=nivel.getPrecio();
-    		return true;
-    	}
-    	else return false;
     }
 
     public void jugarPartida() {

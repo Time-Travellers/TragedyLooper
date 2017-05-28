@@ -11,22 +11,12 @@ public class PrinciUsuarioEvent {
 	}
 	
 	private PrinciUsuarioType tipo;
-	private Jugador jugador;
 	
 	public PrinciUsuarioEvent(PrinciUsuarioType t){
 		tipo = t;
-	}
-	public PrinciUsuarioEvent(PrinciUsuarioType t, Jugador j){
-		tipo = t;
-		jugador = j;
 	}
 	
 	public String getPrinciUsuarioType(){
 		return tipo.toString();
 	}
-	
-	public Jugador getJugador(){
-		return jugador;
-	}
-	
 }
