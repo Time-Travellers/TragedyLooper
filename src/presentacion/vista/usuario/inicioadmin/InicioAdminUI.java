@@ -1,11 +1,19 @@
 package presentacion.vista.usuario.inicioadmin;
 
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -42,9 +50,25 @@ public class InicioAdminUI extends JPanel implements PrinciAdministradorListenab
 			listeners.get(i).notificarPrinciAdministradorListener(e);
 	}
 	
+//	@Override
+//	  protected void paintComponent(Graphics g) {
+//
+//	    super.paintComponent(g);
+//		Image img = null;
+//		try {
+//			img = ImageIO.read(getClass().getResource("/resources/fondo.png"));
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	
+//	        g.drawImage(img, 200, 200, null);
+//	}
+//	
 	public InicioAdminUI(String name, int numMensajes, int propuestos, int report, GUIController controller){
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		this.setPreferredSize(new Dimension(800,600));
+		listeners = new ArrayList<PrinciAdministradorListener>();
 		addPrinciAdministradorListener(controller);
 		
 		JPanel north = new JPanel();
@@ -54,7 +78,7 @@ public class InicioAdminUI extends JPanel implements PrinciAdministradorListenab
 		nombre.setFont(new Font("",20,40));
 		
 		JButton volver = new JButton();
-		volver.setIcon(new ImageIcon("src/resources/exit-iloveimg-resized.png"));
+		volver.setIcon(new ImageIcon("src/resources/exit.png"));
 		volver.setPreferredSize(new Dimension (50,50));
 		volver.addActionListener((e)-> notificar(new PrinciAdministradorEvent(PrinciAdministradorType.Salir)));
 		volver.setVisible(true);
@@ -90,15 +114,18 @@ public class InicioAdminUI extends JPanel implements PrinciAdministradorListenab
 						notificar(new PrinciAdministradorEvent(PrinciAdministradorType.GuionesPropuestos));						
 					}
 		}));
-		
+		setOpaque(false);
 		this.setBorder(new EmptyBorder(20,30,20,30));
 	}
 	
-	public static void main(String args[]){
+	public static void main(String args[]) throws IOException{
 		JFrame ventana=new JFrame("prueba");
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ventana.setSize(800,600);
-		ventana.setContentPane(new InicioAdminUI("peter", 10 ,1 ,5,null));
+		ventana.setSize(800,650);
+		BufferedImage img = ImageIO.read(InicioAdminUI.class.getResource("/resources/fondo.png"));
+		ventana.setContentPane(new JLabel(new ImageIcon(img)));
+		ventana.setLayout(new FlowLayout());
+		ventana.add(new InicioAdminUI("peter", 10 ,1 ,5,new GUIController(null,null,null)));
 		ventana.setVisible(true);
 	}
 
