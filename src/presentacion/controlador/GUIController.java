@@ -76,7 +76,7 @@ public class GUIController
 					ventana.add(content);
 					content.updateUI();
 				} else {
-					PrincipalUsuarioUI content = new PrincipalUsuarioUI((Jugador) usuario, this);
+					PrincipalUsuarioUI content = new PrincipalUsuarioUI((Jugador) usuario);
 					content.addPrinciUsuarioListener(this);
 					ventana.add(content);
 					content.updateUI();
