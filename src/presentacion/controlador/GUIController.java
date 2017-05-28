@@ -341,19 +341,21 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener,
 		case "Mensajes": {
 		}
 			break;
-		case "GuionesPropuestos": {
-			ArrayList<InfoGuion> lista = new SA_GameMastering().sacarGuiones(gestor);
-			String[][] devolver = new String[lista.size()][2];
-			for (int i = 0; i < lista.size(); i++) {
-				devolver[i][0] = lista.get(i).getCreador();
-				devolver[i][1] = lista.get(i).getTitulo();
-			}
-			ListaPropuestosUI listaPropuestos = new ListaPropuestosUI(devolver);
-			ventana.getContentPane().removeAll();
-			ventana.add(listaPropuestos);
-			listaPropuestos.updateUI();
-		}
-			break;
+		case "GuionesPropuestos":{
+				ArrayList<InfoGuion>lista=(new SA_GameMastering()).sacarGuiones(gestor);
+				String [][] devolver=new String[lista.size()][2];
+				for(int i=0;i<lista.size();i++){
+					devolver[i][0]=lista.get(i).getCreador();
+					devolver[i][1]=lista.get(i).getTitulo();
+				}
+				JDialog propuestos=new JDialog(ventana, "Guiones Propuestos", ModalityType.DOCUMENT_MODAL);
+				ListaPropuestosUI listaPropuestos=new ListaPropuestosUI(devolver);
+				propuestos.setSize(600, 508);
+				propuestos.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				propuestos.setContentPane(listaPropuestos);
+				propuestos.setVisible(true);
+				propuestos.setAlwaysOnTop(true);
+			}break;
 		}
 	}
 
