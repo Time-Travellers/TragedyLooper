@@ -103,9 +103,13 @@ public class IniciarSesionUI extends JPanel implements IniSesionListenable {
 		iniciarSesion.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				char[] pass = passwIn.getPassword();
+				String sPass = "";
+				for(char a : pass)
+					sPass = sPass + a;
 				for (int i = 0; i < listeners.size(); ++i)
 					listeners.get(i).notificarIniSesion(new IniSesionEvent(
-							IniSesionType.IniciarSesion, userIn.getText(), passwIn.getPassword().toString()));
+							IniSesionType.IniciarSesion, userIn.getText(), sPass));
 			}
 		});
 		
