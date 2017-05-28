@@ -4,6 +4,7 @@ import bbdd.Gestor;
 
 public abstract class DAO < T >{
 	
+	
 	protected Gestor gestor;
 	
 	public DAO(Gestor g) {

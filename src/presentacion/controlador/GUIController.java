@@ -23,6 +23,7 @@ import presentacion.controlador.inicioadmin.PrinciAdministradorListener;
 import presentacion.controlador.principalus.PrinciUsuarioEvent;
 import presentacion.controlador.principalus.PrinciUsuarioListener;
 import presentacion.modelo.GUIModelo;
+import presentacion.modelo.gameMastering.Mensaje;
 import presentacion.modelo.gameMastering.Reporte;
 import presentacion.modelo.juego.InfoGuion;
 import presentacion.modelo.marketing.InfoNivel;
@@ -30,6 +31,7 @@ import presentacion.modelo.marketing.InfoReloj;
 import presentacion.modelo.marketing.Tienda;
 import presentacion.modelo.usuario.Jugador;
 import presentacion.modelo.usuario.Usuario;
+import presentacion.vista.gameMastering.ListaPropuestosUI;
 import presentacion.vista.gameMastering.ListaReportadosUI;
 import presentacion.vista.marketing.comprarnivel.ComprarNivelUI;
 import presentacion.vista.marketing.comprarnivel.ComprarNivelUI.ComprarNivelUIListener;
@@ -300,11 +302,9 @@ public class GUIController
 			ArrayList<Reporte> lista = (new SA_GameMastering().sacarReportados(gestor));
 			String[][] devolver = new String[lista.size()][3];
 			for (int i = 0; i < lista.size(); i++) {
-				// Se podria usar el patron adaptador y no pasar directamente a
-				// String.
-				devolver[i][0] = lista.get(i).getReportador();
-				devolver[i][1] = lista.get(i).getReportado();
-				devolver[i][2] = lista.get(i).getFecha();
+				devolver[i][0] = lista.get(i).getReportador().getId();
+				devolver[i][1] = lista.get(i).getReportado().getId();
+				devolver[i][2] = lista.get(i).getFecha().toString();
 			}
 			ListaReportadosUI listaReportados = new ListaReportadosUI(devolver);
 			ventana.getContentPane().removeAll();
@@ -312,11 +312,18 @@ public class GUIController
 			listaReportados.updateUI();
 		}
 			break;
-		case "Mensajes":{
-			
-		}break;
+		case "Mensajes":{}break;
 		case "GuionesPropuestos":{
-			
+			ArrayList<InfoGuion>lista=new SA_GameMastering().sacarGuiones(gestor);
+			String [][] devolver=new String[lista.size()][2];
+			for(int i=0;i<lista.size();i++){
+				devolver[i][0]=lista.get(i).getCreador();
+				devolver[i][1]=lista.get(i).getTitulo();
+			}
+			ListaPropuestosUI listaPropuestos=new ListaPropuestosUI(devolver);
+			ventana.getContentPane().removeAll();
+			ventana.add(listaPropuestos);
+			listaPropuestos.updateUI();
 		}break;
 		}
 	}

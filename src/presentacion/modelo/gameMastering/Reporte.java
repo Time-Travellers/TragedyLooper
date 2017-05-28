@@ -20,16 +20,16 @@ public class Reporte {
 		return reportador.getId() + reportado.getId() + fecha.toString();
 	}
 
-	public String getReportador(){
-		return reportador.getId();
+	public Usuario getReportador(){
+		return reportador;
 	}
 	
-	public String getReportado(){
-		return reportado.getId();
+	public Usuario getReportado(){
+		return reportado;
 	}
 	
 	@SuppressWarnings("deprecation")
-	public String getFecha(){
-		return fecha.toString();
+	public Date getFecha(){
+		return fecha;
 	}
 }
