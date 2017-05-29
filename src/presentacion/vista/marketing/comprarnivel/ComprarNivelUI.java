@@ -45,7 +45,7 @@ public class ComprarNivelUI extends JPanel {
 		this.setBorder(BorderFactory.createLineBorder(Color.black));
 		
 		//titulo
-		JLabel title = new JLabel("Quieres comprar el siguiente nivel por " + nivelSiguiente.getPrecio() + " relojes?");
+		JLabel title = new JLabel("¿Quieres comprar el siguiente nivel por " + nivelSiguiente.getPrecio() + " relojes?");
 		title.setFont(new Font("",20,20));
 		title.setAlignmentX(CENTER_ALIGNMENT);
 		

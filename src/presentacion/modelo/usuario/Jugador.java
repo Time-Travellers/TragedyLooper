@@ -27,8 +27,9 @@ public class Jugador extends Usuario {
     	this.password = password;
     	this.admin = admin;
     	this.datos = new Datos(nombre, edad, pais, correo);
-    	this.nivel = 1;
+    	this.nivel = 0;
     	this.reloj = 0;
+    	this.anuncios = 3;
     	this.anuncios = Tienda.NUMANUNCIOS;
     	this.penalizacion = null;
     	this.partidas = new ArrayList<JugadorPartida>();

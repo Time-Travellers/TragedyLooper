@@ -48,6 +48,7 @@ public class ComprarRelojUI extends JPanel implements ComprarRelojListenable{
 		verAnuncio.addActionListener((e)->{
 				for (int i = 0; i < listeners.size(); ++i)
 					listeners.get(i).notificarComprarReloj(new ComprarRelojEvent(ComprarRelojType.VerAnuncio));
+				jc.dispose();
 		});
 		
 		if(a){
@@ -77,9 +78,9 @@ public class ComprarRelojUI extends JPanel implements ComprarRelojListenable{
 			button.setAlignmentX(CENTER_ALIGNMENT);
 			button.setBackground(color);
 			button.addActionListener((e)->{
-
 				for (int j = 0; j < listeners.size(); ++j)
 					listeners.get(j).notificarComprarReloj(new ComprarRelojEvent(ComprarRelojType.Comprar,info));
+				jc.dispose();
 			});
 			botones.add(button);
 			container.add(button);

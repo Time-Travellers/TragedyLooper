@@ -77,18 +77,9 @@ public class GUIController
 			Usuario usuario = new SA_Usuario().iniciarSesion(gestor, e.getUsuario(), e.getContrasena());
 			if (usuario != null) {
 				modelo.setUsuario(usuario);
-				ventana.getContentPane().removeAll();
 				if (usuario.isAdmin()) {
-					InicioAdminUI content = new InicioAdminUI(usuario.getId(), 1, 2, 3);
-					content.addPrinciAdministradorListener(this);
-					ventana.add(content);
-					content.updateUI();
 					tipo = TipoVentana.PrinAdmin;
 				} else {
-					PrincipalUsuarioUI content = new PrincipalUsuarioUI((Jugador) usuario);
-					content.addPrinciUsuarioListener(this);
-					ventana.add(content);
-					content.updateUI();
 					tipo = TipoVentana.PrinUsuario;
 				}
 
@@ -120,11 +111,11 @@ public class GUIController
 				}
 
 			});
-			fRegistro.setSize(600, 508);
+			fRegistro.setSize(600, 600);
 			fRegistro.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			fRegistro.setContentPane(registro);
+			fRegistro.pack();
 			fRegistro.setVisible(true);
-			fRegistro.setAlwaysOnTop(true);
 		}
 		reiniciarGUI();
 	}
@@ -133,11 +124,7 @@ public class GUIController
 	public void notificarPrinciUsuario(PrinciUsuarioEvent e) {
 		switch (e.getPrinciUsuarioType()) {
 		case "Salir": {
-			// vuelve a IniciarSesionUI
-			IniciarSesionUI content = new IniciarSesionUI(this);
-			ventana.getContentPane().removeAll();
-			ventana.add(content);
-			content.updateUI();
+			tipo = TipoVentana.IniSesion;
 
 		}
 			break;
@@ -145,7 +132,7 @@ public class GUIController
 			Jugador jugador = (Jugador) modelo.getUsuario();
 			if (jugador.getNivel() != Tienda.NIVEL) {
 				Tienda tienda = new SA_Marketing().iniciarTienda(gestor);
-				InfoNivel nivel = tienda.getPaquetesNivel().get(jugador.getNivel());
+				InfoNivel nivel = tienda.getPaquetesNivel().get(jugador.getNivel() + 1);
 				JDialog dCompra = new JDialog(ventana, "Compra nivel", ModalityType.DOCUMENT_MODAL);
 
 				ComprarNivelUI compraNivel = new ComprarNivelUI(nivel);
@@ -154,12 +141,12 @@ public class GUIController
 					@Override
 					public void confirmar() {
 						if (new SA_Marketing().comprarNivel(gestor, jugador, nivel))
-							JOptionPane.showConfirmDialog(null, "Compra con exito!", "Compra nivel",
-									JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_OPTION);
+							JOptionPane.showMessageDialog(null, "¡Compra realizada con exito!", "Compra nivel",
+									JOptionPane.INFORMATION_MESSAGE);
 						else
-							JOptionPane.showConfirmDialog(null, "No tienes suficientes relojes", "Compra nivel",
-									JOptionPane.ERROR_MESSAGE, JOptionPane.OK_OPTION);
-
+							JOptionPane.showMessageDialog(null, "No tienes suficientes relojes", "Compra nivel",
+									JOptionPane.ERROR_MESSAGE);
+						dCompra.dispose();
 					}
 
 					@Override
@@ -169,14 +156,14 @@ public class GUIController
 
 				});
 
-				dCompra.setSize(800, 600);
+				dCompra.setPreferredSize(new Dimension(600, 400));
 				dCompra.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 				dCompra.setContentPane(compraNivel);
+				dCompra.pack();
 				dCompra.setVisible(true);
-				dCompra.setAlwaysOnTop(true);
 			} else {
-				JOptionPane.showConfirmDialog(null, "Lo sentimos, no hay mas niveles disponibles", "Compra nivel",
-						JOptionPane.ERROR_MESSAGE, JOptionPane.OK_OPTION);
+				JOptionPane.showMessageDialog(null, "Lo sentimos, no hay mas niveles disponibles", "Compra nivel",
+						JOptionPane.ERROR_MESSAGE);
 			}
 		}
 			break;
@@ -208,9 +195,8 @@ public class GUIController
 			dGuion.setSize(800, 600);
 			dGuion.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dGuion.setContentPane(proponerGuion);
+			dGuion.pack();
 			dGuion.setVisible(true);
-			dGuion.setAlwaysOnTop(true);
-
 		}
 			break;
 
@@ -250,14 +236,14 @@ public class GUIController
 
 		case "comprarRelojes": {
 			JDialog jc = new JDialog(ventana, "Tienda de relojes", ModalityType.DOCUMENT_MODAL);
-			ComprarRelojUI a = new ComprarRelojUI(true, Tienda.PAQUETESRELOJ, jc);
+			Jugador jugador = (Jugador) modelo.getUsuario();
+			ComprarRelojUI a = new ComprarRelojUI(jugador.getAnuncios() > 0, Tienda.PAQUETESRELOJ, jc);
 			a.addComprarRelojListener(this);
-			jc.setSize(800, 600);
+			jc.setSize(600, 600);
 			jc.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			jc.setContentPane(a);
+			jc.pack();
 			jc.setVisible(true);
-			jc.setAlwaysOnTop(true);
-
 		}
 			break;
 
@@ -282,20 +268,20 @@ public class GUIController
 			dialog.setAlwaysOnTop(true);
 			dialog.setVisible(true);
 			if ((int) optionPane.getValue() == JOptionPane.YES_OPTION) {
-				Logger.getLogger("log").info("success");
+				Logger.getLogger("log").info("Relojes comprados");
 				new SA_Marketing().comprarRelojes(gestor, (Jugador) modelo.getUsuario(), false,
 						e.getInfo().getNumReloj());
 			} else
-				Logger.getLogger("log").info("fail");
+				Logger.getLogger("log").info("Error al comprar relojes");
 		}
 			break;
 		case "VerAnuncio": {
 			JDialog dialog = new JDialog();
 			dialog.setTitle("Anuncio");
 			dialog.setPreferredSize(new Dimension(400, 300));
-			dialog.setAlwaysOnTop(true);
+			dialog.pack();
 			dialog.setVisible(true);
-			new SA_Marketing().comprarRelojes(gestor, (Jugador) modelo.getUsuario(), false, 1);
+			new SA_Marketing().comprarRelojes(gestor, (Jugador) modelo.getUsuario(), true, 1);
 		}
 			break;
 		}
@@ -307,11 +293,7 @@ public class GUIController
 		switch (e.getPrinciAdministradorType()) {
 		case "Salir": {
 			// vuelve a IniciarSesionUI
-			IniciarSesionUI content = new IniciarSesionUI(this);
-			ventana.getContentPane().removeAll();
-			ventana.add(content);
-			content.updateUI();
-
+			tipo = TipoVentana.IniSesion;
 		}
 			break;
 		case "Reportados": {
@@ -327,8 +309,8 @@ public class GUIController
 			reportados.setSize(600, 508);
 			reportados.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			reportados.setContentPane(listaReportados);
+			reportados.pack();
 			reportados.setVisible(true);
-			reportados.setAlwaysOnTop(true);
 		}
 			break;
 		case "Mensajes": {
@@ -346,8 +328,8 @@ public class GUIController
 			propuestos.setSize(600, 508);
 			propuestos.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			propuestos.setContentPane(listaPropuestos);
+			propuestos.pack();
 			propuestos.setVisible(true);
-			propuestos.setAlwaysOnTop(true);
 		}
 			break;
 		}
@@ -359,7 +341,7 @@ public class GUIController
 		ventana.getContentPane().removeAll();
 		switch(tipo) {
 		case IniSesion:
-			IniciarSesionUI iniSesion = new IniciarSesionUI(this);
+			IniciarSesionUI iniSesion = new IniciarSesionUI();
 			iniSesion.addIniSesionListener(this);
 			ventana.add(iniSesion);
 			iniSesion.updateUI();
