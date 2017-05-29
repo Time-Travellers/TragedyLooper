@@ -57,7 +57,7 @@ public class IniciarSesionUI extends JPanel implements IniSesionListenable {
 		JPanel pw =  new JPanel();
 		pw.setLayout(new FlowLayout(FlowLayout.CENTER));
 		passwIn = new JPasswordField(15);
-		pw.add(new JLabel("Contraseï¿½a"));
+		pw.add(new JLabel("Contraseña"));
 		pw.add(passwIn);
 		pw.setPreferredSize(new Dimension(300, 50));
 		pw.setMaximumSize(usuario.getPreferredSize());

@@ -29,8 +29,8 @@ public class Modificador {
 	    //new IO<Usuario>("usuarios.ser").almacenar(usuarios);
 		
 		HashMap<String, InfoGuion> guiones = new IO<InfoGuion>("guiones.ser").leer();
-		InfoGuion guion = new InfoGuion(null, "Cuando las cigarras lloran", null, null, 8, 2, null, null);
-		guion.setNivel(0);
+		InfoGuion guion = new InfoGuion(null, "Festival del algodon", null, null, 8, 2, null, null);
+		guion.setNivel(2);
 		guiones.put(guion.getTitulo(), guion);
 		new IO<InfoGuion>("guiones.ser").almacenar(guiones);
 	}

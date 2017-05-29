@@ -7,6 +7,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -15,17 +16,21 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
+import presentacion.controlador.perfil.PerfilListenable;
+import presentacion.controlador.perfil.PerfilListener;
 import presentacion.modelo.usuario.Jugador;
 import presentacion.modelo.usuario.Paises;
 
-public class PerfilUsuario extends JPanel {
+public class PerfilUsuario extends JPanel implements PerfilListenable {
 	
 	private static final long serialVersionUID = 6979329339992124305L;
 	
 	TablaTOPPartidas tabla;
 	BotonesPerfil botones;
+	ArrayList<PerfilListener> list;
 
 	public PerfilUsuario(Jugador jugador){
+		this.list = new ArrayList<PerfilListener>();
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		JPanel panelSup = new JPanel();
 		JLabel username = new JLabel(jugador.getId());
@@ -56,5 +61,10 @@ public class PerfilUsuario extends JPanel {
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.setContentPane(new PerfilUsuario(new Jugador("blue","asdf", false, "cris", 12, Paises.Alemania, "kk")));
 		ventana.setVisible(true);
+	}
+
+	@Override
+	public void addPerfilListener(PerfilListener listener) {
+		list.add(listener);
 	}
 }

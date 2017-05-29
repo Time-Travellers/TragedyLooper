@@ -22,9 +22,9 @@ import javax.swing.border.EmptyBorder;
 
 import presentacion.controlador.GUIController;
 import presentacion.controlador.inicioadmin.PrinciAdministradorEvent;
-import presentacion.controlador.inicioadmin.PrinciAdministradorEvent.PrinciAdministradorType;
 import presentacion.controlador.inicioadmin.PrinciAdministradorListenable;
 import presentacion.controlador.inicioadmin.PrinciAdministradorListener;
+import presentacion.controlador.inicioadmin.PrinciAdministradorEvent.PrinciAdministradorType;
 
 /**
  * Pantalla de inicio de administrador

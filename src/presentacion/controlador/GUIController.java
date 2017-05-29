@@ -22,6 +22,8 @@ import presentacion.controlador.iniciarsesion.IniSesionEvent;
 import presentacion.controlador.iniciarsesion.IniSesionListener;
 import presentacion.controlador.inicioadmin.PrinciAdministradorEvent;
 import presentacion.controlador.inicioadmin.PrinciAdministradorListener;
+import presentacion.controlador.perfil.PerfilEvent;
+import presentacion.controlador.perfil.PerfilListener;
 import presentacion.controlador.principalus.PrinciUsuarioEvent;
 import presentacion.controlador.principalus.PrinciUsuarioListener;
 import presentacion.modelo.GUIModelo;
@@ -49,10 +51,11 @@ import presentacion.vista.usuario.registro.RegistroUI;
 import presentacion.vista.usuario.registro.RegistroUI.RegistroUIListener;
 
 public class GUIController
-		implements IniSesionListener, PrinciUsuarioListener, PrinciAdministradorListener, ComprarRelojListener {
+		implements IniSesionListener, PrinciUsuarioListener,
+		PrinciAdministradorListener, ComprarRelojListener, PerfilListener {
 
 	private enum TipoVentana{
-		IniSesion, PrinUsuario, PrinAdmin
+		IniSesion, PrinUsuario, PrinAdmin, Perfil
 	}
 	
 	private JFrame ventana;
@@ -201,12 +204,7 @@ public class GUIController
 			break;
 
 		case "miPerfil": {
-			Jugador jugador = (Jugador) modelo.getUsuario();
-			PerfilUsuario content = new PerfilUsuario(jugador);
-			ventana.getContentPane().removeAll();
-			ventana.add(content);
-			content.updateUI();
-
+			tipo = TipoVentana.Perfil;
 		}
 			break;
 
@@ -358,7 +356,20 @@ public class GUIController
 			ventana.add(prinAdmin);
 			prinAdmin.updateUI();
 			break;
+		case Perfil:
+			PerfilUsuario perfil = new PerfilUsuario((Jugador)modelo.getUsuario());
+			perfil.addPerfilListener(this);
+			ventana.getContentPane().removeAll();
+			ventana.add(perfil);
+			perfil.updateUI();
+
+			break;
 		}
+	}
+
+	@Override
+	public void notificarPerfilListener(PerfilEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 
