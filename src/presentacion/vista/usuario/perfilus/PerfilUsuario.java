@@ -5,18 +5,24 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
+import presentacion.controlador.perfil.PerfilEvent;
+import presentacion.controlador.perfil.PerfilEvent.PerfilType;
 import presentacion.controlador.perfil.PerfilListenable;
 import presentacion.controlador.perfil.PerfilListener;
 import presentacion.modelo.usuario.Jugador;
@@ -62,11 +68,27 @@ public class PerfilUsuario extends JPanel implements PerfilListenable {
 		info.add(username);
 		info.add(datos);
 		
+		JButton atras = new JButton();
+		atras.setIcon(new ImageIcon(getClass().getResource("/resources/exit.png")));
+		atras.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				notificarListeners(new PerfilEvent(PerfilType.Salir));
+			}
+			
+		});
+		
 		panelSup.add(photo);
 		panelSup.add(info); 
 		panelSup.setAlignmentY(CENTER_ALIGNMENT);
 		panelSup.setPreferredSize(new Dimension(800, 200));
 		panelSup.setBorder(BorderFactory.createLineBorder(Color.black));
+		panelSup.add(Box.createRigidArea(new Dimension(5,0)));
+		panelSup.add(atras);
+		panelSup.add(Box.createRigidArea(new Dimension(5,0)));
+		
+		
 		
 		//tabla de las partidas mejores
 		this.tabla=new TablaTOPPartidas();
@@ -100,5 +122,11 @@ public class PerfilUsuario extends JPanel implements PerfilListenable {
 	@Override
 	public void addPerfilListener(PerfilListener listener) {
 		list.add(listener);
+	}
+	
+	public void notificarListeners(PerfilEvent e) {
+		for(PerfilListener l : list) {
+			l.notificarPerfilListener(e);
+		}
 	}
 }

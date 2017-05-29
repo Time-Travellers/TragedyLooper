@@ -1,18 +1,17 @@
 package presentacion.controlador.perfil;
 
 public class PerfilEvent {
-	public enum PrinciAdministradorType{
-		Salir, Reportados, Mensajes, GuionesPropuestos,
-		ActualizarPropuestos, ActualizarReportados, AtrasPropuestos, AtrasReportados
+	public enum PerfilType{
+		Salir, CambiarPass, CambiarDatos
 	}
 	
-	PrinciAdministradorType tipo;
+	PerfilType tipo;
 	
-	public PerfilEvent(PrinciAdministradorType t){
+	public PerfilEvent(PerfilType t){
 		tipo = t;
 	}
 	
-	public String getPrinciAdministradorType(){
+	public String getPerfilType(){
 		return tipo.toString();
 	}
 }

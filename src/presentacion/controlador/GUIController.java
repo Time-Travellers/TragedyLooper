@@ -335,6 +335,23 @@ public class GUIController
 
 	}
 	
+	@Override
+	public void notificarPerfilListener(PerfilEvent e) {
+		switch(e.getPerfilType()) {
+		case "Salir":{
+			tipo = TipoVentana.PrinUsuario;
+		}
+			break;
+		case "CambiarPass":
+			break;
+		case "CambiarDatos":{
+			
+		}
+			break;
+		}
+		reiniciarGUI();
+	}
+	
 	public void reiniciarGUI() {
 		ventana.getContentPane().removeAll();
 		switch(tipo) {
@@ -366,11 +383,4 @@ public class GUIController
 			break;
 		}
 	}
-
-	@Override
-	public void notificarPerfilListener(PerfilEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
