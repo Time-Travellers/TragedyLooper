@@ -41,6 +41,7 @@ public class TablaPartidas extends JPanel {
 		this.setBorder(BorderFactory.createTitledBorder(
 				borde, "Partidas en curso:",
 				TitledBorder.LEFT, TitledBorder.TOP));
+		table.getTableHeader().setReorderingAllowed(false);
 	}
 	
 	public void eraseData() {

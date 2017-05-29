@@ -35,6 +35,7 @@ public class TablaTOPPartidas extends JPanel {
 		this.setBorder(BorderFactory.createTitledBorder(
 				borde, "Mejores partidas:",
 				TitledBorder.LEFT, TitledBorder.TOP));
+		table.getTableHeader().setReorderingAllowed(false);
 	}
 
 	public void eraseData() {

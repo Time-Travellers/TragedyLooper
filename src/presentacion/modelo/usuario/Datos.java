@@ -64,8 +64,8 @@ public class Datos implements Serializable{
 	
 	public String toString(){
 		StringBuilder datos = new StringBuilder();
-		datos.append("Nombre: " + nombre+'\n');
-		datos.append("Edad: " + edad+'\n');
+		datos.append("Nombre: " + nombre+"\n");
+		datos.append("Edad: " + edad+'\n');	
 		datos.append("Pais: "+pais+'\n');
 		datos.append("Correo: "+correo+'\n');
 		return datos.toString();

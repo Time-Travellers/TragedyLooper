@@ -5,16 +5,17 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
+import javax.swing.JTextArea;
+import javax.swing.border.EmptyBorder;
 
 import presentacion.controlador.perfil.PerfilListenable;
 import presentacion.controlador.perfil.PerfilListener;
@@ -32,32 +33,65 @@ public class PerfilUsuario extends JPanel implements PerfilListenable {
 	public PerfilUsuario(Jugador jugador){
 		this.list = new ArrayList<PerfilListener>();
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+		this.setAlignmentX(CENTER_ALIGNMENT);
+
+		this.setBorder(BorderFactory.createLineBorder(Color.black));
+		
+		//panel superior para la informacion del usuario
 		JPanel panelSup = new JPanel();
+		panelSup.setLayout(new BoxLayout(panelSup,BoxLayout.X_AXIS));
+		
+		JLabel photo = new JLabel();
+		photo.setIcon(new ImageIcon(getClass().getResource("/resources/spy.png")));
+		
+		JPanel info = new JPanel();
+		info.setLayout(new BoxLayout(info,BoxLayout.Y_AXIS));
+		
 		JLabel username = new JLabel(jugador.getId());
 		username.setBorder(BorderFactory.createLineBorder(Color.black));
-		JLabel datos = new JLabel(jugador.verDatos());
-		datos.setBorder(BorderFactory.createLineBorder(Color.black));
-		datos.setSize(800, 200);
 		username.setFont(new Font("", 30, 30));
-		datos.setFont(new Font("", 20,20));
+		username.setPreferredSize(new Dimension(800,50));
 		
-		panelSup.add(username);
-		panelSup.add(datos); 
-	//	panelSup.setBounds(0, 0, 800, 300);
-		panelSup.setAlignmentY(Component.LEFT_ALIGNMENT);
-		panelSup.setMaximumSize(new Dimension(800, 800));
+		JTextArea datos = new JTextArea(jugador.verDatos());
+		datos.setBorder(BorderFactory.createLineBorder(Color.black));
+		datos.setOpaque(false);
+		datos.setPreferredSize(new Dimension(800, 150));
+		datos.setFont(new Font("", 20,20));
+		datos.setEditable(false);
+		
+		info.add(username);
+		info.add(datos);
+		
+		panelSup.add(photo);
+		panelSup.add(info); 
+		panelSup.setAlignmentY(CENTER_ALIGNMENT);
+		panelSup.setPreferredSize(new Dimension(800, 200));
 		panelSup.setBorder(BorderFactory.createLineBorder(Color.black));
+		
+		//tabla de las partidas mejores
 		this.tabla=new TablaTOPPartidas();
+
+		tabla.setAlignmentY(CENTER_ALIGNMENT);
+		
+		//botones de la parte inferior
 		botones =new BotonesPerfil();
+
+		botones.setAlignmentY(CENTER_ALIGNMENT);
+		
 		this.add(panelSup);
 		this.add(tabla);
 		this.add(botones);
-		this.setAlignmentY(Component.LEFT_ALIGNMENT);
+
+	//	this.setBorder(new EmptyBorder(20, 20, 20, 20));
+		this.setPreferredSize(new Dimension(800,800));
+		this.setVisible(true);
+		
 	}
 
 	public static void main(String args[]){
 		JFrame ventana=new JFrame("Tragedy Looper");
 		ventana.setSize(800,800);
+		ventana.setLayout(new FlowLayout());
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.setContentPane(new PerfilUsuario(new Jugador("blue","asdf", false, "cris", 12, Paises.Alemania, "kk")));
 		ventana.setVisible(true);
