@@ -53,14 +53,6 @@ public class Datos implements Serializable{
 	public void setEdad(int edad) {
 		this.edad = edad;
 	}
-
-	public void Actualizar() {
-		// begin of modifiable
-		// zone(JavaCode)......C/5fcb4eab-78bb-4973-9e36-0d002beaf914
-
-		// end of modifiable
-		// zone(JavaCode)........E/5fcb4eab-78bb-4973-9e36-0d002beaf914
-	}
 	
 	public String toString(){
 		StringBuilder datos = new StringBuilder();
