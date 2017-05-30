@@ -108,35 +108,4 @@ public class ComprarNivelUI extends JPanel {
 		
 		
 	}
-	
-	
-	
-	public static void main(String[] args){
-		InfoNivel nivel = new InfoNivel(3,50,new ArrayList<String>(Arrays.asList("guion1","guion2")));
-		ComprarNivelUI ui = new ComprarNivelUI(nivel);
-		Jugador jugador = new Jugador("Prueba", "Prueba", false, "Prueba", 0, null, "Prueba");
-		JDialog dialog = new JDialog(null, "Prueba", ModalityType.DOCUMENT_MODAL);
-		ui.setNivelListener(new ComprarNivelUIListener(){
-
-			@Override
-			public void confirmar() {
-				if(jugador.comprarNivel(nivel))
-					JOptionPane.showConfirmDialog(null, "Compra con exito!","Compra nivel", JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_OPTION);
-				else 
-					JOptionPane.showConfirmDialog(null, "No tienes suficientes relojes","Compra nivel", JOptionPane.ERROR_MESSAGE, JOptionPane.OK_OPTION);
-			}
-
-			@Override
-			public void salir() {
-				dialog.dispose();
-			}
-			
-		});
-		dialog.setSize(700,400);
-
-		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		dialog.setContentPane(ui);
-		dialog.setVisible(true);
-		dialog.setAlwaysOnTop(true);
-	}
 }
