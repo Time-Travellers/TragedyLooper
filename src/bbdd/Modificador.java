@@ -11,6 +11,7 @@ public class Modificador {
 	static File file2 = new File("src/resources/guiones_propuestos.ser");
 	
 	public static void main(String ... args) throws IOException {
+		
 		//file1.createNewFile();
 		//HashMap<String, Usuario> usuarios = new HashMap<String, Usuario>();
 		//usuarios.put("admin1", new Administrador("admin1", "admin1", true, "Administrador 1", 100, Paises.China, "admin1@gmail.com"));
