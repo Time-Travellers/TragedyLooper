@@ -7,10 +7,10 @@ public class InfoPersonaje implements Serializable{
 	private static final long serialVersionUID = -7695189197594925678L;
 
 	public enum Personaje {
-		enfermera, policia, estudiante, monje, empresario
+		Enfermera, Policia, Estudiante, Monje, Empresario
 	}
 	public enum Rol {
-		asesino, conspirador, personaClave, amigo, amante
+		Asesino, Conspirador, PersonaClave, Amigo, Amante, Bruja
 	}
 	public Personaje nombre;
 	public Rol rol;

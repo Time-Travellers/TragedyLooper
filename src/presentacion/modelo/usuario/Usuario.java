@@ -46,15 +46,8 @@ public abstract class Usuario implements Serializable{
 		this.datos = datos;
 	}
 
-	public boolean modificarDatos() {
-    	
-    }
-
     public String verDatos() {
     	return datos.toString();
-    }
-
-    public Usuario buscarUsuario() {
     }
 
 }

@@ -28,7 +28,6 @@ public class Reporte {
 		return reportado;
 	}
 	
-	@SuppressWarnings("deprecation")
 	public Date getFecha(){
 		return fecha;
 	}
