@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import presentacion.modelo.usuario.Jugador;
+
 public class InfoGuion implements Serializable{
 	
 	public enum Trama{
@@ -23,10 +25,10 @@ public class InfoGuion implements Serializable{
 	private List<InfoPersonaje> cartaPersonajes = new ArrayList<InfoPersonaje>();
 	private List<Incidente> incidentes;
 	private int nivel;
-	private String creador;
+	private Jugador creador;
 	
 
-	public InfoGuion(String creador, String titulo, Trama trama, Subtrama subtrama,
+	public InfoGuion(Jugador creador, String titulo, Trama trama, Subtrama subtrama,
 			int numLoops, int numDias, List<InfoPersonaje> cartaPersonajes,
 			List<Incidente> incidentes) {
 		this.creador=creador;
@@ -41,9 +43,9 @@ public class InfoGuion implements Serializable{
 	}
 
 	
-	  public String getCreador(){
-	  return this.creador;
-	 }
+	public Jugador getCreador(){
+		return this.creador;
+	}
 	
 	public String getTitulo() {
 		return titulo;

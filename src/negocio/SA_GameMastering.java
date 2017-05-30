@@ -10,7 +10,7 @@ import presentacion.modelo.gameMastering.Reporte;
 import presentacion.modelo.juego.InfoGuion;
 import bbdd.Gestor;
 
-public class SA_GameMastering implements SA {
+public class SA_GameMastering{
 
 	public ArrayList<Reporte> sacarReportados(Gestor g){
 		HashMap<String,Reporte> r=new DAO_ListaReportados(g).leer();

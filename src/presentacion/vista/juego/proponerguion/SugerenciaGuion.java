@@ -1,4 +1,4 @@
-package presentacion.vista.usuario.proponerguion;
+package presentacion.vista.juego.proponerguion;
 
 import java.util.ArrayList;
 
@@ -14,6 +14,7 @@ import presentacion.modelo.juego.InfoGuion;
 import presentacion.modelo.juego.InfoGuion.Subtrama;
 import presentacion.modelo.juego.InfoGuion.Trama;
 import presentacion.modelo.juego.InfoPersonaje;
+import presentacion.modelo.usuario.Jugador;
 
 
 public class SugerenciaGuion extends JPanel{
@@ -36,7 +37,7 @@ public class SugerenciaGuion extends JPanel{
 	public interface GuionListener{
 		public void recibirGuion();
 		public void salir();
-		public String idRegistrado();
+		public Jugador idRegistrado();
 	}
 	
 	public void setGListener(GuionListener listener){
@@ -109,10 +110,5 @@ public class SugerenciaGuion extends JPanel{
 	public ArrayList<InfoPersonaje> getPersonajes() {
 		return personajes.getInfoPersonajes();
 	}
-
-
 	
-
-	
-
 }

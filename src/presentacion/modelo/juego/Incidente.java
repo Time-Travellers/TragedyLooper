@@ -1,12 +1,15 @@
 package presentacion.modelo.juego;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import presentacion.modelo.juego.InfoPersonaje.Personaje;
 
-public class Incidente {
+public class Incidente implements Serializable{
 	
+	private static final long serialVersionUID = -2666501810498361144L;
+
 	public enum EnumIncidentes {
 		No_Incidentes, Asesinato, Hospital, Suicidio, Desaparicion
 	}

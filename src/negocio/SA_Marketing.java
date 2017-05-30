@@ -12,7 +12,7 @@ import presentacion.modelo.marketing.Tienda;
 import presentacion.modelo.usuario.Jugador;
 import bbdd.Gestor;
 
-public class SA_Marketing implements SA {
+public class SA_Marketing{
 	
 	public Tienda iniciarTienda(Gestor gestor) {
 		ArrayList<InfoNivel> list = new ArrayList<InfoNivel>();
