@@ -17,7 +17,7 @@ public class Regulador extends JPanel{
 	private ArrayList<ReguladorListener> Observadores;
 	
 	public Regulador(String nombre,int n){
-		this.selector=new JSpinner(new SpinnerNumberModel(3,1,n,1));
+		this.selector=new JSpinner(new SpinnerNumberModel(1,1,n,1));
 		this.Observadores=new ArrayList<ReguladorListener>();
 		selector.addChangeListener(new ChangeListener(){
 			@Override
