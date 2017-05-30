@@ -8,9 +8,6 @@ import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-
 import bbdd.Gestor;
 import negocio.SA_Juego;
 import negocio.SA_Marketing;

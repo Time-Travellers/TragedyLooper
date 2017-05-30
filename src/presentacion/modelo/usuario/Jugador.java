@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 import presentacion.modelo.juego.JugadorPartida;
-import presentacion.modelo.juego.Partida;
 import presentacion.modelo.marketing.InfoNivel;
 import presentacion.modelo.marketing.Tienda;
 import presentacion.modelo.usuario.Paises;

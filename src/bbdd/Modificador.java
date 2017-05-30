@@ -3,19 +3,7 @@ package bbdd;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
-
-import presentacion.modelo.gameMastering.Reporte;
-import presentacion.modelo.juego.Incidente;
 import presentacion.modelo.juego.InfoGuion;
-import presentacion.modelo.juego.InfoPersonaje;
-import presentacion.modelo.juego.InfoGuion.Subtrama;
-import presentacion.modelo.juego.InfoGuion.Trama;
-import presentacion.modelo.usuario.Administrador;
-import presentacion.modelo.usuario.Datos;
-import presentacion.modelo.usuario.Jugador;
-import presentacion.modelo.usuario.Paises;
-import presentacion.modelo.usuario.Usuario;
 
 public class Modificador {
 	
