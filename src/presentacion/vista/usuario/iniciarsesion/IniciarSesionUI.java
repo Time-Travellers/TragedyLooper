@@ -131,8 +131,7 @@ public class IniciarSesionUI extends JPanel implements IniSesionListenable {
 	
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
-		GUIController.setGestor(new Gestor());
-		IniciarSesionUI ui = new IniciarSesionUI(new GUIController(frame));
+		IniciarSesionUI ui = new IniciarSesionUI();
 		
 		frame.add(ui);
 		frame.setSize(new Dimension(1024, 768));

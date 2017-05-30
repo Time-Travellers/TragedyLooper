@@ -4,14 +4,13 @@ import java.util.HashMap;
 
 import presentacion.modelo.gameMastering.Reporte;
 import presentacion.modelo.juego.InfoGuion;
-import presentacion.modelo.juego.Partida;
 import presentacion.modelo.usuario.Jugador;
 import presentacion.modelo.usuario.Usuario;
 
 public class Gestor {
     public HashMap<String, Usuario> usuarios = new HashMap<String, Usuario>();
 
-    public HashMap<String, Partida> partidas = new HashMap<String, Partida> ();
+   // public HashMap<String, Partida> partidas = new HashMap<String, Partida> ();
 
     public HashMap<String, Jugador> listaEspera = new HashMap<String, Jugador> ();
 

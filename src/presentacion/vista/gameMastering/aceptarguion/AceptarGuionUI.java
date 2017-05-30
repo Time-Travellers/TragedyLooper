@@ -1,4 +1,4 @@
-package presentacion.vista.gameMastering;
+package presentacion.vista.gameMastering.aceptarguion;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -26,6 +26,7 @@ import presentacion.modelo.juego.InfoPersonaje;
 import presentacion.modelo.juego.InfoPersonaje.Personaje;
 import presentacion.modelo.juego.InfoPersonaje.Rol;
 import presentacion.modelo.marketing.Tienda;
+import presentacion.modelo.usuario.Jugador;
 
 public class AceptarGuionUI extends JPanel{
 
@@ -43,14 +44,14 @@ public class AceptarGuionUI extends JPanel{
 //		this.listener = listener;
 //	}
 	
-	public AceptarGuionUI(InfoGuion guion, String nombre){
+	public AceptarGuionUI(InfoGuion guion){
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		this.setPreferredSize(new Dimension(800,600));
 
 		
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		  
-		JLabel title = new JLabel("Guion propuesto por " + nombre);
+		JLabel title = new JLabel("Guion propuesto por " + guion.getCreador().getId());
 		title.setFont(new Font("",0,30));
 		title.setAlignmentX(CENTER_ALIGNMENT);
 		title.setMaximumSize(new Dimension(800,100));
@@ -115,10 +116,11 @@ public class AceptarGuionUI extends JPanel{
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.setLayout(new FlowLayout());
 		ventana.setSize(800,600);
-		InfoGuion guion = new InfoGuion("title", Trama.Luz_del_vengador, Subtrama.Amor_prohibido,
-				3,5, new ArrayList<InfoPersonaje>(Arrays.asList(new InfoPersonaje(Personaje.empresario,Rol.amante))),
-						new ArrayList<Incidente>(Arrays.asList( new Incidente(EnumIncidentes.Asesinato, Personaje.empresario))));
-		ventana.setContentPane(new AceptarGuionUI(guion, "Pepe"));
+		InfoGuion guion = new InfoGuion( new Jugador("Prueba", "Prueba", false, "Prueba", 0, null, "Prueba"),
+				"title", Trama.Luz_del_vengador, Subtrama.Amor_prohibido,
+				3,5, new ArrayList<InfoPersonaje>(Arrays.asList(new InfoPersonaje(Personaje.Empresario,Rol.Amante))),
+						new ArrayList<Incidente>(Arrays.asList( new Incidente(EnumIncidentes.Asesinato, Personaje.Empresario))));
+		ventana.setContentPane(new AceptarGuionUI(guion));
 		ventana.setVisible(true);
 	}
 

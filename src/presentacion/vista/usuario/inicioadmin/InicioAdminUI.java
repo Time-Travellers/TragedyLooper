@@ -104,7 +104,7 @@ public class InicioAdminUI extends JPanel implements PrinciAdministradorListenab
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.setSize(800,650);
 		
-		ventana.add(new InicioAdminUI("peter", 10 ,1 ,5,new GUIController(null,null,null)));
+		ventana.add(new InicioAdminUI("peter", 10 ,1 ,5));
 		ventana.setVisible(true);
 	}
 

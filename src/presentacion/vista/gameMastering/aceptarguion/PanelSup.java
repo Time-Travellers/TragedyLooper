@@ -1,4 +1,4 @@
-package presentacion.vista.gameMastering;
+package presentacion.vista.gameMastering.aceptarguion;
 
 import java.awt.Color;
 import java.awt.Dimension;

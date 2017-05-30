@@ -30,8 +30,8 @@ import presentacion.modelo.marketing.InfoNivel;
 import presentacion.modelo.marketing.Tienda;
 import presentacion.modelo.usuario.Jugador;
 import presentacion.modelo.usuario.Usuario;
-import presentacion.vista.gameMastering.ListaPropuestosUI;
 import presentacion.vista.gameMastering.ListaReportadosUI;
+import presentacion.vista.gameMastering.aceptarguion.ListaPropuestosUI;
 import presentacion.vista.juego.proponerguion.SugerenciaGuion;
 import presentacion.vista.juego.proponerguion.SugerenciaGuion.GuionListener;
 import presentacion.vista.marketing.comprarnivel.ComprarNivelUI;
@@ -218,10 +218,11 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 			break;
 
 		case "BuscarUsuario": {
-			BuscadorUI content = new BuscadorUI(new BuscadorUIListener() {
+			JDialog dBuscar = new JDialog(ventana, "Buscador", ModalityType.DOCUMENT_MODAL);
+			BuscadorUI buscador = new BuscadorUI(new BuscadorUIListener() {
 				@Override
 				public void buscarPulsado(String usuario) {
-					// TODO Auto-generated method stub
+					
 				}
 
 				@Override
@@ -234,10 +235,12 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 					// TODO Auto-generated method stub
 				}
 			});
-			JFrame Buscador = new JFrame();
-			Buscador.setSize(250, 350);
-			Buscador.setVisible(true);
-			Buscador.setContentPane(content);
+
+			dBuscar.setSize(800, 600);
+			dBuscar.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dBuscar.setContentPane(buscador);
+			dBuscar.pack();
+			dBuscar.setVisible(true);
 		}
 			break;
 
@@ -353,7 +356,6 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 			break;
 		case "CambiarPass": {
 			JDialog jc = new JDialog(ventana, "Cambiar contraseña", ModalityType.DOCUMENT_MODAL);
-			Jugador jugador = (Jugador) modelo.getUsuario();
 			CambiarPassUI a = new CambiarPassUI();
 			a.setListener(new CambiarPassUIListener() {
 				@Override

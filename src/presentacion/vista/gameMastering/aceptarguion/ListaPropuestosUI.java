@@ -1,4 +1,4 @@
-package presentacion.vista.gameMastering;
+package presentacion.vista.gameMastering.aceptarguion;
 
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;

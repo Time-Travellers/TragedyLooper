@@ -78,7 +78,7 @@ public class PrincipalUsuarioUI extends JPanel implements PrinciUsuarioListenabl
 		JFrame ventana=new JFrame("Tragedy Looper");
 		ventana.setSize(1024, 768);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		GUIController controller = new GUIController(ventana,null,new Gestor());
+		GUIController controller = new GUIController(ventana,null);
 		ventana.setContentPane(new PrincipalUsuarioUI(new Jugador("Prueba", "Prueba", false, "Prueba", 0, null, "Prueba")));
 		ventana.setVisible(true);
 	}

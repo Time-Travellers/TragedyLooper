@@ -17,9 +17,9 @@ public class Jugador extends Usuario {
     private int anuncios;
     private Date penalizacion;
     private List<JugadorPartida> partidas;
-    private Estadistica estadistica;
+  //  private Estadistica estadistica;
     private List<Jugador> amigos;
-    private Rating rating;
+   // private Rating rating;
     
     public Jugador(String id, String password, boolean admin, String nombre, int edad, Paises pais, String correo) {
     	this.id = id;
@@ -32,9 +32,9 @@ public class Jugador extends Usuario {
     	this.anuncios = Tienda.NUMANUNCIOS;
     	this.penalizacion = null;
     	this.partidas = new ArrayList<JugadorPartida>();
-    	this.estadistica = null;
+  //  	this.estadistica = null;
     	this.amigos = new ArrayList<Jugador>();
-    	this.rating = null;
+    //	this.rating = null;
     }
 
     public void anyadirAmigo(Jugador jugador) {
@@ -72,13 +72,13 @@ public class Jugador extends Usuario {
 		this.partidas = partidas;
 	}
 
-	public Estadistica getEstadistica() {
-		return estadistica;
-	}
-
-	public void setEstadistica(Estadistica estadistica) {
-		this.estadistica = estadistica;
-	}
+//	public Estadistica getEstadistica() {
+//		return estadistica;
+//	}
+//
+//	public void setEstadistica(Estadistica estadistica) {
+//		this.estadistica = estadistica;
+//	}
 
 	public List<Jugador> getAmigos() {
 		return amigos;
@@ -88,13 +88,13 @@ public class Jugador extends Usuario {
 		this.amigos = amigos;
 	}
 
-	public Rating getRating() {
-		return rating;
-	}
-
-	public void setRating(Rating rating) {
-		this.rating = rating;
-	}
+//	public Rating getRating() {
+//		return rating;
+//	}
+//
+//	public void setRating(Rating rating) {
+//		this.rating = rating;
+//	}
 
 	public void ComenzarPartida() {
     }
@@ -114,29 +114,24 @@ public class Jugador extends Usuario {
     public void contactarAdmin() {
     }
 
-    public boolean eliminarAmigo(Jugador amigo) {
-//begin of modifiable zone(JavaCode)......C/704d5a71-0451-4992-a423-9570c81035d3
+//    public boolean eliminarAmigo(Jugador amigo) {
+////begin of modifiable zone(JavaCode)......C/704d5a71-0451-4992-a423-9570c81035d3
+//
+////end of modifiable zone(JavaCode)........E/704d5a71-0451-4992-a423-9570c81035d3
+////begin of modifiable zone(JavaReturned)..C/704d5a71-0451-4992-a423-9570c81035d3
+//
+////end of modifiable zone(JavaReturned)....E/704d5a71-0451-4992-a423-9570c81035d3
+//    }
+//
+//    public String verPerfil() {
+////begin of modifiable zone(JavaCode)......C/1c454b01-00b8-44d4-9937-6348870e478e
+//
+////end of modifiable zone(JavaCode)........E/1c454b01-00b8-44d4-9937-6348870e478e
+////begin of modifiable zone(JavaReturned)..C/1c454b01-00b8-44d4-9937-6348870e478e
+//
+////end of modifiable zone(JavaReturned)....E/1c454b01-00b8-44d4-9937-6348870e478e
+//    }
 
-//end of modifiable zone(JavaCode)........E/704d5a71-0451-4992-a423-9570c81035d3
-//begin of modifiable zone(JavaReturned)..C/704d5a71-0451-4992-a423-9570c81035d3
-
-//end of modifiable zone(JavaReturned)....E/704d5a71-0451-4992-a423-9570c81035d3
-    }
-
-    public String verPerfil() {
-//begin of modifiable zone(JavaCode)......C/1c454b01-00b8-44d4-9937-6348870e478e
-
-//end of modifiable zone(JavaCode)........E/1c454b01-00b8-44d4-9937-6348870e478e
-//begin of modifiable zone(JavaReturned)..C/1c454b01-00b8-44d4-9937-6348870e478e
-
-//end of modifiable zone(JavaReturned)....E/1c454b01-00b8-44d4-9937-6348870e478e
-    }
-
-    public void actualizar(Partida partida) {
-//begin of modifiable zone(JavaCode)......C/b2d1642e-1404-426b-87c1-af40a83e8292
-
-//end of modifiable zone(JavaCode)........E/b2d1642e-1404-426b-87c1-af40a83e8292
-    }
     
     public int getAnuncios() {
 		return anuncios;

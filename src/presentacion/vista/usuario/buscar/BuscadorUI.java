@@ -40,12 +40,12 @@ public class BuscadorUI extends JPanel {
 		this.nombre = new JTextField(20);
 		panelAux.add(this.nombre);
 		this.botonBuscar = new JButton("Buscar");
-		this.botonBuscar.addActionListener((e) -> bl.buscarPulsado(this.getUsuarioABuscar()));
-		this.botonBuscar.addActionListener((e) -> {
-			String s = this.getUsuarioABuscar();
-			this.setResultado(s);
-			habilitarBotones(true);
-		}); //Quitar
+		this.botonBuscar.addActionListener((e) -> bl.buscarPulsado(nombre.getText()));
+//		this.botonBuscar.addActionListener((e) -> {
+//			String s = nombre.getText();
+//			this.setResultado(s);
+//			habilitarBotones(true);
+//		}); //Quitar
 		panelAux.add(this.botonBuscar);
 		this.add(panelAux);
 		JPanel panelAux2 = new JPanel();
@@ -55,17 +55,13 @@ public class BuscadorUI extends JPanel {
 		this.resultado.setFont(new Font("", 15, 15));
 		panelAux2.add(resultado);
 		this.botonAgregar = new JButton("Agregar");
-		this.botonAgregar.addActionListener((e) -> bl.agregarPulsado(this.getUsuarioABuscar()));
+		this.botonAgregar.addActionListener((e) -> bl.agregarPulsado(nombre.getText()));
 		panelAux2.add(botonAgregar);
 		this.botonReportar = new JButton("Reportar");
-		this.botonReportar.addActionListener((e) -> bl.reportarPulsado(this.getUsuarioABuscar()));
+		this.botonReportar.addActionListener((e) -> bl.reportarPulsado(nombre.getText()));
 		panelAux2.add(botonReportar);
 		habilitarBotones(false);
 		this.add(panelAux2);
-	}
-	
-	public String getUsuarioABuscar() {
-		return this.nombre.getText();
 	}
 	
 	public void habilitarBotones(boolean b) {
