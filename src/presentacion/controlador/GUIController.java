@@ -188,8 +188,7 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 									JOptionPane.ERROR_MESSAGE);
 						}
 					} else {
-						//TODO
-						JOptionPane.showMessageDialog(new JFrame(), "El guion debe tener titulo, gilipollas", "Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(new JFrame(), "El guion debe tener titulo", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 

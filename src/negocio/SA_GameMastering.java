@@ -2,12 +2,15 @@ package negocio;
 
 import integracion.DAO_ListaGuionesPropuestos;
 import integracion.DAO_ListaReportados;
+import integracion.DAO_Reportados;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import presentacion.modelo.gameMastering.Reporte;
 import presentacion.modelo.juego.InfoGuion;
+import presentacion.modelo.usuario.Jugador;
 import bbdd.Gestor;
 
 public class SA_GameMastering{
@@ -22,4 +25,8 @@ public class SA_GameMastering{
 		return new ArrayList<InfoGuion> (r.values());
 	}
 	
+	public void reportarJugador(Gestor g, Jugador reportador, Jugador reportado) {
+		Reporte r = new Reporte(reportador, reportado, new Date());
+		new DAO_Reportados(g).crear(r);
+	}
 }
