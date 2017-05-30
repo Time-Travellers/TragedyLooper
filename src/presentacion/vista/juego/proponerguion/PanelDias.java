@@ -1,4 +1,4 @@
-package presentacion.vista.usuario.proponerguion;
+package presentacion.vista.juego.proponerguion;
 
 import java.awt.Dimension;
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ public class PanelDias extends JPanel implements ReguladorListener{
 		this.add(numdias);
 		inicializarlistaDias();
 		numdias.addObservador(this);
-		for(int ctrl=0;ctrl<listaDias.size();ctrl++){
+		for(int ctrl=1;ctrl<listaDias.size();ctrl++){
 			contenedor.add(listaDias.get(ctrl));
 		}
 		this.deslizador=new JScrollPane(contenedor);

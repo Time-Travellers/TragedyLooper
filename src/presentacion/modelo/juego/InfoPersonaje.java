@@ -1,6 +1,10 @@
 package presentacion.modelo.juego;
 
-public class InfoPersonaje {
+import java.io.Serializable;
+
+public class InfoPersonaje implements Serializable{
+
+	private static final long serialVersionUID = -7695189197594925678L;
 
 	public enum Personaje {
 		enfermera, policia, estudiante, monje, empresario

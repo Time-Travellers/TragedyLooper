@@ -28,9 +28,13 @@ public class Modificador {
 		//usuarios.put("admin1", new Administrador("admin1", "admin1", true, "Administrador 1", 100, Paises.China, "admin1@gmail.com"));
 	    //new IO<Usuario>("usuarios.ser").almacenar(usuarios);
 		
-		HashMap<String, InfoGuion> guiones = new IO<InfoGuion>("guiones.ser").leer();
-		guiones.remove("Festival del algodon");
-		new IO<InfoGuion>("guiones.ser").almacenar(guiones);
+		//HashMap<String, InfoGuion> guiones = new IO<InfoGuion>("guiones.ser").leer();
+		//guiones.remove("Festival del algodon");
+		//new IO<InfoGuion>("guiones.ser").almacenar(guiones);
+		
+		file2.createNewFile();
+		HashMap<String, InfoGuion> guiones = new HashMap<String, InfoGuion>();
+		new IO<InfoGuion>("guiones_propuestos.ser").almacenar(guiones);
 	}
 	
 }

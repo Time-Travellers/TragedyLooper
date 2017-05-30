@@ -1,4 +1,4 @@
-package presentacion.vista.usuario.proponerguion;
+package presentacion.vista.juego.proponerguion;
 
 import java.util.ArrayList;
 
@@ -11,12 +11,14 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 public class Regulador extends JPanel{
+
+	private static final long serialVersionUID = 4515698274157262067L;
 	private JSpinner selector;
 	private ArrayList<ReguladorListener> Observadores;
 	
 	public Regulador(String nombre,int n){
-		this.selector=new JSpinner(new SpinnerNumberModel(3,0,n,1));
-		this.Observadores=new ArrayList();
+		this.selector=new JSpinner(new SpinnerNumberModel(3,1,n,1));
+		this.Observadores=new ArrayList<ReguladorListener>();
 		selector.addChangeListener(new ChangeListener(){
 			@Override
 			public void stateChanged(ChangeEvent e) {

@@ -1,4 +1,4 @@
-package presentacion.vista.usuario.proponerguion;
+package presentacion.vista.juego.proponerguion;
 
 import java.awt.Dimension;
 import java.util.ArrayList;
@@ -39,7 +39,7 @@ public class PanelPersonajes extends JPanel implements ReguladorListener{
 	public PanelPersonajes(){
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.numpersonajes=new Regulador("Personajes", MAX_PERSONAJES);
-		this.listaDescripciones=new ArrayList();
+		this.listaDescripciones=new ArrayList<DescripcionPersonaje>();
 		this.contenedor=new JPanel();
 		contenedor.setLayout(new BoxLayout(contenedor,BoxLayout.Y_AXIS));
 		this.add(numpersonajes);

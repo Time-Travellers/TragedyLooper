@@ -35,6 +35,8 @@ import presentacion.modelo.usuario.Jugador;
 import presentacion.modelo.usuario.Usuario;
 import presentacion.vista.gameMastering.ListaPropuestosUI;
 import presentacion.vista.gameMastering.ListaReportadosUI;
+import presentacion.vista.juego.proponerguion.SugerenciaGuion;
+import presentacion.vista.juego.proponerguion.SugerenciaGuion.GuionListener;
 import presentacion.vista.marketing.comprarnivel.ComprarNivelUI;
 import presentacion.vista.marketing.comprarnivel.ComprarNivelUI.ComprarNivelUIListener;
 import presentacion.vista.marketing.comprarreloj.ComprarRelojUI;
@@ -49,8 +51,6 @@ import presentacion.vista.usuario.perfilus.ModificarDatosUI.ModifDatosListener;
 import presentacion.vista.usuario.perfilus.PerfilUsuario;
 import presentacion.vista.usuario.principalus.MostrarAyuda;
 import presentacion.vista.usuario.principalus.PrincipalUsuarioUI;
-import presentacion.vista.usuario.proponerguion.SugerenciaGuion;
-import presentacion.vista.usuario.proponerguion.SugerenciaGuion.GuionListener;
 import presentacion.vista.usuario.registro.RegistroUI;
 import presentacion.vista.usuario.registro.RegistroUI.RegistroUIListener;
 
@@ -181,10 +181,19 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 				@Override
 				public void recibirGuion() {
 					InfoGuion guion = proponerGuion.getGuionCompleto();
-					new SA_Juego().proponerGuion(gestor, guion);
-					JOptionPane.showMessageDialog(new JFrame(), "Guion enviado correctamente", "Exito",
-							JOptionPane.INFORMATION_MESSAGE);
-					dGuion.dispose();
+					if (!guion.getTitulo().equals("")) {
+						if (new SA_Juego().proponerGuion(gestor, guion)) {
+							JOptionPane.showMessageDialog(new JFrame(), "Guion enviado correctamente", "Exito",
+									JOptionPane.INFORMATION_MESSAGE);
+							dGuion.dispose();
+						} else {
+							JOptionPane.showMessageDialog(new JFrame(), "Ya existe un guion con ese titulo", "Error",
+									JOptionPane.ERROR_MESSAGE);
+						}
+					} else {
+						//TODO
+						JOptionPane.showMessageDialog(new JFrame(), "El guion debe tener titulo, gilipollas", "Error", JOptionPane.ERROR_MESSAGE);
+					}
 				}
 
 				@Override
@@ -193,8 +202,8 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 				}
 
 				@Override
-				public String idRegistrado() {
-					return modelo.getIdUsuario();
+				public Jugador idRegistrado() {
+					return (Jugador) modelo.getUsuario();
 				}
 
 			});
@@ -321,7 +330,7 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 			ArrayList<InfoGuion> lista = (new SA_GameMastering()).sacarGuiones(gestor);
 			String[][] devolver = new String[lista.size()][2];
 			for (int i = 0; i < lista.size(); i++) {
-				devolver[i][0] = lista.get(i).getCreador();
+				devolver[i][0] = lista.get(i).getCreador().getId();
 				devolver[i][1] = lista.get(i).getTitulo();
 			}
 			JDialog propuestos = new JDialog(ventana, "Guiones Propuestos", ModalityType.DOCUMENT_MODAL);

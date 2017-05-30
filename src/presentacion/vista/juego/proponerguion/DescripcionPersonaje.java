@@ -1,4 +1,4 @@
-package presentacion.vista.usuario.proponerguion;
+package presentacion.vista.juego.proponerguion;
 
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
