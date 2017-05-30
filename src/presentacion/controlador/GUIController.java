@@ -32,6 +32,7 @@ import presentacion.modelo.usuario.Jugador;
 import presentacion.modelo.usuario.Usuario;
 import presentacion.vista.gameMastering.ListaReportadosUI;
 import presentacion.vista.gameMastering.aceptarguion.ListaPropuestosUI;
+import presentacion.vista.gameMastering.aceptarguion.ListaPropuestosUI.GuionesPropuestosListener;
 import presentacion.vista.juego.proponerguion.SugerenciaGuion;
 import presentacion.vista.juego.proponerguion.SugerenciaGuion.GuionListener;
 import presentacion.vista.marketing.comprarnivel.ComprarNivelUI;
@@ -327,14 +328,25 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 		}
 			break;
 		case "GuionesPropuestos": {
-			ArrayList<InfoGuion> lista = (new SA_GameMastering()).sacarGuiones(gestor);
-			String[][] devolver = new String[lista.size()][2];
-			for (int i = 0; i < lista.size(); i++) {
-				devolver[i][0] = lista.get(i).getCreador().getId();
-				devolver[i][1] = lista.get(i).getTitulo();
-			}
+			String[][] datos = (new SA_GameMastering()).datosGuionesPropuestos(gestor);
+			
 			JDialog propuestos = new JDialog(ventana, "Guiones Propuestos", ModalityType.DOCUMENT_MODAL);
-			ListaPropuestosUI listaPropuestos = new ListaPropuestosUI(devolver);
+			ListaPropuestosUI listaPropuestos = new ListaPropuestosUI(datos);
+			listaPropuestos.setGPListener(new GuionesPropuestosListener(){
+
+				@Override
+				public void actualizar() {
+					//
+					listaPropuestos.eraseData();
+				//	listaPropuestos.setDatos((new SA_GameMastering()).datosGuionesPropuestos(gestor));
+				}
+
+				@Override
+				public void salir() {
+					propuestos.dispose();
+				}
+				
+			});
 			propuestos.setSize(600, 508);
 			propuestos.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			propuestos.setContentPane(listaPropuestos);

@@ -22,4 +22,14 @@ public class SA_GameMastering{
 		return new ArrayList<InfoGuion> (r.values());
 	}
 	
+	public String[][] datosGuionesPropuestos(Gestor g){
+		HashMap<String, InfoGuion> r=new DAO_ListaGuionesPropuestos(g).leer();
+		ArrayList<InfoGuion> guiones = new ArrayList<InfoGuion>(r.values());
+		String[][] data = new String[guiones.size()][2];
+		for(int i=0;i<guiones.size();++i){
+			data[i][0] = guiones.get(i).getCreador().getId();
+			data[i][1] = guiones.get(i).getTitulo();
+		}
+		return data;
+	}
 }
