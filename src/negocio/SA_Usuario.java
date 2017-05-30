@@ -20,5 +20,15 @@ public class SA_Usuario implements SA {
 			new DAO_Usuarios(gestor).crear(usuario);
 		return aux == null;
 	}
+
+	public boolean cambiarPass(Gestor gestor, Jugador jugador, String old, String pass) {
+		if(!jugador.getPassword().equals(old))
+			return false;
+		else {
+			jugador.setPassword(pass);
+			new DAO_Usuarios(gestor).actualizar(jugador);
+			return true;
+		}
+	}
 	
 }

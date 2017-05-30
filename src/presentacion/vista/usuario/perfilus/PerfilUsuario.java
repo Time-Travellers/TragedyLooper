@@ -27,6 +27,7 @@ import presentacion.controlador.perfil.PerfilListenable;
 import presentacion.controlador.perfil.PerfilListener;
 import presentacion.modelo.usuario.Jugador;
 import presentacion.modelo.usuario.Paises;
+import presentacion.vista.usuario.perfilus.BotonesPerfil.PerfilBotonesListener;
 
 public class PerfilUsuario extends JPanel implements PerfilListenable {
 	
@@ -96,7 +97,19 @@ public class PerfilUsuario extends JPanel implements PerfilListenable {
 		tabla.setAlignmentY(CENTER_ALIGNMENT);
 		
 		//botones de la parte inferior
-		botones =new BotonesPerfil();
+		botones =new BotonesPerfil(new PerfilBotonesListener() {
+
+			@Override
+			public void cambiarPass() {
+				notificarListeners(new PerfilEvent(PerfilType.CambiarPass));
+			}
+
+			@Override
+			public void modifDatos() {
+				notificarListeners(new PerfilEvent(PerfilType.CambiarDatos));
+			}
+			
+		});
 
 		botones.setAlignmentY(CENTER_ALIGNMENT);
 		

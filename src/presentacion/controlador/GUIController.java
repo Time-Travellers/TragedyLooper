@@ -42,6 +42,8 @@ import presentacion.vista.usuario.buscar.BuscadorUI;
 import presentacion.vista.usuario.buscar.BuscadorUI.BuscadorUIListener;
 import presentacion.vista.usuario.iniciarsesion.IniciarSesionUI;
 import presentacion.vista.usuario.inicioadmin.InicioAdminUI;
+import presentacion.vista.usuario.perfilus.CambiarPassUI;
+import presentacion.vista.usuario.perfilus.CambiarPassUI.CambiarPassUIListener;
 import presentacion.vista.usuario.perfilus.PerfilUsuario;
 import presentacion.vista.usuario.principalus.MostrarAyuda;
 import presentacion.vista.usuario.principalus.PrincipalUsuarioUI;
@@ -342,7 +344,38 @@ public class GUIController
 			tipo = TipoVentana.PrinUsuario;
 		}
 			break;
-		case "CambiarPass":
+		case "CambiarPass": {
+			JDialog jc = new JDialog(ventana, "Cambiar contraseña", ModalityType.DOCUMENT_MODAL);
+			Jugador jugador = (Jugador) modelo.getUsuario();
+			CambiarPassUI a = new CambiarPassUI();
+			a.setListener(new CambiarPassUIListener() {
+				@Override
+				public void cambiarPulsado() {
+					if (a.coinciden()) {
+						Jugador jugador = (Jugador) modelo.getUsuario();
+						if(new SA_Usuario().cambiarPass(gestor, jugador, a.getOld(), a.getPass1())) {
+							JOptionPane.showMessageDialog(new JFrame(), "Contraseña cambiada correctamente", "Exito",
+									JOptionPane.INFORMATION_MESSAGE);
+							jc.dispose();
+						}else {
+							JOptionPane.showMessageDialog(new JFrame(), "Contraseña antigua incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
+						}
+					} else {
+						JOptionPane.showMessageDialog(new JFrame(), "Las contraseñas no coinciden", "Error", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+				
+				@Override
+				public void cancelarPulsado() {
+					jc.dispose();
+				}
+			});
+			jc.setSize(600, 600);
+			jc.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			jc.setContentPane(a);
+			jc.pack();
+			jc.setVisible(true);
+		}
 			break;
 		case "CambiarDatos":{
 			

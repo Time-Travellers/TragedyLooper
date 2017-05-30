@@ -3,30 +3,38 @@ package presentacion.vista.usuario.perfilus;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import presentacion.controlador.perfil.PerfilEvent;
+import presentacion.controlador.perfil.PerfilListener;
+
 public class BotonesPerfil extends JPanel{
 
 	private static final long serialVersionUID = 1408142039736866807L;
+	
+	public interface PerfilBotonesListener{
+		public void cambiarPass();
+		public void modifDatos();
+	}
 
-
-	public BotonesPerfil(){
+	public BotonesPerfil(PerfilBotonesListener list){
 		FlowLayout layout = new FlowLayout();
 		layout.setHgap(60);
 		this.setLayout(layout);
 		this.setVisible(true);
-		initialize();
+		initialize(list);
 	}
 	
-	private void initialize() {
+	private void initialize(PerfilBotonesListener list) {
 		addButton("Lista de amigos", "Ver lista de amigos",
 				null);
-		addButton("Cambiar password", "Cambiar la contrase(letra que viene despues de la n)a",
-				null);
+		addButton("Cambiar password", "Cambiar la contraseña",
+				(e) -> list.cambiarPass());
 		addButton("Modificar datos", "Modificar los datos de tu perfil",
-				null);
+				(e) -> list.modifDatos());
 	}
 	
 	

@@ -103,9 +103,8 @@ public class InicioAdminUI extends JPanel implements PrinciAdministradorListenab
 					}
 		}));
 		this.add(Box.createRigidArea(new Dimension(0,10)));
-		//TODO CAMBIAR ICON
 		this.add(new PanelGrande("Guiones propuestos:", 
-				new ImageIcon(getClass().getClassLoader().getResource("resources/reportar.png")),
+				new ImageIcon(getClass().getClassLoader().getResource("resources/guion.png")),
 				propuestos, new ActionListener(){
 					public void actionPerformed(ActionEvent arg0) {
 						notificar(new PrinciAdministradorEvent(PrinciAdministradorType.GuionesPropuestos));						

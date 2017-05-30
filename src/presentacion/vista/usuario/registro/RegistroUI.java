@@ -128,14 +128,21 @@ public class RegistroUI extends JPanel{
 		return nombre.getText();
 	}
 	
-	@SuppressWarnings("deprecation")
 	public String getPassword() {
-		return password.getText();
+		char[] pass = password.getPassword();
+		String res = "";
+		for(char a : pass)
+			res += a;
+		return res;
 	}
 	
 	@SuppressWarnings("deprecation")
 	public String getPassword2() {
-		return password2.getText();
+		char[] pass = password2.getPassword();
+		String res = "";
+		for(char a : pass)
+			res += a;
+		return res;
 	}
 	
 	public String getEmail() {
