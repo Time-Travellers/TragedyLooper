@@ -44,6 +44,8 @@ import presentacion.vista.usuario.iniciarsesion.IniciarSesionUI;
 import presentacion.vista.usuario.inicioadmin.InicioAdminUI;
 import presentacion.vista.usuario.perfilus.CambiarPassUI;
 import presentacion.vista.usuario.perfilus.CambiarPassUI.CambiarPassUIListener;
+import presentacion.vista.usuario.perfilus.ModificarDatosUI;
+import presentacion.vista.usuario.perfilus.ModificarDatosUI.ModifDatosListener;
 import presentacion.vista.usuario.perfilus.PerfilUsuario;
 import presentacion.vista.usuario.principalus.MostrarAyuda;
 import presentacion.vista.usuario.principalus.PrincipalUsuarioUI;
@@ -52,14 +54,13 @@ import presentacion.vista.usuario.proponerguion.SugerenciaGuion.GuionListener;
 import presentacion.vista.usuario.registro.RegistroUI;
 import presentacion.vista.usuario.registro.RegistroUI.RegistroUIListener;
 
-public class GUIController
-		implements IniSesionListener, PrinciUsuarioListener,
-		PrinciAdministradorListener, ComprarRelojListener, PerfilListener {
+public class GUIController implements IniSesionListener, PrinciUsuarioListener, PrinciAdministradorListener,
+		ComprarRelojListener, PerfilListener {
 
-	private enum TipoVentana{
+	private enum TipoVentana {
 		IniSesion, PrinUsuario, PrinAdmin, Perfil
 	}
-	
+
 	private JFrame ventana;
 	private GUIModelo modelo;
 	private Gestor gestor;
@@ -137,7 +138,7 @@ public class GUIController
 			Jugador jugador = (Jugador) modelo.getUsuario();
 			if (jugador.getNivel() != Tienda.NIVEL) {
 				Tienda tienda = new SA_Marketing().iniciarTienda(gestor);
-				InfoNivel nivel = tienda.getPaquetesNivel().get(jugador.getNivel() + 1);
+				InfoNivel nivel = tienda.getPaquetesNivel().get(jugador.getNivel());
 				JDialog dCompra = new JDialog(ventana, "Compra nivel", ModalityType.DOCUMENT_MODAL);
 
 				ComprarNivelUI compraNivel = new ComprarNivelUI(nivel);
@@ -336,11 +337,11 @@ public class GUIController
 		reiniciarGUI();
 
 	}
-	
+
 	@Override
 	public void notificarPerfilListener(PerfilEvent e) {
-		switch(e.getPerfilType()) {
-		case "Salir":{
+		switch (e.getPerfilType()) {
+		case "Salir": {
 			tipo = TipoVentana.PrinUsuario;
 		}
 			break;
@@ -353,18 +354,20 @@ public class GUIController
 				public void cambiarPulsado() {
 					if (a.coinciden()) {
 						Jugador jugador = (Jugador) modelo.getUsuario();
-						if(new SA_Usuario().cambiarPass(gestor, jugador, a.getOld(), a.getPass1())) {
+						if (new SA_Usuario().cambiarPass(gestor, jugador, a.getOld(), a.getPass1())) {
 							JOptionPane.showMessageDialog(new JFrame(), "Contraseña cambiada correctamente", "Exito",
 									JOptionPane.INFORMATION_MESSAGE);
 							jc.dispose();
-						}else {
-							JOptionPane.showMessageDialog(new JFrame(), "Contraseña antigua incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
+						} else {
+							JOptionPane.showMessageDialog(new JFrame(), "Contraseña antigua incorrecta", "Error",
+									JOptionPane.ERROR_MESSAGE);
 						}
 					} else {
-						JOptionPane.showMessageDialog(new JFrame(), "Las contraseñas no coinciden", "Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(new JFrame(), "Las contraseñas no coinciden", "Error",
+								JOptionPane.ERROR_MESSAGE);
 					}
 				}
-				
+
 				@Override
 				public void cancelarPulsado() {
 					jc.dispose();
@@ -377,17 +380,42 @@ public class GUIController
 			jc.setVisible(true);
 		}
 			break;
-		case "CambiarDatos":{
-			
+		case "CambiarDatos": {
+			JDialog jc = new JDialog(ventana, "Modificar Datos", ModalityType.DOCUMENT_MODAL);
+			Jugador jugador = (Jugador) modelo.getUsuario();
+			ModificarDatosUI a = new ModificarDatosUI(jugador);
+			a.setModificarDatosListener(new ModifDatosListener() {
+				@Override
+				public void cambiarPulsado() {
+					if (a.todoCorrecto()) {
+						Jugador jugador = (Jugador) modelo.getUsuario();
+						new SA_Usuario().modifDatos(gestor, jugador, a.getEmail(), Integer.parseInt(a.getEdad()),
+								a.getPais());
+						JOptionPane.showMessageDialog(new JFrame(), "Datos modificados correctamente", "Exito",
+								JOptionPane.INFORMATION_MESSAGE);
+						jc.dispose();
+					}
+				}
+
+				@Override
+				public void cancelarPulsado() {
+					jc.dispose();
+				}
+			});
+			jc.setSize(600, 600);
+			jc.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			jc.setContentPane(a);
+			jc.pack();
+			jc.setVisible(true);
 		}
 			break;
 		}
 		reiniciarGUI();
 	}
-	
+
 	public void reiniciarGUI() {
 		ventana.getContentPane().removeAll();
-		switch(tipo) {
+		switch (tipo) {
 		case IniSesion:
 			IniciarSesionUI iniSesion = new IniciarSesionUI();
 			iniSesion.addIniSesionListener(this);
@@ -395,7 +423,7 @@ public class GUIController
 			iniSesion.updateUI();
 			break;
 		case PrinUsuario:
-			PrincipalUsuarioUI prinUsuario = new PrincipalUsuarioUI((Jugador)modelo.getUsuario());
+			PrincipalUsuarioUI prinUsuario = new PrincipalUsuarioUI((Jugador) modelo.getUsuario());
 			prinUsuario.addPrinciUsuarioListener(this);
 			ventana.add(prinUsuario);
 			prinUsuario.updateUI();
@@ -407,7 +435,7 @@ public class GUIController
 			prinAdmin.updateUI();
 			break;
 		case Perfil:
-			PerfilUsuario perfil = new PerfilUsuario((Jugador)modelo.getUsuario());
+			PerfilUsuario perfil = new PerfilUsuario((Jugador) modelo.getUsuario());
 			perfil.addPerfilListener(this);
 			ventana.getContentPane().removeAll();
 			ventana.add(perfil);

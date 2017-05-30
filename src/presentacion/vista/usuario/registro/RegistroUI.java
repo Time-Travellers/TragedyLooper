@@ -102,18 +102,18 @@ public class RegistroUI extends JPanel{
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				if(!todoRelleno()) registrarse.setEnabled(false);
-				else registrarse.setEnabled(true);
+				registrarse.setEnabled(todoRelleno());
 				
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				if(!todoRelleno()) registrarse.setEnabled(false);
-				else registrarse.setEnabled(true);
+				registrarse.setEnabled(todoRelleno());
+
 			}
 			
 		});
+		
 		this.add(registrarse);
 		this.setVisible(true);
 	}

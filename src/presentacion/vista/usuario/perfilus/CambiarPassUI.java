@@ -46,12 +46,12 @@ public class CambiarPassUI extends JPanel {
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				cambiar.setEnabled((!todoRelleno()) ? false : true);
+				cambiar.setEnabled(todoRelleno());
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				cambiar.setEnabled((!todoRelleno()) ? false : true);
+				cambiar.setEnabled(todoRelleno());
 			}
 			
 		});

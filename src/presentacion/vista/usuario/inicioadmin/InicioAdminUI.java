@@ -47,21 +47,6 @@ public class InicioAdminUI extends JPanel implements PrinciAdministradorListenab
 			listeners.get(i).notificarPrinciAdministradorListener(e);
 	}
 	
-//	@Override
-//	  protected void paintComponent(Graphics g) {
-//
-//	    super.paintComponent(g);
-//		Image img = null;
-//		try {
-//			img = ImageIO.read(getClass().getResource("/resources/fondo.png"));
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	
-//	        g.drawImage(img, 200, 200, null);
-//	}
-//	
 	public InicioAdminUI(String name, int numMensajes, int propuestos, int report){
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		this.setPreferredSize(new Dimension(800,600));
@@ -118,9 +103,7 @@ public class InicioAdminUI extends JPanel implements PrinciAdministradorListenab
 		JFrame ventana=new JFrame("prueba");
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.setSize(800,650);
-		BufferedImage img = ImageIO.read(InicioAdminUI.class.getResource("/resources/fondo.png"));
-		ventana.setContentPane(new JLabel(new ImageIcon(img)));
-		ventana.setLayout(new FlowLayout());
+		
 		ventana.add(new InicioAdminUI("peter", 10 ,1 ,5,new GUIController(null,null,null)));
 		ventana.setVisible(true);
 	}

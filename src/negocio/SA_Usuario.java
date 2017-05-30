@@ -3,6 +3,7 @@ package negocio;
 import bbdd.Gestor;
 import integracion.DAO_Usuarios;
 import presentacion.modelo.usuario.Jugador;
+import presentacion.modelo.usuario.Paises;
 import presentacion.modelo.usuario.Usuario;
 
 public class SA_Usuario implements SA {
@@ -29,6 +30,13 @@ public class SA_Usuario implements SA {
 			new DAO_Usuarios(gestor).actualizar(jugador);
 			return true;
 		}
+	}
+
+	public void modifDatos(Gestor gestor, Jugador jugador, String email, int edad, Paises pais) {
+		jugador.getDatos().setCorreo(email);
+		jugador.getDatos().setEdad(edad);
+		jugador.getDatos().setPais(pais);
+		new DAO_Usuarios(gestor).actualizar(jugador);
 	}
 	
 }
