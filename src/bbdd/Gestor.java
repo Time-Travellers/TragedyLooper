@@ -21,7 +21,6 @@ public class Gestor {
     
     public HashMap<String, InfoGuion>  guiones_propuestos = new HashMap<String, InfoGuion> ();
     
- // public List<InfoLugar> lugares = new ArrayList<InfoLugar> ();
     
     public Gestor(){
     	usuarios = new IO<Usuario>("usuarios.ser").leer();
