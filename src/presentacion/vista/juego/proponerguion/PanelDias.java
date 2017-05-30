@@ -22,7 +22,7 @@ public class PanelDias extends JPanel implements ReguladorListener{
 	private void inicializarlistaDias(){
 		for(int ctrl=0;ctrl<MAX_DIAS;ctrl++){
 			listaDias.add(new EventosDia(ctrl+1));
-			listaDias.get(ctrl).setVisible(ctrl<numdias.getValor());
+			listaDias.get(ctrl).setVisible(ctrl-1<numdias.getValor());
 		}
 	}
 	
@@ -48,7 +48,7 @@ public class PanelDias extends JPanel implements ReguladorListener{
 	@Override
 	public void nuevoDia() {
 		for(int ctrl=0;ctrl<MAX_DIAS;ctrl++){
-			listaDias.get(ctrl).setVisible(ctrl<numdias.getValor());
+			listaDias.get(ctrl).setVisible(ctrl-1<numdias.getValor());
 		}
 		this.revalidate();
 		this.repaint();

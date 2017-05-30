@@ -110,4 +110,5 @@ public class SugerenciaGuion extends JPanel{
 	public ArrayList<InfoPersonaje> getPersonajes() {
 		return personajes.getInfoPersonajes();
 	}
+	
 }
