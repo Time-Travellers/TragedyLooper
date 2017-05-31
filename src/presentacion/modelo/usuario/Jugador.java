@@ -30,12 +30,7 @@ public class Jugador extends Usuario {
     	this.anuncios = Tienda.NUMANUNCIOS;
     	this.penalizacion = null;
     	this.partidas = new ArrayList<JugadorPartida>();
-  //  	this.estadistica = null;
     	this.amigos = new ArrayList<Jugador>();
-    //	this.rating = null;
-    }
-
-    public void anyadirAmigo(Jugador jugador) {
     }
 
     public int getNivel() {

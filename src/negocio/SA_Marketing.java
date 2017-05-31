@@ -1,6 +1,5 @@
 package negocio;
 
-import integracion.DAO_Guiones;
 import integracion.DAO_ListaGuiones;
 import integracion.DAO_Usuarios;
 
