@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionListener;
 
 public class ListaPropuestosUI extends JPanel{
 	
@@ -28,6 +29,7 @@ public class ListaPropuestosUI extends JPanel{
 	
 	public interface GuionesPropuestosListener {
 		void actualizar(); 
+		void seleccionar(String s);
 		void salir();
 	}
 	
@@ -65,14 +67,10 @@ public class ListaPropuestosUI extends JPanel{
 		//tabla
 		tabla = new JTable(datos, COL_NAMES);
 		tabla.setVisible(true);
-//		tabla.setFillsViewportHeight(true);
-//		tabla.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
-//	        public void valueChanged(ListSelectionEvent event) {
-//	            // do some actions here, for example
-//	            // print first column value from selected row
-//	            System.out.println(table.getValueAt(table.getSelectedRow(), 0).toString());
-//	        }
-//	    });
+		tabla.setFillsViewportHeight(true);
+		tabla.getSelectionModel().addListSelectionListener((e)->{
+			list.seleccionar((String)tabla.getValueAt(tabla.getSelectedRow(), 1));
+		});
 		tablePane = new JScrollPane(tabla);
 		
 		add(north);

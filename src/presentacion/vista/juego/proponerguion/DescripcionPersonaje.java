@@ -10,7 +10,9 @@ import presentacion.modelo.juego.InfoPersonaje.Personaje;
 import presentacion.modelo.juego.InfoPersonaje.Rol;
 
 public class DescripcionPersonaje extends JPanel {
-	public InfoPersonaje personaje;
+	
+	private static final long serialVersionUID = -7679336530768833039L;
+	
 	private JLabel nombre;
 	private JComboBox<Personaje> selectordepersonajes;
 	private JComboBox<Rol> selectorderol;

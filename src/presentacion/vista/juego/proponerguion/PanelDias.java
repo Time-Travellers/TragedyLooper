@@ -12,6 +12,8 @@ import presentacion.modelo.juego.Incidente;
 import presentacion.modelo.juego.InfoPersonaje.Personaje;
 
 public class PanelDias extends JPanel implements ReguladorListener{
+	
+	private static final long serialVersionUID = 7852788062256253992L;
 	//sacar fuera esta cte cuando este definida
 	private static final int MAX_DIAS=8;
 	private Regulador numdias;
@@ -65,7 +67,7 @@ public class PanelDias extends JPanel implements ReguladorListener{
 
 	public ArrayList<Incidente> getIncidentes() {
 		ArrayList<Incidente> incidentes = new ArrayList<Incidente>();
-		for(int i = 0; i < listaDias.size();++i){
+		for(int i = 0; i < numdias.getValor();++i){
 			incidentes.add(listaDias.get(i).getIncidente());
 		}
 		return incidentes;

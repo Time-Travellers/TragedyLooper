@@ -31,6 +31,7 @@ import presentacion.modelo.marketing.Tienda;
 import presentacion.modelo.usuario.Jugador;
 import presentacion.modelo.usuario.Usuario;
 import presentacion.vista.gameMastering.ListaReportadosUI;
+import presentacion.vista.gameMastering.aceptarguion.AceptarGuionUI;
 import presentacion.vista.gameMastering.aceptarguion.ListaPropuestosUI;
 import presentacion.vista.gameMastering.aceptarguion.ListaPropuestosUI.GuionesPropuestosListener;
 import presentacion.vista.juego.proponerguion.SugerenciaGuion;
@@ -345,6 +346,7 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 				public void salir() {
 					propuestos.dispose();
 				}
+
 				
 			});
 			propuestos.setSize(600, 508);

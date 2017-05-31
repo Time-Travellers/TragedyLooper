@@ -69,8 +69,8 @@ public class PanelPersonajes extends JPanel implements ReguladorListener{
 	
 	public ArrayList<InfoPersonaje> getInfoPersonajes() {
 		ArrayList<InfoPersonaje> list = new ArrayList<InfoPersonaje>();
-		for(int i = 0;i < this.listaDescripciones.size();++i){
-			list.add(listaDescripciones.get(i).personaje);
+		for(int i = 0;i < numpersonajes.getValor();++i){
+			list.add(listaDescripciones.get(i).getValorSeleccionado());
 		}
 		return list;
 	}

@@ -1,5 +1,6 @@
 package negocio;
 
+import integracion.DAO_Guiones_Propuestos;
 import integracion.DAO_ListaGuionesPropuestos;
 import integracion.DAO_ListaReportados;
 
@@ -31,5 +32,9 @@ public class SA_GameMastering{
 			data[i][1] = guiones.get(i).getTitulo();
 		}
 		return data;
+	}
+	
+	public InfoGuion leerGuion(Gestor g, String s){
+		return (new DAO_Guiones_Propuestos(g)).leer(s);
 	}
 }
