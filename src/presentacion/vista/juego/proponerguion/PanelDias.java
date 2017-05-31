@@ -23,8 +23,8 @@ public class PanelDias extends JPanel implements ReguladorListener{
 	
 	private void inicializarlistaDias(){
 		for(int ctrl=0;ctrl<MAX_DIAS;ctrl++){
-			listaDias.add(new EventosDia(ctrl));
-			listaDias.get(ctrl).setVisible(ctrl-1<numdias.getValor());
+			listaDias.add(new EventosDia(ctrl+1));
+			listaDias.get(ctrl).setVisible(ctrl<numdias.getValor());
 		}
 	}
 	
@@ -37,7 +37,7 @@ public class PanelDias extends JPanel implements ReguladorListener{
 		this.add(numdias);
 		inicializarlistaDias();
 		numdias.addObservador(this);
-		for(int ctrl=1;ctrl<listaDias.size();ctrl++){
+		for(int ctrl=0;ctrl<listaDias.size();ctrl++){
 			contenedor.add(listaDias.get(ctrl));
 		}
 		this.deslizador=new JScrollPane(contenedor);
@@ -50,7 +50,7 @@ public class PanelDias extends JPanel implements ReguladorListener{
 	@Override
 	public void nuevoDia() {
 		for(int ctrl=0;ctrl<MAX_DIAS;ctrl++){
-			listaDias.get(ctrl).setVisible(ctrl-1<numdias.getValor());
+			listaDias.get(ctrl).setVisible(ctrl<numdias.getValor());
 		}
 		this.revalidate();
 		this.repaint();

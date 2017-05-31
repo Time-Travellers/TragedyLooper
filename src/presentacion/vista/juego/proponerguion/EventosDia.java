@@ -15,7 +15,8 @@ import presentacion.modelo.juego.Incidente.EnumIncidentes;
 import presentacion.modelo.juego.InfoPersonaje.Personaje;
 
 public class EventosDia extends JPanel {
-	
+
+	private static final long serialVersionUID = 7755781309734293383L;
 	private JLabel nombre;
 	private JComboBox<EnumIncidentes> selectorIncidente;
 	/**
@@ -23,9 +24,6 @@ public class EventosDia extends JPanel {
 	 */
 	private JPanel detallarIncidente;
 	private JComboBox<Personaje> selectorCulpable;
-	public EnumIncidentes getValorSeleccionado(){
-		return  (EnumIncidentes) selectorIncidente.getSelectedItem();
-	}
 	
 
 	public EventosDia(int n){
@@ -58,7 +56,6 @@ public class EventosDia extends JPanel {
 		});
 		this.add(contenedor);
 		detallarIncidente.setVisible(false);
-		detallarIncidente.add(selectorCulpable);
 		this.add(detallarIncidente);
 	}
 	
@@ -75,7 +72,9 @@ public class EventosDia extends JPanel {
 
 	public Incidente getIncidente() {
 		if(selectorIncidente.getSelectedItem() != null){
-			return new Incidente((EnumIncidentes)selectorIncidente.getSelectedItem(), (Personaje)selectorCulpable.getSelectedItem());
+			EnumIncidentes ic = (EnumIncidentes)selectorIncidente.getSelectedItem();
+			Personaje p = (Personaje)selectorCulpable.getSelectedItem();
+			return new Incidente(ic,p);
 		} else
 			return null;
 	}
