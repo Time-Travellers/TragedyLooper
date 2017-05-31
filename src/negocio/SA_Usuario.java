@@ -53,12 +53,12 @@ public class SA_Usuario{
 		}
 	}
 	
-	public ArrayList<Jugador> buscarUsuario(Gestor gestor, Jugador jugador, String str){
+	public ArrayList<Jugador> buscarUsuario(Gestor gestor, String jugador, String str){
 		HashMap<String, Usuario> usuariosHM = new DAO_ListaUsuarios(gestor).leer();
 		ArrayList<Usuario> usuariosAL = new ArrayList<Usuario>(usuariosHM.values());
 		ArrayList<Jugador> results = new ArrayList<Jugador>();
 		for(Usuario a: usuariosAL) {
-			if(!a.getId().equals(jugador.getId()) && !a.isAdmin() && a.getId().contains(str))
+			if(!a.getId().equals(jugador) && !a.isAdmin() && a.getId().contains(str))
 				results.add((Jugador) a);
 		}
 		return results;

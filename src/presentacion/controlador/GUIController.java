@@ -39,6 +39,8 @@ import presentacion.vista.marketing.comprarnivel.ComprarNivelUI;
 import presentacion.vista.marketing.comprarnivel.ComprarNivelUI.ComprarNivelUIListener;
 import presentacion.vista.marketing.comprarreloj.ComprarRelojUI;
 import presentacion.vista.usuario.buscar.BuscadorUI;
+import presentacion.vista.usuario.buscar.ResultBusqUI;
+import presentacion.vista.usuario.buscar.ResultBusqUI.ResultListener;
 import presentacion.vista.usuario.buscar.BuscadorUI.BuscadorUIListener;
 import presentacion.vista.usuario.iniciarsesion.IniciarSesionUI;
 import presentacion.vista.usuario.inicioadmin.InicioAdminUI;
@@ -219,20 +221,37 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 
 		case "BuscarUsuario": {
 			JDialog dBuscar = new JDialog(ventana, "Buscador", ModalityType.DOCUMENT_MODAL);
-			BuscadorUI buscador = new BuscadorUI(new BuscadorUIListener() {
+			BuscadorUI buscador = new BuscadorUI();
+			buscador.setListener(new BuscadorUIListener() {
 				@Override
 				public void buscarPulsado(String usuario) {
-					
-				}
+					ArrayList<Jugador> result = new SA_Usuario().buscarUsuario(gestor, modelo.getIdUsuario(), usuario);
+					ArrayList<ResultBusqUI> resultados = new ArrayList<ResultBusqUI>();
+					for(Jugador a : result) {
+						resultados.add(new ResultBusqUI(a, new ResultListener() {
 
-				@Override
-				public void agregarPulsado(String usuario) {
-					// TODO Auto-generated method stub
-				}
+							@Override
+							public void agregarPulsado(Jugador amigo) {
+								if(new SA_Usuario().agregarAmigo(gestor, (Jugador) modelo.getUsuario(), amigo))
+									JOptionPane.showMessageDialog(new JFrame(), "Amigo añadido correctamente", "Exito",
+												JOptionPane.INFORMATION_MESSAGE);
+								else
+									JOptionPane.showMessageDialog(new JFrame(), "Este usuario ya es tu amigo", "Error",
+											JOptionPane.WARNING_MESSAGE);
+							}
 
-				@Override
-				public void reportarPulsado(String usuario) {
-					// TODO Auto-generated method stub
+							@Override
+							public void reportarPulsado(Jugador reportado) {
+								new SA_GameMastering().reportarJugador(gestor, (Jugador) modelo.getUsuario(), reportado);
+								JOptionPane.showMessageDialog(new JFrame(), "Usuario reportado", "Exito",
+										JOptionPane.INFORMATION_MESSAGE);
+							}
+							
+						}));
+					}
+					buscador.setResultados(resultados);
+					buscador.setBusq(usuario);
+					buscador.actualizar();
 				}
 			});
 
