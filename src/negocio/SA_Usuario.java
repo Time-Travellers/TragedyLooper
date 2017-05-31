@@ -1,6 +1,10 @@
 package negocio;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import bbdd.Gestor;
+import integracion.DAO_ListaUsuarios;
 import integracion.DAO_Usuarios;
 import presentacion.modelo.usuario.Jugador;
 import presentacion.modelo.usuario.Paises;
@@ -37,6 +41,27 @@ public class SA_Usuario{
 		jugador.getDatos().setEdad(edad);
 		jugador.getDatos().setPais(pais);
 		new DAO_Usuarios(gestor).actualizar(jugador);
+	}
+	
+	public boolean agregarAmigo(Gestor gestor, Jugador jugador, Jugador amigo) {
+		if(jugador.getAmigos().contains(amigo))
+			return false;
+		else {
+			jugador.getAmigos().add(amigo);
+			new DAO_Usuarios(gestor).actualizar(jugador);
+			return true;
+		}
+	}
+	
+	public ArrayList<Jugador> buscarUsuario(Gestor gestor, String jugador, String str){
+		HashMap<String, Usuario> usuariosHM = new DAO_ListaUsuarios(gestor).leer();
+		ArrayList<Usuario> usuariosAL = new ArrayList<Usuario>(usuariosHM.values());
+		ArrayList<Jugador> results = new ArrayList<Jugador>();
+		for(Usuario a: usuariosAL) {
+			if(!a.getId().equals(jugador) && !a.isAdmin() && a.getId().contains(str))
+				results.add((Jugador) a);
+		}
+		return results;
 	}
 	
 }
