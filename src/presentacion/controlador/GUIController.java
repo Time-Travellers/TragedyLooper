@@ -5,9 +5,16 @@ import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneLayout;
+
 import bbdd.Gestor;
 import negocio.SA_Juego;
 import negocio.SA_Marketing;
@@ -228,9 +235,13 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 				@Override
 				public void buscarPulsado(String usuario) {
 					ArrayList<Jugador> result = new SA_Usuario().buscarUsuario(gestor, modelo.getIdUsuario(), usuario);
-					ArrayList<ResultBusqUI> resultados = new ArrayList<ResultBusqUI>();
+					JPanel resultados = new JPanel();
+					if (result.size() == 0)
+						resultados.add(new JLabel("No se han encontrado resultados"));
+					else
+						resultados.add(new JLabel("Resultados de la búsqueda de " + usuario));
 					for(Jugador a : result) {
-						resultados.add(new ResultBusqUI(a, new ResultListener() {
+						ResultBusqUI res = new ResultBusqUI(a, new ResultListener() {
 
 							@Override
 							public void agregarPulsado(Jugador amigo) {
@@ -249,11 +260,13 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 										JOptionPane.INFORMATION_MESSAGE);
 							}
 							
-						}));
+						});
+						res.setVisible(true);
 					}
-					buscador.setResultados(resultados);
-					buscador.setBusq(usuario);
-					buscador.actualizar();
+					resultados.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+					resultados.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+					resultados.setVisible(true);
+					dBuscar.add(resultados);
 				}
 			});
 
