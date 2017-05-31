@@ -6,7 +6,6 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
@@ -15,7 +14,7 @@ public class TablaTOPPartidas extends JPanel {
 
 	private static final long serialVersionUID = 2471691997972245593L;
 
-	final static String[] COL_NAMES = {"Nº" , "ID", "Rol", "Puntuacion", "Fecha"};
+	final static String[] COL_NAMES = {"Nï¿½" , "ID", "Rol", "Puntuacion", "Fecha"};
 
 	private JTable table;
 

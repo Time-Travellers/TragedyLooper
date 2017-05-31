@@ -1,4 +1,4 @@
-package presentacion.vista.usuario.principalus;
+package presentacion.vista.usuario.inicious;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;

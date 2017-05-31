@@ -1,6 +1,7 @@
 package presentacion.vista.juego.proponerguion;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -80,7 +81,7 @@ public class SugerenciaGuion extends JPanel{
 
 
 	public InfoGuion getGuionCompleto() {
-		return new InfoGuion(gListener.idRegistrado(), getTitulo(), getTrama(), getSubtrama(), getBucles(), getDias(), getPersonajes(), getIncidentes());
+		return new InfoGuion(gListener.idRegistrado(), getTitulo(), getTrama(), getSubtrama(), getBucles(), getDias(), getPersonajes(), getIncidentes(), new Date());
 	}
 
 	private int getDias() {

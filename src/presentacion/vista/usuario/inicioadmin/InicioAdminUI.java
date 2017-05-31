@@ -1,26 +1,19 @@
 package presentacion.vista.usuario.inicioadmin;
 
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.imageio.ImageIO;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import presentacion.controlador.GUIController;
 import presentacion.controlador.inicioadmin.PrinciAdministradorEvent;
 import presentacion.controlador.inicioadmin.PrinciAdministradorListenable;
 import presentacion.controlador.inicioadmin.PrinciAdministradorListener;
@@ -99,14 +92,6 @@ public class InicioAdminUI extends JPanel implements PrinciAdministradorListenab
 		this.setBorder(new EmptyBorder(20,30,20,30));
 	}
 	
-	public static void main(String args[]) throws IOException{
-		JFrame ventana=new JFrame("prueba");
-		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ventana.setSize(800,650);
-		
-		ventana.add(new InicioAdminUI("peter", 10 ,1 ,5));
-		ventana.setVisible(true);
-	}
 
 	@Override
 	public void addPrinciAdministradorListener(PrinciAdministradorListener p) {

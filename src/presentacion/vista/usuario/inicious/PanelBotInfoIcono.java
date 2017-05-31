@@ -1,4 +1,4 @@
-package presentacion.vista.usuario.principalus;
+package presentacion.vista.usuario.inicious;
 
 import java.awt.Color;
 import java.awt.Dimension;

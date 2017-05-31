@@ -2,31 +2,19 @@ package presentacion.vista.gameMastering.aceptarguion;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import presentacion.modelo.juego.Incidente;
-import presentacion.modelo.juego.Incidente.EnumIncidentes;
 import presentacion.modelo.juego.InfoGuion;
-import presentacion.modelo.juego.InfoGuion.Subtrama;
-import presentacion.modelo.juego.InfoGuion.Trama;
-import presentacion.modelo.juego.InfoPersonaje;
-import presentacion.modelo.juego.InfoPersonaje.Personaje;
-import presentacion.modelo.juego.InfoPersonaje.Rol;
 import presentacion.modelo.marketing.Tienda;
-import presentacion.modelo.usuario.Jugador;
 
 public class AceptarGuionUI extends JPanel{
 
@@ -118,17 +106,17 @@ public class AceptarGuionUI extends JPanel{
 	public int getNivel(){
 		return (int) niveles.getSelectedItem();
 	}
-	public static void main(String args[]){
-		JFrame ventana=new JFrame("prueba");
-		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ventana.setLayout(new FlowLayout());
-		ventana.setSize(800,600);
-		InfoGuion guion = new InfoGuion( new Jugador("Prueba", "Prueba", false, "Prueba", 0, null, "Prueba"),
-				"title", Trama.Luz_del_vengador, Subtrama.Amor_prohibido,
-				3,5, new ArrayList<InfoPersonaje>(Arrays.asList(new InfoPersonaje(Personaje.Empresario,Rol.Amante))),
-						new ArrayList<Incidente>(Arrays.asList( new Incidente(EnumIncidentes.Asesinato, Personaje.Empresario))));
-		ventana.setContentPane(new AceptarGuionUI(guion));
-		ventana.setVisible(true);
-	}
+//	public static void main(String args[]){
+//		JFrame ventana=new JFrame("prueba");
+//		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		ventana.setLayout(new FlowLayout());
+//		ventana.setSize(800,600);
+//		InfoGuion guion = new InfoGuion( new Jugador("Prueba", "Prueba", false, "Prueba", 0, null, "Prueba"),
+//				"title", Trama.Luz_del_vengador, Subtrama.Amor_prohibido,
+//				3,5, new ArrayList<InfoPersonaje>(Arrays.asList(new InfoPersonaje(Personaje.Empresario,Rol.Amante))),
+//						new ArrayList<Incidente>(Arrays.asList( new Incidente(EnumIncidentes.Asesinato, Personaje.Empresario))));
+//		ventana.setContentPane(new AceptarGuionUI(guion));
+//		ventana.setVisible(true);
+//	}
 
 }

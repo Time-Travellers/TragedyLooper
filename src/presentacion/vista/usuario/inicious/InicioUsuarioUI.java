@@ -1,4 +1,4 @@
-package presentacion.vista.usuario.principalus;
+package presentacion.vista.usuario.inicious;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -17,7 +17,7 @@ import presentacion.controlador.principalus.PrinciUsuarioListenable;
 import presentacion.controlador.principalus.PrinciUsuarioListener;
 import presentacion.modelo.usuario.Jugador;
 
-public class PrincipalUsuarioUI extends JPanel implements PrinciUsuarioListenable{
+public class InicioUsuarioUI extends JPanel implements PrinciUsuarioListenable{
 	
 	private static final long serialVersionUID = 7527554039049217535L;
 	
@@ -27,7 +27,7 @@ public class PrincipalUsuarioUI extends JPanel implements PrinciUsuarioListenabl
 	private ArrayList<PrinciUsuarioListener> listeners;
 	private Jugador j;
 
-	public PrincipalUsuarioUI(Jugador j){
+	public InicioUsuarioUI(Jugador j){
 		listeners = new ArrayList<PrinciUsuarioListener>();
 		this.j = j;
 		initGUI();
@@ -79,7 +79,7 @@ public class PrincipalUsuarioUI extends JPanel implements PrinciUsuarioListenabl
 		ventana.setSize(1024, 768);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GUIController controller = new GUIController(ventana,null);
-		ventana.setContentPane(new PrincipalUsuarioUI(new Jugador("Prueba", "Prueba", false, "Prueba", 0, null, "Prueba")));
+		ventana.setContentPane(new InicioUsuarioUI(new Jugador("Prueba", "Prueba", false, "Prueba", 0, null, "Prueba")));
 		ventana.setVisible(true);
 	}
 

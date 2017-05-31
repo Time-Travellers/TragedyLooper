@@ -2,18 +2,11 @@ package presentacion.controlador;
 
 import java.awt.Dialog.ModalityType;
 import java.awt.Dimension;
-import java.util.ArrayList;
 import java.util.logging.Logger;
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneLayout;
 
 import bbdd.Gestor;
 import negocio.SA_Juego;
@@ -33,35 +26,32 @@ import presentacion.controlador.perfil.PerfilListener;
 import presentacion.controlador.principalus.PrinciUsuarioEvent;
 import presentacion.controlador.principalus.PrinciUsuarioListener;
 import presentacion.modelo.GUIModelo;
-import presentacion.modelo.gameMastering.Reporte;
 import presentacion.modelo.juego.InfoGuion;
 import presentacion.modelo.marketing.InfoNivel;
 import presentacion.modelo.marketing.Tienda;
 import presentacion.modelo.usuario.Jugador;
 import presentacion.modelo.usuario.Usuario;
-import presentacion.vista.gameMastering.ListaReportadosUI;
 import presentacion.vista.gameMastering.aceptarguion.AceptarGuionUI;
 import presentacion.vista.gameMastering.aceptarguion.AceptarGuionUI.AceptarGuionListener;
 import presentacion.vista.gameMastering.aceptarguion.ListaPropuestosUI;
 import presentacion.vista.gameMastering.aceptarguion.ListaPropuestosUI.GuionesPropuestosListener;
+import presentacion.vista.gameMastering.banear.ListaReportadosUI;
+import presentacion.vista.gameMastering.banear.ListaReportadosUI.ReportadosListener;
 import presentacion.vista.juego.proponerguion.SugerenciaGuion;
 import presentacion.vista.juego.proponerguion.SugerenciaGuion.GuionListener;
 import presentacion.vista.marketing.comprarnivel.ComprarNivelUI;
 import presentacion.vista.marketing.comprarnivel.ComprarNivelUI.ComprarNivelUIListener;
 import presentacion.vista.marketing.comprarreloj.ComprarRelojUI;
 import presentacion.vista.usuario.buscar.BuscadorUI;
-import presentacion.vista.usuario.buscar.ResultBusqUI;
-import presentacion.vista.usuario.buscar.ResultBusqUI.ResultListener;
-import presentacion.vista.usuario.buscar.BuscadorUI.BuscadorUIListener;
 import presentacion.vista.usuario.iniciarsesion.IniciarSesionUI;
 import presentacion.vista.usuario.inicioadmin.InicioAdminUI;
+import presentacion.vista.usuario.inicious.MostrarAyuda;
+import presentacion.vista.usuario.inicious.InicioUsuarioUI;
 import presentacion.vista.usuario.perfilus.CambiarPassUI;
 import presentacion.vista.usuario.perfilus.CambiarPassUI.CambiarPassUIListener;
 import presentacion.vista.usuario.perfilus.ModificarDatosUI;
 import presentacion.vista.usuario.perfilus.ModificarDatosUI.ModifDatosListener;
 import presentacion.vista.usuario.perfilus.PerfilUsuario;
-import presentacion.vista.usuario.principalus.MostrarAyuda;
-import presentacion.vista.usuario.principalus.PrincipalUsuarioUI;
 import presentacion.vista.usuario.registro.RegistroUI;
 import presentacion.vista.usuario.registro.RegistroUI.RegistroUIListener;
 
@@ -306,15 +296,25 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 		}
 			break;
 		case "Reportados": {
-			ArrayList<Reporte> lista = (new SA_GameMastering()).sacarReportados(gestor);
-			String[][] devolver = new String[lista.size()][3];
-			for (int i = 0; i < lista.size(); i++) {
-				devolver[i][0] = lista.get(i).getReportador().getId();
-				devolver[i][1] = lista.get(i).getReportado().getId();
-				devolver[i][2] = lista.get(i).getFecha().toString();
-			}
-			ListaReportadosUI listaReportados = new ListaReportadosUI(devolver);
-			JDialog reportados = new JDialog();
+			String[][] reporte = (new SA_GameMastering()).datosReportados(gestor);
+			JDialog reportados = new JDialog(ventana, "Guiones Propuestos", ModalityType.DOCUMENT_MODAL);
+			
+			ListaReportadosUI listaReportados = new ListaReportadosUI(reporte);
+			listaReportados.setReportadosListener(new ReportadosListener(){
+
+				@Override
+				public void actualizar() {
+					listaReportados.setDatos((new SA_GameMastering()).datosReportados(gestor));
+				}
+				@Override
+				public void seleccionar(String s) {
+				}
+				@Override
+				public void salir() {
+					reportados.dispose();
+				}
+			});
+			
 			reportados.setSize(600, 508);
 			reportados.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			reportados.setContentPane(listaReportados);
@@ -331,26 +331,17 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 			JDialog propuestos = new JDialog(ventana, "Guiones Propuestos", ModalityType.DOCUMENT_MODAL);
 			ListaPropuestosUI listaPropuestos = new ListaPropuestosUI(datos);
 			listaPropuestos.setGPListener(new GuionesPropuestosListener(){
-
 				@Override
 				public void actualizar() {
-					//
-					listaPropuestos.eraseData();
-				//	listaPropuestos.setDatos((new SA_GameMastering()).datosGuionesPropuestos(gestor));
+					listaPropuestos.setDatos((new SA_GameMastering()).datosGuionesPropuestos(gestor));
 				}
-
-				@Override
-				public void salir() {
-					propuestos.dispose();
-				}
-
 				@Override
 				public void seleccionar(String s) {
 					InfoGuion info = (new SA_GameMastering()).leerGuion(gestor, s);
 					AceptarGuionUI acGuion = new AceptarGuionUI(info);
 					acGuion.setAGListener(new AceptarGuionListener(){
-
-						@Override
+						
+						@Override //aceptar el guion elegido
 						public void aceptar() {
 							(new SA_GameMastering()).aceptarGuion(gestor,info.getTitulo(),acGuion.getNivel());
 							String[][] datos = (new SA_GameMastering()).datosGuionesPropuestos(gestor);
@@ -360,8 +351,7 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 							propuestos.setVisible(true);
 							propuestos.repaint();
 						}
-
-						@Override
+						@Override	//rechazar el guion elegido
 						public void rechazar() {
 							(new SA_GameMastering()).eliminarGuion(gestor,info.getTitulo());
 							String[][] datos = (new SA_GameMastering()).datosGuionesPropuestos(gestor);
@@ -371,15 +361,13 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 							propuestos.setVisible(true);
 							propuestos.repaint();
 						}
-
-						@Override
+						@Override	//salir de la ventana
 						public void salir() {
 							propuestos.setContentPane(listaPropuestos);
 							propuestos.pack();
 							propuestos.setVisible(true);
 							propuestos.repaint();
-						}
-						
+						}						
 					});
 					propuestos.setContentPane(acGuion);
 					propuestos.pack();
@@ -490,13 +478,14 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 			iniSesion.updateUI();
 			break;
 		case PrinUsuario:
-			PrincipalUsuarioUI prinUsuario = new PrincipalUsuarioUI((Jugador) modelo.getUsuario());
+			InicioUsuarioUI prinUsuario = new InicioUsuarioUI((Jugador) modelo.getUsuario());
 			prinUsuario.addPrinciUsuarioListener(this);
 			ventana.add(prinUsuario);
 			prinUsuario.updateUI();
 			break;
 		case PrinAdmin:
-			InicioAdminUI prinAdmin = new InicioAdminUI(modelo.getUsuario().getId(), 1, 2, 3);
+			InicioAdminUI prinAdmin = new InicioAdminUI(modelo.getUsuario().getId(),
+					0, new SA_GameMastering().getNumGuiones(gestor),  new SA_GameMastering().getNumReportados(gestor));
 			prinAdmin.addPrinciAdministradorListener(this);
 			ventana.add(prinAdmin);
 			prinAdmin.updateUI();

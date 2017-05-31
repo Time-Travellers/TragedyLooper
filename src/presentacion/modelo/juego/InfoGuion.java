@@ -2,6 +2,7 @@ package presentacion.modelo.juego;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import presentacion.modelo.usuario.Jugador;
@@ -26,11 +27,12 @@ public class InfoGuion implements Serializable{
 	private List<Incidente> incidentes;
 	private int nivel;
 	private Jugador creador;
+	private Date fechaCreada;
 	
 
 	public InfoGuion(Jugador creador, String titulo, Trama trama, Subtrama subtrama,
 			int numLoops, int numDias, List<InfoPersonaje> cartaPersonajes,
-			List<Incidente> incidentes) {
+			List<Incidente> incidentes, Date date) {
 		this.creador=creador;
 		this.titulo = titulo;
 		this.trama = trama;
@@ -40,6 +42,7 @@ public class InfoGuion implements Serializable{
 		this.cartaPersonajes = cartaPersonajes;
 		this.incidentes = incidentes;
 		this.creador=creador;
+		this.fechaCreada = date;
 	}
 
 	
@@ -106,5 +109,7 @@ public class InfoGuion implements Serializable{
 		return nivel;
 	}
 	
-	
+	public Date getFecha(){
+		return fechaCreada;
+	}
 }

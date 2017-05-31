@@ -7,6 +7,7 @@ import integracion.DAO_ListaReportados;
 import integracion.DAO_Reportados;
 import integracion.DAO_Usuarios;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -14,19 +15,20 @@ import java.util.HashMap;
 import presentacion.modelo.gameMastering.Reporte;
 import presentacion.modelo.juego.InfoGuion;
 import presentacion.modelo.usuario.Jugador;
-import presentacion.modelo.usuario.Usuario;
 import bbdd.Gestor;
 
 public class SA_GameMastering {
 
-	public ArrayList<Reporte> sacarReportados(Gestor g) {
+	public String[][] datosReportados(Gestor g) {
 		HashMap<String, Reporte> r = new DAO_ListaReportados(g).leer();
-		return new ArrayList<Reporte>(r.values());
-	}
-
-	public ArrayList<InfoGuion> sacarGuiones(Gestor g) {
-		HashMap<String, InfoGuion> r = new DAO_ListaGuionesPropuestos(g).leer();
-		return new ArrayList<InfoGuion>(r.values());
+		ArrayList<Reporte> reportes = new ArrayList<Reporte>(r.values());
+		String[][] data = new String[reportes.size()][3];
+		for (int i = 0; i < reportes.size(); ++i) {
+			data[i][0] = reportes.get(i).getReportador().getId();
+			data[i][1] = reportes.get(i).getReportado().getId();
+			data[i][2] = new SimpleDateFormat("dd/M/yyyy").format(reportes.get(i).getFecha());
+		}
+		return data;
 	}
 
 	public void reportarJugador(Gestor g, Jugador reportador, Jugador reportado) {
@@ -37,10 +39,11 @@ public class SA_GameMastering {
 	public String[][] datosGuionesPropuestos(Gestor g) {
 		HashMap<String, InfoGuion> r = new DAO_ListaGuionesPropuestos(g).leer();
 		ArrayList<InfoGuion> guiones = new ArrayList<InfoGuion>(r.values());
-		String[][] data = new String[guiones.size()][2];
+		String[][] data = new String[guiones.size()][3];
 		for (int i = 0; i < guiones.size(); ++i) {
 			data[i][0] = guiones.get(i).getCreador().getId();
 			data[i][1] = guiones.get(i).getTitulo();
+			data[i][2] = new SimpleDateFormat("dd/M/yyyy").format(guiones.get(i).getFecha());
 		}
 		return data;
 
@@ -62,5 +65,13 @@ public class SA_GameMastering {
 	
 	public void eliminarGuion(Gestor g, String s){
 		(new DAO_Guiones_Propuestos(g)).borrar(s);
+	}
+	
+	public int getNumReportados(Gestor g){
+		return (new DAO_ListaReportados(g).leer()).size();
+	}
+	
+	public int getNumGuiones(Gestor g){
+		return (new DAO_ListaGuionesPropuestos(g).leer()).size();
 	}
 }

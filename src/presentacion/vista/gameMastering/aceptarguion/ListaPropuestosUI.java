@@ -13,15 +13,13 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.ListSelectionListener;
 
 public class ListaPropuestosUI extends JPanel{
 	
 	private static final long serialVersionUID = -2169464744594357032L;
 
-	private final static String Atras="exit.png";
 	private final static String Actualizar="actualizar.png";
-	private final static String[] COL_NAMES={"Creador", "Titulo"};
+	private final static String[] COL_NAMES={"Creador", "Titulo", "Fecha"};
 	
 	private JTable tabla;
 	private JScrollPane tablePane;
@@ -30,7 +28,6 @@ public class ListaPropuestosUI extends JPanel{
 	public interface GuionesPropuestosListener {
 		void actualizar(); 
 		void seleccionar(String s);
-		void salir();
 	}
 	
 	public void setGPListener(GuionesPropuestosListener listener){
@@ -48,11 +45,6 @@ public class ListaPropuestosUI extends JPanel{
 		JLabel title = new JLabel("Hay " + datos.length +  " guiones pendientes:");
 		title.setFont(new Font("",20,40));
 		
-		//boton volver
-		JButton volver = new JButton();
-		volver.setIcon(new ImageIcon(getClass().getClassLoader().getResource("resources/" + Atras)));
-		volver.setPreferredSize(new Dimension (50,50));
-		volver.addActionListener((e)-> list.salir());
 		//boton actualizar
 		JButton actualizar = new JButton();
 		actualizar.setIcon(new ImageIcon(getClass().getClassLoader().getResource("resources/" + Actualizar)));
@@ -61,13 +53,13 @@ public class ListaPropuestosUI extends JPanel{
 		
 		north.add(title);
 		north.add(Box.createHorizontalGlue());
-		north.add(volver);
 		north.add(actualizar);
 		
 		//tabla
 		tabla = new JTable(datos, COL_NAMES);
 		tabla.setVisible(true);
 		tabla.setFillsViewportHeight(true);
+		tabla.getTableHeader().setReorderingAllowed(false);
 		tabla.getSelectionModel().addListSelectionListener((e)->{
 			list.seleccionar((String)tabla.getValueAt(tabla.getSelectedRow(), 1));
 		});
@@ -79,21 +71,13 @@ public class ListaPropuestosUI extends JPanel{
 		setBorder(new EmptyBorder(20,20,20,20));
 	}
 
-	public void eraseData() {
-		String[][] datos = {};
-		tabla = new JTable(datos, COL_NAMES);
-		tabla.revalidate();
-		tabla.repaint();
-		tablePane.repaint();
-		revalidate();
-		repaint();
-	}
-	
 	public void setDatos(String[][] datos){
 		
 		tabla = new JTable(datos, COL_NAMES);
 		tabla.revalidate();
 		tabla.repaint();
+		tablePane.repaint();
+		tablePane.revalidate();
 		revalidate();
 		repaint();
 	}
