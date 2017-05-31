@@ -24,9 +24,9 @@ public class Modificador {
 		//guiones.remove("Festival del algodon");
 		//new IO<InfoGuion>("guiones.ser").almacenar(guiones);
 		
-		file2.createNewFile();
-		HashMap<String, InfoGuion> guiones = new HashMap<String, InfoGuion>();
-		new IO<InfoGuion>("guiones_propuestos.ser").almacenar(guiones);
+		//file2.createNewFile();
+		//HashMap<String, InfoGuion> guiones = new HashMap<String, InfoGuion>();
+		//new IO<InfoGuion>("guiones_propuestos.ser").almacenar(guiones);
 	}
 	
 }

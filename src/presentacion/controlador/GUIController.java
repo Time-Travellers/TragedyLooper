@@ -20,6 +20,8 @@ import negocio.SA_Juego;
 import negocio.SA_Marketing;
 import negocio.SA_GameMastering;
 import negocio.SA_Usuario;
+import presentacion.controlador.buscador.BuscadorEvent;
+import presentacion.controlador.buscador.BuscadorListener;
 import presentacion.controlador.comprarreloj.ComprarRelojEvent;
 import presentacion.controlador.comprarreloj.ComprarRelojListener;
 import presentacion.controlador.iniciarsesion.IniSesionEvent;
@@ -64,7 +66,7 @@ import presentacion.vista.usuario.registro.RegistroUI;
 import presentacion.vista.usuario.registro.RegistroUI.RegistroUIListener;
 
 public class GUIController implements IniSesionListener, PrinciUsuarioListener, PrinciAdministradorListener,
-		ComprarRelojListener, PerfilListener {
+		ComprarRelojListener, PerfilListener, BuscadorListener {
 
 	private enum TipoVentana {
 		IniSesion, PrinUsuario, PrinAdmin, Perfil
@@ -231,41 +233,8 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 		case "BuscarUsuario": {
 			JDialog dBuscar = new JDialog(ventana, "Buscador", ModalityType.DOCUMENT_MODAL);
 			BuscadorUI buscador = new BuscadorUI();
-			buscador.addListener(new BuscadorUIListener() {
-				@Override
-				public void buscarPulsado(String usuario) {
-					ArrayList<Jugador> result = new SA_Usuario().buscarUsuario(gestor, modelo.getIdUsuario(), usuario);
-					JPanel resultados = new JPanel();
-					if (result.size() == 0)
-						resultados.add(new JLabel("No se han encontrado resultados"));
-					else
-						resultados.add(new JLabel("Resultados de la búsqueda de " + usuario));
-					for(Jugador a : result) {
-						ResultBusqUI res = new ResultBusqUI(a, new ResultListener() {
-
-							@Override
-							public void agregarPulsado(Jugador amigo) {
-								if(new SA_Usuario().agregarAmigo(gestor, (Jugador) modelo.getUsuario(), amigo))
-									JOptionPane.showMessageDialog(new JFrame(), "Amigo añadido correctamente", "Exito",
-												JOptionPane.INFORMATION_MESSAGE);
-								else
-									JOptionPane.showMessageDialog(new JFrame(), "Este usuario ya es tu amigo", "Error",
-											JOptionPane.WARNING_MESSAGE);
-							}
-
-							@Override
-							public void reportarPulsado(Jugador reportado) {
-								new SA_GameMastering().reportarJugador(gestor, (Jugador) modelo.getUsuario(), reportado);
-								JOptionPane.showMessageDialog(new JFrame(), "Usuario reportado", "Exito",
-										JOptionPane.INFORMATION_MESSAGE);
-							}
-							
-						});
-						res.setVisible(true);
-					}
-				}
-			});
-
+			buscador.addBuscadorListener(this);
+			
 			dBuscar.setSize(800, 600);
 			dBuscar.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dBuscar.setContentPane(buscador);
@@ -503,6 +472,12 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 			break;
 		}
 		reiniciarGUI();
+	}
+	
+	public void notificarBuscador(BuscadorEvent e) {
+		switch(e.getBuscadorType()) {
+		
+		}
 	}
 
 	public void reiniciarGUI() {
