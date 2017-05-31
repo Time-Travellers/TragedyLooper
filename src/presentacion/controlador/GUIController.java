@@ -231,7 +231,7 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 		case "BuscarUsuario": {
 			JDialog dBuscar = new JDialog(ventana, "Buscador", ModalityType.DOCUMENT_MODAL);
 			BuscadorUI buscador = new BuscadorUI();
-			buscador.setListener(new BuscadorUIListener() {
+			buscador.addListener(new BuscadorUIListener() {
 				@Override
 				public void buscarPulsado(String usuario) {
 					ArrayList<Jugador> result = new SA_Usuario().buscarUsuario(gestor, modelo.getIdUsuario(), usuario);
@@ -263,10 +263,6 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 						});
 						res.setVisible(true);
 					}
-					resultados.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-					resultados.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-					resultados.setVisible(true);
-					dBuscar.add(resultados);
 				}
 			});
 
