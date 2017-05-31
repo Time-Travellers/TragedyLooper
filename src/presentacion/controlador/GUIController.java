@@ -32,6 +32,7 @@ import presentacion.modelo.usuario.Jugador;
 import presentacion.modelo.usuario.Usuario;
 import presentacion.vista.gameMastering.ListaReportadosUI;
 import presentacion.vista.gameMastering.aceptarguion.AceptarGuionUI;
+import presentacion.vista.gameMastering.aceptarguion.AceptarGuionUI.AceptarGuionListener;
 import presentacion.vista.gameMastering.aceptarguion.ListaPropuestosUI;
 import presentacion.vista.gameMastering.aceptarguion.ListaPropuestosUI.GuionesPropuestosListener;
 import presentacion.vista.juego.proponerguion.SugerenciaGuion;
@@ -365,9 +366,51 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 					propuestos.dispose();
 				}
 
+				@Override
+				public void seleccionar(String s) {
+					InfoGuion info = (new SA_GameMastering()).leerGuion(gestor, s);
+					AceptarGuionUI acGuion = new AceptarGuionUI(info);
+					acGuion.setAGListener(new AceptarGuionListener(){
+
+						@Override
+						public void aceptar() {
+							(new SA_GameMastering()).aceptarGuion(gestor,info.getTitulo(),acGuion.getNivel());
+							String[][] datos = (new SA_GameMastering()).datosGuionesPropuestos(gestor);
+							ListaPropuestosUI nuevaLista = new ListaPropuestosUI(datos);
+							propuestos.setContentPane(nuevaLista);
+							propuestos.pack();
+							propuestos.setVisible(true);
+							propuestos.repaint();
+						}
+
+						@Override
+						public void rechazar() {
+							(new SA_GameMastering()).eliminarGuion(gestor,info.getTitulo());
+							String[][] datos = (new SA_GameMastering()).datosGuionesPropuestos(gestor);
+							ListaPropuestosUI nuevaLista = new ListaPropuestosUI(datos);
+							propuestos.setContentPane(nuevaLista);
+							propuestos.pack();
+							propuestos.setVisible(true);
+							propuestos.repaint();
+						}
+
+						@Override
+						public void salir() {
+							propuestos.setContentPane(listaPropuestos);
+							propuestos.pack();
+							propuestos.setVisible(true);
+							propuestos.repaint();
+						}
+						
+					});
+					propuestos.setContentPane(acGuion);
+					propuestos.pack();
+					propuestos.setVisible(true);
+					propuestos.repaint();
+				}
 				
 			});
-			propuestos.setSize(600, 508);
+			propuestos.setSize(800, 600);
 			propuestos.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			propuestos.setContentPane(listaPropuestos);
 			propuestos.pack();

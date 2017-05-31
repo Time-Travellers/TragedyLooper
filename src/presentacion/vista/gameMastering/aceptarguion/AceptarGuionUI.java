@@ -32,17 +32,18 @@ public class AceptarGuionUI extends JPanel{
 
 	private static final long serialVersionUID = 3891324742744513990L;
 	
-//	private AceptarGuionListener listener;
-//	
-//	public interface AceptarGuionListener(){
-//		public void Aceptar();
-//		public void Rechazar();
-//		public void Salir();
-//	}
-//	
-//	public void setAGListener(AceptarGuionListener listener){
-//		this.listener = listener;
-//	}
+	private AceptarGuionListener list;
+	private JComboBox<Integer> niveles;
+	
+	public interface AceptarGuionListener {
+		void aceptar(); 
+		void rechazar();
+		void salir();
+	}
+	
+	public void setAGListener(AceptarGuionListener listener){
+		this.list = listener;
+	}
 	
 	public AceptarGuionUI(InfoGuion guion){
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
@@ -71,10 +72,10 @@ public class AceptarGuionUI extends JPanel{
 		south.setBorder(new EmptyBorder(0,20,0,20));
 		
 		//combobox para seleccionar dificultad
-		ArrayList<Integer> valores = new ArrayList<Integer>();
-		for(int i=0;i<Tienda.NIVEL;++i) valores.add(i);
-		@SuppressWarnings({ "rawtypes", "unchecked" })
-		JComboBox niveles = new JComboBox(valores.toArray());
+		Integer[] valores = new Integer[Tienda.NIVEL];
+		for(int i=0;i<Tienda.NIVEL;++i) valores[i] = i;
+		
+		niveles = new JComboBox<Integer>(valores);
 		niveles.setMaximumSize(new Dimension(100,20));
 		
 		JLabel nivel = new JLabel("Nivel: ");
@@ -89,7 +90,10 @@ public class AceptarGuionUI extends JPanel{
 		aceptar.setBackground(new Color(150,200,150));
 		rechazar.setBackground(new Color(250,70,50));
 		cancelar.setBackground(new Color(250,70,50));
-//Anadir los listeners!
+		
+		aceptar.addActionListener((e)->{list.aceptar();});
+		rechazar.addActionListener((e)->{list.rechazar();});
+		cancelar.addActionListener((e)->{list.salir();});
 		
 		south.add(nivel);
 		south.add(niveles);
@@ -111,6 +115,9 @@ public class AceptarGuionUI extends JPanel{
 		this.setBorder(new EmptyBorder(20, 20, 20, 20));
 	}
 	
+	public int getNivel(){
+		return (int) niveles.getSelectedItem();
+	}
 	public static void main(String args[]){
 		JFrame ventana=new JFrame("prueba");
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

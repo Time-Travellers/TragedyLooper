@@ -5,13 +5,14 @@ import java.util.Date;
 import java.util.List;
 
 import presentacion.modelo.juego.JugadorPartida;
-import presentacion.modelo.marketing.InfoNivel;
 import presentacion.modelo.marketing.Tienda;
 import presentacion.modelo.usuario.Paises;
 
 public class Jugador extends Usuario {
 	
 	private static final long serialVersionUID = -7213910171949040945L;
+	
+	public static final int RECOMPENSA = 10;
 	private int nivel;
     private int reloj;
     private int anuncios;
