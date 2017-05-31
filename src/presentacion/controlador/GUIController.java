@@ -2,6 +2,7 @@ package presentacion.controlador;
 
 import java.awt.Dialog.ModalityType;
 import java.awt.Dimension;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import javax.swing.JDialog;
@@ -13,8 +14,6 @@ import negocio.SA_Juego;
 import negocio.SA_Marketing;
 import negocio.SA_GameMastering;
 import negocio.SA_Usuario;
-import presentacion.controlador.buscador.BuscadorEvent;
-import presentacion.controlador.buscador.BuscadorListener;
 import presentacion.controlador.comprarreloj.ComprarRelojEvent;
 import presentacion.controlador.comprarreloj.ComprarRelojListener;
 import presentacion.controlador.iniciarsesion.IniSesionEvent;
@@ -43,6 +42,9 @@ import presentacion.vista.marketing.comprarnivel.ComprarNivelUI;
 import presentacion.vista.marketing.comprarnivel.ComprarNivelUI.ComprarNivelUIListener;
 import presentacion.vista.marketing.comprarreloj.ComprarRelojUI;
 import presentacion.vista.usuario.buscar.BuscadorUI;
+import presentacion.vista.usuario.buscar.BuscadorUI.BuscList;
+import presentacion.vista.usuario.buscar.ResultBusqUI;
+import presentacion.vista.usuario.buscar.ResultBusqUI.ResultListener;
 import presentacion.vista.usuario.iniciarsesion.IniciarSesionUI;
 import presentacion.vista.usuario.inicioadmin.InicioAdminUI;
 import presentacion.vista.usuario.inicious.MostrarAyuda;
@@ -56,7 +58,7 @@ import presentacion.vista.usuario.registro.RegistroUI;
 import presentacion.vista.usuario.registro.RegistroUI.RegistroUIListener;
 
 public class GUIController implements IniSesionListener, PrinciUsuarioListener, PrinciAdministradorListener,
-		ComprarRelojListener, PerfilListener, BuscadorListener {
+		ComprarRelojListener, PerfilListener {
 
 	private enum TipoVentana {
 		IniSesion, PrinUsuario, PrinAdmin, Perfil
@@ -192,7 +194,8 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 									JOptionPane.ERROR_MESSAGE);
 						}
 					} else {
-						JOptionPane.showMessageDialog(new JFrame(), "El guion debe tener titulo", "Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(new JFrame(), "El guion debe tener titulo", "Error",
+								JOptionPane.ERROR_MESSAGE);
 					}
 				}
 
@@ -223,14 +226,42 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 		case "BuscarUsuario": {
 			JDialog dBuscar = new JDialog(ventana, "Buscador", ModalityType.DOCUMENT_MODAL);
 			BuscadorUI buscador = new BuscadorUI();
-			buscador.addBuscadorListener(this);
-			
-			dBuscar.setSize(800, 600);
+			buscador.setList(new BuscList() {
+				@Override
+				public void buscarPulsado(String usuario) {
+					ArrayList<Jugador> result = new SA_Usuario().buscarUsuario(gestor, modelo.getIdUsuario(), usuario);
+					ResultBusqUI resultados = new ResultBusqUI(result, new ResultListener() {
+						@Override
+						public void agregarPulsado(Jugador amigo) {
+							if (new SA_Usuario().agregarAmigo(gestor, (Jugador) modelo.getUsuario(), amigo))
+								JOptionPane.showMessageDialog(new JFrame(), "Amigo añadido correctamente", "Exito",
+										JOptionPane.INFORMATION_MESSAGE);
+							else
+								JOptionPane.showMessageDialog(new JFrame(), "Este usuario ya es tu amigo", "Error",
+										JOptionPane.WARNING_MESSAGE);
+						}
+
+						@Override
+						public void reportarPulsado(Jugador reportado) {
+							new SA_GameMastering().reportarJugador(gestor, (Jugador) modelo.getUsuario(), reportado);
+							JOptionPane.showMessageDialog(new JFrame(), "Usuario reportado", "Exito",
+									JOptionPane.INFORMATION_MESSAGE);
+						}
+					});
+					dBuscar.getContentPane().removeAll();
+					dBuscar.setContentPane(resultados);
+					dBuscar.repaint();
+					dBuscar.pack();
+					dBuscar.setVisible(true);
+				}
+			});
+			dBuscar.setPreferredSize(new Dimension(500, 500));
 			dBuscar.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dBuscar.setContentPane(buscador);
 			dBuscar.pack();
 			dBuscar.setVisible(true);
 		}
+
 			break;
 
 		case "comprarRelojes": {
@@ -298,23 +329,25 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 		case "Reportados": {
 			String[][] reporte = (new SA_GameMastering()).datosReportados(gestor);
 			JDialog reportados = new JDialog(ventana, "Guiones Propuestos", ModalityType.DOCUMENT_MODAL);
-			
+
 			ListaReportadosUI listaReportados = new ListaReportadosUI(reporte);
-			listaReportados.setReportadosListener(new ReportadosListener(){
+			listaReportados.setReportadosListener(new ReportadosListener() {
 
 				@Override
 				public void actualizar() {
 					listaReportados.setDatos((new SA_GameMastering()).datosReportados(gestor));
 				}
+
 				@Override
 				public void seleccionar(String s) {
 				}
+
 				@Override
 				public void salir() {
 					reportados.dispose();
 				}
 			});
-			
+
 			reportados.setSize(600, 508);
 			reportados.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			reportados.setContentPane(listaReportados);
@@ -327,23 +360,24 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 			break;
 		case "GuionesPropuestos": {
 			String[][] datos = (new SA_GameMastering()).datosGuionesPropuestos(gestor);
-			
+
 			JDialog propuestos = new JDialog(ventana, "Guiones Propuestos", ModalityType.DOCUMENT_MODAL);
 			ListaPropuestosUI listaPropuestos = new ListaPropuestosUI(datos);
-			listaPropuestos.setGPListener(new GuionesPropuestosListener(){
+			listaPropuestos.setGPListener(new GuionesPropuestosListener() {
 				@Override
 				public void actualizar() {
 					listaPropuestos.setDatos((new SA_GameMastering()).datosGuionesPropuestos(gestor));
 				}
+
 				@Override
 				public void seleccionar(String s) {
 					InfoGuion info = (new SA_GameMastering()).leerGuion(gestor, s);
 					AceptarGuionUI acGuion = new AceptarGuionUI(info);
-					acGuion.setAGListener(new AceptarGuionListener(){
-						
-						@Override //aceptar el guion elegido
+					acGuion.setAGListener(new AceptarGuionListener() {
+
+						@Override // aceptar el guion elegido
 						public void aceptar() {
-							(new SA_GameMastering()).aceptarGuion(gestor,info.getTitulo(),acGuion.getNivel());
+							(new SA_GameMastering()).aceptarGuion(gestor, info.getTitulo(), acGuion.getNivel());
 							String[][] datos = (new SA_GameMastering()).datosGuionesPropuestos(gestor);
 							ListaPropuestosUI nuevaLista = new ListaPropuestosUI(datos);
 							propuestos.setContentPane(nuevaLista);
@@ -351,9 +385,10 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 							propuestos.setVisible(true);
 							propuestos.repaint();
 						}
-						@Override	//rechazar el guion elegido
+
+						@Override // rechazar el guion elegido
 						public void rechazar() {
-							(new SA_GameMastering()).eliminarGuion(gestor,info.getTitulo());
+							(new SA_GameMastering()).eliminarGuion(gestor, info.getTitulo());
 							String[][] datos = (new SA_GameMastering()).datosGuionesPropuestos(gestor);
 							ListaPropuestosUI nuevaLista = new ListaPropuestosUI(datos);
 							propuestos.setContentPane(nuevaLista);
@@ -361,20 +396,21 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 							propuestos.setVisible(true);
 							propuestos.repaint();
 						}
-						@Override	//salir de la ventana
+
+						@Override // salir de la ventana
 						public void salir() {
 							propuestos.setContentPane(listaPropuestos);
 							propuestos.pack();
 							propuestos.setVisible(true);
 							propuestos.repaint();
-						}						
+						}
 					});
 					propuestos.setContentPane(acGuion);
 					propuestos.pack();
 					propuestos.setVisible(true);
 					propuestos.repaint();
 				}
-				
+
 			});
 			propuestos.setSize(800, 600);
 			propuestos.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -461,12 +497,6 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 		}
 		reiniciarGUI();
 	}
-	
-	public void notificarBuscador(BuscadorEvent e) {
-		switch(e.getBuscadorType()) {
-		
-		}
-	}
 
 	public void reiniciarGUI() {
 		ventana.getContentPane().removeAll();
@@ -484,8 +514,8 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 			prinUsuario.updateUI();
 			break;
 		case PrinAdmin:
-			InicioAdminUI prinAdmin = new InicioAdminUI(modelo.getUsuario().getId(),
-					0, new SA_GameMastering().getNumGuiones(gestor),  new SA_GameMastering().getNumReportados(gestor));
+			InicioAdminUI prinAdmin = new InicioAdminUI(modelo.getUsuario().getId(), 0,
+					new SA_GameMastering().getNumGuiones(gestor), new SA_GameMastering().getNumReportados(gestor));
 			prinAdmin.addPrinciAdministradorListener(this);
 			ventana.add(prinAdmin);
 			prinAdmin.updateUI();

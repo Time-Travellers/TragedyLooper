@@ -21,17 +21,21 @@ public class Gestor {
     private static Gestor gestor;
     
     private Gestor(){
-    	usuarios = new IO<Usuario>("usuarios.ser").leer();
-    	guiones = new IO<InfoGuion>("guiones.ser").leer();
-    	listaEspera = new IO<Jugador>("espera.ser").leer();
-    	reportados = new IO<Reporte>("reportados.ser").leer();
-    	guiones_propuestos = new IO<InfoGuion>("guiones_propuestos.ser").leer();
+    	cargar();
     }
     
     public static Gestor getGestor(){
     	if(gestor==null)
     		gestor = new Gestor();
     	return gestor;
+    }
+    
+    private void cargar() {
+    	usuarios = new IO<Usuario>("usuarios.ser").leer();
+    	guiones = new IO<InfoGuion>("guiones.ser").leer();
+    	listaEspera = new IO<Jugador>("espera.ser").leer();
+    	reportados = new IO<Reporte>("reportados.ser").leer();
+    	guiones_propuestos = new IO<InfoGuion>("guiones_propuestos.ser").leer();
     }
     
     public void close() {
