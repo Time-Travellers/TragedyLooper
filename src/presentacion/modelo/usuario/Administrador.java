@@ -1,9 +1,5 @@
 package presentacion.modelo.usuario;
 
-import java.util.Date;
-
-import presentacion.modelo.juego.InfoGuion;
-
 public class Administrador extends Usuario {
  
 	private static final long serialVersionUID = -6954434759575092156L;

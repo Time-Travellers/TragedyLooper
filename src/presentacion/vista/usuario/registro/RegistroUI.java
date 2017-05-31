@@ -13,19 +13,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 
 import presentacion.modelo.usuario.Jugador;
 import presentacion.modelo.usuario.Paises;
-import presentacion.modelo.usuario.Usuario;
 
-
-
-/**
- * Pantalla que se abre cuando el usuario pulsa "Registrarse"
- * al iniciar sesion.
- *
- */
 
 public class RegistroUI extends JPanel{
 
@@ -45,11 +36,6 @@ public class RegistroUI extends JPanel{
 	private JComboBox<Paises> pais;
 	private JButton registrarse;
 	private RegistroUIListener rListener;
-	
-	public RegistroUI(RegistroUIListener regListener) {
-		this.rListener = regListener;
-		initGUI();
-	}
 	
 	public RegistroUI() {
 		initGUI();
@@ -99,19 +85,14 @@ public class RegistroUI extends JPanel{
 		this.registrarse.setEnabled(false);
 		this.registrarse.addActionListener((e)-> this.rListener.registrarsePulsado());
 		this.addMouseListener(new MouseAdapter() {
-
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				registrarse.setEnabled(todoRelleno());
-				
 			}
-
 			@Override
 			public void mouseExited(MouseEvent e) {
 				registrarse.setEnabled(todoRelleno());
-
 			}
-			
 		});
 		
 		this.add(registrarse);
@@ -136,7 +117,6 @@ public class RegistroUI extends JPanel{
 		return res;
 	}
 	
-	@SuppressWarnings("deprecation")
 	public String getPassword2() {
 		char[] pass = password2.getPassword();
 		String res = "";
@@ -183,25 +163,6 @@ public class RegistroUI extends JPanel{
 	
 	public Jugador getUsuarioCompleto() {
 		return new Jugador(getUsername(), getPassword(), false, getNombre(), Integer.parseInt(getEdad()), getPais(), getEmail());
-	}
-	
-	// Main para probar esta pantalla:
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(()-> {
-			JFrame frame = new JFrame("Ventana de Registro");
-			frame.setSize(600,508);
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			RegistroUI registro = new RegistroUI(new RegistroUIListener() {
-
-				@Override
-				public void registrarsePulsado() {
-					System.out.println("Pulsado Registrarse");
-				}
-				
-			});
-			frame.setContentPane(registro);
-			frame.setVisible(true);
-		});
 	}
 
 }

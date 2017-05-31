@@ -3,7 +3,6 @@ package bbdd;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-import presentacion.modelo.juego.InfoGuion;
 import presentacion.modelo.usuario.Administrador;
 import presentacion.modelo.usuario.Paises;
 import presentacion.modelo.usuario.Usuario;

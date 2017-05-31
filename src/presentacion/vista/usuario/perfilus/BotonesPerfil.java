@@ -3,13 +3,9 @@ package presentacion.vista.usuario.perfilus;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
-
-import presentacion.controlador.perfil.PerfilEvent;
-import presentacion.controlador.perfil.PerfilListener;
 
 public class BotonesPerfil extends JPanel{
 

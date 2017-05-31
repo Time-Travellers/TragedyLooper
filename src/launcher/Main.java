@@ -16,7 +16,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		Log.setupLogging(Level.INFO);
-		Gestor gestor = new Gestor();
+		Gestor gestor = Gestor.getGestor();
 		
 		// Inicializar 4 MVC con el mismo gestor
 		iniciarModoEntrega(gestor);

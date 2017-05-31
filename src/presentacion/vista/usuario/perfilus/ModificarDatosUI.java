@@ -1,22 +1,17 @@
 package presentacion.vista.usuario.perfilus;
 
-import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import presentacion.modelo.usuario.Jugador;
 import presentacion.modelo.usuario.Paises;
-import presentacion.vista.usuario.registro.RegistroUI.RegistroUIListener;
 
 public class ModificarDatosUI extends JPanel {
 
@@ -57,13 +52,11 @@ public class ModificarDatosUI extends JPanel {
 		cambiar.setEnabled(false);
 		cambiar.addActionListener((e)-> this.list.cambiarPulsado());
 		this.addMouseListener(new MouseAdapter() {
-
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				cambiar.setEnabled(todoRelleno());
 				
 			}
-
 			@Override
 			public void mouseExited(MouseEvent e) {
 				cambiar.setEnabled(todoRelleno());

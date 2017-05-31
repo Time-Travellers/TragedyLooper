@@ -4,12 +4,10 @@ import java.awt.Dimension;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import presentacion.modelo.juego.Incidente;
-import presentacion.modelo.juego.InfoPersonaje.Personaje;
 
 public class PanelDias extends JPanel implements ReguladorListener{
 	
@@ -56,15 +54,6 @@ public class PanelDias extends JPanel implements ReguladorListener{
 		this.repaint();
 	}
 	
-	public static void main(String args[]){
-		JFrame ventana=new JFrame("prueba");
-		ventana.setContentPane(new PanelDias());
-		ventana.pack();
-		ventana.setSize(400, 300);
-		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ventana.setVisible(true);
-	}
-
 	public ArrayList<Incidente> getIncidentes() {
 		ArrayList<Incidente> incidentes = new ArrayList<Incidente>();
 		for(int i = 0; i < numdias.getValor();++i){

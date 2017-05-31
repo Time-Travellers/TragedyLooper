@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.logging.Logger;
 
 import bbdd.Gestor;
-import presentacion.modelo.gameMastering.Reporte;
 import presentacion.modelo.usuario.Usuario;
 
 public class DAO_ListaUsuarios extends DAO_Lista <HashMap<String, Usuario>>{

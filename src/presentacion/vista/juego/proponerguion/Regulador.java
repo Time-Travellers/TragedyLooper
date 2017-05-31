@@ -2,7 +2,6 @@ package presentacion.vista.juego.proponerguion;
 
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
@@ -36,15 +35,6 @@ public class Regulador extends JPanel{
 	
 	public int getValor(){
 		return (int) selector.getValue();
-	}
-	
-	
-	public static void main(String args[]){
-		JFrame ventana=new JFrame("prueba");
-		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ventana.setContentPane(new Regulador("hola",8));
-		ventana.setSize(800,600);
-		ventana.setVisible(true);
 	}
 	
 }

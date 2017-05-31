@@ -7,6 +7,8 @@ import presentacion.modelo.usuario.Jugador;
 
 public class ResultBusqUI extends JPanel {
 
+	private static final long serialVersionUID = -7339691583175238212L;
+	
 	private Jugador jugador;
 	private ResultListener list;
 	

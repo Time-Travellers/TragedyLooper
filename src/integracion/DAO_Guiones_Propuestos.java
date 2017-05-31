@@ -4,7 +4,6 @@ import java.util.logging.Logger;
 
 import bbdd.Gestor;
 import presentacion.modelo.juego.InfoGuion;
-import presentacion.modelo.usuario.Usuario;
 
 public class DAO_Guiones_Propuestos extends DAO< InfoGuion >{
 
@@ -35,7 +34,5 @@ public class DAO_Guiones_Propuestos extends DAO< InfoGuion >{
 		Logger.getLogger("log").info("Acceso a BBDD de guiones propuestos para borrar objeto");
 		gestor.guiones_propuestos.remove(id);		
 	}
-		
-	
 	
 }

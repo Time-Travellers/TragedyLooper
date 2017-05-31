@@ -1,21 +1,12 @@
 package presentacion.vista;
 
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.logging.Logger;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 
 import presentacion.controlador.GUIController;
-import presentacion.vista.usuario.inicioadmin.InicioAdminUI;
 
 public class FrameUI extends JFrame {
 	
@@ -42,7 +33,6 @@ public class FrameUI extends JFrame {
 				ctrl.closeGestor();
 			}
 		});
-		
 	}
 	
 	public void setCtrl(GUIController ctrl) {

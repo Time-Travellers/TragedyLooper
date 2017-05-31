@@ -1,8 +1,6 @@
 package presentacion.modelo.juego;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import presentacion.modelo.juego.InfoPersonaje.Personaje;
 

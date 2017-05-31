@@ -1,7 +1,5 @@
 package presentacion.controlador.principalus;
 
-import presentacion.modelo.usuario.Jugador;
-
 public class PrinciUsuarioEvent {
 	
 	public enum PrinciUsuarioType{

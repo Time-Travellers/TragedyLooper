@@ -3,23 +3,17 @@ package presentacion.vista.marketing.comprarnivel;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Dialog.ModalityType;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import presentacion.modelo.marketing.InfoNivel;
-import presentacion.modelo.usuario.Jugador;
 
 public class ComprarNivelUI extends JPanel {
 	
@@ -104,8 +98,6 @@ public class ComprarNivelUI extends JPanel {
 		
 		this.setBorder(new EmptyBorder(20, 20, 20, 20));
 		this.setPreferredSize(new Dimension(600, 350));
-		this.setVisible(true);
-		
-		
+		this.setVisible(true);		
 	}
 }

@@ -5,24 +5,18 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import bbdd.Gestor;
-import presentacion.controlador.GUIController;
 import presentacion.controlador.iniciarsesion.IniSesionEvent;
 import presentacion.controlador.iniciarsesion.IniSesionListenable;
 import presentacion.controlador.iniciarsesion.IniSesionListener;
@@ -100,9 +94,7 @@ public class IniciarSesionUI extends JPanel implements IniSesionListenable {
 		this.setLayout(new BorderLayout());
 		this.add(cuadroFinal);
 		
-		iniciarSesion.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
+		iniciarSesion.addActionListener((e)->{
 				char[] pass = passwIn.getPassword();
 				String sPass = "";
 				for(char a : pass)
@@ -110,46 +102,17 @@ public class IniciarSesionUI extends JPanel implements IniSesionListenable {
 				for (int i = 0; i < listeners.size(); ++i)
 					listeners.get(i).notificarIniSesion(new IniSesionEvent(
 							IniSesionType.IniciarSesion, userIn.getText(), sPass));
-			}
 		});
 		
-		crearCuenta.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
+		crearCuenta.addActionListener((e)->{
 				for (int i = 0; i < listeners.size(); ++i)
 					listeners.get(i).notificarIniSesion(new IniSesionEvent(IniSesionType.DarseAlta));
-			}
 		});
-		
 	}
 	
 	@Override
 	public void addIniSesionListener(IniSesionListener list) {
 		listeners.add(list);
 	}
-
-	
-	public static void main(String[] args) {
-		JFrame frame = new JFrame();
-		IniciarSesionUI ui = new IniciarSesionUI();
-		
-		frame.add(ui);
-		frame.setSize(new Dimension(1024, 768));
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
-		
-//		IniSesionListener test =  new IniSesionListener(){
-//			@Override
-//			public void notificarIniSesion(IniSesionEvent e) {
-//				System.out.println(e.getIniSesionType());
-//				System.out.println(e.getUsuario());
-//				System.out.println(e.getContrasena());
-//			}
-//		};
-//		ui.addIniSesionListener(test);
-	}
-
-
-	
 
 }

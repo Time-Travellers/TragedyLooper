@@ -1,9 +1,7 @@
 package presentacion.vista.juego.proponerguion;
 
-import java.util.ArrayList;
 
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -11,9 +9,6 @@ import presentacion.modelo.juego.InfoGuion.Trama;
 
 public class PanelSeleccionTrama extends JPanel{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	
@@ -42,14 +37,6 @@ public class PanelSeleccionTrama extends JPanel{
 		InicializarComboBox(Trama.values());
 		this.add(this.nombre);
 		this.add(this.opciones);
-	}
-	
-	public static void main(String args[]){
-		JFrame prueba=new JFrame("prueba");
-		prueba.setContentPane(new PanelSeleccionTrama());
-		prueba.setSize(800, 600);
-		prueba.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		prueba.setVisible(true);
 	}
 
 	public Trama getTrama() {

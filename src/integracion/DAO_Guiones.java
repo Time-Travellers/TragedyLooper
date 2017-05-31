@@ -1,6 +1,5 @@
 package integracion;
 
-import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import bbdd.Gestor;

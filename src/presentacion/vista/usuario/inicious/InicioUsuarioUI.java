@@ -6,13 +6,10 @@ import java.awt.Font;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import bbdd.Gestor;
-import presentacion.controlador.GUIController;
 import presentacion.controlador.principalus.PrinciUsuarioListenable;
 import presentacion.controlador.principalus.PrinciUsuarioListener;
 import presentacion.modelo.usuario.Jugador;
@@ -72,15 +69,6 @@ public class InicioUsuarioUI extends JPanel implements PrinciUsuarioListenable{
 	@Override
 	public void addPrinciUsuarioListener(PrinciUsuarioListener list) {
 		this.listeners.add(list);
-	}
-	
-	public static void main(String args[]){
-		JFrame ventana=new JFrame("Tragedy Looper");
-		ventana.setSize(1024, 768);
-		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		GUIController controller = new GUIController(ventana,null);
-		ventana.setContentPane(new InicioUsuarioUI(new Jugador("Prueba", "Prueba", false, "Prueba", 0, null, "Prueba")));
-		ventana.setVisible(true);
 	}
 
 }

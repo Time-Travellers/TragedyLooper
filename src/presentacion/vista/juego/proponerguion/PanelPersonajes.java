@@ -4,15 +4,14 @@ import java.awt.Dimension;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import presentacion.modelo.juego.InfoPersonaje;
-import presentacion.modelo.juego.InfoPersonaje.Personaje;
 
 public class PanelPersonajes extends JPanel implements ReguladorListener{
 
+	private static final long serialVersionUID = -4987485805795863324L;
 	private static final int MAX_PERSONAJES=20;
 	private Regulador numpersonajes;
 	private JScrollPane deslizador;
@@ -56,16 +55,6 @@ public class PanelPersonajes extends JPanel implements ReguladorListener{
 		this.setMaximumSize(new Dimension(300, 200));
 		this.setMinimumSize(new Dimension(300, 200));
 	}
-	
-	public static void main(String args[]){
-		JFrame ventana=new JFrame("prueba");
-		ventana.setContentPane(new PanelPersonajes());
-		ventana.pack();
-		ventana.setSize(400, 300);
-		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ventana.setVisible(true);
-	}
-	
 	
 	public ArrayList<InfoPersonaje> getInfoPersonajes() {
 		ArrayList<InfoPersonaje> list = new ArrayList<InfoPersonaje>();
