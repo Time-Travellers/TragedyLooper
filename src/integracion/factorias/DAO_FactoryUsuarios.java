@@ -9,7 +9,15 @@ import integracion.DAO.DAO_Usuarios;
 import presentacion.modelo.usuario.Usuario;
 
 public class DAO_FactoryUsuarios extends DAO_AbstractFactory<Usuario>{
+
+	private static DAO_FactoryUsuarios fabricaDeUsuarios;
 	
+    public static DAO_FactoryUsuarios getGestor(){
+    	if(fabricaDeUsuarios==null)
+    		fabricaDeUsuarios = new DAO_FactoryUsuarios();
+    	return fabricaDeUsuarios;
+    }
+    
 	@Override
 	public DAO<Usuario> creaDAO() {
 		return new DAO_Usuarios();
