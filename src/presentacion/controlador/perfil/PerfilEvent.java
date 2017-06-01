@@ -2,7 +2,7 @@ package presentacion.controlador.perfil;
 
 public class PerfilEvent {
 	public enum PerfilType{
-		Salir, CambiarPass, CambiarDatos
+		Salir, CambiarPass, CambiarDatos, ListaAmigos
 	}
 	
 	PerfilType tipo;

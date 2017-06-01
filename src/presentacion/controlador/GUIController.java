@@ -47,6 +47,8 @@ import presentacion.vista.usuario.buscar.ResultBusqUI.ResultListener;
 import presentacion.vista.usuario.iniciarsesion.IniciarSesionUI;
 import presentacion.vista.usuario.inicioadmin.InicioAdminUI;
 import presentacion.vista.usuario.inicious.MostrarAyuda;
+import presentacion.vista.usuario.listaAmigos.ListaAmigosUI;
+import presentacion.vista.usuario.listaAmigos.ListaAmigosUI.ListaAmigosListener;
 import presentacion.vista.usuario.inicious.InicioUsuarioUI;
 import presentacion.vista.usuario.perfilus.CambiarPassUI;
 import presentacion.vista.usuario.perfilus.CambiarPassUI.CambiarPassUIListener;
@@ -481,6 +483,29 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 				}
 			});
 			jc.setSize(600, 600);
+			jc.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			jc.setContentPane(a);
+			jc.pack();
+			jc.setVisible(true);
+		}
+			break;
+		case "ListaAmigos": {
+			JDialog jc = new JDialog(ventana, "Lista de amigos", ModalityType.DOCUMENT_MODAL);
+			Jugador jugador = (Jugador) modelo.getUsuario();
+			ListaAmigosUI a = new ListaAmigosUI(jugador.getAmigos());
+			a.setListaAmigosListener(new ListaAmigosListener() {
+				@Override
+				public void borrarPulsado(Jugador amigo) {
+					if(new SA_Usuario().borrarAmigo(jugador, amigo)) {
+						JOptionPane.showMessageDialog(new JFrame(), "Amigo eliminado", "Exito",
+								JOptionPane.INFORMATION_MESSAGE);
+					} else {
+						JOptionPane.showMessageDialog(new JFrame(), "Ya has eliminado a este usuario de tu lista de amigos", 
+								"Error", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+			});
+			jc.setPreferredSize(new Dimension(600, 600));
 			jc.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			jc.setContentPane(a);
 			jc.pack();

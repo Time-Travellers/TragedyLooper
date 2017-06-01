@@ -2,8 +2,6 @@ package presentacion.modelo.usuario;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
 import presentacion.modelo.juego.JugadorPartida;
 import presentacion.modelo.marketing.Tienda;
 import presentacion.modelo.usuario.Paises;
@@ -17,8 +15,8 @@ public class Jugador extends Usuario {
     private int reloj;
     private int anuncios;
     private Date penalizacion;
-    private List<JugadorPartida> partidas;
-    private List<Jugador> amigos;
+    private ArrayList<JugadorPartida> partidas;
+    private ArrayList<Jugador> amigos;
     
     public Jugador(String id, String password, boolean admin, String nombre, int edad, Paises pais, String correo) {
     	this.id = id;
@@ -58,19 +56,19 @@ public class Jugador extends Usuario {
 		this.penalizacion = penalizacion;
 	}
 
-	public List<JugadorPartida> getPartidas() {
+	public ArrayList<JugadorPartida> getPartidas() {
 		return partidas;
 	}
 
-	public void setPartidas(List<JugadorPartida> partidas) {
+	public void setPartidas(ArrayList<JugadorPartida> partidas) {
 		this.partidas = partidas;
 	}
 
-	public List<Jugador> getAmigos() {
+	public ArrayList<Jugador> getAmigos() {
 		return amigos;
 	}
 
-	public void setAmigos(List<Jugador> amigos) {
+	public void setAmigos(ArrayList<Jugador> amigos) {
 		this.amigos = amigos;
 	}
 	

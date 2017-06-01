@@ -48,7 +48,6 @@ public class PerfilUsuario extends JPanel implements PerfilListenable {
 		info.setLayout(new BoxLayout(info,BoxLayout.Y_AXIS));
 		
 		JLabel username = new JLabel(jugador.getId());
-		username.setBorder(BorderFactory.createLineBorder(Color.black));
 		username.setFont(new Font("", 30, 30));
 		username.setPreferredSize(new Dimension(800,50));
 		
@@ -100,6 +99,11 @@ public class PerfilUsuario extends JPanel implements PerfilListenable {
 			@Override
 			public void modifDatos() {
 				notificarListeners(new PerfilEvent(PerfilType.CambiarDatos));
+			}
+			
+			@Override
+			public void listaAmigos() {
+				notificarListeners(new PerfilEvent(PerfilType.ListaAmigos));
 			}
 			
 		});

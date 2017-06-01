@@ -62,5 +62,15 @@ public class SA_Usuario{
 		}
 		return results;
 	}
+
+	public boolean borrarAmigo(Jugador jugador, Jugador amigo) {
+		if(jugador.getAmigos().contains(amigo)) {
+			jugador.getAmigos().remove(amigo);
+			new DAO_Usuarios().actualizar(jugador);
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 }

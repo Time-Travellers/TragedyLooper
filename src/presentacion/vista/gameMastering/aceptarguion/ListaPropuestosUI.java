@@ -5,8 +5,6 @@ import java.awt.Font;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -17,7 +15,6 @@ public class ListaPropuestosUI extends JPanel{
 	
 	private static final long serialVersionUID = -2169464744594357032L;
 
-	private final static String Actualizar="actualizar.png";
 	private final static String[] COL_NAMES={"Creador", "Titulo", "Fecha"};
 	
 	private JTable tabla;
@@ -44,15 +41,8 @@ public class ListaPropuestosUI extends JPanel{
 		JLabel title = new JLabel("Hay " + datos.length +  " guiones pendientes:");
 		title.setFont(new Font("",20,40));
 		
-		//boton actualizar
-		JButton actualizar = new JButton();
-		actualizar.setIcon(new ImageIcon(getClass().getClassLoader().getResource("resources/" + Actualizar)));
-		actualizar.setPreferredSize(new Dimension (50,50));
-		actualizar.addActionListener((e)-> list.actualizar());
-		
 		north.add(title);
 		north.add(Box.createHorizontalGlue());
-		north.add(actualizar);
 		
 		//tabla
 		tabla = new JTable(datos, COL_NAMES);

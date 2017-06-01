@@ -14,6 +14,7 @@ public class BotonesPerfil extends JPanel{
 	public interface PerfilBotonesListener{
 		public void cambiarPass();
 		public void modifDatos();
+		public void listaAmigos();
 	}
 
 	public BotonesPerfil(PerfilBotonesListener list){
@@ -26,7 +27,7 @@ public class BotonesPerfil extends JPanel{
 	
 	private void initialize(PerfilBotonesListener list) {
 		addButton("Lista de amigos", "Ver lista de amigos",
-				null);
+				(e) -> list.listaAmigos());
 		addButton("Cambiar password", "Cambiar la contraseña",
 				(e) -> list.cambiarPass());
 		addButton("Modificar datos", "Modificar los datos de tu perfil",
