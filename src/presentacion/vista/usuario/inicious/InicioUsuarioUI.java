@@ -1,5 +1,6 @@
 package presentacion.vista.usuario.inicious;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import presentacion.controlador.iniciousuario.InicioUsuarioListenable;
@@ -31,7 +33,6 @@ public class InicioUsuarioUI extends JPanel implements InicioUsuarioListenable{
 	}
 	
 	public void initGUI() {
-		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		//panel superior
 		JPanel panelSup = new JPanel();
 		
@@ -56,11 +57,20 @@ public class InicioUsuarioUI extends JPanel implements InicioUsuarioListenable{
 		//paneldeabajo.add(Box.createRigidArea(new Dimension(10,0)));
 		paneldeabajo.add(panelcontacto);
 		
-		this.add(panelSup);
-		this.add(tabla);
-		this.add(new Botones2(listeners));
-		this.add(paneldeabajo);
+		JPanel todo = new JPanel();
+		todo.setLayout(new BoxLayout(todo, BoxLayout.Y_AXIS));
+		todo.add(panelSup);
+		todo.add(tabla);
+		todo.add(new Botones2(listeners));
+		todo.add(paneldeabajo);
 
+		JPanel scroller = new JPanel();
+		scroller.setLayout(new BorderLayout());
+		scroller.add(new JScrollPane(todo));
+		this.setLayout(new BorderLayout());
+		this.add(scroller);
+		this.setVisible(true);
+		
 		this.setBorder(new EmptyBorder(20, 20, 20, 20));
 	}
 

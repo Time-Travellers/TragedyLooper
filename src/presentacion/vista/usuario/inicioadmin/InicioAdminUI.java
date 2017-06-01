@@ -1,5 +1,6 @@
 package presentacion.vista.usuario.inicioadmin;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -12,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import presentacion.controlador.inicioadmin.InicioAdministradorEvent;
@@ -34,8 +36,9 @@ public class InicioAdminUI extends JPanel implements InicioAdministradorListenab
 	}
 	
 	public InicioAdminUI(String name, int numMensajes, int propuestos, int report){
-		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
-		this.setPreferredSize(new Dimension(800,600));
+		JPanel todo = new JPanel();
+		todo.setLayout(new BoxLayout(todo,BoxLayout.Y_AXIS));
+		todo.setPreferredSize(new Dimension(800,600));
 		listeners = new ArrayList<InicioAdministradorListener>();
 		
 		JPanel north = new JPanel();
@@ -54,35 +57,45 @@ public class InicioAdminUI extends JPanel implements InicioAdministradorListenab
 		north.add(Box.createHorizontalGlue());
 		north.add(volver);
 		
-		this.add(north);
+		todo.add(north);
 
-		this.add(Box.createRigidArea(new Dimension(0,20)));
+		todo.add(Box.createRigidArea(new Dimension(0,20)));
 		
-		this.add(new PanelGrande("Mensajes:", 
+		todo.add(new PanelGrande("Mensajes:", 
 				new ImageIcon(getClass().getClassLoader().getResource("resources/message.png")),
 				report, new ActionListener(){
 					public void actionPerformed(ActionEvent arg0) {
 						notificar(new InicioAdministradorEvent(PrinciAdministradorType.Mensajes));						
 					}
 		}));
-		this.add(Box.createRigidArea(new Dimension(0,10)));
-		this.add(new PanelGrande("Usuarios reportados:", 
+		todo.add(Box.createRigidArea(new Dimension(0,10)));
+		todo.add(new PanelGrande("Usuarios reportados:", 
 				new ImageIcon(getClass().getClassLoader().getResource("resources/reportar.png")),
 				numMensajes, new ActionListener(){
 					public void actionPerformed(ActionEvent arg0) {
 						notificar(new InicioAdministradorEvent(PrinciAdministradorType.Reportados));						
 					}
 		}));
-		this.add(Box.createRigidArea(new Dimension(0,10)));
-		this.add(new PanelGrande("Guiones propuestos:", 
+		todo.add(Box.createRigidArea(new Dimension(0,10)));
+		todo.add(new PanelGrande("Guiones propuestos:", 
 				new ImageIcon(getClass().getClassLoader().getResource("resources/guion.png")),
 				propuestos, new ActionListener(){
 					public void actionPerformed(ActionEvent arg0) {
 						notificar(new InicioAdministradorEvent(PrinciAdministradorType.GuionesPropuestos));						
 					}
 		}));
+		
+		JPanel scroller = new JPanel();
+		scroller.setLayout(new BorderLayout());
+		scroller.add(new JScrollPane(todo));
+		this.setLayout(new BorderLayout());
+		this.add(scroller);
+		this.setVisible(true);
+		
 		setOpaque(false);
-		this.setBorder(new EmptyBorder(20,30,20,30));
+		todo.setBorder(new EmptyBorder(20,30,20,30));
+		
+		
 	}
 	
 

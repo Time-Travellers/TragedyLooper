@@ -15,8 +15,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-
 import presentacion.controlador.iniciarsesion.IniSesionEvent;
 import presentacion.controlador.iniciarsesion.IniSesionListenable;
 import presentacion.controlador.iniciarsesion.IniSesionListener;
@@ -37,6 +37,7 @@ public class IniciarSesionUI extends JPanel implements IniSesionListenable {
 	}
 
 	public void initGUI() {
+		
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.setSize(new Dimension(800, 600));
 		
@@ -91,8 +92,13 @@ public class IniciarSesionUI extends JPanel implements IniSesionListenable {
 		cuadroFinal.add(cuadroEntradaConTitulo);
 		cuadroFinal.add(Box.createRigidArea(new Dimension(100, 0)));
 		cuadroFinal.add(imagen);
+		
+		JPanel scroller = new JPanel();
+		scroller.setLayout(new BorderLayout());
+		scroller.add(new JScrollPane(cuadroFinal));
 		this.setLayout(new BorderLayout());
-		this.add(cuadroFinal);
+		this.add(scroller, BorderLayout.CENTER);
+		this.setVisible(true);
 		
 		iniciarSesion.addActionListener((e)->{
 				char[] pass = passwIn.getPassword();

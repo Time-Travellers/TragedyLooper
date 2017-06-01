@@ -250,7 +250,7 @@ public class GUIController implements IniSesionListener, InicioUsuarioListener, 
 					dBuscar.setVisible(true);
 				}
 			});
-			dBuscar.setPreferredSize(new Dimension(500, 500));
+			dBuscar.setPreferredSize(new Dimension(600, 90));
 			dBuscar.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dBuscar.setContentPane(buscador);
 			dBuscar.pack();

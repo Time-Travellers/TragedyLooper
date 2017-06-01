@@ -1,9 +1,12 @@
 package presentacion.vista.usuario.buscar;
 
+import java.awt.BorderLayout;
+
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 public class BuscadorUI extends JPanel{
@@ -35,7 +38,12 @@ public class BuscadorUI extends JPanel{
 		this.botonBuscar = new JButton("Buscar");
 		this.botonBuscar.addActionListener((e) -> list.buscarPulsado(nombre.getText()));
 		panelAux.add(this.botonBuscar);
-		this.add(panelAux);
+		
+		JPanel scroller = new JPanel();
+		scroller.setLayout(new BorderLayout());
+		scroller.add(new JScrollPane(panelAux));
+		this.setLayout(new BorderLayout());
+		this.add(scroller, BorderLayout.CENTER);
 		this.setVisible(true);
 	}
 }
