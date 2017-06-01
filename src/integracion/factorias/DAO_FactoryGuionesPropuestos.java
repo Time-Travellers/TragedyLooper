@@ -18,6 +18,7 @@ public class DAO_FactoryGuionesPropuestos extends DAO_AbstractFactory<InfoGuion>
     	return fabricaDeGuionesPropuestos;
     }
     
+    
 	@Override
 	public DAO<InfoGuion> creaDAO() {
 		return new DAO_Guiones_Propuestos();

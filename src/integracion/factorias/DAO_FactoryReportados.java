@@ -18,6 +18,7 @@ public class DAO_FactoryReportados extends DAO_AbstractFactory<Reporte>  {
     	return fabricaDeReportes;
     }
     
+    
 	@Override
 	public DAO<Reporte> creaDAO() {
 		return new DAO_Reportados();

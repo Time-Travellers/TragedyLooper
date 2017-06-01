@@ -17,6 +17,7 @@ public class DAO_FactoryUsuarios extends DAO_AbstractFactory<Usuario>{
     		fabricaDeUsuarios = new DAO_FactoryUsuarios();
     	return fabricaDeUsuarios;
     }
+
     
 	@Override
 	public DAO<Usuario> creaDAO() {

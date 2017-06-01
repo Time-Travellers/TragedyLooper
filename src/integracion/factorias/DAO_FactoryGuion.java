@@ -20,6 +20,7 @@ public class DAO_FactoryGuion extends DAO_AbstractFactory<InfoGuion>{
     	return fabricaDeGuiones;
     }
 	
+    
 	@Override
 	public DAO_Lista<HashMap<String, InfoGuion>> creaListaDAO() {
 		return new DAO_ListaGuiones();
