@@ -1,4 +1,4 @@
-package presentacion.vista.juego.proponerguion;
+package presentacion.vista.juego.proponerGuion;
 
 
 import javax.swing.JComboBox;
@@ -11,14 +11,8 @@ public class PanelSeleccionTrama extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
 	
-	
 	private JComboBox<Trama> opciones;
 	private JLabel nombre;
-	
-	/**
-	 * Ojo devuelve la posicion que se ha seleccionado, no el enumerado
-	 * @return
-	 */
 	
 	public int sacarOpcion(){
 		return opciones.getSelectedIndex();

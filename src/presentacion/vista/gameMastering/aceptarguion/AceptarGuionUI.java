@@ -56,7 +56,6 @@ public class AceptarGuionUI extends JPanel{
 		//panel inferior para los botones
 		south.setLayout(new BoxLayout(south,BoxLayout.X_AXIS));
 		south.setPreferredSize(new Dimension(800,50));
-	//	south.setAlignmentX(CENTER_ALIGNMENT);
 		south.setBorder(new EmptyBorder(0,20,0,20));
 		
 		//combobox para seleccionar dificultad
@@ -106,17 +105,4 @@ public class AceptarGuionUI extends JPanel{
 	public int getNivel(){
 		return (int) niveles.getSelectedItem();
 	}
-//	public static void main(String args[]){
-//		JFrame ventana=new JFrame("prueba");
-//		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		ventana.setLayout(new FlowLayout());
-//		ventana.setSize(800,600);
-//		InfoGuion guion = new InfoGuion( new Jugador("Prueba", "Prueba", false, "Prueba", 0, null, "Prueba"),
-//				"title", Trama.Luz_del_vengador, Subtrama.Amor_prohibido,
-//				3,5, new ArrayList<InfoPersonaje>(Arrays.asList(new InfoPersonaje(Personaje.Empresario,Rol.Amante))),
-//						new ArrayList<Incidente>(Arrays.asList( new Incidente(EnumIncidentes.Asesinato, Personaje.Empresario))));
-//		ventana.setContentPane(new AceptarGuionUI(guion));
-//		ventana.setVisible(true);
-//	}
-
 }

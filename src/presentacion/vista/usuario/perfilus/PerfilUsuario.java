@@ -2,7 +2,6 @@ package presentacion.vista.usuario.perfilus;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +12,6 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -22,7 +20,6 @@ import presentacion.controlador.perfil.PerfilEvent.PerfilType;
 import presentacion.controlador.perfil.PerfilListenable;
 import presentacion.controlador.perfil.PerfilListener;
 import presentacion.modelo.usuario.Jugador;
-import presentacion.modelo.usuario.Paises;
 import presentacion.vista.usuario.perfilus.BotonesPerfil.PerfilBotonesListener;
 
 public class PerfilUsuario extends JPanel implements PerfilListenable {
@@ -112,20 +109,9 @@ public class PerfilUsuario extends JPanel implements PerfilListenable {
 		this.add(panelSup);
 		this.add(tabla);
 		this.add(botones);
-
-	//	this.setBorder(new EmptyBorder(20, 20, 20, 20));
 		this.setPreferredSize(new Dimension(800,800));
 		this.setVisible(true);
 		
-	}
-
-	public static void main(String args[]){
-		JFrame ventana=new JFrame("Tragedy Looper");
-		ventana.setSize(800,800);
-		ventana.setLayout(new FlowLayout());
-		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ventana.setContentPane(new PerfilUsuario(new Jugador("blue","asdf", false, "cris", 12, Paises.Alemania, "kk")));
-		ventana.setVisible(true);
 	}
 
 	@Override

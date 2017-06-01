@@ -1,4 +1,4 @@
-package presentacion.vista.juego.proponerguion;
+package presentacion.vista.juego.proponerGuion;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

@@ -1,4 +1,4 @@
-package presentacion.vista.juego.proponerguion;
+package presentacion.vista.juego.proponerGuion;
 
 import java.util.ArrayList;
 import java.util.Date;

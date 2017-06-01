@@ -2,14 +2,12 @@ package presentacion.vista.usuario.inicioadmin;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -32,8 +30,6 @@ public class PanelGrande extends JPanel{
 		button.addActionListener(a);
 		button.setAlignmentX(CENTER_ALIGNMENT);
 		
-
-		//this.setMaximumSize(new Dimension(600,300));
 		this.setPreferredSize(new Dimension(600,200));
 		this.add(info);
 		this.add(Box.createVerticalGlue());
@@ -42,14 +38,5 @@ public class PanelGrande extends JPanel{
 
 		this.setBackground(info.getBackground());
 	}
-	
-	
-	public static void main(String args[]){
-		JFrame ventana=new JFrame("prueba");
-		ventana.setLayout(new FlowLayout());
-		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ventana.setSize(800,600);
-		ventana.add(new PanelGrande("Usuarios Reportados", new ImageIcon(PanelGrande.class.getClassLoader().getResource("resources/reportar.png")), 6,null));
-		ventana.setVisible(true);
-	}
+
 }

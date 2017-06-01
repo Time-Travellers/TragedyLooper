@@ -1,4 +1,4 @@
-package presentacion.vista.juego.proponerguion;
+package presentacion.vista.juego.proponerGuion;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;

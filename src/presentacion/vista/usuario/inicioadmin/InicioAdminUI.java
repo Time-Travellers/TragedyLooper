@@ -27,13 +27,6 @@ public class InicioAdminUI extends JPanel implements PrinciAdministradorListenab
 	private static final long serialVersionUID = 4808370895498535774L;
 	
 	private ArrayList<PrinciAdministradorListener> listeners;
-	/**
-	 * este para las pruebas
-	 * @param name
-	 * @param numMensajes
-	 * @param propuestos
-	 * @param report
-	 */
 	
 	private void notificar(PrinciAdministradorEvent e){
 		for (int i = 0; i < listeners.size(); ++i)

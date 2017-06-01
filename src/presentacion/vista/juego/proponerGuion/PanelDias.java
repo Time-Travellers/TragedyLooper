@@ -1,4 +1,4 @@
-package presentacion.vista.juego.proponerguion;
+package presentacion.vista.juego.proponerGuion;
 
 import java.awt.Dimension;
 import java.util.ArrayList;
@@ -12,7 +12,6 @@ import presentacion.modelo.juego.Incidente;
 public class PanelDias extends JPanel implements ReguladorListener{
 	
 	private static final long serialVersionUID = 7852788062256253992L;
-	//sacar fuera esta cte cuando este definida
 	private static final int MAX_DIAS=8;
 	private Regulador numdias;
 	private JScrollPane deslizador;

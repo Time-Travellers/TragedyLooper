@@ -25,7 +25,6 @@ public class ComprarRelojUI extends JPanel implements ComprarRelojListenable{
 	
 	private JButton verAnuncio;
 	private ArrayList<JButton> botones;
-	//private BotonesReloj botones;
 	private JButton cancelar;
 	private ArrayList<ComprarRelojListener> listeners;
 	
@@ -70,7 +69,6 @@ public class ComprarRelojUI extends JPanel implements ComprarRelojListenable{
 			InfoReloj info = paquetes.get(i);
 			
 			JButton button = new JButton(info.toString());
-			//button.setPreferredSize(new Dimension (this.getWidth() - 100,30));
 			 button.setMaximumSize(new Dimension(500, 30));
 		       
 		       
@@ -107,7 +105,6 @@ public class ComprarRelojUI extends JPanel implements ComprarRelojListenable{
 		container.setPreferredSize(new Dimension(600, 350));
 		this.add(container);
 		
-	//	this.getContentPane().setBackground(new Color(150,150,150));
 		this.setVisible(true);
 	}
 	
@@ -120,9 +117,6 @@ public class ComprarRelojUI extends JPanel implements ComprarRelojListenable{
 		paquetesReloj.add(new InfoReloj("Paquete Experto",250, 79.99));	
 		paquetesReloj.add(new InfoReloj("Paquete Viajero del Tiempo",500, 149.99));	
 		paquetesReloj.add(new InfoReloj("¡Oferta por tiempo limitado!",25, 9.99));	
-		
-		//ComprarRelojUI a =new ComprarRelojUI(null,paquetesReloj,null,null);
-		//a.setSize(800,600);
 	}
 
 	@Override

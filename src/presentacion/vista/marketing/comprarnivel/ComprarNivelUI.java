@@ -49,8 +49,6 @@ public class ComprarNivelUI extends JPanel {
 		niveles.setBorder(new EmptyBorder(20, 30, 20, 30));
 		niveles.setPreferredSize(new Dimension(500,200));
 		niveles.setAlignmentX(CENTER_ALIGNMENT);
-
-		//niveles.setBorder(BorderFactory.createLineBorder(Color.black));
 		
 		JLabel info = new JLabel("Contiene los siguientes guiones:");
 		info.setFont(new Font("",15,15));

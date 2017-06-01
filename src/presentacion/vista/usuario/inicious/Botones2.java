@@ -9,10 +9,7 @@ import java.util.ArrayList;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-
 import presentacion.controlador.principalus.PrinciUsuarioEvent;
 import presentacion.controlador.principalus.PrinciUsuarioListener;
 import presentacion.controlador.principalus.PrinciUsuarioEvent.PrinciUsuarioType;
@@ -70,20 +67,6 @@ public class Botones2 extends JPanel {
 		button.addActionListener(listener);
 		button.setVisible(true);
 		this.add(button);
-	}
-	
-	//Main para probar este panel de botones:
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(() -> 
-		{
-			JFrame testFrame = new JFrame("Probando el panel de botones 2");
-			testFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			testFrame.setSize(new Dimension(800, 600));
-			testFrame.setVisible(true);
-			testFrame.getContentPane().setLayout(new FlowLayout());
-			Botones2 botones = new Botones2 (null);
-			testFrame.add(botones);
-		});
 	}
 
 }

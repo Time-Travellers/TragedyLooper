@@ -44,8 +44,6 @@ public class InicioUsuarioUI extends JPanel implements PrinciUsuarioListenable{
 		//botones ajustes
 		Botones botones =new Botones(listeners);
 		panelSup.add(botones);
-
-		//panelSup.setBorder(BorderFactory.createLineBorder(Color.black));
 		
 		this.paneltienda=new Tienda(j,listeners);
 		

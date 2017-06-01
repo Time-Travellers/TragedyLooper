@@ -2,7 +2,6 @@ package presentacion.vista.usuario.inicious;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,7 +11,6 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -71,15 +69,5 @@ public class Contacto extends JPanel {
 		this.add(Box.createRigidArea(new Dimension(0,10)));
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		this.setPreferredSize(new Dimension(450,200));
-	}
-
-	public static void main(String args[]){
-		JFrame ventana = new JFrame("Prueba panel contacto admin");
-		ventana.setLayout(new FlowLayout());
-		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ventana.setSize(800, 600);
-		ventana.add(new Contacto(null));
-		ventana.setVisible(true);
-	}
-	
+	}	
 }

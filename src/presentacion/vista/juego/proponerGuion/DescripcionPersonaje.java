@@ -1,7 +1,6 @@
-package presentacion.vista.juego.proponerguion;
+package presentacion.vista.juego.proponerGuion;
 
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -29,13 +28,5 @@ public class DescripcionPersonaje extends JPanel {
 		this.add(nombre);
 		this.add(selectordepersonajes);
 		this.add(selectorderol);
-	}
-	
-	public static void main(String args[]){
-		JFrame ventana=new JFrame("prueba");
-		ventana.setSize(800,600);
-		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ventana.setContentPane(new DescripcionPersonaje(1));
-		ventana.setVisible(true);
 	}
 }

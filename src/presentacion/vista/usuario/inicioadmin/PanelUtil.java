@@ -33,7 +33,6 @@ public class PanelUtil extends JPanel{
 		this.add(labelDr);
 		this.setMaximumSize(new Dimension(600,80));
 		this.setBorder(new EmptyBorder(0,10,0,10));
-		//this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		this.setBackground(new Color(150,200,150));
 	}
 }

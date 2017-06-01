@@ -7,7 +7,6 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -80,15 +79,6 @@ public class ListaPropuestosUI extends JPanel{
 		tablePane.revalidate();
 		revalidate();
 		repaint();
-	}
-
-	public static void main(String args[]){
-		JFrame ventana=new JFrame("prueba");
-		ventana.setSize(800,600);
-		String [][] dat = {};
-		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ventana.setContentPane(new ListaPropuestosUI(dat));
-		ventana.setVisible(true);
 	}
 }
 
