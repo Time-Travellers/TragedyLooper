@@ -71,7 +71,6 @@ public class InicioUsuarioUI extends JPanel implements InicioUsuarioListenable{
 		this.setLayout(new BorderLayout());
 		this.add(scroller);
 		this.setVisible(true);
-		
 	}
 
 	@Override

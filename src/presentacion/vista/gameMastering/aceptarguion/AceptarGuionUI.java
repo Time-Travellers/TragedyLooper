@@ -1,5 +1,6 @@
 package presentacion.vista.gameMastering.aceptarguion;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -11,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import presentacion.modelo.juego.InfoGuion;
@@ -34,11 +36,14 @@ public class AceptarGuionUI extends JPanel{
 	}
 	
 	public AceptarGuionUI(InfoGuion guion){
-		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
-		this.setPreferredSize(new Dimension(800,600));
+		
+		JPanel todo = new JPanel();
+		
+		todo.setLayout(new BoxLayout(todo,BoxLayout.Y_AXIS));
+		this.setPreferredSize(new Dimension(900,600));
 
 		
-		this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+		todo.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		  
 		JLabel title = new JLabel("Guion propuesto por " + guion.getCreador().getId());
 		title.setFont(new Font("",0,30));
@@ -91,15 +96,23 @@ public class AceptarGuionUI extends JPanel{
 		south.add(Box.createRigidArea(new Dimension(10,0)));
 		south.add(cancelar);
 		
-		this.add(title);
-		this.add(Box.createRigidArea(new Dimension(0,10)));
-		this.add(north);
-		this.add(Box.createVerticalGlue());
-		this.add(center);
-		this.add(Box.createVerticalGlue());
-		this.add(south);
+		todo.add(title);
+		todo.add(Box.createRigidArea(new Dimension(0,10)));
+		todo.add(north);
+		todo.add(Box.createVerticalGlue());
+		todo.add(center);
+		todo.add(Box.createVerticalGlue());
+		todo.add(south);
 
-		this.setBorder(new EmptyBorder(20, 20, 20, 20));
+		JPanel scroller = new JPanel();
+		scroller.setLayout(new BorderLayout());
+		scroller.add(new JScrollPane(todo));
+		this.setLayout(new BorderLayout());
+		this.add(scroller, BorderLayout.CENTER);
+		
+		todo.setBorder(new EmptyBorder(20, 20, 20, 20));
+		
+		this.setVisible(true);
 	}
 	
 	public int getNivel(){

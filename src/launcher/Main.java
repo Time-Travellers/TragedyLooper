@@ -16,7 +16,7 @@ public class Main {
 	public static void main(String ... args) {
 		Log.setupLogging(Level.SEVERE);
 		
-		if(args.length > 0 && args[0] == "entrega")
+		if(args.length > 0 && args[0].equals("entrega"))
 			// Inicializar 4 MVC con el mismo gestor para presentacion en clase
 			iniciarModoEntrega();
 		else
