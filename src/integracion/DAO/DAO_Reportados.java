@@ -1,4 +1,4 @@
-package integracion;
+package integracion.DAO;
 
 import java.util.logging.Logger;
 

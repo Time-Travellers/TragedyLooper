@@ -1,7 +1,7 @@
 package negocio;
 
-import integracion.DAO_Guiones;
-import integracion.DAO_Guiones_Propuestos;
+import integracion.DAO.DAO_Guiones;
+import integracion.DAO.DAO_Guiones_Propuestos;
 import presentacion.modelo.juego.InfoGuion;
 
 public class SA_Juego{

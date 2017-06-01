@@ -1,17 +1,16 @@
 package negocio;
 
-import integracion.DAO_Guiones;
-import integracion.DAO_Guiones_Propuestos;
-import integracion.DAO_ListaGuionesPropuestos;
-import integracion.DAO_ListaReportados;
-import integracion.DAO_Reportados;
-import integracion.DAO_Usuarios;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
+import integracion.DAO.DAO_Guiones;
+import integracion.DAO.DAO_Guiones_Propuestos;
+import integracion.DAO.DAO_ListaGuionesPropuestos;
+import integracion.DAO.DAO_ListaReportados;
+import integracion.DAO.DAO_Reportados;
+import integracion.DAO.DAO_Usuarios;
 import presentacion.modelo.gameMastering.Reporte;
 import presentacion.modelo.juego.InfoGuion;
 import presentacion.modelo.usuario.Jugador;

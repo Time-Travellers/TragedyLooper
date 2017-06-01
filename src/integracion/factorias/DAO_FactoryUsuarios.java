@@ -1,7 +1,11 @@
-package integracion;
+package integracion.factorias;
 
 import java.util.HashMap;
 
+import integracion.DAO.DAO;
+import integracion.DAO.DAO_Lista;
+import integracion.DAO.DAO_ListaUsuarios;
+import integracion.DAO.DAO_Usuarios;
 import presentacion.modelo.usuario.Usuario;
 
 public class DAO_FactoryUsuarios extends DAO_AbstractFactory<Usuario>{

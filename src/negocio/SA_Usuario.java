@@ -3,8 +3,8 @@ package negocio;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import integracion.DAO_ListaUsuarios;
-import integracion.DAO_Usuarios;
+import integracion.DAO.DAO_ListaUsuarios;
+import integracion.DAO.DAO_Usuarios;
 import presentacion.modelo.usuario.Jugador;
 import presentacion.modelo.usuario.Paises;
 import presentacion.modelo.usuario.Usuario;
