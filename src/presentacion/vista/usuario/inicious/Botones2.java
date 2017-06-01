@@ -1,7 +1,6 @@
 package  presentacion.vista.usuario.inicious;
 
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -10,6 +9,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 import presentacion.controlador.iniciousuario.InicioUsuarioEvent;
 import presentacion.controlador.iniciousuario.InicioUsuarioListener;
@@ -23,11 +23,10 @@ public class Botones2 extends JPanel {
 	private static final long serialVersionUID = -331372996838369812L;
 	
 	public Botones2(ArrayList<InicioUsuarioListener> listeners) {
-		FlowLayout layout = new FlowLayout();
-		layout.setHgap(60);
 		this.setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
-		this.setPreferredSize(new Dimension(800,50));
+		this.setPreferredSize(new Dimension(750,50));
 		this.setVisible(true);
+		this.setBorder(new EmptyBorder(5,5,5,5));
 		initialize(listeners);
 	}
 	

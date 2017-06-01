@@ -63,6 +63,7 @@ public class InicioUsuarioUI extends JPanel implements InicioUsuarioListenable{
 		todo.add(tabla);
 		todo.add(new Botones2(listeners));
 		todo.add(paneldeabajo);
+		todo.setBorder(new EmptyBorder(20, 20, 20, 20));
 
 		JPanel scroller = new JPanel();
 		scroller.setLayout(new BorderLayout());
@@ -71,7 +72,6 @@ public class InicioUsuarioUI extends JPanel implements InicioUsuarioListenable{
 		this.add(scroller);
 		this.setVisible(true);
 		
-		this.setBorder(new EmptyBorder(20, 20, 20, 20));
 	}
 
 	@Override
