@@ -10,9 +10,9 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import presentacion.controlador.principalus.PrinciUsuarioEvent;
-import presentacion.controlador.principalus.PrinciUsuarioListener;
-import presentacion.controlador.principalus.PrinciUsuarioEvent.PrinciUsuarioType;
+import presentacion.controlador.principalus.InicioUsuarioEvent;
+import presentacion.controlador.principalus.InicioUsuarioListener;
+import presentacion.controlador.principalus.InicioUsuarioEvent.PrinciUsuarioType;
 /**
  * Panel con tres botones: 
  * "Iniciar nueva partida", "Mi perfil", "Ver ranking".
@@ -21,7 +21,7 @@ public class Botones2 extends JPanel {
 
 	private static final long serialVersionUID = -331372996838369812L;
 	
-	public Botones2(ArrayList<PrinciUsuarioListener> listeners) {
+	public Botones2(ArrayList<InicioUsuarioListener> listeners) {
 		FlowLayout layout = new FlowLayout();
 		layout.setHgap(60);
 		this.setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
@@ -30,12 +30,12 @@ public class Botones2 extends JPanel {
 		initialize(listeners);
 	}
 	
-	private void initialize(ArrayList<PrinciUsuarioListener> listeners) {
+	private void initialize(ArrayList<InicioUsuarioListener> listeners) {
 		addButton("Iniciar nueva partida", "Comenzar un nuevo juego",new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				for (int i = 0; i < listeners.size(); ++i)
-					listeners.get(i).notificarPrinciUsuario(new PrinciUsuarioEvent(PrinciUsuarioType.IniciarPartida));
+					listeners.get(i).notificarPrinciUsuario(new InicioUsuarioEvent(PrinciUsuarioType.IniciarPartida));
 			}
 		});
 
@@ -44,7 +44,7 @@ public class Botones2 extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				for (int i = 0; i < listeners.size(); ++i)
-					listeners.get(i).notificarPrinciUsuario(new PrinciUsuarioEvent(PrinciUsuarioType.miPerfil));
+					listeners.get(i).notificarPrinciUsuario(new InicioUsuarioEvent(PrinciUsuarioType.miPerfil));
 			}
 		});
 
@@ -53,7 +53,7 @@ public class Botones2 extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				for (int i = 0; i < listeners.size(); ++i)
-					listeners.get(i).notificarPrinciUsuario(new PrinciUsuarioEvent(PrinciUsuarioType.verRanking));
+					listeners.get(i).notificarPrinciUsuario(new InicioUsuarioEvent(PrinciUsuarioType.verRanking));
 			}
 		});
 

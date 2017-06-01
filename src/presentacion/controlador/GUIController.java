@@ -17,12 +17,12 @@ import presentacion.controlador.comprarreloj.ComprarRelojEvent;
 import presentacion.controlador.comprarreloj.ComprarRelojListener;
 import presentacion.controlador.iniciarsesion.IniSesionEvent;
 import presentacion.controlador.iniciarsesion.IniSesionListener;
-import presentacion.controlador.inicioadmin.PrinciAdministradorEvent;
-import presentacion.controlador.inicioadmin.PrinciAdministradorListener;
+import presentacion.controlador.inicioadmin.InicioAdministradorEvent;
+import presentacion.controlador.inicioadmin.InicioAdministradorListener;
 import presentacion.controlador.perfil.PerfilEvent;
 import presentacion.controlador.perfil.PerfilListener;
-import presentacion.controlador.principalus.PrinciUsuarioEvent;
-import presentacion.controlador.principalus.PrinciUsuarioListener;
+import presentacion.controlador.principalus.InicioUsuarioEvent;
+import presentacion.controlador.principalus.InicioUsuarioListener;
 import presentacion.modelo.GUIModelo;
 import presentacion.modelo.juego.InfoGuion;
 import presentacion.modelo.marketing.InfoNivel;
@@ -58,7 +58,7 @@ import presentacion.vista.usuario.perfilus.PerfilUsuario;
 import presentacion.vista.usuario.registro.RegistroUI;
 import presentacion.vista.usuario.registro.RegistroUI.RegistroUIListener;
 
-public class GUIController implements IniSesionListener, PrinciUsuarioListener, PrinciAdministradorListener,
+public class GUIController implements IniSesionListener, InicioUsuarioListener, InicioAdministradorListener,
 		ComprarRelojListener, PerfilListener {
 
 	private enum TipoVentana {
@@ -125,7 +125,7 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 	}
 
 	@Override
-	public void notificarPrinciUsuario(PrinciUsuarioEvent e) {
+	public void notificarPrinciUsuario(InicioUsuarioEvent e) {
 		switch (e.getPrinciUsuarioType()) {
 		case "Salir": {
 			tipo = TipoVentana.IniSesion;
@@ -314,7 +314,7 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 	}
 
 	@Override
-	public void notificarPrinciAdministradorListener(PrinciAdministradorEvent e) {
+	public void notificarPrinciAdministradorListener(InicioAdministradorEvent e) {
 		switch (e.getPrinciAdministradorType()) {
 		case "Salir": {
 			// vuelve a IniciarSesionUI

@@ -1,6 +1,6 @@
 package presentacion.controlador.principalus;
 
-public class PrinciUsuarioEvent {
+public class InicioUsuarioEvent {
 	
 	public enum PrinciUsuarioType{
 		BuscarUsuario, Ajustes, Ayuda, Salir, IniciarPartida,
@@ -10,7 +10,7 @@ public class PrinciUsuarioEvent {
 	
 	private PrinciUsuarioType tipo;
 	
-	public PrinciUsuarioEvent(PrinciUsuarioType t){
+	public InicioUsuarioEvent(PrinciUsuarioType t){
 		tipo = t;
 	}
 	

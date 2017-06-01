@@ -10,22 +10,22 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import presentacion.controlador.principalus.PrinciUsuarioListenable;
-import presentacion.controlador.principalus.PrinciUsuarioListener;
+import presentacion.controlador.principalus.InicioUsuarioListenable;
+import presentacion.controlador.principalus.InicioUsuarioListener;
 import presentacion.modelo.usuario.Jugador;
 
-public class InicioUsuarioUI extends JPanel implements PrinciUsuarioListenable{
+public class InicioUsuarioUI extends JPanel implements InicioUsuarioListenable{
 	
 	private static final long serialVersionUID = 7527554039049217535L;
 	
 	private Tienda paneltienda;
 	private TablaPartidas tabla;
 	private Contacto panelcontacto;
-	private ArrayList<PrinciUsuarioListener> listeners;
+	private ArrayList<InicioUsuarioListener> listeners;
 	private Jugador j;
 
 	public InicioUsuarioUI(Jugador j){
-		listeners = new ArrayList<PrinciUsuarioListener>();
+		listeners = new ArrayList<InicioUsuarioListener>();
 		this.j = j;
 		initGUI();
 	}
@@ -65,7 +65,7 @@ public class InicioUsuarioUI extends JPanel implements PrinciUsuarioListenable{
 	}
 
 	@Override
-	public void addPrinciUsuarioListener(PrinciUsuarioListener list) {
+	public void addPrinciUsuarioListener(InicioUsuarioListener list) {
 		this.listeners.add(list);
 	}
 

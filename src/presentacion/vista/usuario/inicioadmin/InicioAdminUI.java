@@ -14,21 +14,21 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import presentacion.controlador.inicioadmin.PrinciAdministradorEvent;
-import presentacion.controlador.inicioadmin.PrinciAdministradorListenable;
-import presentacion.controlador.inicioadmin.PrinciAdministradorListener;
-import presentacion.controlador.inicioadmin.PrinciAdministradorEvent.PrinciAdministradorType;
+import presentacion.controlador.inicioadmin.InicioAdministradorEvent;
+import presentacion.controlador.inicioadmin.InicioAdministradorListenable;
+import presentacion.controlador.inicioadmin.InicioAdministradorListener;
+import presentacion.controlador.inicioadmin.InicioAdministradorEvent.PrinciAdministradorType;
 
 /**
  * Pantalla de inicio de administrador
  */
-public class InicioAdminUI extends JPanel implements PrinciAdministradorListenable{
+public class InicioAdminUI extends JPanel implements InicioAdministradorListenable{
 	
 	private static final long serialVersionUID = 4808370895498535774L;
 	
-	private ArrayList<PrinciAdministradorListener> listeners;
+	private ArrayList<InicioAdministradorListener> listeners;
 	
-	private void notificar(PrinciAdministradorEvent e){
+	private void notificar(InicioAdministradorEvent e){
 		for (int i = 0; i < listeners.size(); ++i)
 			listeners.get(i).notificarPrinciAdministradorListener(e);
 	}
@@ -36,7 +36,7 @@ public class InicioAdminUI extends JPanel implements PrinciAdministradorListenab
 	public InicioAdminUI(String name, int numMensajes, int propuestos, int report){
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		this.setPreferredSize(new Dimension(800,600));
-		listeners = new ArrayList<PrinciAdministradorListener>();
+		listeners = new ArrayList<InicioAdministradorListener>();
 		
 		JPanel north = new JPanel();
 		north.setLayout(new BoxLayout(north,BoxLayout.X_AXIS));
@@ -47,7 +47,7 @@ public class InicioAdminUI extends JPanel implements PrinciAdministradorListenab
 		JButton volver = new JButton();
 		volver.setIcon(new ImageIcon(getClass().getClassLoader().getResource("resources/exit.png")));
 		volver.setPreferredSize(new Dimension (50,50));
-		volver.addActionListener((e)-> notificar(new PrinciAdministradorEvent(PrinciAdministradorType.Salir)));
+		volver.addActionListener((e)-> notificar(new InicioAdministradorEvent(PrinciAdministradorType.Salir)));
 		volver.setVisible(true);
 		
 		north.add(nombre);
@@ -62,7 +62,7 @@ public class InicioAdminUI extends JPanel implements PrinciAdministradorListenab
 				new ImageIcon(getClass().getClassLoader().getResource("resources/message.png")),
 				report, new ActionListener(){
 					public void actionPerformed(ActionEvent arg0) {
-						notificar(new PrinciAdministradorEvent(PrinciAdministradorType.Mensajes));						
+						notificar(new InicioAdministradorEvent(PrinciAdministradorType.Mensajes));						
 					}
 		}));
 		this.add(Box.createRigidArea(new Dimension(0,10)));
@@ -70,7 +70,7 @@ public class InicioAdminUI extends JPanel implements PrinciAdministradorListenab
 				new ImageIcon(getClass().getClassLoader().getResource("resources/reportar.png")),
 				numMensajes, new ActionListener(){
 					public void actionPerformed(ActionEvent arg0) {
-						notificar(new PrinciAdministradorEvent(PrinciAdministradorType.Reportados));						
+						notificar(new InicioAdministradorEvent(PrinciAdministradorType.Reportados));						
 					}
 		}));
 		this.add(Box.createRigidArea(new Dimension(0,10)));
@@ -78,7 +78,7 @@ public class InicioAdminUI extends JPanel implements PrinciAdministradorListenab
 				new ImageIcon(getClass().getClassLoader().getResource("resources/guion.png")),
 				propuestos, new ActionListener(){
 					public void actionPerformed(ActionEvent arg0) {
-						notificar(new PrinciAdministradorEvent(PrinciAdministradorType.GuionesPropuestos));						
+						notificar(new InicioAdministradorEvent(PrinciAdministradorType.GuionesPropuestos));						
 					}
 		}));
 		setOpaque(false);
@@ -87,7 +87,7 @@ public class InicioAdminUI extends JPanel implements PrinciAdministradorListenab
 	
 
 	@Override
-	public void addPrinciAdministradorListener(PrinciAdministradorListener p) {
+	public void addPrinciAdministradorListener(InicioAdministradorListener p) {
 		listeners.add(p);
 	}
 	

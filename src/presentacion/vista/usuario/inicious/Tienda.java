@@ -10,9 +10,9 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import presentacion.controlador.principalus.PrinciUsuarioEvent;
-import presentacion.controlador.principalus.PrinciUsuarioEvent.PrinciUsuarioType;
-import presentacion.controlador.principalus.PrinciUsuarioListener;
+import presentacion.controlador.principalus.InicioUsuarioEvent;
+import presentacion.controlador.principalus.InicioUsuarioEvent.PrinciUsuarioType;
+import presentacion.controlador.principalus.InicioUsuarioListener;
 import presentacion.modelo.usuario.Jugador;
 
 public class Tienda extends JPanel {
@@ -23,17 +23,17 @@ public class Tienda extends JPanel {
 	private PanelBotInfoIcono relojes;
 	private PanelBotInfoIcono nivel;
 
-	public Tienda(Jugador jugador, ArrayList<PrinciUsuarioListener> listeners) {
+	public Tienda(Jugador jugador, ArrayList<InicioUsuarioListener> listeners) {
 		JPanel panelmayor = new JPanel();
 		this.setLayout(new BoxLayout(panelmayor, BoxLayout.X_AXIS));
 
 		relojes = new PanelBotInfoIcono(jugador.getReloj(), "Relojes: ", null, (e) -> {
 			for (int i = 0; i < listeners.size(); ++i)
-				listeners.get(i).notificarPrinciUsuario(new PrinciUsuarioEvent(PrinciUsuarioType.comprarRelojes));
+				listeners.get(i).notificarPrinciUsuario(new InicioUsuarioEvent(PrinciUsuarioType.comprarRelojes));
 		});
 		nivel = new PanelBotInfoIcono(jugador.getNivel(), "Nivel: ", null, (e) -> {
 			for (int i = 0; i < listeners.size(); ++i)
-				listeners.get(i).notificarPrinciUsuario(new PrinciUsuarioEvent(PrinciUsuarioType.comprarNivel));
+				listeners.get(i).notificarPrinciUsuario(new InicioUsuarioEvent(PrinciUsuarioType.comprarNivel));
 		});
 		panelmayor.add(relojes);
 		panelmayor.add(nivel);

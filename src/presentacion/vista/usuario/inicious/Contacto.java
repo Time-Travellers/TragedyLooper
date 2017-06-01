@@ -14,9 +14,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import presentacion.controlador.principalus.PrinciUsuarioEvent;
-import presentacion.controlador.principalus.PrinciUsuarioListener;
-import presentacion.controlador.principalus.PrinciUsuarioEvent.PrinciUsuarioType;
+import presentacion.controlador.principalus.InicioUsuarioEvent;
+import presentacion.controlador.principalus.InicioUsuarioListener;
+import presentacion.controlador.principalus.InicioUsuarioEvent.PrinciUsuarioType;
 
 
 /**
@@ -28,7 +28,7 @@ public class Contacto extends JPanel {
 	
 	private static final long serialVersionUID = -7736617416184417895L;
 	
-	public Contacto(ArrayList<PrinciUsuarioListener> listeners){
+	public Contacto(ArrayList<InicioUsuarioListener> listeners){
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		
 		//titulo del panel
@@ -44,7 +44,7 @@ public class Contacto extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				for (int i = 0; i < listeners.size(); ++i)
-					listeners.get(i).notificarPrinciUsuario(new PrinciUsuarioEvent(PrinciUsuarioType.sugerencias));
+					listeners.get(i).notificarPrinciUsuario(new InicioUsuarioEvent(PrinciUsuarioType.sugerencias));
 			}
 		});
 		
@@ -56,7 +56,7 @@ public class Contacto extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				for (int i = 0; i < listeners.size(); ++i)
-					listeners.get(i).notificarPrinciUsuario(new PrinciUsuarioEvent(PrinciUsuarioType.proponerGuion));
+					listeners.get(i).notificarPrinciUsuario(new InicioUsuarioEvent(PrinciUsuarioType.proponerGuion));
 			}
 		});
 		
