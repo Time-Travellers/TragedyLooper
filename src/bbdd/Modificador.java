@@ -3,6 +3,8 @@ package bbdd;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+
+import presentacion.modelo.gameMastering.Reporte;
 import presentacion.modelo.usuario.Administrador;
 import presentacion.modelo.usuario.Paises;
 import presentacion.modelo.usuario.Usuario;
@@ -10,7 +12,7 @@ import presentacion.modelo.usuario.Usuario;
 public class Modificador {
 	
 	static File file1 = new File("src/resources/usuarios.ser");
-	static File file2 = new File("src/resources/guiones_propuestos.ser");
+	static File file2 = new File("src/resources/reportados.ser");
 	
 	public static void main(String ... args) throws IOException {
 		
@@ -23,9 +25,9 @@ public class Modificador {
 		//guiones.remove("Festival del algodon");
 		//new IO<InfoGuion>("guiones.ser").almacenar(guiones);
 		
-		//file2.createNewFile();
-		//HashMap<String, InfoGuion> guiones = new HashMap<String, InfoGuion>();
-		//new IO<InfoGuion>("guiones_propuestos.ser").almacenar(guiones);
+		file2.createNewFile();
+		HashMap<String, Reporte> guiones = new HashMap<String, Reporte>();
+		new IO<Reporte>("reportados.ser").almacenar(guiones);
 	}
 	
 }
