@@ -1,10 +1,9 @@
 package negocio;
 
-import integracion.DAO_ListaGuiones;
-import integracion.DAO_Usuarios;
-
 import java.util.ArrayList;
 
+import integracion.DAO.DAO_ListaGuiones;
+import integracion.DAO.DAO_Usuarios;
 import presentacion.modelo.juego.InfoGuion;
 import presentacion.modelo.marketing.InfoNivel;
 import presentacion.modelo.marketing.Tienda;
