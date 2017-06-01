@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 
 import javax.swing.SwingUtilities;
 
-import bbdd.Gestor;
 import presentacion.controlador.GUIController;
 import presentacion.vista.FrameUI;
 import presentacion.vista.usuario.iniciarsesion.IniciarSesionUI;
@@ -16,14 +15,13 @@ public class Main {
 	
 	public static void main(String[] args) {
 		Log.setupLogging(Level.INFO);
-		Gestor gestor = Gestor.getGestor();
 		
 		// Inicializar 4 MVC con el mismo gestor
-		iniciarModoEntrega(gestor);
+		iniciarModoEntrega();
 
 	}
 
-	private static void iniciarModoEntrega(Gestor gestor) {
+	private static void iniciarModoEntrega() {
 		
 		double anchura=Toolkit.getDefaultToolkit().getScreenSize().getWidth();
 		double altura=Toolkit.getDefaultToolkit().getScreenSize().getHeight();
@@ -36,7 +34,7 @@ public class Main {
 		
 		for(int i = 0; i < 4; ++i) {
 			FrameUI v = new FrameUI("Tragedy Looper " + (i + 1), vDim, posAncho[i], posAlto[i]);
-			GUIController ctrl = new GUIController(v, gestor);
+			GUIController ctrl = new GUIController(v);
 			v.setCtrl(ctrl);
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override

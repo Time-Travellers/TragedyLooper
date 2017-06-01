@@ -9,7 +9,6 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import bbdd.Gestor;
 import negocio.SA_Juego;
 import negocio.SA_Marketing;
 import negocio.SA_GameMastering;
@@ -66,24 +65,18 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 
 	private JFrame ventana;
 	private GUIModelo modelo;
-	private Gestor gestor;
 	private TipoVentana tipo;
 
-	public GUIController(JFrame ventana, Gestor gestor) {
+	public GUIController(JFrame ventana) {
 		this.ventana = ventana;
-		this.gestor = gestor;
 		this.modelo = new GUIModelo();
 		this.tipo = TipoVentana.IniSesion;
-	}
-
-	public void closeGestor() {
-		gestor.close();
 	}
 
 	@Override
 	public void notificarIniSesion(IniSesionEvent e) {
 		if (e.getIniSesionType() == "IniciarSesion") {
-			Usuario usuario = new SA_Usuario().iniciarSesion(gestor, e.getUsuario(), e.getContrasena());
+			Usuario usuario = new SA_Usuario().iniciarSesion(e.getUsuario(), e.getContrasena());
 			if (usuario != null) {
 				modelo.setUsuario(usuario);
 				if (usuario.isAdmin()) {
@@ -106,7 +99,7 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 					String result = registro.todoCorrecto();
 					if (result == null) {
 						Usuario usuario = registro.getUsuarioCompleto();
-						boolean OK = new SA_Usuario().agregarUsuario(gestor, usuario);
+						boolean OK = new SA_Usuario().agregarUsuario(usuario);
 						if (OK) {
 							JOptionPane.showMessageDialog(new JFrame(), "Usuario creado correctamente", "Exito",
 									JOptionPane.INFORMATION_MESSAGE);
@@ -140,7 +133,7 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 		case "comprarNivel": {
 			Jugador jugador = (Jugador) modelo.getUsuario();
 			if (jugador.getNivel() != Tienda.NIVEL) {
-				Tienda tienda = new SA_Marketing().iniciarTienda(gestor);
+				Tienda tienda = new SA_Marketing().iniciarTienda();
 				InfoNivel nivel = tienda.getPaquetesNivel().get(jugador.getNivel());
 				JDialog dCompra = new JDialog(ventana, "Compra nivel", ModalityType.DOCUMENT_MODAL);
 
@@ -149,7 +142,7 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 
 					@Override
 					public void confirmar() {
-						if (new SA_Marketing().comprarNivel(gestor, jugador, nivel))
+						if (new SA_Marketing().comprarNivel(jugador, nivel))
 							JOptionPane.showMessageDialog(null, "¡Compra realizada con exito!", "Compra nivel",
 									JOptionPane.INFORMATION_MESSAGE);
 						else
@@ -185,7 +178,7 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 				public void recibirGuion() {
 					InfoGuion guion = proponerGuion.getGuionCompleto();
 					if (!guion.getTitulo().equals("")) {
-						if (new SA_Juego().proponerGuion(gestor, guion)) {
+						if (new SA_Juego().proponerGuion(guion)) {
 							JOptionPane.showMessageDialog(new JFrame(), "Guion enviado correctamente", "Exito",
 									JOptionPane.INFORMATION_MESSAGE);
 							dGuion.dispose();
@@ -229,11 +222,11 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 			buscador.setList(new BuscList() {
 				@Override
 				public void buscarPulsado(String usuario) {
-					ArrayList<Jugador> result = new SA_Usuario().buscarUsuario(gestor, modelo.getIdUsuario(), usuario);
+					ArrayList<Jugador> result = new SA_Usuario().buscarUsuario(modelo.getIdUsuario(), usuario);
 					ResultBusqUI resultados = new ResultBusqUI(result, new ResultListener() {
 						@Override
 						public void agregarPulsado(Jugador amigo) {
-							if (new SA_Usuario().agregarAmigo(gestor, (Jugador) modelo.getUsuario(), amigo))
+							if (new SA_Usuario().agregarAmigo((Jugador) modelo.getUsuario(), amigo))
 								JOptionPane.showMessageDialog(new JFrame(), "Amigo añadido correctamente", "Exito",
 										JOptionPane.INFORMATION_MESSAGE);
 							else
@@ -243,7 +236,7 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 
 						@Override
 						public void reportarPulsado(Jugador reportado) {
-							new SA_GameMastering().reportarJugador(gestor, (Jugador) modelo.getUsuario(), reportado);
+							new SA_GameMastering().reportarJugador((Jugador) modelo.getUsuario(), reportado);
 							JOptionPane.showMessageDialog(new JFrame(), "Usuario reportado", "Exito",
 									JOptionPane.INFORMATION_MESSAGE);
 						}
@@ -299,7 +292,7 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 			dialog.setVisible(true);
 			if ((int) optionPane.getValue() == JOptionPane.YES_OPTION) {
 				Logger.getLogger("log").info("Relojes comprados");
-				new SA_Marketing().comprarRelojes(gestor, (Jugador) modelo.getUsuario(), false,
+				new SA_Marketing().comprarRelojes((Jugador) modelo.getUsuario(), false,
 						e.getInfo().getNumReloj());
 			} else
 				Logger.getLogger("log").info("Error al comprar relojes");
@@ -311,7 +304,7 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 			dialog.setPreferredSize(new Dimension(400, 300));
 			dialog.pack();
 			dialog.setVisible(true);
-			new SA_Marketing().comprarRelojes(gestor, (Jugador) modelo.getUsuario(), true, 1);
+			new SA_Marketing().comprarRelojes((Jugador) modelo.getUsuario(), true, 1);
 		}
 			break;
 		}
@@ -327,7 +320,7 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 		}
 			break;
 		case "Reportados": {
-			String[][] reporte = (new SA_GameMastering()).datosReportados(gestor);
+			String[][] reporte = (new SA_GameMastering()).datosReportados();
 			JDialog reportados = new JDialog(ventana, "Guiones Propuestos", ModalityType.DOCUMENT_MODAL);
 
 			ListaReportadosUI listaReportados = new ListaReportadosUI(reporte);
@@ -335,7 +328,7 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 
 				@Override
 				public void actualizar() {
-					listaReportados.setDatos((new SA_GameMastering()).datosReportados(gestor));
+					listaReportados.setDatos((new SA_GameMastering()).datosReportados());
 				}
 
 				@Override
@@ -359,26 +352,26 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 		}
 			break;
 		case "GuionesPropuestos": {
-			String[][] datos = (new SA_GameMastering()).datosGuionesPropuestos(gestor);
+			String[][] datos = (new SA_GameMastering()).datosGuionesPropuestos();
 
 			JDialog propuestos = new JDialog(ventana, "Guiones Propuestos", ModalityType.DOCUMENT_MODAL);
 			ListaPropuestosUI listaPropuestos = new ListaPropuestosUI(datos);
 			listaPropuestos.setGPListener(new GuionesPropuestosListener() {
 				@Override
 				public void actualizar() {
-					listaPropuestos.setDatos((new SA_GameMastering()).datosGuionesPropuestos(gestor));
+					listaPropuestos.setDatos((new SA_GameMastering()).datosGuionesPropuestos());
 				}
 
 				@Override
 				public void seleccionar(String s) {
-					InfoGuion info = (new SA_GameMastering()).leerGuion(gestor, s);
+					InfoGuion info = (new SA_GameMastering()).leerGuion(s);
 					AceptarGuionUI acGuion = new AceptarGuionUI(info);
 					acGuion.setAGListener(new AceptarGuionListener() {
 
 						@Override // aceptar el guion elegido
 						public void aceptar() {
-							(new SA_GameMastering()).aceptarGuion(gestor, info.getTitulo(), acGuion.getNivel());
-							String[][] datos = (new SA_GameMastering()).datosGuionesPropuestos(gestor);
+							(new SA_GameMastering()).aceptarGuion(info.getTitulo(), acGuion.getNivel());
+							String[][] datos = (new SA_GameMastering()).datosGuionesPropuestos();
 							ListaPropuestosUI nuevaLista = new ListaPropuestosUI(datos);
 							propuestos.setContentPane(nuevaLista);
 							propuestos.pack();
@@ -388,8 +381,8 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 
 						@Override // rechazar el guion elegido
 						public void rechazar() {
-							(new SA_GameMastering()).eliminarGuion(gestor, info.getTitulo());
-							String[][] datos = (new SA_GameMastering()).datosGuionesPropuestos(gestor);
+							(new SA_GameMastering()).eliminarGuion(info.getTitulo());
+							String[][] datos = (new SA_GameMastering()).datosGuionesPropuestos();
 							ListaPropuestosUI nuevaLista = new ListaPropuestosUI(datos);
 							propuestos.setContentPane(nuevaLista);
 							propuestos.pack();
@@ -439,7 +432,7 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 				public void cambiarPulsado() {
 					if (a.coinciden()) {
 						Jugador jugador = (Jugador) modelo.getUsuario();
-						if (new SA_Usuario().cambiarPass(gestor, jugador, a.getOld(), a.getPass1())) {
+						if (new SA_Usuario().cambiarPass(jugador, a.getOld(), a.getPass1())) {
 							JOptionPane.showMessageDialog(new JFrame(), "Contraseña cambiada correctamente", "Exito",
 									JOptionPane.INFORMATION_MESSAGE);
 							jc.dispose();
@@ -474,7 +467,7 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 				public void cambiarPulsado() {
 					if (a.todoCorrecto()) {
 						Jugador jugador = (Jugador) modelo.getUsuario();
-						new SA_Usuario().modifDatos(gestor, jugador, a.getEmail(), Integer.parseInt(a.getEdad()),
+						new SA_Usuario().modifDatos(jugador, a.getEmail(), Integer.parseInt(a.getEdad()),
 								a.getPais());
 						JOptionPane.showMessageDialog(new JFrame(), "Datos modificados correctamente", "Exito",
 								JOptionPane.INFORMATION_MESSAGE);
@@ -515,7 +508,7 @@ public class GUIController implements IniSesionListener, PrinciUsuarioListener, 
 			break;
 		case PrinAdmin:
 			InicioAdminUI prinAdmin = new InicioAdminUI(modelo.getUsuario().getId(), 0,
-					new SA_GameMastering().getNumGuiones(gestor), new SA_GameMastering().getNumReportados(gestor));
+					new SA_GameMastering().getNumGuiones(), new SA_GameMastering().getNumReportados());
 			prinAdmin.addPrinciAdministradorListener(this);
 			ventana.add(prinAdmin);
 			prinAdmin.updateUI();

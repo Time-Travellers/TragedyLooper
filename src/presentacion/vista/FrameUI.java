@@ -6,6 +6,7 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 
+import bbdd.Gestor;
 import presentacion.controlador.GUIController;
 
 public class FrameUI extends JFrame {
@@ -30,7 +31,7 @@ public class FrameUI extends JFrame {
 		this.addWindowListener(new WindowAdapter(){
 			@Override
 			public void windowClosing(WindowEvent e) {
-				ctrl.closeGestor();
+				Gestor.getGestor().close();
 			}
 		});
 	}
