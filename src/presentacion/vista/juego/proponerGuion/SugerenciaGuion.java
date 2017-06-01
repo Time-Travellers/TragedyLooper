@@ -1,5 +1,6 @@
 package presentacion.vista.juego.proponerGuion;
 
+import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -7,6 +8,7 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
@@ -76,7 +78,13 @@ public class SugerenciaGuion extends JPanel{
 		contenedor.add(nivel2);
 		contenedor.add(nivel3);
 		contenedor.add(nivel4);
-		this.add(contenedor);
+		
+		JPanel scroller = new JPanel();
+		scroller.setLayout(new BorderLayout());
+		scroller.add(new JScrollPane(contenedor));
+		this.setLayout(new BorderLayout());
+		this.add(scroller, BorderLayout.CENTER);
+		this.setVisible(true);
 	}
 
 

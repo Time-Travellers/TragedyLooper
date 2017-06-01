@@ -1,5 +1,6 @@
 package presentacion.vista.gameMastering.banear;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 
@@ -34,8 +35,10 @@ public class ListaReportadosUI extends JPanel {
 	}
 	
 	public ListaReportadosUI(String [][] datos) {
-		this.setVisible(true);
-		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+		
+		JPanel todo = new JPanel();
+		
+		todo.setLayout(new BoxLayout(todo,BoxLayout.Y_AXIS));
 		
 		//panel superior para el titulo y los botones
 		JPanel north = new JPanel();
@@ -63,10 +66,19 @@ public class ListaReportadosUI extends JPanel {
 		});
 		tablePane = new JScrollPane(table);
 		
-		add(north);
-		add(Box.createRigidArea(new Dimension(0,10)));
-		add(tablePane);
-		setBorder(new EmptyBorder(20,20,20,20));
+		todo.add(north);
+		todo.add(Box.createRigidArea(new Dimension(0,10)));
+		todo.add(tablePane);
+		
+		JPanel scroller = new JPanel();
+		scroller.setLayout(new BorderLayout());
+		scroller.add(new JScrollPane(todo));
+		this.setLayout(new BorderLayout());
+		this.add(scroller, BorderLayout.CENTER);
+		
+		todo.setBorder(new EmptyBorder(20, 20, 20, 20));
+		
+		this.setVisible(true);
 	}
 	
 	public void setDatos(String[][] datos) {
