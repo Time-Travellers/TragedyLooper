@@ -1,7 +1,5 @@
 package negocio;
 
-import integracion.DAO.DAO_Guiones;
-import integracion.DAO.DAO_Guiones_Propuestos;
 import integracion.factorias.DAO_FactoryGuion;
 import integracion.factorias.DAO_FactoryGuionesPropuestos;
 import presentacion.modelo.juego.InfoGuion;

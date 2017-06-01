@@ -2,7 +2,6 @@ package integracion.factorias;
 
 import java.util.HashMap;
 
-import bbdd.Gestor;
 import integracion.DAO.DAO;
 import integracion.DAO.DAO_Guiones;
 import integracion.DAO.DAO_Lista;

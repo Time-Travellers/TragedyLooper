@@ -5,12 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-import integracion.DAO.DAO_Guiones;
-import integracion.DAO.DAO_Guiones_Propuestos;
-import integracion.DAO.DAO_ListaGuionesPropuestos;
-import integracion.DAO.DAO_ListaReportados;
-import integracion.DAO.DAO_Reportados;
-import integracion.DAO.DAO_Usuarios;
 import integracion.factorias.DAO_FactoryGuionesPropuestos;
 import integracion.factorias.DAO_FactoryReportados;
 import integracion.factorias.DAO_FactoryUsuarios;

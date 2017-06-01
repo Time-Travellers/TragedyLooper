@@ -3,7 +3,6 @@ package negocio;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import integracion.DAO.DAO_ListaUsuarios;
 import integracion.DAO.DAO_Usuarios;
 import integracion.factorias.DAO_FactoryUsuarios;
 import presentacion.modelo.usuario.Jugador;
@@ -11,8 +10,6 @@ import presentacion.modelo.usuario.Paises;
 import presentacion.modelo.usuario.Usuario;
 
 public class SA_Usuario{
-
-	private DAO_FactoryUsuarios fabrica;
 	
 	public Usuario iniciarSesion(String id, String password) {
 		Usuario usuario = DAO_FactoryUsuarios.getFactoria().creaDAO().leer(id);
