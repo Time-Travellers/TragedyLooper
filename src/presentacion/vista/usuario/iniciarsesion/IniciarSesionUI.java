@@ -42,6 +42,7 @@ public class IniciarSesionUI extends JPanel implements IniSesionListenable {
 		this.setSize(new Dimension(800, 600));
 		
 		JPanel usuario =  new JPanel();
+		usuario.setBackground(new Color(239, 188, 45));
 		usuario.setLayout(new FlowLayout(FlowLayout.CENTER));
 		userIn = new JTextField(15);
 		usuario.add(new JLabel("Usuario"));
@@ -50,6 +51,7 @@ public class IniciarSesionUI extends JPanel implements IniSesionListenable {
 		usuario.setMaximumSize(usuario.getPreferredSize());
 		
 		JPanel pw =  new JPanel();
+		pw.setBackground(new Color(239, 188, 45));
 		pw.setLayout(new FlowLayout(FlowLayout.CENTER));
 		passwIn = new JPasswordField(15);
 		pw.add(new JLabel("Contraseña"));
@@ -58,9 +60,12 @@ public class IniciarSesionUI extends JPanel implements IniSesionListenable {
 		pw.setMaximumSize(usuario.getPreferredSize());
 		
 		iniciarSesion = new JButton("Iniciar Sesion");
+		iniciarSesion.setBackground(new Color(116, 245, 19));
 		crearCuenta = new JButton("Darse de Alta");
+		crearCuenta.setBackground(new Color(239, 25, 25));
 		
 		JPanel cuadroEntrada = new JPanel();
+		cuadroEntrada.setBackground(new Color(239, 188, 45));
 		cuadroEntrada.setLayout(new BoxLayout(cuadroEntrada, BoxLayout.Y_AXIS));
 		cuadroEntrada.add(Box.createRigidArea(new Dimension(1,20)));
 		cuadroEntrada.add(usuario);

@@ -35,7 +35,7 @@ public class ListaPropuestosUI extends JPanel{
 		
 		JPanel todo = new JPanel();
 		
-		todo.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+		todo.setLayout(new BoxLayout(todo,BoxLayout.Y_AXIS));
 		
 		//panel superior para el titulo y los botones
 		JPanel north = new JPanel();
