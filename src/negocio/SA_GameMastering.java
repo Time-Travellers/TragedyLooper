@@ -11,6 +11,9 @@ import integracion.DAO.DAO_ListaGuionesPropuestos;
 import integracion.DAO.DAO_ListaReportados;
 import integracion.DAO.DAO_Reportados;
 import integracion.DAO.DAO_Usuarios;
+import integracion.factorias.DAO_FactoryGuionesPropuestos;
+import integracion.factorias.DAO_FactoryReportados;
+import integracion.factorias.DAO_FactoryUsuarios;
 import presentacion.modelo.gameMastering.Reporte;
 import presentacion.modelo.juego.InfoGuion;
 import presentacion.modelo.usuario.Jugador;
@@ -18,7 +21,7 @@ import presentacion.modelo.usuario.Jugador;
 public class SA_GameMastering {
 
 	public String[][] datosReportados() {
-		HashMap<String, Reporte> r = new DAO_ListaReportados().leer();
+		HashMap<String, Reporte> r = DAO_FactoryReportados.getFactoria().creaListaDAO().leer();
 		ArrayList<Reporte> reportes = new ArrayList<Reporte>(r.values());
 		String[][] data = new String[reportes.size()][3];
 		for (int i = 0; i < reportes.size(); ++i) {
@@ -31,11 +34,12 @@ public class SA_GameMastering {
 
 	public void reportarJugador(Jugador reportador, Jugador reportado) {
 		Reporte r = new Reporte(reportador, reportado, new Date());
-		new DAO_Reportados().crear(r);
+		DAO_FactoryReportados.getFactoria().creaDAO().crear(r);
 	}
 
 	public String[][] datosGuionesPropuestos() {
-		HashMap<String, InfoGuion> r = new DAO_ListaGuionesPropuestos().leer();
+		HashMap<String, InfoGuion> r = 
+				DAO_FactoryGuionesPropuestos.getFactoria().creaListaDAO().leer();
 		ArrayList<InfoGuion> guiones = new ArrayList<InfoGuion>(r.values());
 		String[][] data = new String[guiones.size()][3];
 		for (int i = 0; i < guiones.size(); ++i) {
@@ -48,28 +52,28 @@ public class SA_GameMastering {
 	}
 	
 	public void aceptarGuion(String s, int nivel){
-		InfoGuion guion = (new DAO_Guiones_Propuestos()).leer(s);
+		InfoGuion guion = DAO_FactoryGuionesPropuestos.getFactoria().creaDAO().leer(s);
 		guion.setNivel(nivel);
-		(new DAO_Guiones_Propuestos()).borrar(s);
-		(new DAO_Guiones()).crear(guion);
+		DAO_FactoryGuionesPropuestos.getFactoria().creaDAO().borrar(s);
+		DAO_FactoryGuionesPropuestos.getFactoria().creaDAO().crear(guion);
 		Jugador jugador = guion.getCreador();
 		jugador.setReloj(jugador.getReloj() + Jugador.RECOMPENSA);
-		new DAO_Usuarios().actualizar(jugador);
+		DAO_FactoryUsuarios.getFactoria().creaDAO().actualizar(jugador);
 	}
 	
 	public InfoGuion leerGuion(String s){
-		return (new DAO_Guiones_Propuestos()).leer(s);
+		return DAO_FactoryGuionesPropuestos.getFactoria().creaDAO().leer(s);
 	}
 	
 	public void eliminarGuion(String s){
-		new DAO_Guiones_Propuestos().borrar(s);
+		DAO_FactoryGuionesPropuestos.getFactoria().creaDAO().borrar(s);
 	}
 	
 	public int getNumReportados(){
-		return new DAO_ListaReportados().leer().size();
+		return DAO_FactoryReportados.getFactoria().creaListaDAO().leer().size();
 	}
 	
 	public int getNumGuiones(){
-		return new DAO_ListaGuionesPropuestos().leer().size();
+		return DAO_FactoryGuionesPropuestos.getFactoria().creaListaDAO().leer().size();
 	}
 }

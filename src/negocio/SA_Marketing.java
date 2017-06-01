@@ -1,9 +1,11 @@
 package negocio;
 
+import integracion.DAO.DAO_Usuarios;
+import integracion.factorias.DAO_FactoryGuion;
+import integracion.factorias.DAO_FactoryUsuarios;
+
 import java.util.ArrayList;
 
-import integracion.DAO.DAO_ListaGuiones;
-import integracion.DAO.DAO_Usuarios;
 import presentacion.modelo.juego.InfoGuion;
 import presentacion.modelo.marketing.InfoNivel;
 import presentacion.modelo.marketing.Tienda;
@@ -15,7 +17,8 @@ public class SA_Marketing{
 		ArrayList<InfoNivel> list = new ArrayList<InfoNivel>();
 		for(int i = 0; i < Tienda.NIVEL; ++i)
 			list.add(new InfoNivel(i + 1, 25 * (i + 1), new ArrayList<String>()));
-		ArrayList<InfoGuion> guiones = new ArrayList<InfoGuion>(new DAO_ListaGuiones().leer().values());
+		ArrayList<InfoGuion> guiones = new ArrayList<InfoGuion>(
+				DAO_FactoryGuion.getFactoria().creaListaDAO().leer().values());
 		for(int i=0;i<guiones.size();++i){
 			list.get(guiones.get(i).getNivel()).getGuiones().add(guiones.get(i).getTitulo());
 		}
@@ -30,14 +33,14 @@ public class SA_Marketing{
     	else{
     		usuario.setReloj(usuario.getReloj() + relojes);
     	}
-    	new DAO_Usuarios().actualizar(usuario);
+    	DAO_FactoryUsuarios.getFactoria().creaDAO().actualizar(usuario);
     }
 	
 	public boolean comprarNivel(Jugador usuario, InfoNivel nivel) {
     	if(usuario.getReloj() >= nivel.getPrecio()){
     		usuario.setNivel(usuario.getNivel() + 1);
     		usuario.setReloj(usuario.getReloj() - nivel.getPrecio());
-    		new DAO_Usuarios().actualizar(usuario);
+    		DAO_FactoryUsuarios.getFactoria().creaDAO().actualizar(usuario);
     		return true;
     	}
     	else 

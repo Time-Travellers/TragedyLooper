@@ -14,7 +14,7 @@ public class DAO_FactoryGuion extends DAO_AbstractFactory<InfoGuion>{
 
 	private static DAO_FactoryGuion fabricaDeGuiones;
 	
-    public static DAO_FactoryGuion getGestor(){
+    public static DAO_FactoryGuion getFactoria(){
     	if(fabricaDeGuiones==null)
     		fabricaDeGuiones = new DAO_FactoryGuion();
     	return fabricaDeGuiones;

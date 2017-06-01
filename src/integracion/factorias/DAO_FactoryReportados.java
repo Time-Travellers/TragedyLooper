@@ -12,7 +12,7 @@ public class DAO_FactoryReportados extends DAO_AbstractFactory<Reporte>  {
 
 	private static DAO_FactoryReportados fabricaDeReportes;
 	
-    public static DAO_FactoryReportados getGestor(){
+    public static DAO_FactoryReportados getFactoria(){
     	if(fabricaDeReportes==null)
     		fabricaDeReportes = new DAO_FactoryReportados();
     	return fabricaDeReportes;

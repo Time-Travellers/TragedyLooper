@@ -12,7 +12,7 @@ public class DAO_FactoryUsuarios extends DAO_AbstractFactory<Usuario>{
 
 	private static DAO_FactoryUsuarios fabricaDeUsuarios;
 	
-    public static DAO_FactoryUsuarios getGestor(){
+    public static DAO_FactoryUsuarios getFactoria(){
     	if(fabricaDeUsuarios==null)
     		fabricaDeUsuarios = new DAO_FactoryUsuarios();
     	return fabricaDeUsuarios;
