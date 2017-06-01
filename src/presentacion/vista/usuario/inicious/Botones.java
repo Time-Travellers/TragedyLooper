@@ -9,9 +9,10 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import presentacion.controlador.principalus.InicioUsuarioEvent;
-import presentacion.controlador.principalus.InicioUsuarioListener;
-import presentacion.controlador.principalus.InicioUsuarioEvent.PrinciUsuarioType;
+
+import presentacion.controlador.iniciousuario.InicioUsuarioEvent;
+import presentacion.controlador.iniciousuario.InicioUsuarioListener;
+import presentacion.controlador.iniciousuario.InicioUsuarioEvent.PrinciUsuarioType;
 /**
  * Panel con cuatro botones: 
  * Buscar, configuracion, ayuda y salir.

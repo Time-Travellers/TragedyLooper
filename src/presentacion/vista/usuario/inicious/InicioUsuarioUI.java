@@ -10,8 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import presentacion.controlador.principalus.InicioUsuarioListenable;
-import presentacion.controlador.principalus.InicioUsuarioListener;
+import presentacion.controlador.iniciousuario.InicioUsuarioListenable;
+import presentacion.controlador.iniciousuario.InicioUsuarioListener;
 import presentacion.modelo.usuario.Jugador;
 
 public class InicioUsuarioUI extends JPanel implements InicioUsuarioListenable{

@@ -10,9 +10,10 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import presentacion.controlador.principalus.InicioUsuarioEvent;
-import presentacion.controlador.principalus.InicioUsuarioEvent.PrinciUsuarioType;
-import presentacion.controlador.principalus.InicioUsuarioListener;
+
+import presentacion.controlador.iniciousuario.InicioUsuarioEvent;
+import presentacion.controlador.iniciousuario.InicioUsuarioListener;
+import presentacion.controlador.iniciousuario.InicioUsuarioEvent.PrinciUsuarioType;
 import presentacion.modelo.usuario.Jugador;
 
 public class Tienda extends JPanel {

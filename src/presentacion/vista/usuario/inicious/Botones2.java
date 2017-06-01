@@ -10,9 +10,10 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import presentacion.controlador.principalus.InicioUsuarioEvent;
-import presentacion.controlador.principalus.InicioUsuarioListener;
-import presentacion.controlador.principalus.InicioUsuarioEvent.PrinciUsuarioType;
+
+import presentacion.controlador.iniciousuario.InicioUsuarioEvent;
+import presentacion.controlador.iniciousuario.InicioUsuarioListener;
+import presentacion.controlador.iniciousuario.InicioUsuarioEvent.PrinciUsuarioType;
 /**
  * Panel con tres botones: 
  * "Iniciar nueva partida", "Mi perfil", "Ver ranking".

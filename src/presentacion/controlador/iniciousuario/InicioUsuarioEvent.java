@@ -1,4 +1,4 @@
-package presentacion.controlador.principalus;
+package presentacion.controlador.iniciousuario;
 
 public class InicioUsuarioEvent {
 	
