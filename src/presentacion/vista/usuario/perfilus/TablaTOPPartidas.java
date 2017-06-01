@@ -1,6 +1,7 @@
 package presentacion.vista.usuario.perfilus;
 
 import java.awt.Color;
+import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
@@ -35,6 +36,7 @@ public class TablaTOPPartidas extends JPanel {
 				borde, "Mejores partidas:",
 				TitledBorder.LEFT, TitledBorder.TOP));
 		table.getTableHeader().setReorderingAllowed(false);
+		table.setPreferredSize(new Dimension(500, 200));
 	}
 
 	public void eraseData() {
