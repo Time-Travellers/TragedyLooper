@@ -11,6 +11,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import presentacion.controlador.comprarreloj.ComprarRelojEvent;
@@ -29,7 +30,7 @@ public class ComprarRelojUI extends JPanel implements ComprarRelojListenable{
 	private ArrayList<ComprarRelojListener> listeners;
 	
 	public ComprarRelojUI(boolean a, ArrayList<InfoReloj> paquetes, JDialog jc){
-
+		
 		JPanel container = new JPanel();
 		container.setLayout(new BoxLayout(container,BoxLayout.Y_AXIS));
 		
@@ -103,20 +104,15 @@ public class ComprarRelojUI extends JPanel implements ComprarRelojListenable{
 		container.add(south,BorderLayout.SOUTH);
 		container.setBorder(new EmptyBorder(20, 20, 20, 20));
 		container.setPreferredSize(new Dimension(600, 350));
-		this.add(container);
+		
+		JPanel scroller = new JPanel();
+		scroller.setLayout(new BorderLayout());
+		scroller.add(new JScrollPane(container));
+		this.setLayout(new BorderLayout());
+		this.add(scroller, BorderLayout.CENTER);
+		this.setVisible(true);
 		
 		this.setVisible(true);
-	}
-	
-	public static void main(String args[]){
-
-		ArrayList<InfoReloj> paquetesReloj = new ArrayList<InfoReloj>();
-		paquetesReloj.add(new InfoReloj("Paquete Basico", 20, 9.99));
-		paquetesReloj.add(new InfoReloj("Paquete Intermedio", 50, 19.99));
-		paquetesReloj.add(new InfoReloj("Paquete Avanzado",100, 34.99));
-		paquetesReloj.add(new InfoReloj("Paquete Experto",250, 79.99));	
-		paquetesReloj.add(new InfoReloj("Paquete Viajero del Tiempo",500, 149.99));	
-		paquetesReloj.add(new InfoReloj("¡Oferta por tiempo limitado!",25, 9.99));	
 	}
 
 	@Override

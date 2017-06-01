@@ -12,6 +12,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import presentacion.modelo.marketing.InfoNivel;
 
@@ -33,10 +34,12 @@ public class ComprarNivelUI extends JPanel {
 	
 	public ComprarNivelUI ( InfoNivel nivelSiguiente){
 		
-		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
-		this.setAlignmentX(CENTER_ALIGNMENT);
+		JPanel todo = new JPanel();
+		
+		todo.setLayout(new BoxLayout(todo,BoxLayout.Y_AXIS));
+		todo.setAlignmentX(CENTER_ALIGNMENT);
 
-		this.setBorder(BorderFactory.createLineBorder(Color.black));
+		todo.setBorder(BorderFactory.createLineBorder(Color.black));
 		
 		//titulo
 		JLabel title = new JLabel("¿Quieres comprar el siguiente nivel por " + nivelSiguiente.getPrecio() + " relojes?");
@@ -88,14 +91,22 @@ public class ComprarNivelUI extends JPanel {
 		south.add(aceptar);
 		south.add(cancelar);
 		
-		this.add(title);
-		this.add(Box.createRigidArea(new Dimension(0,10)));
-		this.add(niveles);
-		this.add(Box.createVerticalGlue());
-		this.add(south,BorderLayout.SOUTH);
+		todo.add(title);
+		todo.add(Box.createRigidArea(new Dimension(0,10)));
+		todo.add(niveles);
+		todo.add(Box.createVerticalGlue());
+		todo.add(south,BorderLayout.SOUTH);
 		
-		this.setBorder(new EmptyBorder(20, 20, 20, 20));
+		todo.setBorder(new EmptyBorder(20, 20, 20, 20));
 		this.setPreferredSize(new Dimension(600, 350));
+		
+		JPanel scroller = new JPanel();
+		scroller.setLayout(new BorderLayout());
+		scroller.add(new JScrollPane(todo));
+		this.setLayout(new BorderLayout());
+		this.add(scroller, BorderLayout.CENTER);
+		this.setVisible(true);
+		
 		this.setVisible(true);		
 	}
 }

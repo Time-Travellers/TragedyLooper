@@ -243,6 +243,7 @@ public class GUIController implements IniSesionListener, InicioUsuarioListener, 
 									JOptionPane.INFORMATION_MESSAGE);
 						}
 					});
+					dBuscar.setPreferredSize(new Dimension(600, 600));
 					dBuscar.getContentPane().removeAll();
 					dBuscar.setContentPane(resultados);
 					dBuscar.repaint();

@@ -1,5 +1,6 @@
 package presentacion.vista.usuario.registro;
 
+import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -12,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import presentacion.modelo.usuario.Jugador;
@@ -46,20 +48,22 @@ public class RegistroUI extends JPanel{
 	}
 
 	private void initGUI() {
-		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		JPanel todo = new JPanel();
+		
+		todo.setLayout(new BoxLayout(todo, BoxLayout.Y_AXIS));
 		JLabel titulo = new JLabel("Rellena los siguientes campos...");
 		titulo.setFont(new Font("", 25, 25));
-		this.add(titulo);
-		this.add(new JLabel("Introduce tu nombre de usuario:"));
+		todo.add(titulo);
+		todo.add(new JLabel("Introduce tu nombre de usuario:"));
 		this.username = new JTextField();
-		this.add(username);
-		this.add(new JLabel("Introduce tu nombre:"));
+		todo.add(username);
+		todo.add(new JLabel("Introduce tu nombre:"));
 		this.nombre = new JTextField();
-		this.add(nombre);
-		this.add(new JLabel("Introduce tu password:"));
+		todo.add(nombre);
+		todo.add(new JLabel("Introduce tu password:"));
 		this.password = new JPasswordField();
-		this.add(password);
-		this.add(new JLabel("Introduce tu password de nuevo:"));
+		todo.add(password);
+		todo.add(new JLabel("Introduce tu password de nuevo:"));
 		this.password2 = new JPasswordField();
 		this.password2.addMouseListener(new MouseAdapter() {
 			public void mouseExited(MouseEvent e) {
@@ -71,16 +75,16 @@ public class RegistroUI extends JPanel{
 				}
 			}
 		});
-		this.add(password2);
-		this.add(new JLabel("Introduce tu email:"));
+		todo.add(password2);
+		todo.add(new JLabel("Introduce tu email:"));
 		this.email = new JTextField();
-		this.add(email);
-		this.add(new JLabel("Introduce tu edad:"));
+		todo.add(email);
+		todo.add(new JLabel("Introduce tu edad:"));
 		this.edad = new JTextField();
-		this.add(edad);
-		this.add(new JLabel("Introduce tu pais:"));
+		todo.add(edad);
+		todo.add(new JLabel("Introduce tu pais:"));
 		this.pais = new JComboBox<Paises>(Paises.values());
-		this.add(pais);
+		todo.add(pais);
 		this.registrarse = new JButton("Registrarse");
 		this.registrarse.setEnabled(false);
 		this.registrarse.addActionListener((e)-> this.rListener.registrarsePulsado());
@@ -95,7 +99,15 @@ public class RegistroUI extends JPanel{
 			}
 		});
 		
-		this.add(registrarse);
+		todo.add(registrarse);
+		
+		JPanel scroller = new JPanel();
+		scroller.setLayout(new BorderLayout());
+		scroller.add(new JScrollPane(todo));
+		this.setLayout(new BorderLayout());
+		this.add(scroller, BorderLayout.CENTER);
+		this.setVisible(true);
+		
 		this.setVisible(true);
 	}
 	

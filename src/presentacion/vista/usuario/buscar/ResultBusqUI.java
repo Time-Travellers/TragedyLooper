@@ -32,9 +32,10 @@ public class ResultBusqUI extends JPanel {
 	}
 
 	private void initGUI() {
-		this.setLayout(new BorderLayout());
+		JPanel todo = new JPanel();
+		todo.setLayout(new BorderLayout());
 		JLabel aux = new JLabel("Resultados de la búsqueda: ");
-		this.add(aux, BorderLayout.NORTH);
+		todo.add(aux, BorderLayout.NORTH);
 		JPanel res = new JPanel();
 		res.setLayout(new BoxLayout(res, BoxLayout.Y_AXIS));
 		res.add(Box.createRigidArea(new Dimension(10, 10)));
@@ -53,7 +54,13 @@ public class ResultBusqUI extends JPanel {
 		}
 		if(jugadores.size() == 0)
 			res.add(new JLabel("Sin resultados"));
-		this.add(new JScrollPane(res), BorderLayout.CENTER);
+		todo.add(new JScrollPane(res), BorderLayout.CENTER);
+		
+		JPanel scroller = new JPanel();
+		scroller.setLayout(new BorderLayout());
+		scroller.add(new JScrollPane(todo));
+		this.setLayout(new BorderLayout());
+		this.add(scroller, BorderLayout.CENTER);
 		this.setVisible(true);
 	}
 }
