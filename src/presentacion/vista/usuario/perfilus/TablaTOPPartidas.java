@@ -36,7 +36,7 @@ public class TablaTOPPartidas extends JPanel {
 				borde, "Mejores partidas:",
 				TitledBorder.LEFT, TitledBorder.TOP));
 		table.getTableHeader().setReorderingAllowed(false);
-		table.setPreferredSize(new Dimension(500, 200));
+		table.setPreferredScrollableViewportSize(new Dimension(600,350));
 	}
 
 	public void eraseData() {
