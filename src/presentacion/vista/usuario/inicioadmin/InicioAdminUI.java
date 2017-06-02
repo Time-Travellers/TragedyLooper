@@ -6,7 +6,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -63,7 +62,7 @@ public class InicioAdminUI extends JPanel implements InicioAdministradorListenab
 		
 		todo.add(new PanelGrande("Mensajes:", 
 				new ImageIcon(getClass().getClassLoader().getResource("resources/message.png")),
-				report, new ActionListener(){
+				numMensajes, new ActionListener(){
 					public void actionPerformed(ActionEvent arg0) {
 						notificar(new InicioAdministradorEvent(PrinciAdministradorType.Mensajes));						
 					}
@@ -71,7 +70,7 @@ public class InicioAdminUI extends JPanel implements InicioAdministradorListenab
 		todo.add(Box.createRigidArea(new Dimension(0,10)));
 		todo.add(new PanelGrande("Usuarios reportados:", 
 				new ImageIcon(getClass().getClassLoader().getResource("resources/reportar.png")),
-				numMensajes, new ActionListener(){
+				report, new ActionListener(){
 					public void actionPerformed(ActionEvent arg0) {
 						notificar(new InicioAdministradorEvent(PrinciAdministradorType.Reportados));						
 					}
@@ -85,19 +84,18 @@ public class InicioAdminUI extends JPanel implements InicioAdministradorListenab
 					}
 		}));
 		
+		todo.setOpaque(false);
+		
 		JPanel scroller = new JPanel();
 		scroller.setLayout(new BorderLayout());
 		scroller.add(new JScrollPane(todo));
 		this.setLayout(new BorderLayout());
 		this.add(scroller);
 		this.setVisible(true);
-		
 		setOpaque(false);
 		todo.setBorder(new EmptyBorder(20,30,20,30));
 		
-		
 	}
-	
 
 	@Override
 	public void addPrinciAdministradorListener(InicioAdministradorListener p) {

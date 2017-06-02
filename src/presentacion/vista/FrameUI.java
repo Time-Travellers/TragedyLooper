@@ -5,6 +5,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
+
 import bbdd.Gestor;
 
 public class FrameUI extends JFrame {
@@ -20,7 +21,7 @@ public class FrameUI extends JFrame {
 //			Logger.getLogger("log").severe("Error al cargar la imagen de fondo de las pantallas");
 //		}
 //		this.setContentPane(new JLabel(new ImageIcon(img)));
-		//this.setLayout(new FlowLayout());
+//		this.setLayout(new FlowLayout());
 		this.setSize(dimension.width, dimension.height);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -41,7 +42,7 @@ public class FrameUI extends JFrame {
 //			Logger.getLogger("log").severe("Error al cargar la imagen de fondo de las pantallas");
 //		}
 //		this.setContentPane(new JLabel(new ImageIcon(img)));
-		//this.setLayout(new FlowLayout());
+//		this.setLayout(new FlowLayout());
 		this.setSize(dim);
 		this.setLocation(posX, posY);
 		this.setVisible(true);
