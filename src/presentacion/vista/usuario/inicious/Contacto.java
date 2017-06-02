@@ -38,6 +38,7 @@ public class Contacto extends JPanel {
 		
 		//boton sugerencias
 		JButton sugerencias = new JButton("Sugerencias");
+		sugerencias.setBackground(new Color(50,140,50));
 		sugerencias.setPreferredSize(new Dimension(100, 30));
 		sugerencias.setAlignmentX(CENTER_ALIGNMENT);
 		sugerencias.addActionListener(new ActionListener(){
@@ -50,6 +51,7 @@ public class Contacto extends JPanel {
 		
 		//boton proponerGuion
 		JButton proponerGuion = new JButton("Proponer Guion");
+		proponerGuion.setBackground(new Color(50,140,50));
 		proponerGuion.setPreferredSize(new Dimension(100, 30));
 		proponerGuion.setAlignmentX(CENTER_ALIGNMENT);
 		proponerGuion.addActionListener(new ActionListener(){
@@ -67,6 +69,7 @@ public class Contacto extends JPanel {
 		this.add(Box.createVerticalGlue());
 		this.add(proponerGuion);
 		this.add(Box.createRigidArea(new Dimension(0,10)));
+		this.setBackground(new Color(150,200,150));
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		this.setPreferredSize(new Dimension(450,200));
 	}	

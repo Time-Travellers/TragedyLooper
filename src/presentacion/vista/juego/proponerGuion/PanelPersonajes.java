@@ -1,5 +1,6 @@
 package presentacion.vista.juego.proponerGuion;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
@@ -30,7 +31,9 @@ public class PanelPersonajes extends JPanel implements ReguladorListener{
 	}
 	private void inicializarlistaDescripciones(){
 		for(int ctrl=0;ctrl<MAX_PERSONAJES;ctrl++){
-			listaDescripciones.add(new DescripcionPersonaje(ctrl+1));
+			DescripcionPersonaje desc = new DescripcionPersonaje(ctrl + 1);
+			desc.setBackground(new Color(163, 60, 242));
+			listaDescripciones.add(desc);
 			listaDescripciones.get(ctrl).setVisible(ctrl<numpersonajes.getValor());
 		}
 	}
@@ -48,7 +51,7 @@ public class PanelPersonajes extends JPanel implements ReguladorListener{
 			contenedor.add(listaDescripciones.get(ctrl));
 		}
 		this.deslizador=new JScrollPane(contenedor);
-		deslizador.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		deslizador.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		this.add(deslizador);
 		this.setSize(300, 200);
 		this.setPreferredSize(new Dimension(300, 200));

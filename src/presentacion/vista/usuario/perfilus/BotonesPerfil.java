@@ -1,5 +1,6 @@
 package presentacion.vista.usuario.perfilus;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
@@ -39,6 +40,7 @@ public class BotonesPerfil extends JPanel{
 			ActionListener listener) {
 		JButton button = new JButton(title);
 		button.setPreferredSize(new Dimension (150,30));
+		button.setBackground(new Color(240, 196, 16));
 		button.addActionListener(listener);
 		button.setVisible(true);
 		this.add(button);

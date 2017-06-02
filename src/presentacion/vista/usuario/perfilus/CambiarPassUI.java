@@ -1,5 +1,6 @@
 package presentacion.vista.usuario.perfilus;
 
+import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -40,6 +41,7 @@ public class CambiarPassUI extends JPanel {
 		
 		JPanel botones = new JPanel();
 		JButton cambiar = new JButton("Cambiar");
+		cambiar.setBackground(new Color(147, 238, 64));
 		cambiar.setEnabled(false);
 		cambiar.addActionListener((e)-> this.list.cambiarPulsado());
 		this.addMouseListener(new MouseAdapter() {
@@ -56,6 +58,7 @@ public class CambiarPassUI extends JPanel {
 			
 		});
 		JButton cancelar = new JButton("Cancelar");
+		cancelar.setBackground(new Color(242, 76, 76));
 		cancelar.setEnabled(true);
 		cancelar.addActionListener((e) -> this.list.cancelarPulsado());
 		botones.add(cambiar);

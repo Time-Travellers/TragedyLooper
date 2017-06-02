@@ -1,6 +1,7 @@
 package presentacion.vista.usuario.registro;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -87,6 +88,7 @@ public class RegistroUI extends JPanel{
 		todo.add(pais);
 		this.registrarse = new JButton("Registrarse");
 		this.registrarse.setEnabled(false);
+		registrarse.setBackground(new Color(242, 76, 76));
 		this.registrarse.addActionListener((e)-> this.rListener.registrarsePulsado());
 		this.addMouseListener(new MouseAdapter() {
 			@Override

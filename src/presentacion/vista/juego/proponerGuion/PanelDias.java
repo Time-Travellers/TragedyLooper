@@ -1,5 +1,6 @@
 package presentacion.vista.juego.proponerGuion;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
@@ -20,7 +21,8 @@ public class PanelDias extends JPanel implements ReguladorListener{
 	
 	private void inicializarlistaDias(){
 		for(int ctrl=0;ctrl<MAX_DIAS;ctrl++){
-			listaDias.add(new EventosDia(ctrl+1));
+			EventosDia ev = new EventosDia(ctrl + 1);
+			listaDias.add(ev);
 			listaDias.get(ctrl).setVisible(ctrl<numdias.getValor());
 		}
 	}
@@ -31,6 +33,7 @@ public class PanelDias extends JPanel implements ReguladorListener{
 		this.listaDias=new ArrayList<EventosDia>();
 		this.contenedor=new JPanel();
 		contenedor.setLayout(new BoxLayout(contenedor,BoxLayout.Y_AXIS));
+		contenedor.setBackground(new Color(60, 129, 242));
 		this.add(numdias);
 		inicializarlistaDias();
 		numdias.addObservador(this);

@@ -1,6 +1,7 @@
 package presentacion.vista.usuario.listaAmigos;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
@@ -40,6 +41,7 @@ public class ListaAmigosUI extends JPanel {
 			JLabel nombre = new JLabel(i.getId());
 			amigo.add(nombre);
 			JButton borrar = new JButton("Borrar");
+			borrar.setBackground(new Color(242, 76, 76));
 			borrar.addActionListener((e) -> list.borrarPulsado(i));
 			amigo.add(borrar);
 			panel.add(amigo);

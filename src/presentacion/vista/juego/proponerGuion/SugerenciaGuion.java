@@ -1,12 +1,13 @@
 package presentacion.vista.juego.proponerGuion;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
@@ -62,11 +63,14 @@ public class SugerenciaGuion extends JPanel{
 		this.subtrama=new PanelSeleccionSubtrama();
 		this.dias=new PanelDias();
 		this.personajes=new PanelPersonajes();
-		this.aceptar=new JButton(new ImageIcon(getClass().getClassLoader().getResource("resources/" + TICK)));
+		this.aceptar=new JButton("Enviar");
+		aceptar.setBackground(new Color(147, 238, 64));
 		aceptar.addActionListener((e)->this.gListener.recibirGuion());
-		this.cancelar=new JButton(new ImageIcon(getClass().getClassLoader().getResource("resources/" + SALIR)));
+		this.cancelar=new JButton("Cancelar");
+		cancelar.setBackground(new Color(242, 76, 76));
 		cancelar.addActionListener((e)->this.gListener.salir());
 		nivel1.add(titulo);
+		nivel1.add(new JLabel("Bucles:"));
 		nivel1.add(bucles);
 		nivel2.add(trama);
 		nivel2.add(subtrama);

@@ -60,9 +60,9 @@ public class IniciarSesionUI extends JPanel implements IniSesionListenable {
 		pw.setMaximumSize(usuario.getPreferredSize());
 		
 		iniciarSesion = new JButton("Iniciar Sesion");
-		iniciarSesion.setBackground(new Color(116, 245, 19));
+		iniciarSesion.setBackground(new Color(147, 238, 64));
 		crearCuenta = new JButton("Darse de Alta");
-		crearCuenta.setBackground(new Color(239, 25, 25));
+		crearCuenta.setBackground(new Color(242, 76, 76));
 		
 		JPanel cuadroEntrada = new JPanel();
 		cuadroEntrada.setBackground(new Color(239, 188, 45));

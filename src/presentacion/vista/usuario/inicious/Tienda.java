@@ -38,6 +38,7 @@ public class Tienda extends JPanel {
 		});
 		panelmayor.add(relojes);
 		panelmayor.add(nivel);
+		panelmayor.setBackground(new Color(172,246,213));
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		tienda = new JLabel("Tienda");
 		tienda.setFont(new Font("", Font.BOLD, 20));
@@ -46,6 +47,7 @@ public class Tienda extends JPanel {
 		this.add(Box.createRigidArea(new Dimension(0, 10)));
 		this.add(panelmayor);
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+		this.setBackground(new Color(172,246,213));
 		this.setPreferredSize(new Dimension(450, 200));
 	}
 

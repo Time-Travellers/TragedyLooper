@@ -1,6 +1,7 @@
 package presentacion.vista.usuario.buscar;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
@@ -44,9 +45,11 @@ public class ResultBusqUI extends JPanel {
 			JLabel nombre = new JLabel(j.getId());
 			jug.add(nombre);
 			JButton agregar = new JButton("Agregar");
+			agregar.setBackground(new Color(147, 238, 64));
 			agregar.addActionListener((e) -> list.agregarPulsado(j));
 			jug.add(agregar);
 			JButton reportar = new JButton("Reportar");
+			reportar.setBackground(new Color(242, 76, 76));
 			reportar.addActionListener((e) -> list.reportarPulsado(j));
 			jug.add(reportar);
 			jug.setVisible(true);

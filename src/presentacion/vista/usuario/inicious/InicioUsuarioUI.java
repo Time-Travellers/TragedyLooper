@@ -54,7 +54,6 @@ public class InicioUsuarioUI extends JPanel implements InicioUsuarioListenable{
 		JPanel paneldeabajo=new JPanel();
 		paneldeabajo.setLayout(new FlowLayout(FlowLayout.CENTER,20,0));
 		paneldeabajo.add(paneltienda);
-		//paneldeabajo.add(Box.createRigidArea(new Dimension(10,0)));
 		paneldeabajo.add(panelcontacto);
 		
 		JPanel todo = new JPanel();

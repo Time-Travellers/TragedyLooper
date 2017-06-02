@@ -1,6 +1,7 @@
 package presentacion.vista.usuario.buscar;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -37,6 +38,7 @@ public class BuscadorUI extends JPanel{
 		panelAux.add(this.nombre);
 		this.botonBuscar = new JButton("Buscar");
 		this.botonBuscar.addActionListener((e) -> list.buscarPulsado(nombre.getText()));
+		this.botonBuscar.setBackground(new Color(246, 251, 51));
 		panelAux.add(this.botonBuscar);
 		
 		JPanel scroller = new JPanel();

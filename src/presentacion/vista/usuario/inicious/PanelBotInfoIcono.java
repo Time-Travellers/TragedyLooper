@@ -30,5 +30,7 @@ public class PanelBotInfoIcono extends JPanel{
 		this.add(this.icono);
 		this.setPreferredSize(new Dimension(200,150));
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		this.setBackground(new Color(103,239,177));
+
 	}
 }
