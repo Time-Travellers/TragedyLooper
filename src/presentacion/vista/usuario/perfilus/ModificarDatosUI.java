@@ -18,20 +18,21 @@ public class ModificarDatosUI extends JPanel {
 
 	private static final long serialVersionUID = -2518382752312836635L;
 
-	public interface ModifDatosListener{
+	public interface ModifDatosListener {
 		public void cambiarPulsado();
+
 		public void cancelarPulsado();
 	}
-	
+
 	private JTextField email;
 	private JTextField edad;
 	private JComboBox<Paises> pais;
 	private ModifDatosListener list;
-	
+
 	public ModificarDatosUI(Jugador j) {
 		initGUI(j.getDatos().getCorreo(), j.getDatos().getEdad(), j.getDatos().getPais());
 	}
-	
+
 	public void setModificarDatosListener(ModifDatosListener list) {
 		this.list = list;
 	}
@@ -52,18 +53,19 @@ public class ModificarDatosUI extends JPanel {
 		JButton cambiar = new JButton("Cambiar");
 		cambiar.setBackground(new Color(147, 238, 64));
 		cambiar.setEnabled(false);
-		cambiar.addActionListener((e)-> this.list.cambiarPulsado());
+		cambiar.addActionListener((e) -> this.list.cambiarPulsado());
 		this.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				cambiar.setEnabled(todoRelleno());
-				
+
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				cambiar.setEnabled(todoRelleno());
 			}
-			
+
 		});
 		JButton cancelar = new JButton("Cancelar");
 		cancelar.setBackground(new Color(242, 76, 76));
@@ -74,32 +76,32 @@ public class ModificarDatosUI extends JPanel {
 		this.add(botones);
 		this.setVisible(true);
 	}
-	
+
 	public String getEmail() {
 		return email.getText();
 	}
-	
+
 	public String getEdad() {
 		return edad.getText();
 	}
-	
+
 	public Paises getPais() {
-		return (Paises)pais.getSelectedItem();
+		return (Paises) pais.getSelectedItem();
 	}
-	
-	//Metodo para saber si ha rellenado todos los campos:
+
+	// Metodo para saber si ha rellenado todos los campos:
 	public boolean todoRelleno() {
-		return  !getEmail().equals("") &&
-				!getEdad().equals("") && getPais() != null;
+		return !getEmail().equals("") && !getEdad().equals("") && getPais() != null;
 	}
-	
+
 	public boolean todoCorrecto() {
 		try {
 			int a = Integer.parseInt(getEdad());
-			if(a < 0) return false;
+			if (a < 0)
+				return false;
 		} catch (NumberFormatException e) {
 			return false;
 		}
 		return true;
-	}	
+	}
 }

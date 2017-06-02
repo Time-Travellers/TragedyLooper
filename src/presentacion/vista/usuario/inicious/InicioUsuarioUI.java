@@ -16,46 +16,46 @@ import presentacion.controlador.iniciousuario.InicioUsuarioListenable;
 import presentacion.controlador.iniciousuario.InicioUsuarioListener;
 import presentacion.modelo.usuario.Jugador;
 
-public class InicioUsuarioUI extends JPanel implements InicioUsuarioListenable{
-	
+public class InicioUsuarioUI extends JPanel implements InicioUsuarioListenable {
+
 	private static final long serialVersionUID = 7527554039049217535L;
-	
+
 	private Tienda paneltienda;
 	private TablaPartidas tabla;
 	private Contacto panelcontacto;
 	private ArrayList<InicioUsuarioListener> listeners;
 	private Jugador j;
 
-	public InicioUsuarioUI(Jugador j){
+	public InicioUsuarioUI(Jugador j) {
 		listeners = new ArrayList<InicioUsuarioListener>();
 		this.j = j;
 		initGUI();
 	}
-	
+
 	public void initGUI() {
-		//panel superior
+		// panel superior
 		JPanel panelSup = new JPanel();
-		
-		//nombre del jugador
+
+		// nombre del jugador
 		JLabel username = new JLabel(j.getDatos().getNombre());
 		username.setFont(new Font("", Font.BOLD, 40));
-		panelSup.setLayout(new BoxLayout(panelSup,BoxLayout.X_AXIS));
-		panelSup.setPreferredSize(new Dimension(this.getWidth(),100));
+		panelSup.setLayout(new BoxLayout(panelSup, BoxLayout.X_AXIS));
+		panelSup.setPreferredSize(new Dimension(this.getWidth(), 100));
 		panelSup.add(username);
-		//botones ajustes
-		Botones botones =new Botones(listeners);
+		// botones ajustes
+		Botones botones = new Botones(listeners);
 		panelSup.add(botones);
-		
-		this.paneltienda=new Tienda(j,listeners);
-		
-		this.tabla=new TablaPartidas();
-		this.panelcontacto=new Contacto(listeners);
 
-		JPanel paneldeabajo=new JPanel();
-		paneldeabajo.setLayout(new FlowLayout(FlowLayout.CENTER,20,0));
+		this.paneltienda = new Tienda(j, listeners);
+
+		this.tabla = new TablaPartidas();
+		this.panelcontacto = new Contacto(listeners);
+
+		JPanel paneldeabajo = new JPanel();
+		paneldeabajo.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 0));
 		paneldeabajo.add(paneltienda);
 		paneldeabajo.add(panelcontacto);
-		
+
 		JPanel todo = new JPanel();
 		todo.setLayout(new BoxLayout(todo, BoxLayout.Y_AXIS));
 		todo.add(panelSup);

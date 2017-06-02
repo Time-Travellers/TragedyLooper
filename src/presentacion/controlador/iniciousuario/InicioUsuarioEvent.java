@@ -1,20 +1,18 @@
 package presentacion.controlador.iniciousuario;
 
 public class InicioUsuarioEvent {
-	
-	public enum PrinciUsuarioType{
-		BuscarUsuario, Ajustes, Ayuda, Salir, IniciarPartida,
-		miPerfil, verRanking, comprarRelojes, comprarNivel, sugerencias,
-		proponerGuion
+
+	public enum PrinciUsuarioType {
+		BuscarUsuario, Ajustes, Ayuda, Salir, IniciarPartida, miPerfil, verRanking, comprarRelojes, comprarNivel, sugerencias, proponerGuion
 	}
-	
+
 	private PrinciUsuarioType tipo;
-	
-	public InicioUsuarioEvent(PrinciUsuarioType t){
+
+	public InicioUsuarioEvent(PrinciUsuarioType t) {
 		tipo = t;
 	}
-	
-	public String getPrinciUsuarioType(){
+
+	public String getPrinciUsuarioType() {
 		return tipo.toString();
 	}
 }

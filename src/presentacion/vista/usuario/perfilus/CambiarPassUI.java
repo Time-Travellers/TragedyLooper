@@ -13,20 +13,22 @@ import javax.swing.JPasswordField;
 public class CambiarPassUI extends JPanel {
 
 	private static final long serialVersionUID = -2598419591630725044L;
-	public interface CambiarPassUIListener{
+
+	public interface CambiarPassUIListener {
 		public void cambiarPulsado();
+
 		public void cancelarPulsado();
 	}
-	
+
 	private CambiarPassUIListener list;
 	private JPasswordField old;
 	private JPasswordField pass1;
 	private JPasswordField pass2;
-	
-	public CambiarPassUI(){
+
+	public CambiarPassUI() {
 		initGUI();
 	}
-	
+
 	private void initGUI() {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.add(new JLabel("Introduce tu contraseña antigua:"));
@@ -38,12 +40,12 @@ public class CambiarPassUI extends JPanel {
 		this.add(new JLabel("Introduce tu contraseña nueva otra vez:"));
 		this.pass2 = new JPasswordField();
 		this.add(pass2);
-		
+
 		JPanel botones = new JPanel();
 		JButton cambiar = new JButton("Cambiar");
 		cambiar.setBackground(new Color(147, 238, 64));
 		cambiar.setEnabled(false);
-		cambiar.addActionListener((e)-> this.list.cambiarPulsado());
+		cambiar.addActionListener((e) -> this.list.cambiarPulsado());
 		this.addMouseListener(new MouseAdapter() {
 
 			@Override
@@ -55,7 +57,7 @@ public class CambiarPassUI extends JPanel {
 			public void mouseExited(MouseEvent e) {
 				cambiar.setEnabled(todoRelleno());
 			}
-			
+
 		});
 		JButton cancelar = new JButton("Cancelar");
 		cancelar.setBackground(new Color(242, 76, 76));
@@ -65,39 +67,39 @@ public class CambiarPassUI extends JPanel {
 		botones.add(cancelar);
 		this.add(botones);
 	}
-	
+
 	public boolean todoRelleno() {
 		return !getOld().equals("") && !getPass1().equals("") && !getPass2().equals("");
 	}
-	
+
 	public void setListener(CambiarPassUIListener list) {
 		this.list = list;
 	}
-	
+
 	public boolean coinciden() {
 		return getPass1().equals(getPass2());
 	}
-	
+
 	public String getOld() {
 		char[] pass = old.getPassword();
 		String res = "";
-		for(char a : pass)
+		for (char a : pass)
 			res += a;
 		return res;
 	}
-	
+
 	public String getPass1() {
 		char[] pass = pass1.getPassword();
 		String res = "";
-		for(char a : pass)
+		for (char a : pass)
 			res += a;
 		return res;
 	}
-	
+
 	public String getPass2() {
 		char[] pass = pass2.getPassword();
 		String res = "";
-		for(char a : pass)
+		for (char a : pass)
 			res += a;
 		return res;
 	}

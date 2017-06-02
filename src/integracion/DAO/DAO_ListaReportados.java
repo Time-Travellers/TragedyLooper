@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 import bbdd.Gestor;
 import presentacion.modelo.gameMastering.Reporte;
 
-public class DAO_ListaReportados extends DAO_Lista <HashMap<String, Reporte>>{
+public class DAO_ListaReportados extends DAO_Lista<HashMap<String, Reporte>> {
 
 	@Override
 	public HashMap<String, Reporte> leer() {

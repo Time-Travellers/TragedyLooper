@@ -34,7 +34,6 @@ import presentacion.vista.gameMastering.aceptarguion.AceptarGuionUI.AceptarGuion
 import presentacion.vista.gameMastering.aceptarguion.ListaPropuestosUI;
 import presentacion.vista.gameMastering.aceptarguion.ListaPropuestosUI.GuionesPropuestosListener;
 import presentacion.vista.gameMastering.banear.ListaReportadosUI;
-import presentacion.vista.gameMastering.banear.ListaReportadosUI.ReportadosListener;
 import presentacion.vista.juego.proponerGuion.SugerenciaGuion;
 import presentacion.vista.juego.proponerGuion.SugerenciaGuion.GuionListener;
 import presentacion.vista.marketing.comprarnivel.ComprarNivelUI;
@@ -295,8 +294,7 @@ public class GUIController implements IniSesionListener, InicioUsuarioListener, 
 			dialog.setVisible(true);
 			if ((int) optionPane.getValue() == JOptionPane.YES_OPTION) {
 				Logger.getLogger("log").info("Relojes comprados");
-				new SA_Marketing().comprarRelojes((Jugador) modelo.getUsuario(), false,
-						e.getInfo().getNumReloj());
+				new SA_Marketing().comprarRelojes((Jugador) modelo.getUsuario(), false, e.getInfo().getNumReloj());
 			} else
 				Logger.getLogger("log").info("Error al comprar relojes");
 		}
@@ -323,26 +321,10 @@ public class GUIController implements IniSesionListener, InicioUsuarioListener, 
 		}
 			break;
 		case "Reportados": {
-			String[][] reporte = (new SA_GameMastering()).datosReportados();
+			String[][] reporte = new SA_GameMastering().datosReportados();
 			JDialog reportados = new JDialog(ventana, "Guiones Propuestos", ModalityType.DOCUMENT_MODAL);
 
 			ListaReportadosUI listaReportados = new ListaReportadosUI(reporte);
-			listaReportados.setReportadosListener(new ReportadosListener() {
-
-				@Override
-				public void actualizar() {
-					listaReportados.setDatos((new SA_GameMastering()).datosReportados());
-				}
-
-				@Override
-				public void seleccionar(String s) {
-				}
-
-				@Override
-				public void salir() {
-					reportados.dispose();
-				}
-			});
 
 			reportados.setSize(600, 508);
 			reportados.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -470,8 +452,7 @@ public class GUIController implements IniSesionListener, InicioUsuarioListener, 
 				public void cambiarPulsado() {
 					if (a.todoCorrecto()) {
 						Jugador jugador = (Jugador) modelo.getUsuario();
-						new SA_Usuario().modifDatos(jugador, a.getEmail(), Integer.parseInt(a.getEdad()),
-								a.getPais());
+						new SA_Usuario().modifDatos(jugador, a.getEmail(), Integer.parseInt(a.getEdad()), a.getPais());
 						JOptionPane.showMessageDialog(new JFrame(), "Datos modificados correctamente", "Exito",
 								JOptionPane.INFORMATION_MESSAGE);
 						jc.dispose();
@@ -497,12 +478,13 @@ public class GUIController implements IniSesionListener, InicioUsuarioListener, 
 			a.setListaAmigosListener(new ListaAmigosListener() {
 				@Override
 				public void borrarPulsado(Jugador amigo) {
-					if(new SA_Usuario().borrarAmigo(jugador, amigo)) {
+					if (new SA_Usuario().borrarAmigo(jugador, amigo)) {
 						JOptionPane.showMessageDialog(new JFrame(), "Amigo eliminado", "Exito",
 								JOptionPane.INFORMATION_MESSAGE);
 					} else {
-						JOptionPane.showMessageDialog(new JFrame(), "Ya has eliminado a este usuario de tu lista de amigos", 
-								"Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(new JFrame(),
+								"Ya has eliminado a este usuario de tu lista de amigos", "Error",
+								JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			});
@@ -533,7 +515,7 @@ public class GUIController implements IniSesionListener, InicioUsuarioListener, 
 			prinUsuario.updateUI();
 			break;
 		case PrinAdmin:
-			InicioAdminUI prinAdmin = new InicioAdminUI(modelo.getUsuario().getId(), 0,
+			InicioAdminUI prinAdmin = new InicioAdminUI(modelo.getUsuario().getDatos().getNombre(), 0,
 					new SA_GameMastering().getNumGuiones(), new SA_GameMastering().getNumReportados());
 			prinAdmin.addPrinciAdministradorListener(this);
 			ventana.add(prinAdmin);

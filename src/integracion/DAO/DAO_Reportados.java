@@ -5,7 +5,7 @@ import java.util.logging.Logger;
 import bbdd.Gestor;
 import presentacion.modelo.gameMastering.Reporte;
 
-public class DAO_Reportados extends DAO< Reporte >{
+public class DAO_Reportados extends DAO<Reporte> {
 
 	@Override
 	public void crear(Reporte obj) {
@@ -28,9 +28,7 @@ public class DAO_Reportados extends DAO< Reporte >{
 	@Override
 	public void borrar(String id) {
 		Logger.getLogger("log").info("Acceso a BBDD de usuarios para borrar objeto");
-		Gestor.getGestor().usuarios.remove(id);		
+		Gestor.getGestor().usuarios.remove(id);
 	}
-		
-	
-	
+
 }

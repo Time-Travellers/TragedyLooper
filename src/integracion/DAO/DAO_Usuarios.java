@@ -5,7 +5,7 @@ import java.util.logging.Logger;
 import bbdd.Gestor;
 import presentacion.modelo.usuario.Usuario;
 
-public class DAO_Usuarios extends DAO< Usuario >{
+public class DAO_Usuarios extends DAO<Usuario> {
 
 	@Override
 	public void crear(Usuario obj) {
@@ -28,9 +28,7 @@ public class DAO_Usuarios extends DAO< Usuario >{
 	@Override
 	public void borrar(String id) {
 		Logger.getLogger("log").info("Acceso a BBDD de usuarios para borrar objeto");
-		Gestor.getGestor().usuarios.remove(id);		
+		Gestor.getGestor().usuarios.remove(id);
 	}
-		
-	
-	
+
 }

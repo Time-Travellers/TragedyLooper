@@ -12,10 +12,9 @@ import javax.swing.border.TitledBorder;
 
 public class TablaTOPPartidas extends JPanel {
 
-
 	private static final long serialVersionUID = 2471691997972245593L;
 
-	final static String[] COL_NAMES = {"N�" , "ID", "Rol", "Puntuacion", "Fecha"};
+	final static String[] COL_NAMES = { "N�", "ID", "Rol", "Puntuacion", "Fecha" };
 
 	private JTable table;
 
@@ -26,17 +25,16 @@ public class TablaTOPPartidas extends JPanel {
 
 	private void initialize() {
 
-		String [][] datos = {};
+		String[][] datos = {};
 		table = new JTable(datos, COL_NAMES);
 		table.setVisible(true);
 		Border borde = BorderFactory.createLineBorder(Color.black, 1);
 		table.setFillsViewportHeight(true);
 		this.add(new JScrollPane(table));
-		this.setBorder(BorderFactory.createTitledBorder(
-				borde, "Mejores partidas:",
-				TitledBorder.LEFT, TitledBorder.TOP));
+		this.setBorder(
+				BorderFactory.createTitledBorder(borde, "Mejores partidas:", TitledBorder.LEFT, TitledBorder.TOP));
 		table.getTableHeader().setReorderingAllowed(false);
-		table.setPreferredScrollableViewportSize(new Dimension(600,350));
+		table.setPreferredScrollableViewportSize(new Dimension(600, 350));
 	}
 
 	public void eraseData() {

@@ -2,8 +2,8 @@ package presentacion.modelo.usuario;
 
 import java.io.Serializable;
 
-public class Datos implements Serializable{
-	
+public class Datos implements Serializable {
+
 	private static final long serialVersionUID = 2635476380326929773L;
 
 	private String nombre;
@@ -53,13 +53,13 @@ public class Datos implements Serializable{
 	public void setEdad(int edad) {
 		this.edad = edad;
 	}
-	
-	public String toString(){
+
+	public String toString() {
 		StringBuilder datos = new StringBuilder();
-		datos.append("Nombre: " + nombre+"\n");
-		datos.append("Edad: " + edad+'\n');	
-		datos.append("Pais: "+pais+'\n');
-		datos.append("Correo: "+correo+'\n');
+		datos.append("Nombre: " + nombre + "\n");
+		datos.append("Edad: " + edad + '\n');
+		datos.append("Pais: " + pais + '\n');
+		datos.append("Correo: " + correo + '\n');
 		return datos.toString();
 	}
 }

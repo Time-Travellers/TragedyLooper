@@ -23,6 +23,7 @@ public class ResultBusqUI extends JPanel {
 
 	public interface ResultListener {
 		public void agregarPulsado(Jugador jugador);
+
 		public void reportarPulsado(Jugador jugador);
 	}
 
@@ -55,10 +56,10 @@ public class ResultBusqUI extends JPanel {
 			jug.setVisible(true);
 			res.add(jug);
 		}
-		if(jugadores.size() == 0)
+		if (jugadores.size() == 0)
 			res.add(new JLabel("Sin resultados"));
 		todo.add(new JScrollPane(res), BorderLayout.CENTER);
-		
+
 		JPanel scroller = new JPanel();
 		scroller.setLayout(new BorderLayout());
 		scroller.add(new JScrollPane(todo));

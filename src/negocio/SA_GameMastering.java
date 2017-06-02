@@ -32,8 +32,7 @@ public class SA_GameMastering {
 	}
 
 	public String[][] datosGuionesPropuestos() {
-		HashMap<String, InfoGuion> r = 
-				DAO_FactoryGuionesPropuestos.getFactoria().creaListaDAO().leer();
+		HashMap<String, InfoGuion> r = DAO_FactoryGuionesPropuestos.getFactoria().creaListaDAO().leer();
 		ArrayList<InfoGuion> guiones = new ArrayList<InfoGuion>(r.values());
 		String[][] data = new String[guiones.size()][3];
 		for (int i = 0; i < guiones.size(); ++i) {
@@ -44,8 +43,8 @@ public class SA_GameMastering {
 		return data;
 
 	}
-	
-	public void aceptarGuion(String s, int nivel){
+
+	public void aceptarGuion(String s, int nivel) {
 		InfoGuion guion = DAO_FactoryGuionesPropuestos.getFactoria().creaDAO().leer(s);
 		guion.setNivel(nivel);
 		DAO_FactoryGuionesPropuestos.getFactoria().creaDAO().borrar(s);
@@ -54,20 +53,20 @@ public class SA_GameMastering {
 		jugador.setReloj(jugador.getReloj() + Jugador.RECOMPENSA);
 		DAO_FactoryUsuarios.getFactoria().creaDAO().actualizar(jugador);
 	}
-	
-	public InfoGuion leerGuion(String s){
+
+	public InfoGuion leerGuion(String s) {
 		return DAO_FactoryGuionesPropuestos.getFactoria().creaDAO().leer(s);
 	}
-	
-	public void eliminarGuion(String s){
+
+	public void eliminarGuion(String s) {
 		DAO_FactoryGuionesPropuestos.getFactoria().creaDAO().borrar(s);
 	}
-	
-	public int getNumReportados(){
+
+	public int getNumReportados() {
 		return DAO_FactoryReportados.getFactoria().creaListaDAO().leer().size();
 	}
-	
-	public int getNumGuiones(){
+
+	public int getNumGuiones() {
 		return DAO_FactoryGuionesPropuestos.getFactoria().creaListaDAO().leer().size();
 	}
 }

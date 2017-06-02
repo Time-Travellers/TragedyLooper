@@ -34,21 +34,21 @@ public class PerfilUsuario extends JPanel implements PerfilListenable {
 
 	public PerfilUsuario(Jugador jugador) {
 		this.list = new ArrayList<PerfilListener>();
-		
-		JPanel todo = new JPanel();		
+
+		JPanel todo = new JPanel();
 		todo.setLayout(new BoxLayout(todo, BoxLayout.Y_AXIS));
 		todo.setAlignmentX(CENTER_ALIGNMENT);
 
 		// panel superior para la informacion del usuario
 		JPanel panelSup = new JPanel();
-		panelSup.setBackground(new Color(50,140,50));
+		panelSup.setBackground(new Color(50, 140, 50));
 		panelSup.setLayout(new BoxLayout(panelSup, BoxLayout.X_AXIS));
 
 		JLabel photo = new JLabel();
 		photo.setIcon(new ImageIcon(getClass().getResource("/resources/spy.png")));
-		//panel informacion
+		// panel informacion
 		JPanel info = new JPanel();
-		info.setBackground(new Color(150,200,150));
+		info.setBackground(new Color(150, 200, 150));
 		info.setLayout(new BoxLayout(info, BoxLayout.Y_AXIS));
 		info.setPreferredSize(new Dimension(800, 150));
 
@@ -58,8 +58,8 @@ public class PerfilUsuario extends JPanel implements PerfilListenable {
 		username.setAlignmentX(LEFT_ALIGNMENT);
 
 		JTextArea datos = new JTextArea(jugador.verDatos());
-		//datos.setBorder(BorderFactory.createLineBorder(Color.black));
-		datos.setBorder(new EmptyBorder(10,10,10,10));
+		// datos.setBorder(BorderFactory.createLineBorder(Color.black));
+		datos.setBorder(new EmptyBorder(10, 10, 10, 10));
 		datos.setOpaque(false);
 		datos.setPreferredSize(new Dimension(800, 100));
 		datos.setFont(new Font("", 20, 20));
@@ -70,8 +70,8 @@ public class PerfilUsuario extends JPanel implements PerfilListenable {
 
 		JButton atras = new JButton();
 		atras.setIcon(new ImageIcon(getClass().getResource("/resources/exit.png")));
-		atras.addActionListener((e)->notificarListeners(new PerfilEvent(PerfilType.Salir)));
-	
+		atras.addActionListener((e) -> notificarListeners(new PerfilEvent(PerfilType.Salir)));
+
 		panelSup.add(photo);
 		panelSup.add(info);
 		panelSup.setAlignmentY(CENTER_ALIGNMENT);
@@ -112,8 +112,8 @@ public class PerfilUsuario extends JPanel implements PerfilListenable {
 		todo.add(tabla);
 		todo.add(botones);
 		todo.setPreferredSize(new Dimension(800, 600));
-		todo.setBorder(new EmptyBorder(20,20,20,20));
-		
+		todo.setBorder(new EmptyBorder(20, 20, 20, 20));
+
 		JPanel scroller = new JPanel();
 		scroller.setLayout(new BorderLayout());
 		scroller.add(new JScrollPane(todo));

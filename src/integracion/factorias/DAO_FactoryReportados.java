@@ -8,17 +8,16 @@ import integracion.DAO.DAO_ListaReportados;
 import integracion.DAO.DAO_Reportados;
 import presentacion.modelo.gameMastering.Reporte;
 
-public class DAO_FactoryReportados extends DAO_AbstractFactory<Reporte>  {
+public class DAO_FactoryReportados extends DAO_AbstractFactory<Reporte> {
 
 	private static DAO_FactoryReportados fabricaDeReportes;
-	
-    public static DAO_FactoryReportados getFactoria(){
-    	if(fabricaDeReportes==null)
-    		fabricaDeReportes = new DAO_FactoryReportados();
-    	return fabricaDeReportes;
-    }
-    
-    
+
+	public static DAO_FactoryReportados getFactoria() {
+		if (fabricaDeReportes == null)
+			fabricaDeReportes = new DAO_FactoryReportados();
+		return fabricaDeReportes;
+	}
+
 	@Override
 	public DAO<Reporte> creaDAO() {
 		return new DAO_Reportados();

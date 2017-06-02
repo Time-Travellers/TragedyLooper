@@ -1,5 +1,5 @@
 package presentacion.controlador.iniciarsesion;
 
 public interface IniSesionListener {
-		public void notificarIniSesion(IniSesionEvent e);
+	public void notificarIniSesion(IniSesionEvent e);
 }

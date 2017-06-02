@@ -1,5 +1,5 @@
 package presentacion.controlador.comprarreloj;
 
 public interface ComprarRelojListener {
-		public void notificarComprarReloj(ComprarRelojEvent e);
+	public void notificarComprarReloj(ComprarRelojEvent e);
 }

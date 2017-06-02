@@ -20,14 +20,13 @@ import presentacion.modelo.juego.InfoGuion.Trama;
 import presentacion.modelo.juego.InfoPersonaje;
 import presentacion.modelo.usuario.Jugador;
 
+public class SugerenciaGuion extends JPanel {
 
-public class SugerenciaGuion extends JPanel{
-	
 	private static final long serialVersionUID = -5984566220916638228L;
-	
+
 	final static String SALIR = "salirIcono.png";
 	final static String TICK = "tickverde.png";
-	
+
 	private JSpinner bucles;
 	private PanelParaEscribir titulo;
 	private PanelSeleccionTrama trama;
@@ -37,38 +36,40 @@ public class SugerenciaGuion extends JPanel{
 	private JButton aceptar;
 	private JButton cancelar;
 	private GuionListener gListener;
-	
-	public interface GuionListener{
+
+	public interface GuionListener {
 		public void recibirGuion();
+
 		public void salir();
+
 		public Jugador idRegistrado();
 	}
-	
-	public void setGListener(GuionListener listener){
+
+	public void setGListener(GuionListener listener) {
 		this.gListener = listener;
 	}
-	
-	public SugerenciaGuion(){
-		
-		JPanel contenedor=new JPanel();
-		contenedor.setLayout(new BoxLayout(contenedor,BoxLayout.Y_AXIS));
-		JPanel nivel1=new JPanel();
-		JPanel nivel2=new JPanel();
-		JPanel nivel3=new JPanel();
-		JPanel nivel4=new JPanel();
 
-		bucles = new JSpinner(new SpinnerNumberModel(3,1,8,1));
-		this.titulo=new PanelParaEscribir(15,"Titulo");
-		this.trama=new PanelSeleccionTrama();
-		this.subtrama=new PanelSeleccionSubtrama();
-		this.dias=new PanelDias();
-		this.personajes=new PanelPersonajes();
-		this.aceptar=new JButton("Enviar");
+	public SugerenciaGuion() {
+
+		JPanel contenedor = new JPanel();
+		contenedor.setLayout(new BoxLayout(contenedor, BoxLayout.Y_AXIS));
+		JPanel nivel1 = new JPanel();
+		JPanel nivel2 = new JPanel();
+		JPanel nivel3 = new JPanel();
+		JPanel nivel4 = new JPanel();
+
+		bucles = new JSpinner(new SpinnerNumberModel(3, 1, 8, 1));
+		this.titulo = new PanelParaEscribir(15, "Titulo");
+		this.trama = new PanelSeleccionTrama();
+		this.subtrama = new PanelSeleccionSubtrama();
+		this.dias = new PanelDias();
+		this.personajes = new PanelPersonajes();
+		this.aceptar = new JButton("Enviar");
 		aceptar.setBackground(new Color(147, 238, 64));
-		aceptar.addActionListener((e)->this.gListener.recibirGuion());
-		this.cancelar=new JButton("Cancelar");
+		aceptar.addActionListener((e) -> this.gListener.recibirGuion());
+		this.cancelar = new JButton("Cancelar");
 		cancelar.setBackground(new Color(242, 76, 76));
-		cancelar.addActionListener((e)->this.gListener.salir());
+		cancelar.addActionListener((e) -> this.gListener.salir());
 		nivel1.add(titulo);
 		nivel1.add(new JLabel("Bucles:"));
 		nivel1.add(bucles);
@@ -82,7 +83,7 @@ public class SugerenciaGuion extends JPanel{
 		contenedor.add(nivel2);
 		contenedor.add(nivel3);
 		contenedor.add(nivel4);
-		
+
 		JPanel scroller = new JPanel();
 		scroller.setLayout(new BorderLayout());
 		scroller.add(new JScrollPane(contenedor));
@@ -91,9 +92,9 @@ public class SugerenciaGuion extends JPanel{
 		this.setVisible(true);
 	}
 
-
 	public InfoGuion getGuionCompleto() {
-		return new InfoGuion(gListener.idRegistrado(), getTitulo(), getTrama(), getSubtrama(), getBucles(), getDias(), getPersonajes(), getIncidentes(), new Date());
+		return new InfoGuion(gListener.idRegistrado(), getTitulo(), getTrama(), getSubtrama(), getBucles(), getDias(),
+				getPersonajes(), getIncidentes(), new Date());
 	}
 
 	private int getDias() {
@@ -123,5 +124,5 @@ public class SugerenciaGuion extends JPanel{
 	public ArrayList<InfoPersonaje> getPersonajes() {
 		return personajes.getInfoPersonajes();
 	}
-	
+
 }

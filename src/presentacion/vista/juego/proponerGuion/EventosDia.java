@@ -20,37 +20,37 @@ public class EventosDia extends JPanel {
 	private JLabel nombre;
 	private JComboBox<EnumIncidentes> selectorIncidente;
 	/**
-	 * detallar incidente sirve para que si se vuelve a seleccionar noincidentes, se borren el resto de ComboBox.
+	 * detallar incidente sirve para que si se vuelve a seleccionar
+	 * noincidentes, se borren el resto de ComboBox.
 	 */
 	private JPanel detallarIncidente;
 	private JComboBox<Personaje> selectorCulpable;
-	
 
-	public EventosDia(int n){
-		EventosDia aux=this;
+	public EventosDia(int n) {
+		EventosDia aux = this;
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		JPanel contenedor=new JPanel();
+		JPanel contenedor = new JPanel();
 		contenedor.setBackground(new Color(163, 60, 242));
-		this.nombre=new JLabel("Dia "+n);
+		this.nombre = new JLabel("Dia " + n);
 		selectorIncidente = new JComboBox<EnumIncidentes>(EnumIncidentes.values());
 		selectorCulpable = new JComboBox<Personaje>(Personaje.values());
-		detallarIncidente=new JPanel();
+		detallarIncidente = new JPanel();
 		detallarIncidente.setBackground(new Color(163, 60, 242));
 		detallarIncidente.add(this.selectorCulpable);
 		contenedor.add(nombre);
 		contenedor.add(selectorIncidente);
 		selectorIncidente.setSelectedItem(EnumIncidentes.No_Incidentes);
-		selectorIncidente.addActionListener(new ActionListener(){
+		selectorIncidente.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(selectorIncidente.getSelectedItem()==EnumIncidentes.No_Incidentes){
+				if (selectorIncidente.getSelectedItem() == EnumIncidentes.No_Incidentes) {
 					detallarIncidente.setVisible(false);
 					aux.revalidate();
 					aux.repaint();
-				}
-				else{
+				} else {
 					detallarIncidente.setVisible(true);
-					//revalidate es para que se reactualice la composicion del panel.
+					// revalidate es para que se reactualice la composicion del
+					// panel.
 					aux.revalidate();
 					aux.repaint();
 				}
@@ -61,23 +61,20 @@ public class EventosDia extends JPanel {
 		this.add(detallarIncidente);
 		this.setBackground(new Color(163, 60, 242));
 	}
-	
-	
-	
-	public static void main(String args[]){
-		JFrame ventana=new JFrame("prueba");
-		ventana.setSize(800,600);
+
+	public static void main(String args[]) {
+		JFrame ventana = new JFrame("prueba");
+		ventana.setSize(800, 600);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.setContentPane(new EventosDia(1));
 		ventana.setVisible(true);
 	}
 
-
 	public Incidente getIncidente() {
-		if(selectorIncidente.getSelectedItem() != null){
-			EnumIncidentes ic = (EnumIncidentes)selectorIncidente.getSelectedItem();
-			Personaje p = (Personaje)selectorCulpable.getSelectedItem();
-			return new Incidente(ic,p);
+		if (selectorIncidente.getSelectedItem() != null) {
+			EnumIncidentes ic = (EnumIncidentes) selectorIncidente.getSelectedItem();
+			Personaje p = (Personaje) selectorCulpable.getSelectedItem();
+			return new Incidente(ic, p);
 		} else
 			return null;
 	}

@@ -26,7 +26,7 @@ public class PanelCentral extends JPanel {
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		JPanel dias = new JPanel(), personajes = new JPanel();
 		JLabel dia = new JLabel("Dias: " + guion.getNumDias()), personaje = new JLabel("Personajes:");
-	
+
 		// gridlayout para los labels
 		JPanel thisTitle = new JPanel(new GridLayout(0, 2));
 		thisTitle.setPreferredSize(new Dimension(800, 40));
@@ -36,7 +36,7 @@ public class PanelCentral extends JPanel {
 		// crear panel de dias
 		dias.setLayout(new BoxLayout(dias, BoxLayout.Y_AXIS));
 		dias.setMaximumSize(new Dimension(300, 100));
-		dias.setBorder(new EmptyBorder(10,10,10,10));
+		dias.setBorder(new EmptyBorder(10, 10, 10, 10));
 		for (int i = 0; i < guion.getIncidentes().size(); ++i) {
 			Incidente inc = guion.getIncidentes().get(i);
 			JLabel d = new JLabel("Dia " + (i + 1) + ": " + inc.getIncidente().toString());
@@ -51,14 +51,14 @@ public class PanelCentral extends JPanel {
 		// crear panel de personajes
 		personajes.setLayout(new BoxLayout(personajes, BoxLayout.Y_AXIS));
 		personajes.setMaximumSize(new Dimension(300, 100));
-		personajes.setBorder(new EmptyBorder(10,10,10,10));
+		personajes.setBorder(new EmptyBorder(10, 10, 10, 10));
 		for (int i = 0; i < guion.getInfoPersonajes().size(); ++i) {
 			InfoPersonaje pers = guion.getInfoPersonajes().get(i);
 			JLabel p = new JLabel(
 					"P" + (i + 1) + ": " + pers.getNombre().toString() + "   " + pers.getRol().toString());
 			personajes.add(p);
 		}
-		
+
 		// meter en scrollpane
 		JScrollPane scrollDias = new JScrollPane(dias), scrollPers = new JScrollPane(personajes);
 		// gridlayout para los scrollpanes

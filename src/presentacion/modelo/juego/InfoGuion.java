@@ -7,16 +7,16 @@ import java.util.List;
 
 import presentacion.modelo.usuario.Jugador;
 
-public class InfoGuion implements Serializable{
-	
-	public enum Trama{
+public class InfoGuion implements Serializable {
+
+	public enum Trama {
 		Un_lugar_que_proteger, Luz_del_vengador, Masacre_en_Rokkenjima
 	}
-	
-	public enum Subtrama{
+
+	public enum Subtrama {
 		La_bruja_dorada, Un_rumor_inquietante, Amor_prohibido
 	}
-	
+
 	private static final long serialVersionUID = -2153228995875423399L;
 	private String titulo;
 	private Trama trama;
@@ -28,12 +28,10 @@ public class InfoGuion implements Serializable{
 	private int nivel;
 	private Jugador creador;
 	private Date fechaCreada;
-	
 
-	public InfoGuion(Jugador creador, String titulo, Trama trama, Subtrama subtrama,
-			int numLoops, int numDias, List<InfoPersonaje> cartaPersonajes,
-			List<Incidente> incidentes, Date date) {
-		this.creador=creador;
+	public InfoGuion(Jugador creador, String titulo, Trama trama, Subtrama subtrama, int numLoops, int numDias,
+			List<InfoPersonaje> cartaPersonajes, List<Incidente> incidentes, Date date) {
+		this.creador = creador;
 		this.titulo = titulo;
 		this.trama = trama;
 		this.subtrama = subtrama;
@@ -41,15 +39,14 @@ public class InfoGuion implements Serializable{
 		this.numDias = numDias;
 		this.cartaPersonajes = cartaPersonajes;
 		this.incidentes = incidentes;
-		this.creador=creador;
+		this.creador = creador;
 		this.fechaCreada = date;
 	}
 
-	
-	public Jugador getCreador(){
+	public Jugador getCreador() {
 		return this.creador;
 	}
-	
+
 	public String getTitulo() {
 		return titulo;
 	}
@@ -62,13 +59,14 @@ public class InfoGuion implements Serializable{
 		return numLoops;
 	}
 
-	public Trama getTrama(){
+	public Trama getTrama() {
 		return trama;
 	}
-	
-	public Subtrama getSubtrama(){
+
+	public Subtrama getSubtrama() {
 		return subtrama;
 	}
+
 	public void setNumLoops(int numLoops) {
 		this.numLoops = numLoops;
 	}
@@ -100,16 +98,16 @@ public class InfoGuion implements Serializable{
 	public void setIncidentes(List<Incidente> incidentes) {
 		this.incidentes = incidentes;
 	}
-	
-	public void setNivel(int nivel){
-		this.nivel=nivel;
+
+	public void setNivel(int nivel) {
+		this.nivel = nivel;
 	}
-	
-	public int getNivel(){
+
+	public int getNivel() {
 		return nivel;
 	}
-	
-	public Date getFecha(){
+
+	public Date getFecha() {
 		return fechaCreada;
 	}
 }

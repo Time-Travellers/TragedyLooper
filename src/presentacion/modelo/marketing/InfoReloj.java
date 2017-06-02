@@ -1,29 +1,30 @@
 package presentacion.modelo.marketing;
-public class InfoReloj{
-	
+
+public class InfoReloj {
+
 	private String nombre;
 	private int numReloj;
 	private double precio;
-	
-	public InfoReloj(String nombre, int numReloj, double precio){
+
+	public InfoReloj(String nombre, int numReloj, double precio) {
 		this.nombre = nombre;
 		this.numReloj = numReloj;
 		this.precio = precio;
 	}
-	
-	public String getNombre(){
+
+	public String getNombre() {
 		return nombre;
 	}
-	
-	public int getNumReloj(){
+
+	public int getNumReloj() {
 		return numReloj;
 	}
-	
-	public double getPrecio(){
+
+	public double getPrecio() {
 		return precio;
 	}
-	
-	public String toString(){
+
+	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(nombre);
 		sb.append(" - ");
@@ -32,6 +33,6 @@ public class InfoReloj{
 		sb.append(precio);
 		sb.append(" ?)");
 		return sb.toString();
-		
+
 	}
 }
