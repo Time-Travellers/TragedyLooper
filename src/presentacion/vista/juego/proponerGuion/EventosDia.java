@@ -30,12 +30,12 @@ public class EventosDia extends JPanel {
 		EventosDia aux=this;
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		JPanel contenedor=new JPanel();
-		contenedor.setBackground(new Color(61, 117, 241));
+		contenedor.setBackground(new Color(163, 60, 242));
 		this.nombre=new JLabel("Dia "+n);
 		selectorIncidente = new JComboBox<EnumIncidentes>(EnumIncidentes.values());
 		selectorCulpable = new JComboBox<Personaje>(Personaje.values());
 		detallarIncidente=new JPanel();
-		detallarIncidente.setBackground(new Color(61, 117, 241));
+		detallarIncidente.setBackground(new Color(163, 60, 242));
 		detallarIncidente.add(this.selectorCulpable);
 		contenedor.add(nombre);
 		contenedor.add(selectorIncidente);
@@ -59,7 +59,7 @@ public class EventosDia extends JPanel {
 		this.add(contenedor);
 		detallarIncidente.setVisible(false);
 		this.add(detallarIncidente);
-		this.setBackground(new Color(61, 117, 241));
+		this.setBackground(new Color(163, 60, 242));
 	}
 	
 	

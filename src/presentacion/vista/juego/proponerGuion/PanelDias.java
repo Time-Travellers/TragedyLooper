@@ -33,7 +33,7 @@ public class PanelDias extends JPanel implements ReguladorListener{
 		this.listaDias=new ArrayList<EventosDia>();
 		this.contenedor=new JPanel();
 		contenedor.setLayout(new BoxLayout(contenedor,BoxLayout.Y_AXIS));
-		contenedor.setBackground(new Color(60, 129, 242));
+		contenedor.setBackground(new Color(163, 60, 242));
 		this.add(numdias);
 		inicializarlistaDias();
 		numdias.addObservador(this);

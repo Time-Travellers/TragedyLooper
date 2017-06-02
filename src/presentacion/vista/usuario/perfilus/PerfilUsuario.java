@@ -41,12 +41,14 @@ public class PerfilUsuario extends JPanel implements PerfilListenable {
 
 		// panel superior para la informacion del usuario
 		JPanel panelSup = new JPanel();
+		panelSup.setBackground(new Color(50,140,50));
 		panelSup.setLayout(new BoxLayout(panelSup, BoxLayout.X_AXIS));
 
 		JLabel photo = new JLabel();
 		photo.setIcon(new ImageIcon(getClass().getResource("/resources/spy.png")));
 		//panel informacion
 		JPanel info = new JPanel();
+		info.setBackground(new Color(150,200,150));
 		info.setLayout(new BoxLayout(info, BoxLayout.Y_AXIS));
 		info.setPreferredSize(new Dimension(800, 150));
 
